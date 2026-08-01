@@ -27,9 +27,13 @@ The E.M site links out to all nine business templates from a "Live Sites" sectio
 both `index.html` and `work.html`, reusing the screenshots in
 `business-templates/assets/previews/`.
 
-**Open work:** the E.M redesign. PR #1 was merged, but it merged the branch as it stood
-*before* the redesign commit, so `main` currently still serves the old dark E.M site.
-The redesign is on a fresh branch with a second PR.
+All nine templates have had a quality pass: no sideways scroll from 320px up, every
+element passes WCAG AA contrast, no heading skips, and a 10.24px type floor. Their nine
+design languages are unchanged — the pass raised craft inside each idiom, it did not
+unify them.
+
+**Open work:** PRs #1 and #2 are merged. The template quality pass is on
+branch `claude/portfolio-html-files-3qydbo` awaiting merge.
 
 ---
 
@@ -54,32 +58,56 @@ Things that are easy to get wrong here:
    `deviceScaleFactor: 1.5`, clip `{x:0, y:0, width:1440, height:900}`, JPEG quality 76.
    Keep the 16:10 crop — the card CSS assumes it.
 
-4. **Two CSS traps already hit and fixed in the gallery — don't reintroduce them.**
+4. **The label/value ledger trap — hit in FOUR of the nine templates.**
+   `grid-template-columns:7.5rem 1fr` looks fine until an email address lands in the
+   second track: `1fr` carries `min-width:auto`, so the track cannot shrink below its
+   content and the whole page grows. This caused up to 81px of sideways scroll at 320px.
+   **Always write `minmax(0,1fr)`**, add `overflow-wrap:anywhere` to the value, and stack
+   the pair under ~400px.
+
+5. **Testing for sideways scroll: measure, don't infer.**
+   - `overflow-x:hidden` on `body` does **not** stop the page scrolling while `html` still
+     scrolls. Scroll the window and read `window.scrollX`.
+   - Comparing `scrollWidth` to `clientWidth` gives false positives for anything inside an
+     `overflow-x:auto` scroller.
+   - Raising a type floor can *create* overflow — a bigger wordmark tagline is what pushed
+     vitality-gym's header from 22px of overflow to 57px.
+
+6. **Contrast sweeps must sample headings, not just body text.**
+   The worst defect in the whole pass was a heading: hydro-flow's booking form is a white
+   card inside an `.on-dark` section, and `.on-dark h3{color:#fff}` rendered "Request a
+   booking" white on white at 1.00:1. A body-text-only sweep missed it entirely.
+
+7. **Moving a heading level means moving its CSS selector.** Several templates styled
+   footer headings with `.ft h4`. Changing the markup to `h3` without changing the
+   selector silently strips the styling.
+
+8. **Two CSS traps already hit and fixed in the gallery — don't reintroduce them.**
    - An `<img>` with `width`/`height` HTML attributes needs `height:auto` in CSS, or the
      `height` presentational hint wins and `aspect-ratio` is ignored. This silently
      scaled the previews to ~2.5x.
    - A percentage `max-height` needs a definite containing height to resolve against.
      Without one it is ignored, which made ten logo plates render at ten heights.
 
-5. **Placeholders still in `business-templates/index.html`**, each marked with a
+9. **Placeholders still in `business-templates/index.html`**, each marked with a
    `<!-- REPLACE -->` comment: the contact email (`hello@example.com`) and the top-bar
    wordmark / "Open for work" line. These must be replaced before that page is published
    anywhere public.
 
-6. **The E.M site's `js/enhancements.js` is nearly empty on purpose.** All four pages
+10. **The E.M site's `js/enhancements.js` is nearly empty on purpose.** All four pages
    `<script src>` it, so deleting the file would 404 on every page load. New behaviour
    belongs in `js/main.js`.
 
-7. **The E.M pages carry `<!-- REPLACE -->` markers on every placeholder** — stat
+11. **The E.M pages carry `<!-- REPLACE -->` markers on every placeholder** — stat
    figures, the three testimonials, the four invented case studies, contact details,
    social links and the form endpoint. The stock-photo portraits in `assets/images/`
    are placeholders too. **The site should not go public until these are real.**
 
-8. **Nothing here has a build step.** Hand-written HTML/CSS/vanilla JS across both
+12. **Nothing here has a build step.** Hand-written HTML/CSS/vanilla JS across both
    projects. Google Fonts is the only external request. Don't add a bundler or framework
    without the owner asking.
 
-9. **Claude Code runs in a temporary cloud container**, not on the owner's machine. Its
+13. **Claude Code runs in a temporary cloud container**, not on the owner's machine. Its
    working directory is not visible to Antigravity and is wiped after the session. Only
    what is **committed and pushed** crosses between agents. Git is the handoff medium.
 
