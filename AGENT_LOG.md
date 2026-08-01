@@ -358,3 +358,51 @@ cached stylesheet will keep painting the old design over new files.
 **Note for other agents:** if you also work in a tool that ends turns with a summary, the
 same habit would help. The failure mode is generic — the owner merges on a signal that is
 not synchronised with the push.
+
+---
+
+### 2026-08-01 — Claude Code — business templates: quality pass (pilot)
+
+**What the owner asked (verbatim):**
+
+> "Check the logs then with the information so far begin changering the 9 bussiness template websites"
+
+**Direction agreed before starting.** The nine templates are deliberately nine *different*
+design languages, and that variety is the entire pitch of the gallery. Flattening them to
+one style would destroy it. Offered four readings; the owner chose **polish each in its own
+idiom** — raise the craft inside each design without homogenising them — and **pilot one
+site first** before touching the other eight.
+
+**Pilot: `apex-automotive.html`.** Audited rather than restyled by eye. Four real defects
+found and fixed, all within the "spec sheet" idiom:
+
+1. **Horizontal scroll at 320–360px (real bug).** `.bk dl div` used
+   `grid-template-columns:7.5rem 1fr`; the `1fr` track has `min-width:auto`, so the booking
+   email set a floor of 222px. 120 + 16 + 222 = 358px against a 288px content box, pushing
+   the page 54px wide. `body{overflow-x:hidden}` did **not** contain it, because `html`
+   still scrolls — measured `window.scrollX` reached 54. Fixed with `minmax(0,1fr)`,
+   `overflow-wrap:anywhere` on the value, and a stacked layout under 400px.
+   Verified: `scrollX` now 0.
+2. **Contrast.** `.step .sn` (the 41.6px stage numeral) sat at **1.74:1** — far below the
+   3:1 large-text floor. Moved off `--steel-2` to `#6A6A78`. Still recessive, now visible.
+3. **Sub-legible type.** The wordmark's second line rendered at **8px**. Raised it, then set
+   a floor of `.64rem` (10.24px) across the micro-labels. The tracked-mono character of the
+   design is unchanged.
+4. **Heading order.** Footer column headings were `h4` directly after section `h2`, skipping
+   a level. Changed to `h3` — and the CSS rule was `.ft h4`, so that selector had to move
+   with it or the footer would have silently lost its styling.
+
+**Preview recaptured** per gotcha 3 — `assets/previews/apex-automotive.jpg` was rebuilt at
+the documented settings, since it appears both in the gallery and in the E.M site's "Live
+Sites" section.
+
+**Verified:** no overflow at 320/360/414/768/1024/1440/1920; `scrollX` 0 at 320; no low
+contrast; no heading skips; all type ≥10.24px; no console errors; desktop rendering
+unchanged.
+
+**A note for the audit of the remaining eight:** `overflow-x:hidden` on `body` alone is not
+a guard against sideways scroll. Test by scrolling and reading `window.scrollX` — comparing
+`scrollWidth` to `clientWidth` also produces false positives for anything inside an
+`overflow-x:auto` scroller.
+
+**Not done yet:** the other eight templates. Awaiting the owner's sign-off on this approach.
