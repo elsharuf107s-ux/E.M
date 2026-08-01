@@ -1,60 +1,75 @@
-# Portfolio — nine business websites
+# E.M — Creative Designer & Developer Portfolio
 
-A portfolio index (`index.html`) plus the nine finished business sites it links to.
-Everything is hand-written HTML and CSS. No build step, no framework, no package
-manager — open `index.html` in a browser and it works.
+A premium dark-themed portfolio website showcasing creative design and full-stack development work. Features a luxury aesthetic with gold accents, glassmorphism, particle effects, 3D card interactions, and smooth scroll-driven animations.
 
-## The sites
+## ✨ Features
 
-Each one is a single self-contained file with its own layout language and its own
-logo inlined as a data URI.
+- **Dark luxury design** — Deep monochrome surfaces with warm gold (#d4a853) accents
+- **Interactive particle canvas** — Mouse-reactive particles with golden connecting vectors
+- **3D card tilt effects** — Perspective transforms on hover with glare highlights
+- **Custom cursor** — Dual-layer animated cursor with magnetic button attraction
+- **Typed text animation** — Rotating titles in the hero section
+- **Scroll-driven animations** — Reveal effects, parallax layers, progress bar
+- **Category filtering** — Interactive project gallery with animated transitions
+- **Contact form** — Validated form with simulated submission
+- **FAQ accordion** — Expandable Q&A section
+- **Fully responsive** — Optimized for desktop, tablet, and mobile
 
-| # | File | Business | Concept |
-|---|------|----------|---------|
-| 01 | `apex-automotive.html` | Independent workshop | *The Spec Sheet* — job card, live bay board, published rates |
-| 02 | `hydro-flow.html` | 24/7 emergency plumber | *The Dispatch* — symptom triage, response times, persistent call bar |
-| 03 | `lex-associates.html` | Law firm | *The Brief* — fixed rail, roman numerals, hairline rules |
-| 04 | `nexa.html` | Managed IT & security | *The Console* — service board, coverage matrix, incident timeline |
-| 05 | `roast-revel.html` | Coffee roastery & café | *The Broadsheet* — masthead, drop caps, price leaders |
-| 06 | `root-bloom.html` | Nursery & garden centre | *The Field Guide* — specimen entries, sowing calendar |
-| 07 | `serene-spaces.html` | Yoga studio | *The Breath* — vertical rhythm, working breath pacer |
-| 08 | `vitality-gym.html` | Gym & strength coaching | *The Board* — full-bleed blocks, hazard stripes |
-| 09 | `artisans-atelier.html` | Studio & gallery | *The Catalogue* — hanging wall, catalogue numbering |
-
-## Structure
+## 📁 Project Structure
 
 ```
-index.html               the portfolio — work grid, sector filter, approach, marks, contact
-*.html                   the nine sites, one file each
-assets/previews/*.jpg    1440×900 hero screenshots used as the cards in the portfolio
-assets/logos/*.png       the ten brand marks (also kept zipped in logos-batch-2.zip)
+ecude1/
+├── index.html          # Homepage — hero, featured work, skills, testimonials
+├── about.html          # About — bio, skills, tools, education, awards
+├── work.html           # Portfolio — filterable project gallery, process
+├── contact.html        # Contact — inquiry form, FAQ, location
+├── css/
+│   ├── style.css       # Core design system, layout, components
+│   └── enhancements.css # Advanced effects, animations, polish
+├── js/
+│   ├── main.js         # Core interactions, form validation, scroll logic
+│   └── enhancements.js # Particles, cursor, 3D tilt, page transitions
+├── assets/
+│   └── images/         # Hero backgrounds, portrait, project thumbnails
+└── README.md
 ```
 
-## Viewing it
+## 🛠 Tech Stack
 
-Open `index.html` directly, or serve the folder:
+- **HTML5** — Semantic markup with Open Graph meta tags
+- **CSS3** — Custom properties, glassmorphism (`backdrop-filter`), fluid typography (`clamp()`), CSS Grid & Flexbox
+- **Vanilla JavaScript** — Intersection Observer, Canvas API, requestAnimationFrame, custom easing
+- **Google Fonts** — Playfair Display, Inter, JetBrains Mono
+- **No build tools** — Pure HTML/CSS/JS, open directly in a browser
 
-```sh
-npx serve .
-```
+## 🚀 Getting Started
 
-Both work — nothing depends on a server. The only external request any page makes is
-to Google Fonts, and every page falls back to system fonts offline.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/elsharuf107s-ux/ecude1.git
+   cd ecude1
+   ```
 
-## Before publishing
+2. Open `index.html` in your browser, or use a local server:
+   ```bash
+   # Python
+   python -m http.server 8000
 
-Two things in `index.html` are placeholders, each marked with a `<!-- REPLACE -->`
-comment:
+   # Node.js
+   npx serve .
+   ```
 
-- the contact email (`hello@example.com`), in the contact button and the details list
-- the wordmark in the top bar and the "Open for work" availability line, if those
-  aren't what you want them to say
+3. Visit `http://localhost:8000`
 
-## Regenerating the previews
+## 📄 Pages
 
-The card images are screenshots of the sites themselves, so they need refreshing when a
-site's hero changes. They were captured with Playwright and Chromium at a 1440×900
-viewport, `deviceScaleFactor: 1.5`, clipped to `{ x: 0, y: 0, width: 1440, height: 900 }`
-and saved as JPEG quality 76 to `assets/previews/<site-name>.jpg`.
+| Page | Description |
+|------|-------------|
+| **Home** | Hero with particle canvas, featured projects, skill bars, testimonials |
+| **About** | Bio, technical proficiency bars, tools arsenal, education, awards |
+| **Work** | Filterable portfolio grid (Web, Mobile, Branding, SaaS), process methodology |
+| **Contact** | Inquiry form with budget/timeline selectors, FAQ accordion, social links |
 
-Keep the 16:10 crop — the portfolio cards assume it.
+## 📝 License
+
+© E.M. All rights reserved.

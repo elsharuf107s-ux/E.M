@@ -1,757 +1,769 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfolio — Nine Business Websites</title>
-<meta name="description" content="Nine one-page business websites, each built as a single self-contained HTML file with its own layout language. Workshop, plumber, law firm, IT operations, roastery, nursery, yoga studio, gym and gallery.">
-<meta name="theme-color" content="#0A0A0B">
-<meta property="og:title" content="Portfolio — Nine Business Websites">
-<meta property="og:description" content="Nine one-page business websites, each built as a single self-contained HTML file with its own layout language.">
-<meta property="og:type" content="website">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230A0A0B'/%3E%3Crect x='6' y='6' width='9' height='9' fill='%23EFEFF1'/%3E%3Crect x='17' y='6' width='9' height='9' fill='%23575760'/%3E%3Crect x='6' y='17' width='9' height='9' fill='%23575760'/%3E%3Crect x='17' y='17' width='9' height='9' fill='%23EFEFF1'/%3E%3C/svg%3E">
-<style>
-/* ==========================================================
-   PORTFOLIO — "The Index"
-   A deliberately quiet shell for nine very loud websites.
-   Near-black ground, one typographic voice, per-project
-   accents borrowed from each build. Nothing here competes
-   with the work it is framing.
-   ========================================================== */
-:root{
-  --ink:#0A0A0B;
-  --ink-2:#0F0F11;
-  --panel:#141417;
-  --panel-2:#1A1A1E;
-  --line:#232328;
-  --line-2:#32323A;
-  --txt:#EFEFF1;
-  --txt-2:#A2A2AC;
-  --txt-3:#6C6C77;
-  --bone:#E9E4D8;
-  --accent:#EFEFF1;
-  --disp:'Instrument Serif',Georgia,serif;
-  --ui:'Inter',system-ui,-apple-system,sans-serif;
-  --mono:'JetBrains Mono',ui-monospace,monospace;
-  --bar:60px;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:calc(var(--bar) + 1.5rem)}
-body{
-  background:var(--ink);color:var(--txt-2);
-  font-family:var(--ui);font-size:16px;line-height:1.65;
-  -webkit-font-smoothing:antialiased;overflow-x:hidden;
-}
-img{display:block;max-width:100%}
-a{color:inherit;text-decoration:none}
-ul,ol{list-style:none}
-button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
-:focus-visible{outline:2px solid var(--bone);outline-offset:3px}
-::selection{background:var(--bone);color:var(--ink)}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="E.M — Award-winning creative designer & developer crafting premium digital experiences. Portfolio showcasing luxury brand design, web development, and interactive experiences.">
+  <meta name="keywords" content="portfolio, designer, developer, creative, web design, UI/UX, branding">
+  <meta name="author" content="E.M">
+  <meta name="theme-color" content="#0a0a0f">
+  <title>E.M — Creative Designer & Developer</title>
 
-h1,h2,h3,h4{color:var(--txt);font-weight:400;line-height:1.06;letter-spacing:-.015em}
-h1,h2{font-family:var(--disp)}
-em{font-family:var(--disp);font-style:italic}
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-.wrap{width:100%;max-width:1300px;margin-inline:auto;padding-inline:clamp(1.15rem,4vw,3rem)}
-.narrow{max-width:780px}
-.sec{padding-block:clamp(4rem,9vw,7.5rem)}
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-.mono{font-family:var(--mono);font-size:.68rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase}
-.rule{border:0;border-top:1px solid var(--line)}
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/enhancements.css">
 
-.skip{position:absolute;left:-9999px;top:0;z-index:99}
-.skip:focus{left:1rem;top:1rem;background:var(--bone);color:var(--ink);padding:.6rem 1rem;font-weight:600}
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E✦%3C/text%3E%3C/svg%3E">
 
-/* ---------------- top bar ---------------- */
-.bar{
-  position:sticky;top:0;z-index:60;height:var(--bar);
-  display:flex;align-items:center;gap:1.5rem;
-  background:rgba(10,10,11,.82);backdrop-filter:blur(14px) saturate(140%);
-  border-bottom:1px solid var(--line);
-}
-.bar .wrap{display:flex;align-items:center;gap:1.25rem;width:100%}
-.mark{display:flex;align-items:baseline;gap:.6rem;margin-right:auto}
-.mark b{font-family:var(--disp);font-weight:400;font-size:1.32rem;color:var(--txt);letter-spacing:0}
-.mark span{color:var(--txt-3)}
-.bar nav{display:flex;gap:1.65rem}
-.bar nav a{font-size:.82rem;font-weight:500;color:var(--txt-2);transition:color .18s}
-.bar nav a:hover{color:var(--txt)}
-.bar .avail{display:flex;align-items:center;gap:.5rem;color:var(--txt-3)}
-.pulse{width:6px;height:6px;background:#5BD69A;border-radius:50%;box-shadow:0 0 0 0 rgba(91,214,154,.55);animation:pulse 2.4s infinite}
-@keyframes pulse{70%{box-shadow:0 0 0 7px rgba(91,214,154,0)}100%{box-shadow:0 0 0 0 rgba(91,214,154,0)}}
-@media(max-width:880px){.bar nav,.bar .avail{display:none}}
-
-/* ---------------- hero ---------------- */
-.hero{position:relative;padding-block:clamp(4.5rem,12vw,9rem) clamp(3rem,6vw,4.5rem);overflow:hidden}
-.hero::before{
-  content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;
-  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
-  background-size:64px 64px;
-  mask-image:radial-gradient(ellipse 70% 60% at 20% 0%,#000 5%,transparent 70%);
-  opacity:.85;
-}
-.eyebrow{display:flex;flex-wrap:wrap;align-items:center;gap:.75rem;color:var(--txt-3);margin-bottom:clamp(1.5rem,3vw,2.25rem)}
-.eyebrow .dash{width:34px;height:1px;background:var(--line-2)}
-.hero h1{
-  font-size:clamp(2.9rem,7.4vw,6.1rem);line-height:.99;max-width:16ch;letter-spacing:-.022em;
-}
-.hero h1 em{color:var(--bone)}
-.hero-lead{
-  margin-top:clamp(1.6rem,3vw,2.2rem);max-width:56ch;
-  font-size:clamp(1.02rem,1.5vw,1.18rem);line-height:1.66;color:var(--txt-2);
-}
-.hero-cta{display:flex;flex-wrap:wrap;gap:.85rem;margin-top:clamp(2rem,4vw,2.75rem)}
-.btn{
-  display:inline-flex;align-items:center;gap:.6rem;
-  padding:.86rem 1.5rem;font-size:.85rem;font-weight:600;letter-spacing:.02em;
-  border:1px solid var(--line-2);color:var(--txt);transition:background .2s,border-color .2s,color .2s;
-}
-.btn svg{width:13px;height:13px;flex:none}
-.btn--solid{background:var(--bone);color:var(--ink);border-color:var(--bone)}
-.btn--solid:hover{background:#fff;border-color:#fff}
-.btn--ghost:hover{background:var(--panel);border-color:var(--line-2)}
-
-/* stat strip */
-.stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);margin-top:clamp(3rem,7vw,5rem)}
-.stats div{padding:1.5rem 1.35rem 0 0;border-right:1px solid var(--line)}
-.stats div:last-child{border-right:0}
-.stats b{display:block;font-family:var(--disp);font-weight:400;font-size:clamp(1.85rem,3.6vw,2.75rem);color:var(--txt);line-height:1}
-.stats span{display:block;margin-top:.45rem;font-size:.78rem;color:var(--txt-3);line-height:1.45}
-@media(max-width:700px){.stats{grid-template-columns:repeat(2,1fr)}.stats div{padding-bottom:1.25rem;border-bottom:1px solid var(--line)}.stats div:nth-child(2n){border-right:0}.stats div:nth-last-child(-n+2){border-bottom:0}}
-
-/* ---------------- marquee ---------------- */
-.ticker{border-block:1px solid var(--line);background:var(--ink-2);overflow:hidden;padding-block:.9rem}
-.ticker-track{display:flex;width:max-content;gap:0;animation:slide 46s linear infinite}
-.ticker-track span{display:inline-flex;align-items:center;gap:1.5rem;padding-inline:1.5rem;color:var(--txt-3);white-space:nowrap}
-.ticker-track i{width:5px;height:5px;background:currentColor;border-radius:50%;opacity:.75}
-@keyframes slide{to{transform:translateX(-50%)}}
-
-/* ---------------- section head ---------------- */
-.head{display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;flex-wrap:wrap;margin-bottom:clamp(2rem,4vw,3rem)}
-.head h2{font-size:clamp(2.1rem,4.6vw,3.5rem);max-width:18ch}
-.head p{max-width:44ch;font-size:.95rem;color:var(--txt-2)}
-.head .mono{display:block;color:var(--txt-3);margin-bottom:1rem}
-
-/* ---------------- filters ---------------- */
-.filters{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:clamp(1.75rem,3vw,2.5rem);border-top:1px solid var(--line);padding-top:1.5rem}
-.chip{
-  padding:.5rem 1rem;font-size:.78rem;font-weight:500;color:var(--txt-2);
-  border:1px solid var(--line);transition:color .18s,border-color .18s,background .18s;
-}
-.chip:hover{color:var(--txt);border-color:var(--line-2)}
-.chip[aria-pressed="true"]{background:var(--bone);border-color:var(--bone);color:var(--ink);font-weight:600}
-.chip small{font-family:var(--mono);font-size:.62rem;opacity:.6;margin-left:.45rem}
-.count{margin-left:auto;align-self:center;color:var(--txt-3)}
-
-/* ---------------- work grid ---------------- */
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(1.5rem,3vw,2.5rem)}
-@media(max-width:820px){.grid{grid-template-columns:1fr}}
-
-.card{
-  --accent:#EFEFF1;
-  display:flex;flex-direction:column;
-  background:var(--ink-2);border:1px solid var(--line);
-  transition:border-color .25s,transform .25s,background .25s;
-}
-.card:hover{border-color:var(--line-2);background:var(--panel)}
-.card.is-hidden{display:none}
-.card.wide{grid-column:1/-1}
-@media(min-width:821px){
-  .card.wide{flex-direction:row}
-  .card.wide .shot{width:58%;flex:none;border-right:1px solid var(--line);border-bottom:0}
-  .card.wide .body{width:42%;justify-content:center;flex:none}
-  .card.wide .open{margin-top:1.1rem}
-}
-
-.shot{position:relative;display:block;overflow:hidden;border-bottom:1px solid var(--line);background:var(--panel-2)}
-.chrome{
-  display:flex;align-items:center;gap:.45rem;height:30px;padding-inline:.85rem;
-  background:var(--panel);border-bottom:1px solid var(--line);
-}
-.chrome i{width:7px;height:7px;border-radius:50%;background:var(--line-2);flex:none}
-.chrome .url{
-  margin-left:.6rem;font-family:var(--mono);font-size:.6rem;letter-spacing:.06em;
-  color:var(--txt-3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
-}
-.shot img{width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top center;transition:transform .55s cubic-bezier(.2,.7,.3,1),opacity .3s}
-.card:hover .shot img{transform:scale(1.028)}
-.shot::after{
-  content:'';position:absolute;left:0;right:0;bottom:0;height:3px;
-  background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.2,.7,.3,1);
-}
-.card:hover .shot::after{transform:scaleX(1)}
-
-.body{display:flex;flex-direction:column;padding:clamp(1.5rem,2.6vw,2.1rem);gap:.85rem;flex:1}
-.body-top{display:flex;align-items:center;gap:.75rem;color:var(--txt-3)}
-.body-top .num{color:var(--accent);font-family:var(--mono);font-size:.68rem;font-weight:700;letter-spacing:.16em}
-.body-top .sep{flex:1;height:1px;background:var(--line)}
-.body h3{font-size:clamp(1.45rem,2.3vw,1.85rem);letter-spacing:-.02em}
-.concept{font-family:var(--disp);font-style:italic;font-size:1.08rem;color:var(--accent);line-height:1.3;margin-top:-.4rem}
-.desc{font-size:.92rem;line-height:1.62;color:var(--txt-2)}
-.tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.15rem}
-.tags li{
-  font-family:var(--mono);font-size:.6rem;letter-spacing:.09em;text-transform:uppercase;
-  color:var(--txt-3);border:1px solid var(--line);padding:.34rem .6rem;
-}
-.open{
-  display:inline-flex;align-items:center;gap:.55rem;margin-top:auto;padding-top:1.1rem;
-  font-size:.82rem;font-weight:600;color:var(--txt);
-  border-top:1px solid var(--line);
-}
-.open .arrow{display:inline-flex;transition:transform .28s cubic-bezier(.2,.7,.3,1);color:var(--accent)}
-.open svg{width:14px;height:14px}
-.card:hover .open .arrow{transform:translate(3px,-3px)}
-.empty{padding:3rem 0;color:var(--txt-3);text-align:center;display:none}
-.empty.show{display:block}
-
-/* ---------------- approach ---------------- */
-.approach{background:var(--ink-2);border-block:1px solid var(--line)}
-.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1.5rem,3vw,2.5rem)}
-@media(max-width:880px){.cols{grid-template-columns:1fr}}
-.col{border-top:1px solid var(--line-2);padding-top:1.35rem}
-.col h3{font-size:1.12rem;font-weight:600;font-family:var(--ui);letter-spacing:-.01em;margin-bottom:.6rem}
-.col p{font-size:.92rem;color:var(--txt-2)}
-.col .mono{display:block;color:var(--txt-3);margin-bottom:.9rem}
-
-.specs{margin-top:clamp(2.5rem,5vw,3.75rem);border:1px solid var(--line);background:var(--ink)}
-.specs-h{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.85rem 1.25rem;border-bottom:1px solid var(--line);background:var(--panel);color:var(--txt-3)}
-.specs ul{display:grid;grid-template-columns:repeat(2,1fr)}
-@media(max-width:760px){.specs ul{grid-template-columns:1fr}}
-.specs li{display:flex;gap:.85rem;align-items:flex-start;padding:1rem 1.25rem;border-bottom:1px solid var(--line);border-right:1px solid var(--line);font-size:.89rem}
-@media(min-width:761px){.specs li:nth-child(2n){border-right:0}}
-@media(max-width:760px){.specs li{border-right:0}}
-.specs li:last-child,.specs li:nth-last-child(2):nth-child(odd){border-bottom:0}
-.specs svg{width:15px;height:15px;flex:none;margin-top:.2rem;color:#5BD69A}
-
-/* ---------------- marks ---------------- */
-.marks{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
-@media(max-width:1000px){.marks{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:600px){.marks{grid-template-columns:repeat(2,1fr)}}
-.mk{background:var(--ink-2);padding:1.6rem 1.25rem 1.15rem;display:flex;flex-direction:column;align-items:center;gap:.9rem;transition:background .22s}
-.mk:hover{background:var(--panel)}
-.mk .plate{width:100%;background:#F7F6F3;padding:1.15rem;display:flex;align-items:center;justify-content:center}
-.mk img{width:100%;height:clamp(74px,7vw,98px);object-fit:contain}
-.mk .nm{font-size:.82rem;font-weight:500;color:var(--txt);text-align:center;line-height:1.35}
-.mk .st{font-family:var(--mono);font-size:.58rem;letter-spacing:.13em;text-transform:uppercase;color:var(--txt-3)}
-.mk .st.live{color:#5BD69A}
-
-/* ---------------- contact ---------------- */
-.contact{background:var(--ink-2);border-top:1px solid var(--line)}
-.contact h2{font-size:clamp(2.3rem,5.5vw,4.25rem);max-width:14ch}
-.contact-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(2rem,5vw,4rem);align-items:end}
-@media(max-width:820px){.contact-grid{grid-template-columns:1fr;align-items:start}}
-.dl{display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
-.dl div{background:var(--ink-2);padding:1rem 1.25rem;display:flex;justify-content:space-between;gap:1rem;font-size:.88rem}
-.dl dt{color:var(--txt-3);font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;padding-top:.2rem}
-.dl dd{color:var(--txt);text-align:right}
-.dl a:hover{color:var(--bone);text-decoration:underline;text-underline-offset:3px}
-
-footer{border-top:1px solid var(--line);padding-block:2rem}
-footer .wrap{display:flex;flex-wrap:wrap;gap:1rem 2rem;align-items:center;justify-content:space-between;color:var(--txt-3);font-size:.8rem}
-footer nav{display:flex;flex-wrap:wrap;gap:1.25rem}
-footer a:hover{color:var(--txt)}
-
-/* ---------------- reveal ---------------- */
-.rv{opacity:0;transform:translateY(16px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
-.rv.in{opacity:1;transform:none}
-
-@media(prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}
-  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
-  .rv{opacity:1;transform:none}
-}
-</style>
+  <!-- Open Graph -->
+  <meta property="og:title" content="E.M — Creative Designer & Developer">
+  <meta property="og:description" content="Award-winning creative designer & developer crafting premium digital experiences.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/images/hero-portrait.jpg">
 </head>
 <body>
-<a class="skip" href="#work">Skip to the work</a>
 
-<header class="bar">
-  <div class="wrap">
-    <a class="mark" href="#top"><b>Portfolio</b><span class="mono">№ 01—09</span></a>
-    <nav>
-      <a href="#work">Work</a>
-      <a href="#approach">Approach</a>
-      <a href="#marks">Marks</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <span class="avail mono"><i class="pulse"></i>Open for work</span>
-  </div>
-</header>
+  <!-- ========== SCROLL PROGRESS BAR ========== -->
+  <div class="scroll-progress" id="scroll-progress"></div>
 
-<main id="top">
-
-  <!-- ============ HERO ============ -->
-  <section class="hero">
-    <div class="wrap">
-      <p class="eyebrow mono"><span class="dash"></span>Portfolio · 2026 <span class="dash"></span> Nine sites, nine sectors</p>
-      <h1>Nine businesses. Nine arguments about how a page should <em>behave</em>.</h1>
-      <p class="hero-lead">
-        A workshop, an emergency plumber, a law firm, an IT operations team, a roastery, a nursery,
-        a yoga studio, a gym and a gallery. Every one is a single self-contained HTML file with its
-        own layout language — no shared template, no component library, no two that look alike.
-      </p>
-      <div class="hero-cta">
-        <a class="btn btn--solid" href="#work">
-          See the work
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M8 2v12M3 9.5 8 14.5l5-5"/></svg>
-        </a>
-        <a class="btn btn--ghost" href="#approach">How they're built</a>
+  <!-- ========== PAGE LOADER ========== -->
+  <div class="page-loader" id="page-loader">
+    <div class="loader-content">
+      <div class="loader-rings">
+        <div class="loader-ring"></div>
+        <div class="loader-ring"></div>
+        <div class="loader-ring"></div>
       </div>
-
-      <div class="stats">
-        <div><b>9</b><span>Complete one-page business sites</span></div>
-        <div><b>1</b><span>HTML file per site, assets inlined</span></div>
-        <div><b>0</b><span>Frameworks, bundlers or build steps</span></div>
-        <div><b>10</b><span>Brand marks drawn alongside</span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ TICKER ============ -->
-  <div class="ticker" aria-hidden="true">
-    <div class="ticker-track mono">
-      <span>Apex Automotive<i></i>Hydro Flow Plumbing<i></i>Lex &amp; Associates<i></i>Nexa Solutions<i></i>Roast &amp; Revel<i></i>Root &amp; Bloom<i></i>Serene Spaces<i></i>Vitality Gym<i></i>The Artisan's Atelier<i></i></span>
-      <span>Apex Automotive<i></i>Hydro Flow Plumbing<i></i>Lex &amp; Associates<i></i>Nexa Solutions<i></i>Roast &amp; Revel<i></i>Root &amp; Bloom<i></i>Serene Spaces<i></i>Vitality Gym<i></i>The Artisan's Atelier<i></i></span>
+      <div class="loader-logo">E.M</div>
+      <div class="loader-tagline">Creative Designer & Developer</div>
+      <div class="loader-line"></div>
     </div>
   </div>
 
-  <!-- ============ WORK ============ -->
-  <section class="sec" id="work">
-    <div class="wrap">
-      <div class="head rv">
-        <div>
-          <span class="mono">01 — Selected work</span>
-          <h2>Every build starts from the business, not a template.</h2>
-        </div>
-        <p>
-          Each site answers a question its own trade actually gets asked — what will this cost,
-          how fast can you get here, what will live in my soil — and the layout is shaped
-          around that answer rather than around a hero and three cards.
-        </p>
-      </div>
+  <!-- ========== CUSTOM CURSOR ========== -->
+  <div class="cursor-dot"></div>
+  <div class="cursor-outline"></div>
 
-      <div class="filters rv" role="group" aria-label="Filter projects by sector">
-        <button class="chip" data-filter="all" aria-pressed="true">All work<small>9</small></button>
-        <button class="chip" data-filter="trades" aria-pressed="false">Trades &amp; service<small>2</small></button>
-        <button class="chip" data-filter="professional" aria-pressed="false">Professional<small>2</small></button>
-        <button class="chip" data-filter="hospitality" aria-pressed="false">Hospitality &amp; retail<small>2</small></button>
-        <button class="chip" data-filter="wellness" aria-pressed="false">Health &amp; fitness<small>2</small></button>
-        <button class="chip" data-filter="culture" aria-pressed="false">Arts &amp; culture<small>1</small></button>
-        <span class="count mono" id="count" aria-live="polite">Showing 9 of 9</span>
-      </div>
+  <!-- ========== NOISE OVERLAY ========== -->
+  <div class="noise-overlay"></div>
 
-      <div class="grid" id="grid">
+  <!-- ========== HEADER / NAVIGATION ========== -->
+  <header class="header" id="header">
+    <div class="container">
+      <a href="#" class="header__logo" id="header-logo">E.M</a>
 
-        <!-- 01 -->
-        <article class="card wide rv" data-cat="trades" style="--accent:#EE4A44">
-          <a class="shot" href="apex-automotive.html" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-            <div class="chrome"><i></i><i></i><i></i><span class="url">apex-automotive.html</span></div>
-            <img src="assets/previews/apex-automotive.jpg" width="1440" height="900" alt="" loading="lazy" decoding="async">
-          </a>
-          <div class="body">
-            <div class="body-top"><span class="num">01</span><span class="mono">Automotive · Workshop</span><span class="sep"></span></div>
-            <h3>Apex Automotive</h3>
-            <p class="concept">“The Spec Sheet”</p>
-            <p class="desc">
-              An independent workshop that photographs every job and itemises every quote down to the
-              part number. Built like a job card: clipped angular panels, a live bay board across the
-              hero, and published rates instead of “contact us for pricing”.
-            </p>
-            <ul class="tags"><li>Bay status board</li><li>Itemised price list</li><li>Five-stage job flow</li></ul>
-            <a class="open" href="apex-automotive.html" target="_blank" rel="noopener">
-              Open the site <span class="arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6"/></svg></span>
-            </a>
-          </div>
-        </article>
-
-        <!-- 02 -->
-        <article class="card rv" data-cat="trades" style="--accent:#4FA3DC">
-          <a class="shot" href="hydro-flow.html" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-            <div class="chrome"><i></i><i></i><i></i><span class="url">hydro-flow.html</span></div>
-            <img src="assets/previews/hydro-flow.jpg" width="1440" height="900" alt="" loading="lazy" decoding="async">
-          </a>
-          <div class="body">
-            <div class="body-top"><span class="num">02</span><span class="mono">Trades · Emergency</span><span class="sep"></span></div>
-            <h3>Hydro Flow Plumbing</h3>
-            <p class="concept">“The Dispatch”</p>
-            <p class="desc">
-              A 24-hour emergency plumber, laid out as a dispatch board. The symptom triage gives you
-              the make-safe step before it sells you anything, and the phone number never leaves the screen.
-            </p>
-            <ul class="tags"><li>Symptom triage</li><li>Response times by area</li><li>Persistent call bar</li></ul>
-            <a class="open" href="hydro-flow.html" target="_blank" rel="noopener">
-              Open the site <span class="arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6"/></svg></span>
-            </a>
-          </div>
-        </article>
-
-        <!-- 03 -->
-        <article class="card rv" data-cat="professional" style="--accent:#C9A455">
-          <a class="shot" href="lex-associates.html" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-            <div class="chrome"><i></i><i></i><i></i><span class="url">lex-associates.html</span></div>
-            <img src="assets/previews/lex-associates.jpg" width="1440" height="900" alt="" loading="lazy" decoding="async">
-          </a>
-          <div class="body">
-            <div class="body-top"><span class="num">03</span><span class="mono">Professional · Legal</span><span class="sep"></span></div>
-            <h3>Lex &amp; Associates</h3>
-            <p class="concept">“The Brief”</p>
-            <p class="desc">
-              Commercial, property, employment and family law, set as a legal document rather than a
-              website — a fixed left rail, roman-numeral sections, hairline rules and a wide reading
-              measure. No cards, no shadows, no rounded corners.
-            </p>
-            <ul class="tags"><li>Fixed document rail</li><li>Roman-numeral sections</li><li>Matter timeline</li></ul>
-            <a class="open" href="lex-associates.html" target="_blank" rel="noopener">
-              Open the site <span class="arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6"/></svg></span>
-            </a>
-          </div>
-        </article>
-
-        <!-- 04 -->
-        <article class="card rv" data-cat="professional" style="--accent:#3FC7F4">
-          <a class="shot" href="nexa.html" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-            <div class="chrome"><i></i><i></i><i></i><span class="url">nexa.html</span></div>
-            <img src="assets/previews/nexa.jpg" width="1440" height="900" alt="" loading="lazy" decoding="async">
-          </a>
-          <div class="body">
-            <div class="body-top"><span class="num">04</span><span class="mono">Technology · Managed IT</span><span class="sep"></span></div>
-            <h3>Nexa Solutions</h3>
-            <p class="concept">“The Console”</p>
-            <p class="desc">
-              Managed infrastructure, cloud and round-the-clock security monitoring, presented as the
-              operations console the client would actually be logging into — live service board,
-              coverage matrix, incident timeline, flat per-seat pricing.
-            </p>
-            <ul class="tags"><li>Live service board</li><li>Coverage matrix</li><li>Incident timeline</li></ul>
-            <a class="open" href="nexa.html" target="_blank" rel="noopener">
-              Open the site <span class="arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6"/></svg></span>
-            </a>
-          </div>
-        </article>
-
-        <!-- 05 -->
-        <article class="card rv" data-cat="hospitality" style="--accent:#D9A65C">
-          <a class="shot" href="roast-revel.html" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-            <div class="chrome"><i></i><i></i><i></i><span class="url">roast-revel.html</span></div>
-            <img src="assets/previews/roast-revel.jpg" width="1440" height="900" alt="" loading="lazy" decoding="async">
-          </a>
-          <div class="body">
-            <div class="body-top"><span class="num">05</span><span class="mono">Hospitality · Retail</span><span class="sep"></span></div>
-            <h3>Roast &amp; Revel</h3>
-            <p class="concept">“The Broadsheet”</p>
-            <p class="desc">
-              A roastery with the drum at the back of the room you're drinking in. Set like a printed
-              broadsheet — centred masthead, double rules, multi-column text, drop caps and dotted
-              price leaders down the menu.
-            </p>
-            <ul class="tags"><li>Masthead layout</li><li>Drop caps &amp; price leaders</li><li>Roast calendar</li></ul>
-            <a class="open" href="roast-revel.html" target="_blank" rel="noopener">
-              Open the site <span class="arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6"/></svg></span>
-            </a>
-          </div>
-        </article>
-
-        <!-- 06 -->
-        <article class="card rv" data-cat="hospitality" style="--accent:#8FBC5A">
-          <a class="shot" href="root-bloom.html" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-            <div class="chrome"><i></i><i></i><i></i><span class="url">root-bloom.html</span></div>
-            <img src="assets/previews/root-bloom.jpg" width="1440" height="900" alt="" loading="lazy" decoding="async">
-          </a>
-          <div class="body">
-            <div class="body-top"><span class="num">06</span><span class="mono">Retail · Horticulture</span><span class="sep"></span></div>
-            <h3>Root &amp; Bloom</h3>
-            <p class="concept">“The Field Guide”</p>
-            <p class="desc">
-              A working nursery that grows seventy percent of what it sells. Built as a botanical field
-              guide: specimen entries with growing-condition symbols, a twelve-month sowing calendar and
-              soft wavy dividers instead of a hard grid.
-            </p>
-            <ul class="tags"><li>Specimen entries</li><li>Sowing calendar</li><li>Planting service</li></ul>
-            <a class="open" href="root-bloom.html" target="_blank" rel="noopener">
-              Open the site <span class="arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6"/></svg></span>
-            </a>
-          </div>
-        </article>
-
-        <!-- 07 -->
-        <article class="card rv" data-cat="wellness" style="--accent:#B9A3C7">
-          <a class="shot" href="serene-spaces.html" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-            <div class="chrome"><i></i><i></i><i></i><span class="url">serene-spaces.html</span></div>
-            <img src="assets/previews/serene-spaces.jpg" width="1440" height="900" alt="" loading="lazy" decoding="async">
-          </a>
-          <div class="body">
-            <div class="body-top"><span class="num">07</span><span class="mono">Health &amp; Wellness</span><span class="sep"></span></div>
-            <h3>Serene Spaces Yoga</h3>
-            <p class="concept">“The Breath”</p>
-            <p class="desc">
-              Twelve mats, no mirrors, five classes. The page paces itself the way the studio does —
-              long vertical rhythm, hairline rules, almost no colour, and a working breath pacer you
-              can actually follow while you read.
-            </p>
-            <ul class="tags"><li>Working breath pacer</li><li>Timetable</li><li>Teacher roster</li></ul>
-            <a class="open" href="serene-spaces.html" target="_blank" rel="noopener">
-              Open the site <span class="arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6"/></svg></span>
-            </a>
-          </div>
-        </article>
-
-        <!-- 08 -->
-        <article class="card rv" data-cat="wellness" style="--accent:#F0C93A">
-          <a class="shot" href="vitality-gym.html" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-            <div class="chrome"><i></i><i></i><i></i><span class="url">vitality-gym.html</span></div>
-            <img src="assets/previews/vitality-gym.jpg" width="1440" height="900" alt="" loading="lazy" decoding="async">
-          </a>
-          <div class="body">
-            <div class="body-top"><span class="num">08</span><span class="mono">Health &amp; Fitness</span><span class="sep"></span></div>
-            <h3>Vitality Gym</h3>
-            <p class="concept">“The Board”</p>
-            <p class="desc">
-              Thirty-eight classes a week, coaches on the floor, no lock-in contracts. A brutalist
-              training board: full-bleed blocks, oversized condensed type, hazard-stripe dividers and
-              hard edges everywhere.
-            </p>
-            <ul class="tags"><li>Full-bleed blocks</li><li>Class board</li><li>Rolling membership</li></ul>
-            <a class="open" href="vitality-gym.html" target="_blank" rel="noopener">
-              Open the site <span class="arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6"/></svg></span>
-            </a>
-          </div>
-        </article>
-
-        <!-- 09 -->
-        <article class="card wide rv" data-cat="culture" style="--accent:#C79A50">
-          <a class="shot" href="artisans-atelier.html" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-            <div class="chrome"><i></i><i></i><i></i><span class="url">artisans-atelier.html</span></div>
-            <img src="assets/previews/artisans-atelier.jpg" width="1440" height="900" alt="" loading="lazy" decoding="async">
-          </a>
-          <div class="body">
-            <div class="body-top"><span class="num">09</span><span class="mono">Arts &amp; Culture</span><span class="sep"></span></div>
-            <h3>The Artisan's Atelier</h3>
-            <p class="concept">“The Catalogue”</p>
-            <p class="desc">
-              A working studio with a small gallery at the front and the mess at the back. Set as an
-              exhibition catalogue — an asymmetric hanging wall, catalogue numbers, works listed with
-              medium and dimensions, and wide margins doing the work colour normally would.
-            </p>
-            <ul class="tags"><li>Hanging-wall gallery</li><li>Catalogue numbering</li><li>Commission flow</li></ul>
-            <a class="open" href="artisans-atelier.html" target="_blank" rel="noopener">
-              Open the site <span class="arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6"/></svg></span>
-            </a>
-          </div>
-        </article>
-
-      </div>
-      <p class="empty mono" id="empty">No projects in that sector yet.</p>
-    </div>
-  </section>
-
-  <!-- ============ APPROACH ============ -->
-  <section class="sec approach" id="approach">
-    <div class="wrap">
-      <div class="head rv">
-        <div>
-          <span class="mono">02 — Approach</span>
-          <h2>Boring stack, unusual pages.</h2>
-        </div>
-        <p>
-          The interesting decisions belong in the layout, not the toolchain. Every site here is hand-written
-          HTML and CSS in one file, which makes it fast, portable and possible to hand over without a lecture.
-        </p>
-      </div>
-
-      <div class="cols">
-        <div class="col rv">
-          <span class="mono">i</span>
-          <h3>The trade sets the layout</h3>
-          <p>
-            A plumber's site is a dispatch board because a burst pipe is a triage problem. A workshop's is a job
-            card because the anxiety is the invoice. The structure argues the case before the copy does.
-          </p>
-        </div>
-        <div class="col rv">
-          <span class="mono">ii</span>
-          <h3>Answer the question on the page</h3>
-          <p>
-            Prices, response times, timetables and stages are published rather than hidden behind a form. Every
-            build has at least one section that tells a visitor something a competitor makes them phone for.
-          </p>
-        </div>
-        <div class="col rv">
-          <span class="mono">iii</span>
-          <h3>One file, no dependencies</h3>
-          <p>
-            Styles, scripts and logo are inlined. Drop the file on any host — or open it straight off a USB stick —
-            and it works. Nothing to install, nothing to rebuild, nothing that expires.
-          </p>
-        </div>
-      </div>
-
-      <div class="specs rv">
-        <div class="specs-h">
-          <span class="mono">In every build</span>
-          <span class="mono">Standard · 2026</span>
-        </div>
-        <ul>
-          <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="m3 8.5 3.5 3.5L13 5"/></svg>Responsive from 320px to ultrawide, no horizontal scroll</li>
-          <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="m3 8.5 3.5 3.5L13 5"/></svg>Semantic landmarks, skip links and visible focus states</li>
-          <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="m3 8.5 3.5 3.5L13 5"/></svg>Page title, meta description, theme colour and Open Graph tags</li>
-          <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="m3 8.5 3.5 3.5L13 5"/></svg>Contact, enquiry or booking form wired to a real destination on handover</li>
-          <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="m3 8.5 3.5 3.5L13 5"/></svg>Logo embedded as a data URI — no broken image on a bad host</li>
-          <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="m3 8.5 3.5 3.5L13 5"/></svg>Motion respects <span class="mono" style="font-size:.72rem;letter-spacing:.04em;text-transform:none">prefers-reduced-motion</span></li>
+      <nav class="nav" id="main-nav">
+        <ul class="nav__list">
+          <li><a href="#hero" class="nav__link active" id="nav-home">Home</a></li>
+          <li><a href="#about" class="nav__link" id="nav-about">About</a></li>
+          <li><a href="#work" class="nav__link" id="nav-work">Work</a></li>
+          <li><a href="#experience" class="nav__link" id="nav-experience">Experience</a></li>
+          <li><a href="#contact" class="nav__link" id="nav-contact">Contact</a></li>
         </ul>
+      </nav>
+
+      <button class="nav__toggle" id="nav-toggle" aria-label="Toggle navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Overlay -->
+  <div class="nav__mobile-overlay" id="mobile-overlay">
+    <ul class="nav__mobile-list">
+      <li><a href="#hero" class="nav__mobile-link">Home</a></li>
+      <li><a href="#about" class="nav__mobile-link">About</a></li>
+      <li><a href="#work" class="nav__mobile-link">Work</a></li>
+      <li><a href="#experience" class="nav__mobile-link">Experience</a></li>
+      <li><a href="#contact" class="nav__mobile-link">Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- ========== HERO SECTION ========== -->
+  <section class="hero" id="hero">
+    <!-- Particle Canvas -->
+    <canvas class="particle-canvas" id="particle-canvas"></canvas>
+
+    <div class="hero__bg">
+      <img src="assets/images/hero-bg.jpg" alt="Abstract golden light background" loading="eager">
+      <div class="hero__bg-gradient"></div>
+    </div>
+
+    <div class="container">
+      <div class="hero__content">
+        <div class="hero__label">
+          <span class="typed-text">Creative Designer</span>
+        </div>
+
+        <h1 class="hero__title">
+          Crafting<br>
+          Digital<br>
+          <em>Experiences</em>
+        </h1>
+
+        <p class="hero__description">
+          I design and build premium digital products that merge 
+          stunning aesthetics with flawless functionality. Every pixel 
+          has a purpose.
+        </p>
+
+        <div class="hero__cta-group">
+          <a href="#work" class="btn btn--primary magnetic" id="hero-cta-work">
+            View My Work
+            <span class="btn__arrow">→</span>
+          </a>
+          <a href="#contact" class="btn btn--outline magnetic" id="hero-cta-contact">
+            Get In Touch
+          </a>
+        </div>
+      </div>
+
+      <div class="hero__portrait">
+        <div class="hero__portrait-wrapper">
+          <img src="assets/images/hero-portrait.jpg" alt="E.M - Creative Designer & Developer" loading="eager">
+        </div>
+        <div class="hero__portrait-accent"></div>
+        <div class="hero__portrait-accent hero__portrait-accent--bottom"></div>
       </div>
     </div>
+
+    <div class="hero__scroll-indicator">
+      <span class="hero__scroll-text">Scroll</span>
+      <div class="hero__scroll-line"></div>
+    </div>
+
+    <!-- Floating Badges -->
+    <div class="floating-badge floating-badge--1 reveal">
+      <span class="floating-badge__dot"></span>
+      Available for Work
+    </div>
+    <div class="floating-badge floating-badge--2 reveal">
+      ✦ 7+ Years Experience
+    </div>
+
+    <!-- Decorative Glow Orbs -->
+    <div class="glow-orb glow-orb--gold" style="width: 400px; height: 400px; top: -100px; right: -100px;"></div>
+    <div class="glow-orb glow-orb--warm" style="width: 300px; height: 300px; bottom: -50px; left: -50px;"></div>
   </section>
 
-  <!-- ============ MARKS ============ -->
-  <section class="sec" id="marks">
-    <div class="wrap">
-      <div class="head rv">
-        <div>
-          <span class="mono">03 — Brand marks</span>
-          <h2>Ten identities, three of them already built out.</h2>
+  <!-- ========== ABOUT SECTION ========== -->
+  <section class="section section--dark spotlight-section" id="about">
+    <div class="container">
+      <div class="section__header reveal">
+        <span class="section__label">About Me</span>
+        <h2 class="section__title split-text">The Story Behind the Craft</h2>
+      </div>
+
+      <div class="about__grid">
+        <div class="about__text reveal-left">
+          <h3>Passionate about creating <span class="gradient-text">meaningful</span> digital experiences</h3>
+          <p>
+            With over 7 years of experience in design and development, I've had the 
+            privilege of working with brands that demand excellence. My approach combines 
+            strategic thinking with meticulous attention to detail — because great design 
+            isn't just about how things look, it's about how they work.
+          </p>
+          <p>
+            From luxury e-commerce platforms to innovative SaaS dashboards, I bring a 
+            unique blend of creative vision and technical expertise to every project. 
+            I believe in designing experiences that resonate, engage, and convert.
+          </p>
+
+          <div class="about__stats stagger">
+            <div class="reveal">
+              <div class="about__stat-number">
+                <span class="count-up" data-target="50" data-suffix="+">0</span>
+              </div>
+              <div class="about__stat-label">Projects Delivered</div>
+            </div>
+            <div class="reveal">
+              <div class="about__stat-number">
+                <span class="count-up" data-target="30" data-suffix="+">0</span>
+              </div>
+              <div class="about__stat-label">Happy Clients</div>
+            </div>
+            <div class="reveal">
+              <div class="about__stat-number">
+                <span class="count-up" data-target="7" data-suffix="+">0</span>
+              </div>
+              <div class="about__stat-label">Years Experience</div>
+            </div>
+          </div>
         </div>
-        <p>
-          Logos drawn in the same run as the sites. Where a mark has a site behind it, the plate links
-          through to the finished build; the rest are identity work waiting on a brief.
+
+        <div class="about__image reveal-right">
+          <div class="about__image-wrapper tilt-card">
+            <img src="assets/images/hero-portrait.jpg" alt="E.M working on design projects">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Decorative Glow -->
+    <div class="glow-orb glow-orb--gold" style="width: 500px; height: 500px; top: 50%; left: -200px; transform: translateY(-50%);"></div>
+  </section>
+
+  <!-- ========== SKILLS SECTION ========== -->
+  <section class="section" id="skills">
+    <div class="container">
+      <div class="section__header reveal">
+        <span class="section__label">Expertise</span>
+        <h2 class="section__title split-text">What I Do</h2>
+        <p class="section__subtitle">
+          A curated set of skills refined over years of crafting premium digital products 
+          for world-class brands.
         </p>
       </div>
 
-      <div class="marks rv">
-        <a class="mk" href="apex-automotive.html" target="_blank" rel="noopener">
-          <span class="plate"><img src="assets/logos/apex-automotive.png" alt="Apex Automotive logo" loading="lazy" decoding="async"></span>
-          <span class="nm">Apex Automotive</span><span class="st live">Site live ↗</span>
-        </a>
-        <a class="mk" href="artisans-atelier.html" target="_blank" rel="noopener">
-          <span class="plate"><img src="assets/logos/artisans-atelier.png" alt="The Artisan's Atelier logo" loading="lazy" decoding="async"></span>
-          <span class="nm">The Artisan's Atelier</span><span class="st live">Site live ↗</span>
-        </a>
-        <a class="mk" href="serene-spaces.html" target="_blank" rel="noopener">
-          <span class="plate"><img src="assets/logos/serene-spaces.png" alt="Serene Spaces Yoga logo" loading="lazy" decoding="async"></span>
-          <span class="nm">Serene Spaces Yoga</span><span class="st live">Site live ↗</span>
-        </a>
-        <div class="mk">
-          <span class="plate"><img src="assets/logos/bloom-petal.png" alt="Bloom &amp; Petal Florist logo" loading="lazy" decoding="async"></span>
-          <span class="nm">Bloom &amp; Petal Florist</span><span class="st">Mark only</span>
+      <div class="skills__grid stagger">
+        <!-- Skill 1: UI/UX Design -->
+        <div class="skill-card reveal" id="skill-uiux">
+          <div class="skill-card__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <path d="M3 9h18"/>
+              <path d="M9 21V9"/>
+            </svg>
+          </div>
+          <h3 class="skill-card__title">UI/UX Design</h3>
+          <p class="skill-card__description">
+            Creating intuitive interfaces that balance beauty and usability. 
+            User-centered design backed by research and testing.
+          </p>
+          <div class="skill-card__tags">
+            <span class="skill-card__tag">Figma</span>
+            <span class="skill-card__tag">Prototyping</span>
+            <span class="skill-card__tag">Research</span>
+          </div>
         </div>
-        <div class="mk">
-          <span class="plate"><img src="assets/logos/ecowave.png" alt="EcoWave Solutions logo" loading="lazy" decoding="async"></span>
-          <span class="nm">EcoWave Solutions</span><span class="st">Mark only</span>
+
+        <!-- Skill 2: Web Development -->
+        <div class="skill-card reveal" id="skill-webdev">
+          <div class="skill-card__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6"/>
+              <polyline points="8 6 2 12 8 18"/>
+              <line x1="14" y1="4" x2="10" y2="20"/>
+            </svg>
+          </div>
+          <h3 class="skill-card__title">Web Development</h3>
+          <p class="skill-card__description">
+            Building performant, accessible web applications with modern 
+            frameworks and clean, maintainable code.
+          </p>
+          <div class="skill-card__tags">
+            <span class="skill-card__tag">React</span>
+            <span class="skill-card__tag">Next.js</span>
+            <span class="skill-card__tag">TypeScript</span>
+          </div>
         </div>
-        <div class="mk">
-          <span class="plate"><img src="assets/logos/gourmet-grind.png" alt="Gourmet Grind Coffee Co. logo" loading="lazy" decoding="async"></span>
-          <span class="nm">Gourmet Grind Coffee Co.</span><span class="st">Mark only</span>
+
+        <!-- Skill 3: Brand Identity -->
+        <div class="skill-card reveal" id="skill-brand">
+          <div class="skill-card__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+              <path d="M2 17l10 5 10-5"/>
+              <path d="M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <h3 class="skill-card__title">Brand Identity</h3>
+          <p class="skill-card__description">
+            Crafting cohesive visual identities that tell compelling brand 
+            stories and leave lasting impressions.
+          </p>
+          <div class="skill-card__tags">
+            <span class="skill-card__tag">Logo Design</span>
+            <span class="skill-card__tag">Typography</span>
+            <span class="skill-card__tag">Guidelines</span>
+          </div>
         </div>
-        <div class="mk">
-          <span class="plate"><img src="assets/logos/oak-iron.png" alt="Oak &amp; Iron Builders logo" loading="lazy" decoding="async"></span>
-          <span class="nm">Oak &amp; Iron Builders</span><span class="st">Mark only</span>
+
+        <!-- Skill 4: Mobile Development -->
+        <div class="skill-card reveal" id="skill-mobile">
+          <div class="skill-card__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+              <line x1="12" y1="18" x2="12" y2="18"/>
+            </svg>
+          </div>
+          <h3 class="skill-card__title">Mobile Development</h3>
+          <p class="skill-card__description">
+            Native and cross-platform mobile experiences that users love. 
+            Smooth, responsive, and pixel-perfect.
+          </p>
+          <div class="skill-card__tags">
+            <span class="skill-card__tag">React Native</span>
+            <span class="skill-card__tag">Flutter</span>
+            <span class="skill-card__tag">iOS</span>
+          </div>
         </div>
-        <div class="mk">
-          <span class="plate"><img src="assets/logos/pixel-code.png" alt="Pixel &amp; Code Agency logo" loading="lazy" decoding="async"></span>
-          <span class="nm">Pixel &amp; Code Agency</span><span class="st">Mark only</span>
+
+        <!-- Skill 5: Motion Design -->
+        <div class="skill-card reveal" id="skill-motion">
+          <div class="skill-card__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="5 3 19 12 5 21 5 3"/>
+            </svg>
+          </div>
+          <h3 class="skill-card__title">Motion Design</h3>
+          <p class="skill-card__description">
+            Breathing life into interfaces with purposeful animations that 
+            guide, delight, and enhance user experience.
+          </p>
+          <div class="skill-card__tags">
+            <span class="skill-card__tag">GSAP</span>
+            <span class="skill-card__tag">Framer Motion</span>
+            <span class="skill-card__tag">Lottie</span>
+          </div>
         </div>
-        <div class="mk">
-          <span class="plate"><img src="assets/logos/stellar-tech.png" alt="Stellar Tech logo" loading="lazy" decoding="async"></span>
-          <span class="nm">Stellar Tech</span><span class="st">Mark only</span>
-        </div>
-        <div class="mk">
-          <span class="plate"><img src="assets/logos/summit-ventures.png" alt="Summit Ventures logo" loading="lazy" decoding="async"></span>
-          <span class="nm">Summit Ventures</span><span class="st">Mark only</span>
+
+        <!-- Skill 6: Strategy & Consulting -->
+        <div class="skill-card reveal" id="skill-strategy">
+          <div class="skill-card__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M2 12h20"/>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            </svg>
+          </div>
+          <h3 class="skill-card__title">Strategy & Consulting</h3>
+          <p class="skill-card__description">
+            Strategic guidance on digital products, from concept to launch. 
+            Data-driven decisions for maximum impact.
+          </p>
+          <div class="skill-card__tags">
+            <span class="skill-card__tag">Analytics</span>
+            <span class="skill-card__tag">A/B Testing</span>
+            <span class="skill-card__tag">Growth</span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ CONTACT ============ -->
-  <section class="sec contact" id="contact">
-    <div class="wrap">
-      <div class="contact-grid">
-        <div class="rv">
-          <span class="mono" style="display:block;color:var(--txt-3);margin-bottom:1rem">04 — Contact</span>
-          <h2>Tell me the trade. I'll show you the layout.</h2>
-          <p style="max-width:48ch;margin-top:1.5rem">
-            One page, built around what your customers actually ring up to ask. Send a sentence about the
-            business and I'll come back with a structure before anything gets designed.
-          </p>
-          <div class="hero-cta">
-            <!-- REPLACE: swap in the real address before this goes live -->
-            <a class="btn btn--solid" href="mailto:hello@example.com">
-              Start a project
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6"/></svg>
+  <!-- ========== MARQUEE ========== -->
+  <div class="marquee">
+    <div class="marquee__track">
+      <span class="marquee__item">UI/UX Design <span>◆</span> Web Development <span>◆</span> Brand Identity <span>◆</span> Mobile Apps <span>◆</span> Motion Design <span>◆</span> Strategy <span>◆</span> E-Commerce <span>◆</span> SaaS Products <span>◆</span></span>
+    </div>
+  </div>
+
+  <!-- ========== FEATURED WORK SECTION ========== -->
+  <section class="section section--dark" id="work">
+    <div class="container">
+      <div class="section__header reveal">
+        <span class="section__label">Portfolio</span>
+        <h2 class="section__title">Featured <em>Work</em></h2>
+        <p class="section__subtitle">
+          A selection of projects where design meets technology to create 
+          exceptional digital experiences.
+        </p>
+      </div>
+
+      <div class="projects__grid">
+        <!-- Project 1 -->
+        <div class="project-card reveal" id="project-1">
+          <div class="project-card__image">
+            <img src="assets/images/project-1.jpg" alt="Aeterna luxury e-commerce website">
+            <div class="project-card__image-overlay"></div>
+          </div>
+          <div class="project-card__content">
+            <span class="project-card__number">Project 01</span>
+            <h3 class="project-card__title">Aeterna — Luxury<br>E-Commerce</h3>
+            <p class="project-card__description">
+              A premium e-commerce platform for a high-end jewelry brand. 
+              Designed to evoke the elegance and sophistication of the 
+              brand's physical boutique experience.
+            </p>
+            <div class="project-card__tech">
+              <span>React</span>
+              <span>Node.js</span>
+              <span>Stripe</span>
+              <span>GSAP</span>
+            </div>
+            <a href="#" class="project-card__link animated-underline" id="project-1-link">
+              View Project <span>→</span>
             </a>
           </div>
         </div>
-        <dl class="dl rv">
-          <!-- REPLACE: contact details below are placeholders -->
-          <div><dt>Email</dt><dd><a href="mailto:hello@example.com">hello@example.com</a></dd></div>
-          <div><dt>Availability</dt><dd>Taking work</dd></div>
-          <div><dt>Typical build</dt><dd>2—3 weeks</dd></div>
-          <div><dt>Handover</dt><dd>Files &amp; hosting</dd></div>
-        </dl>
+
+        <!-- Project 2 -->
+        <div class="project-card reveal" id="project-2">
+          <div class="project-card__image">
+            <img src="assets/images/project-2.jpg" alt="Zenith Finance mobile banking app">
+            <div class="project-card__image-overlay"></div>
+          </div>
+          <div class="project-card__content">
+            <span class="project-card__number">Project 02</span>
+            <h3 class="project-card__title">Zenith Finance —<br>Mobile Banking</h3>
+            <p class="project-card__description">
+              A next-generation mobile banking experience that makes managing 
+              finances feel intuitive, secure, and even enjoyable. Dark mode 
+              interface with real-time insights.
+            </p>
+            <div class="project-card__tech">
+              <span>React Native</span>
+              <span>Firebase</span>
+              <span>Plaid</span>
+              <span>D3.js</span>
+            </div>
+            <a href="#" class="project-card__link animated-underline" id="project-2-link">
+              View Project <span>→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card reveal" id="project-3">
+          <div class="project-card__image">
+            <img src="assets/images/project-3.jpg" alt="Aurélia Vance fashion house website">
+            <div class="project-card__image-overlay"></div>
+          </div>
+          <div class="project-card__content">
+            <span class="project-card__number">Project 03</span>
+            <h3 class="project-card__title">Aurélia Vance —<br>Fashion House</h3>
+            <p class="project-card__description">
+              A haute couture digital storefront for an emerging luxury fashion 
+              label. Cinematic visuals, editorial layouts, and seamless shopping 
+              integration.
+            </p>
+            <div class="project-card__tech">
+              <span>Next.js</span>
+              <span>Shopify</span>
+              <span>GSAP</span>
+              <span>Sanity</span>
+            </div>
+            <a href="#" class="project-card__link animated-underline" id="project-3-link">
+              View Project <span>→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="project-card reveal" id="project-4">
+          <div class="project-card__image">
+            <img src="assets/images/project-4.jpg" alt="Aurora Analytics SaaS dashboard">
+            <div class="project-card__image-overlay"></div>
+          </div>
+          <div class="project-card__content">
+            <span class="project-card__number">Project 04</span>
+            <h3 class="project-card__title">Aurora Analytics —<br>SaaS Dashboard</h3>
+            <p class="project-card__description">
+              An enterprise analytics platform that transforms complex data 
+              into actionable insights. Clean information hierarchy with 
+              powerful data visualizations.
+            </p>
+            <div class="project-card__tech">
+              <span>Vue.js</span>
+              <span>D3.js</span>
+              <span>PostgreSQL</span>
+              <span>WebSocket</span>
+            </div>
+            <a href="#" class="project-card__link animated-underline" id="project-4-link">
+              View Project <span>→</span>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
-</main>
 
-<footer>
-  <div class="wrap">
-    <span>© 2026 — Nine sites, hand-written.</span>
-    <nav>
-      <a href="#work">Work</a>
-      <a href="#approach">Approach</a>
-      <a href="#marks">Marks</a>
-      <a href="#contact">Contact</a>
-      <a href="#top">Back to top ↑</a>
-    </nav>
-  </div>
-</footer>
+  <!-- ========== EXPERIENCE TIMELINE ========== -->
+  <section class="section" id="experience">
+    <div class="container">
+      <div class="section__header reveal">
+        <span class="section__label">Journey</span>
+        <h2 class="section__title">Experience & <em>Growth</em></h2>
+        <p class="section__subtitle">
+          A timeline of roles that shaped my craft and deepened my expertise 
+          across design and development.
+        </p>
+      </div>
 
-<script>
-(function(){
-  'use strict';
+      <div class="timeline">
+        <!-- Timeline Item 1 -->
+        <div class="timeline__item reveal" id="exp-1">
+          <div class="timeline__dot"></div>
+          <span class="timeline__date">2021 — Present</span>
+          <h3 class="timeline__role">Senior Creative Developer</h3>
+          <p class="timeline__company">Digital Apex Studio</p>
+          <p class="timeline__description">
+            Leading the design and development of premium digital products for 
+            Fortune 500 clients. Architecting scalable design systems, mentoring 
+            junior designers, and driving creative direction on high-profile 
+            launches. Delivered 20+ projects generating $8M+ in client revenue.
+          </p>
+        </div>
 
-  /* ---------- sector filter ---------- */
-  var grid   = document.getElementById('grid');
-  var cards  = Array.prototype.slice.call(grid.querySelectorAll('.card'));
-  var chips  = Array.prototype.slice.call(document.querySelectorAll('.chip'));
-  var count  = document.getElementById('count');
-  var empty  = document.getElementById('empty');
+        <!-- Timeline Item 2 -->
+        <div class="timeline__item reveal" id="exp-2">
+          <div class="timeline__dot"></div>
+          <span class="timeline__date">2018 — 2021</span>
+          <h3 class="timeline__role">UI/UX Designer</h3>
+          <p class="timeline__company">Novus Agency</p>
+          <p class="timeline__description">
+            Designed user interfaces for mobile and web applications across 
+            fintech, healthcare, and e-commerce verticals. Led user research 
+            initiatives that improved conversion rates by an average of 34%. 
+            Established the agency's first component-based design system.
+          </p>
+        </div>
 
-  function apply(filter){
-    var shown = 0;
-    cards.forEach(function(card){
-      var match = filter === 'all' || card.dataset.cat === filter;
-      card.classList.toggle('is-hidden', !match);
-      if (match) shown++;
-    });
-    chips.forEach(function(c){ c.setAttribute('aria-pressed', String(c.dataset.filter === filter)); });
-    count.textContent = 'Showing ' + shown + ' of ' + cards.length;
-    empty.classList.toggle('show', shown === 0);
-  }
+        <!-- Timeline Item 3 -->
+        <div class="timeline__item reveal" id="exp-3">
+          <div class="timeline__dot"></div>
+          <span class="timeline__date">2016 — 2018</span>
+          <h3 class="timeline__role">Junior Developer</h3>
+          <p class="timeline__company">Pixel & Code</p>
+          <p class="timeline__description">
+            Built responsive websites and interactive prototypes for a boutique 
+            digital studio. Learned the fundamentals of front-end architecture 
+            while collaborating closely with senior designers on client projects. 
+            First introduction to the intersection of code and creativity.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  chips.forEach(function(chip){
-    chip.addEventListener('click', function(){ apply(chip.dataset.filter); });
-  });
+  <!-- ========== TESTIMONIALS ========== -->
+  <section class="section section--dark" id="testimonials">
+    <div class="container">
+      <div class="section__header reveal">
+        <span class="section__label">Testimonials</span>
+        <h2 class="section__title">What Clients <em>Say</em></h2>
+      </div>
 
-  /* ---------- reveal on scroll ---------- */
-  var targets = document.querySelectorAll('.rv');
-  if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-    targets.forEach(function(el){ el.classList.add('in'); });
-  } else {
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
-      });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
-    targets.forEach(function(el, i){
-      el.style.transitionDelay = (Math.min(i, 4) * 60) + 'ms';
-      io.observe(el);
-    });
-  }
-})();
-</script>
+      <div class="testimonials__grid stagger">
+        <!-- Testimonial 1 -->
+        <div class="testimonial-card reveal" id="testimonial-1">
+          <div class="testimonial-card__quote">"</div>
+          <p class="testimonial-card__text">
+            E.M transformed our brand's digital presence completely. The 
+            attention to detail and creative vision exceeded every expectation. 
+            Our conversion rate doubled within the first quarter.
+          </p>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">SA</div>
+            <div>
+              <div class="testimonial-card__name">Sarah Anderson</div>
+              <div class="testimonial-card__role">CEO, Aeterna Jewelry</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="testimonial-card reveal" id="testimonial-2">
+          <div class="testimonial-card__quote">"</div>
+          <p class="testimonial-card__text">
+            Working with E.M was a game-changer for our fintech product. 
+            They have a rare ability to make complex interfaces feel simple 
+            and beautiful. Highly recommend for any premium project.
+          </p>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">MK</div>
+            <div>
+              <div class="testimonial-card__name">Marcus Kim</div>
+              <div class="testimonial-card__role">CPO, Zenith Finance</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="testimonial-card reveal" id="testimonial-3">
+          <div class="testimonial-card__quote">"</div>
+          <p class="testimonial-card__text">
+            The most talented designer-developer I've ever collaborated with. 
+            E.M doesn't just build websites — they craft experiences that tell 
+            your story. Our fashion platform feels like walking into a boutique.
+          </p>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">AV</div>
+            <div>
+              <div class="testimonial-card__name">Aurélia Vance</div>
+              <div class="testimonial-card__role">Founder, Vance Fashion House</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CONTACT SECTION ========== -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="section__header reveal">
+        <span class="section__label">Get In Touch</span>
+        <h2 class="section__title">Let's Create Something<br><em>Extraordinary</em></h2>
+        <p class="section__subtitle">
+          Have a project in mind? I'd love to hear about it. 
+          Let's discuss how we can bring your vision to life.
+        </p>
+      </div>
+
+      <div class="contact__grid">
+        <div class="contact__info reveal-left">
+          <h3>Let's start a <span class="gradient-text">conversation</span></h3>
+          <p>
+            I'm always interested in new opportunities, creative collaborations, 
+            and challenging projects. Whether you have a specific project in mind 
+            or just want to explore possibilities — my inbox is open.
+          </p>
+
+          <div class="contact__details">
+            <div class="contact__detail">
+              <div class="contact__detail-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="4" width="20" height="16" rx="2"/>
+                  <path d="M22 4l-10 8L2 4"/>
+                </svg>
+              </div>
+              <div>
+                <div class="contact__detail-label">Email</div>
+                <div class="contact__detail-text">hello@em-portfolio.com</div>
+              </div>
+            </div>
+
+            <div class="contact__detail">
+              <div class="contact__detail-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                  <circle cx="12" cy="10" r="3"/>
+                </svg>
+              </div>
+              <div>
+                <div class="contact__detail-label">Location</div>
+                <div class="contact__detail-text">New York, NY</div>
+              </div>
+            </div>
+
+            <div class="contact__detail">
+              <div class="contact__detail-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+              </div>
+              <div>
+                <div class="contact__detail-label">Phone</div>
+                <div class="contact__detail-text">+1 (555) 123-4567</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact__socials">
+            <!-- LinkedIn -->
+            <a href="#" class="social-link" id="social-linkedin" aria-label="LinkedIn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+            </a>
+
+            <!-- GitHub -->
+            <a href="#" class="social-link" id="social-github" aria-label="GitHub">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              </svg>
+            </a>
+
+            <!-- Dribbble -->
+            <a href="#" class="social-link" id="social-dribbble" aria-label="Dribbble">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 24C5.385 24 0 18.615 0 12S5.385 0 12 0s12 5.385 12 12-5.385 12-12 12zm10.12-10.358c-.35-.11-3.17-.953-6.384-.438 1.34 3.684 1.887 6.684 1.992 7.308 2.3-1.555 3.936-4.02 4.395-6.87zm-6.115 7.808c-.153-.9-.75-4.032-2.19-7.77l-.066.02c-5.79 2.015-7.86 6.025-8.04 6.4 1.73 1.358 3.92 2.166 6.29 2.166 1.42 0 2.77-.29 4-.81zm-11.62-2.58c.232-.4 3.045-5.055 8.332-6.765.135-.045.27-.084.405-.12-.26-.585-.54-1.167-.832-1.74C7.17 11.775 2.206 11.71 1.756 11.7l-.004.312c0 2.633.998 5.037 2.634 6.855zm-2.42-8.955c.46.008 4.683.026 9.477-1.248-1.698-3.018-3.53-5.558-3.8-5.928-2.868 1.35-5.01 3.99-5.676 7.17zM9.6 2.052c.282.38 2.145 2.914 3.822 6 3.645-1.365 5.19-3.44 5.373-3.702C16.86 2.61 14.545 1.62 12 1.62c-.817 0-1.614.11-2.4.315v.12zm10.335 3.483c-.218.29-1.91 2.493-5.724 4.04.24.49.47.985.68 1.486.08.18.15.36.22.53 3.41-.43 6.8.26 7.14.33-.02-2.42-.88-4.64-2.31-6.38z"/>
+              </svg>
+            </a>
+
+            <!-- Twitter/X -->
+            <a href="#" class="social-link" id="social-twitter" aria-label="Twitter">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="contact__form-wrapper reveal-right">
+          <form class="contact__form" id="contact-form">
+            <div class="form-group">
+              <label for="contact-name">Name</label>
+              <input type="text" id="contact-name" name="name" placeholder="Your full name" required>
+            </div>
+            <div class="form-group">
+              <label for="contact-email">Email</label>
+              <input type="email" id="contact-email" name="email" placeholder="your@email.com" required>
+            </div>
+            <div class="form-group">
+              <label for="contact-subject">Subject</label>
+              <input type="text" id="contact-subject" name="subject" placeholder="Project inquiry">
+            </div>
+            <div class="form-group">
+              <label for="contact-message">Message</label>
+              <textarea id="contact-message" name="message" placeholder="Tell me about your project..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn--primary magnetic" id="contact-submit">
+              Send Message
+              <span class="btn__arrow">→</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Decorative Glow -->
+    <div class="glow-orb glow-orb--gold" style="width: 400px; height: 400px; bottom: -100px; right: -100px;"></div>
+  </section>
+
+  <!-- ========== CTA BANNER ========== -->
+  <section class="cta-banner" id="cta-banner">
+    <div class="cta-banner__bg"></div>
+    <div class="container">
+      <div class="cta-banner__content reveal">
+        <h2 class="cta-banner__title">Ready to start your next project?</h2>
+        <p class="cta-banner__text">Let's collaborate to create something exceptional that exceeds expectations.</p>
+        <a href="#contact" class="btn btn--primary btn--lg magnetic" id="cta-banner-btn">
+          Start a Conversation
+          <span class="btn__arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer" id="footer">
+    <div class="container">
+      <a href="#" class="footer__logo">E.M</a>
+      <p class="footer__text">© 2024 E.M. All rights reserved. Crafted with precision.</p>
+      <div class="footer__links">
+        <a href="about.html" class="footer__link">About</a>
+        <a href="work.html" class="footer__link">Work</a>
+        <a href="#experience" class="footer__link">Experience</a>
+        <a href="contact.html" class="footer__link">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 15l-6-6-6 6"/>
+    </svg>
+  </button>
+
+  <!-- Page Transition -->
+  <div class="page-transition"></div>
+
+  <!-- JavaScript -->
+  <script src="js/main.js"></script>
+  <script src="js/enhancements.js"></script>
 </body>
 </html>
