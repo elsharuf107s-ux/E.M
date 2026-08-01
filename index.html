@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="E.M — Award-winning creative designer & developer crafting premium digital experiences. Portfolio showcasing luxury brand design, web development, and interactive experiences.">
+  <meta name="keywords" content="portfolio, designer, developer, creative, web design, UI/UX, branding">
+  <meta name="author" content="E.M">
+  <meta name="theme-color" content="#0a0a0f">
+  <title>E.M — Creative Designer & Developer</title>
+
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/enhancements.css">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E✦%3C/text%3E%3C/svg%3E">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="E.M — Creative Designer & Developer">
+  <meta property="og:description" content="Award-winning creative designer & developer crafting premium digital experiences.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/images/hero-portrait.jpg">
+</head>
+<body>
+
+  <!-- ========== SCROLL PROGRESS BAR ========== -->
+  <div class="scroll-progress" id="scroll-progress"></div>
+
+  <!-- ========== PAGE LOADER ========== -->
+  <div class="page-loader" id="page-loader">
+    <div class="loader-content">
+      <div class="loader-rings">
+        <div class="loader-ring"></div>
+        <div class="loader-ring"></div>
+        <div class="loader-ring"></div>
+      </div>
+      <div class="loader-logo">E.M</div>
+      <div class="loader-tagline">Creative Designer & Developer</div>
+      <div class="loader-line"></div>
+    </div>
+  </div>
+
+  <!-- ========== CUSTOM CURSOR ========== -->
+  <div class="cursor-dot"></div>
+  <div class="cursor-outline"></div>
+
+  <!-- ========== NOISE OVERLAY ========== -->
+  <div class="noise-overlay"></div>
+
+  <!-- ========== HEADER / NAVIGATION ========== -->
+  <header class="header" id="header">
+    <div class="container">
+      <a href="#" class="header__logo" id="header-logo">E.M</a>
+
+      <nav class="nav" id="main-nav">
+        <ul class="nav__list">
+          <li><a href="#hero" class="nav__link active" id="nav-home">Home</a></li>
+          <li><a href="#about" class="nav__link" id="nav-about">About</a></li>
+          <li><a href="#work" class="nav__link" id="nav-work">Work</a></li>
+          <li><a href="#experience" class="nav__link" id="nav-experience">Experience</a></li>
+          <li><a href="#contact" class="nav__link" id="nav-contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <button class="nav__toggle" id="nav-toggle" aria-label="Toggle navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Overlay -->
+  <div class="nav__mobile-overlay" id="mobile-overlay">
+    <ul class="nav__mobile-list">
+      <li><a href="#hero" class="nav__mobile-link">Home</a></li>
+      <li><a href="#about" class="nav__mobile-link">About</a></li>
+      <li><a href="#work" class="nav__mobile-link">Work</a></li>
+      <li><a href="#experience" class="nav__mobile-link">Experience</a></li>
+      <li><a href="#contact" class="nav__mobile-link">Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- ========== HERO SECTION ========== -->
+  <section class="hero" id="hero">
+    <!-- Particle Canvas -->
+    <canvas class="particle-canvas" id="particle-canvas"></canvas>
+
+    <div class="hero__bg">
+      <img src="assets/images/hero-bg.jpg" alt="Abstract golden light background" loading="eager">
+      <div class="hero__bg-gradient"></div>
+    </div>
+
+    <div class="container">
+      <div class="hero__content">
+        <div class="hero__label">
+          <span class="typed-text">Creative Designer</span>
+        </div>
+
+        <h1 class="hero__title">
+          Crafting<br>
+          Digital<br>
+          <em>Experiences</em>
+        </h1>
+
+        <p class="hero__description">
+          I design and build premium digital products that merge 
+          stunning aesthetics with flawless functionality. Every pixel 
+          has a purpose.
+        </p>
+
+        <div class="hero__cta-group">
+          <a href="#work" class="btn btn--primary magnetic" id="hero-cta-work">
+            View My Work
+            <span class="btn__arrow">→</span>
+          </a>
+          <a href="#contact" class="btn btn--outline magnetic" id="hero-cta-contact">
+            Get In Touch
+          </a>
+        </div>
+      </div>
+
+      <div class="hero__portrait">
+        <div class="hero__portrait-wrapper">
+          <img src="assets/images/hero-portrait.jpg" alt="E.M - Creative Designer & Developer" loading="eager">
+        </div>
+        <div class="hero__portrait-accent"></div>
+        <div class="hero__portrait-accent hero__portrait-accent--bottom"></div>
+      </div>
+    </div>
+
+    <div class="hero__scroll-indicator">
+      <span class="hero__scroll-text">Scroll</span>
+      <div class="hero__scroll-line"></div>
+    </div>
+
+    <!-- Floating Badges -->
+    <div class="floating-badge floating-badge--1 reveal">
+      <span class="floating-badge__dot"></span>
+      Available for Work
+    </div>
+    <div class="floating-badge floating-badge--2 reveal">
+      ✦ 7+ Years Experience
+    </div>
+
+    <!-- Decorative Glow Orbs -->
+    <div class="glow-orb glow-orb--gold" style="width: 400px; height: 400px; top: -100px; right: -100px;"></div>
+    <div class="glow-orb glow-orb--warm" style="width: 300px; height: 300px; bottom: -50px; left: -50px;"></div>
+  </section>
+
+  <!-- ========== ABOUT SECTION ========== -->
+  <section class="section section--dark spotlight-section" id="about">
+    <div class="container">
+      <div class="section__header reveal">
+        <span class="section__label">About Me</span>
+        <h2 class="section__title split-text">The Story Behind the Craft</h2>
+      </div>
+
+      <div class="about__grid">
+        <div class="about__text reveal-left">
+          <h3>Passionate about creating <span class="gradient-text">meaningful</span> digital experiences</h3>
+          <p>
+            With over 7 years of experience in design and development, I've had the 
+            privilege of working with brands that demand excellence. My approach combines 
+            strategic thinking with meticulous attention to detail — because great design 
+            isn't just about how things look, it's about how they work.
+          </p>
+          <p>
+            From luxury e-commerce platforms to innovative SaaS dashboards, I bring a 
+            unique blend of creative vision and technical expertise to every project. 
+            I believe in designing experiences that resonate, engage, and convert.
+          </p>
+
+          <div class="about__stats stagger">
+            <div class="reveal">
+              <div class="about__stat-number">
+                <span class="count-up" data-target="50" data-suffix="+">0</span>
+              </div>
+              <div class="about__stat-label">Projects Delivered</div>
+            </div>
+            <div class="reveal">
+              <div class="about__stat-number">
+                <span class="count-up" data-target="30" data-suffix="+">0</span>
+              </div>
+              <div class="about__stat-label">Happy Clients</div>
+            </div>
+            <div class="reveal">
+              <div class="about__stat-number">
+                <span class="count-up" data-target="7" data-suffix="+">0</span>
+              </div>
+              <div class="about__stat-label">Years Experience</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about__image reveal-right">
+          <div class="about__image-wrapper tilt-card">
+            <img src="assets/images/hero-portrait.jpg" alt="E.M working on design projects">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Decorative Glow -->
+    <div class="glow-orb glow-orb--gold" style="width: 500px; height: 500px; top: 50%; left: -200px; transform: translateY(-50%);"></div>
+  </section>
+
+  <!-- ========== SKILLS SECTION ========== -->
+  <section class="section" id="skills">
+    <div class="container">
+      <div class="section__header reveal">
+        <span class="section__label">Expertise</span>
+        <h2 class="section__title split-text">What I Do</h2>
+        <p class="section__subtitle">
+          A curated set of skills refined over years of crafting premium digital products 
+          for world-class brands.
+        </p>
+      </div>
+
+      <div class="skills__grid stagger">
+        <!-- Skill 1: UI/UX Design -->
+        <div class="skill-card reveal" id="skill-uiux">
+          <div class="skill-card__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <path d="M3 9h18"/>
+              <path d="M9 21V9"/>
+            </svg>
+          </div>
+          <h3 class="skill-card__title">UI/UX Design</h3>
+          <p class="skill-card__description">
+            Creating intuitive interfaces that balance beauty and usability. 
+            User-centered design backed by research and testing.
+          </p>
+          <div class="skill-card__tags">
+            <span class="skill-card__tag">Figma</span>
+            <span class="skill-card__tag">Prototyping</span>
+            <span class="skill-card__tag">Research</span>
+          </div>
+        </div>
+
+        <!-- Skill 2: Web Development -->
+        <div class="skill-card reveal" id="skill-webdev">
+          <div class="skill-card__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6"/>
+              <polyline points="8 6 2 12 8 18"/>
+              <line x1="14" y1="4" x2="10" y2="20"/>
+            </svg>
+          </div>
+          <h3 class="skill-card__title">Web Development</h3>
+          <p class="skill-card__description">
+            Building performant, accessible web applications with modern 
+            frameworks and clean, maintainable code.
+          </p>
+          <div class="skill-card__tags">
+            <span class="skill-card__tag">React</span>
+            <span class="skill-card__tag">Next.js</span>
+            <span class="skill-card__tag">TypeScript</span>
+          </div>
+        </div>
+
+        <!-- Skill 3: Brand Identity -->
+        <div class="skill-card reveal" id="skill-brand">
+          <div class="skill-card__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+              <path d="M2 17l10 5 10-5"/>
+              <path d="M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <h3 class="skill-card__title">Brand Identity</h3>
+          <p class="skill-card__description">
+            Crafting cohesive visual identities that tell compelling brand 
+            stories and leave lasting impressions.
+          </p>
+          <div class="skill-card__tags">
+            <span class="skill-card__tag">Logo Design</span>
+            <span class="skill-card__tag">Typography</span>
+            <span class="skill-card__tag">Guidelines</span>
+          </div>
+        </div>
+
+        <!-- Skill 4: Mobile Development -->
+        <div class="skill-card reveal" id="skill-mobile">
+          <div class="skill-card__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+              <line x1="12" y1="18" x2="12" y2="18"/>
+            </svg>
+          </div>
+          <h3 class="skill-card__title">Mobile Development</h3>
+          <p class="skill-card__description">
+            Native and cross-platform mobile experiences that users love. 
+            Smooth, responsive, and pixel-perfect.
+          </p>
+          <div class="skill-card__tags">
+            <span class="skill-card__tag">React Native</span>
+            <span class="skill-card__tag">Flutter</span>
+            <span class="skill-card__tag">iOS</span>
+          </div>
+        </div>
+
+        <!-- Skill 5: Motion Design -->
+        <div class="skill-card reveal" id="skill-motion">
+          <div class="skill-card__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="5 3 19 12 5 21 5 3"/>
+            </svg>
+          </div>
+          <h3 class="skill-card__title">Motion Design</h3>
+          <p class="skill-card__description">
+            Breathing life into interfaces with purposeful animations that 
+            guide, delight, and enhance user experience.
+          </p>
+          <div class="skill-card__tags">
+            <span class="skill-card__tag">GSAP</span>
+            <span class="skill-card__tag">Framer Motion</span>
+            <span class="skill-card__tag">Lottie</span>
+          </div>
+        </div>
+
+        <!-- Skill 6: Strategy & Consulting -->
+        <div class="skill-card reveal" id="skill-strategy">
+          <div class="skill-card__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M2 12h20"/>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            </svg>
+          </div>
+          <h3 class="skill-card__title">Strategy & Consulting</h3>
+          <p class="skill-card__description">
+            Strategic guidance on digital products, from concept to launch. 
+            Data-driven decisions for maximum impact.
+          </p>
+          <div class="skill-card__tags">
+            <span class="skill-card__tag">Analytics</span>
+            <span class="skill-card__tag">A/B Testing</span>
+            <span class="skill-card__tag">Growth</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== MARQUEE ========== -->
+  <div class="marquee">
+    <div class="marquee__track">
+      <span class="marquee__item">UI/UX Design <span>◆</span> Web Development <span>◆</span> Brand Identity <span>◆</span> Mobile Apps <span>◆</span> Motion Design <span>◆</span> Strategy <span>◆</span> E-Commerce <span>◆</span> SaaS Products <span>◆</span></span>
+    </div>
+  </div>
+
+  <!-- ========== FEATURED WORK SECTION ========== -->
+  <section class="section section--dark" id="work">
+    <div class="container">
+      <div class="section__header reveal">
+        <span class="section__label">Portfolio</span>
+        <h2 class="section__title">Featured <em>Work</em></h2>
+        <p class="section__subtitle">
+          A selection of projects where design meets technology to create 
+          exceptional digital experiences.
+        </p>
+      </div>
+
+      <div class="projects__grid">
+        <!-- Project 1 -->
+        <div class="project-card reveal" id="project-1">
+          <div class="project-card__image">
+            <img src="assets/images/project-1.jpg" alt="Aeterna luxury e-commerce website">
+            <div class="project-card__image-overlay"></div>
+          </div>
+          <div class="project-card__content">
+            <span class="project-card__number">Project 01</span>
+            <h3 class="project-card__title">Aeterna — Luxury<br>E-Commerce</h3>
+            <p class="project-card__description">
+              A premium e-commerce platform for a high-end jewelry brand. 
+              Designed to evoke the elegance and sophistication of the 
+              brand's physical boutique experience.
+            </p>
+            <div class="project-card__tech">
+              <span>React</span>
+              <span>Node.js</span>
+              <span>Stripe</span>
+              <span>GSAP</span>
+            </div>
+            <a href="#" class="project-card__link animated-underline" id="project-1-link">
+              View Project <span>→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card reveal" id="project-2">
+          <div class="project-card__image">
+            <img src="assets/images/project-2.jpg" alt="Zenith Finance mobile banking app">
+            <div class="project-card__image-overlay"></div>
+          </div>
+          <div class="project-card__content">
+            <span class="project-card__number">Project 02</span>
+            <h3 class="project-card__title">Zenith Finance —<br>Mobile Banking</h3>
+            <p class="project-card__description">
+              A next-generation mobile banking experience that makes managing 
+              finances feel intuitive, secure, and even enjoyable. Dark mode 
+              interface with real-time insights.
+            </p>
+            <div class="project-card__tech">
+              <span>React Native</span>
+              <span>Firebase</span>
+              <span>Plaid</span>
+              <span>D3.js</span>
+            </div>
+            <a href="#" class="project-card__link animated-underline" id="project-2-link">
+              View Project <span>→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card reveal" id="project-3">
+          <div class="project-card__image">
+            <img src="assets/images/project-3.jpg" alt="Aurélia Vance fashion house website">
+            <div class="project-card__image-overlay"></div>
+          </div>
+          <div class="project-card__content">
+            <span class="project-card__number">Project 03</span>
+            <h3 class="project-card__title">Aurélia Vance —<br>Fashion House</h3>
+            <p class="project-card__description">
+              A haute couture digital storefront for an emerging luxury fashion 
+              label. Cinematic visuals, editorial layouts, and seamless shopping 
+              integration.
+            </p>
+            <div class="project-card__tech">
+              <span>Next.js</span>
+              <span>Shopify</span>
+              <span>GSAP</span>
+              <span>Sanity</span>
+            </div>
+            <a href="#" class="project-card__link animated-underline" id="project-3-link">
+              View Project <span>→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="project-card reveal" id="project-4">
+          <div class="project-card__image">
+            <img src="assets/images/project-4.jpg" alt="Aurora Analytics SaaS dashboard">
+            <div class="project-card__image-overlay"></div>
+          </div>
+          <div class="project-card__content">
+            <span class="project-card__number">Project 04</span>
+            <h3 class="project-card__title">Aurora Analytics —<br>SaaS Dashboard</h3>
+            <p class="project-card__description">
+              An enterprise analytics platform that transforms complex data 
+              into actionable insights. Clean information hierarchy with 
+              powerful data visualizations.
+            </p>
+            <div class="project-card__tech">
+              <span>Vue.js</span>
+              <span>D3.js</span>
+              <span>PostgreSQL</span>
+              <span>WebSocket</span>
+            </div>
+            <a href="#" class="project-card__link animated-underline" id="project-4-link">
+              View Project <span>→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== EXPERIENCE TIMELINE ========== -->
+  <section class="section" id="experience">
+    <div class="container">
+      <div class="section__header reveal">
+        <span class="section__label">Journey</span>
+        <h2 class="section__title">Experience & <em>Growth</em></h2>
+        <p class="section__subtitle">
+          A timeline of roles that shaped my craft and deepened my expertise 
+          across design and development.
+        </p>
+      </div>
+
+      <div class="timeline">
+        <!-- Timeline Item 1 -->
+        <div class="timeline__item reveal" id="exp-1">
+          <div class="timeline__dot"></div>
+          <span class="timeline__date">2021 — Present</span>
+          <h3 class="timeline__role">Senior Creative Developer</h3>
+          <p class="timeline__company">Digital Apex Studio</p>
+          <p class="timeline__description">
+            Leading the design and development of premium digital products for 
+            Fortune 500 clients. Architecting scalable design systems, mentoring 
+            junior designers, and driving creative direction on high-profile 
+            launches. Delivered 20+ projects generating $8M+ in client revenue.
+          </p>
+        </div>
+
+        <!-- Timeline Item 2 -->
+        <div class="timeline__item reveal" id="exp-2">
+          <div class="timeline__dot"></div>
+          <span class="timeline__date">2018 — 2021</span>
+          <h3 class="timeline__role">UI/UX Designer</h3>
+          <p class="timeline__company">Novus Agency</p>
+          <p class="timeline__description">
+            Designed user interfaces for mobile and web applications across 
+            fintech, healthcare, and e-commerce verticals. Led user research 
+            initiatives that improved conversion rates by an average of 34%. 
+            Established the agency's first component-based design system.
+          </p>
+        </div>
+
+        <!-- Timeline Item 3 -->
+        <div class="timeline__item reveal" id="exp-3">
+          <div class="timeline__dot"></div>
+          <span class="timeline__date">2016 — 2018</span>
+          <h3 class="timeline__role">Junior Developer</h3>
+          <p class="timeline__company">Pixel & Code</p>
+          <p class="timeline__description">
+            Built responsive websites and interactive prototypes for a boutique 
+            digital studio. Learned the fundamentals of front-end architecture 
+            while collaborating closely with senior designers on client projects. 
+            First introduction to the intersection of code and creativity.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TESTIMONIALS ========== -->
+  <section class="section section--dark" id="testimonials">
+    <div class="container">
+      <div class="section__header reveal">
+        <span class="section__label">Testimonials</span>
+        <h2 class="section__title">What Clients <em>Say</em></h2>
+      </div>
+
+      <div class="testimonials__grid stagger">
+        <!-- Testimonial 1 -->
+        <div class="testimonial-card reveal" id="testimonial-1">
+          <div class="testimonial-card__quote">"</div>
+          <p class="testimonial-card__text">
+            E.M transformed our brand's digital presence completely. The 
+            attention to detail and creative vision exceeded every expectation. 
+            Our conversion rate doubled within the first quarter.
+          </p>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">SA</div>
+            <div>
+              <div class="testimonial-card__name">Sarah Anderson</div>
+              <div class="testimonial-card__role">CEO, Aeterna Jewelry</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="testimonial-card reveal" id="testimonial-2">
+          <div class="testimonial-card__quote">"</div>
+          <p class="testimonial-card__text">
+            Working with E.M was a game-changer for our fintech product. 
+            They have a rare ability to make complex interfaces feel simple 
+            and beautiful. Highly recommend for any premium project.
+          </p>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">MK</div>
+            <div>
+              <div class="testimonial-card__name">Marcus Kim</div>
+              <div class="testimonial-card__role">CPO, Zenith Finance</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="testimonial-card reveal" id="testimonial-3">
+          <div class="testimonial-card__quote">"</div>
+          <p class="testimonial-card__text">
+            The most talented designer-developer I've ever collaborated with. 
+            E.M doesn't just build websites — they craft experiences that tell 
+            your story. Our fashion platform feels like walking into a boutique.
+          </p>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">AV</div>
+            <div>
+              <div class="testimonial-card__name">Aurélia Vance</div>
+              <div class="testimonial-card__role">Founder, Vance Fashion House</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CONTACT SECTION ========== -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="section__header reveal">
+        <span class="section__label">Get In Touch</span>
+        <h2 class="section__title">Let's Create Something<br><em>Extraordinary</em></h2>
+        <p class="section__subtitle">
+          Have a project in mind? I'd love to hear about it. 
+          Let's discuss how we can bring your vision to life.
+        </p>
+      </div>
+
+      <div class="contact__grid">
+        <div class="contact__info reveal-left">
+          <h3>Let's start a <span class="gradient-text">conversation</span></h3>
+          <p>
+            I'm always interested in new opportunities, creative collaborations, 
+            and challenging projects. Whether you have a specific project in mind 
+            or just want to explore possibilities — my inbox is open.
+          </p>
+
+          <div class="contact__details">
+            <div class="contact__detail">
+              <div class="contact__detail-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="4" width="20" height="16" rx="2"/>
+                  <path d="M22 4l-10 8L2 4"/>
+                </svg>
+              </div>
+              <div>
+                <div class="contact__detail-label">Email</div>
+                <div class="contact__detail-text">hello@em-portfolio.com</div>
+              </div>
+            </div>
+
+            <div class="contact__detail">
+              <div class="contact__detail-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                  <circle cx="12" cy="10" r="3"/>
+                </svg>
+              </div>
+              <div>
+                <div class="contact__detail-label">Location</div>
+                <div class="contact__detail-text">New York, NY</div>
+              </div>
+            </div>
+
+            <div class="contact__detail">
+              <div class="contact__detail-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+              </div>
+              <div>
+                <div class="contact__detail-label">Phone</div>
+                <div class="contact__detail-text">+1 (555) 123-4567</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact__socials">
+            <!-- LinkedIn -->
+            <a href="#" class="social-link" id="social-linkedin" aria-label="LinkedIn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+            </a>
+
+            <!-- GitHub -->
+            <a href="#" class="social-link" id="social-github" aria-label="GitHub">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              </svg>
+            </a>
+
+            <!-- Dribbble -->
+            <a href="#" class="social-link" id="social-dribbble" aria-label="Dribbble">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 24C5.385 24 0 18.615 0 12S5.385 0 12 0s12 5.385 12 12-5.385 12-12 12zm10.12-10.358c-.35-.11-3.17-.953-6.384-.438 1.34 3.684 1.887 6.684 1.992 7.308 2.3-1.555 3.936-4.02 4.395-6.87zm-6.115 7.808c-.153-.9-.75-4.032-2.19-7.77l-.066.02c-5.79 2.015-7.86 6.025-8.04 6.4 1.73 1.358 3.92 2.166 6.29 2.166 1.42 0 2.77-.29 4-.81zm-11.62-2.58c.232-.4 3.045-5.055 8.332-6.765.135-.045.27-.084.405-.12-.26-.585-.54-1.167-.832-1.74C7.17 11.775 2.206 11.71 1.756 11.7l-.004.312c0 2.633.998 5.037 2.634 6.855zm-2.42-8.955c.46.008 4.683.026 9.477-1.248-1.698-3.018-3.53-5.558-3.8-5.928-2.868 1.35-5.01 3.99-5.676 7.17zM9.6 2.052c.282.38 2.145 2.914 3.822 6 3.645-1.365 5.19-3.44 5.373-3.702C16.86 2.61 14.545 1.62 12 1.62c-.817 0-1.614.11-2.4.315v.12zm10.335 3.483c-.218.29-1.91 2.493-5.724 4.04.24.49.47.985.68 1.486.08.18.15.36.22.53 3.41-.43 6.8.26 7.14.33-.02-2.42-.88-4.64-2.31-6.38z"/>
+              </svg>
+            </a>
+
+            <!-- Twitter/X -->
+            <a href="#" class="social-link" id="social-twitter" aria-label="Twitter">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="contact__form-wrapper reveal-right">
+          <form class="contact__form" id="contact-form">
+            <div class="form-group">
+              <label for="contact-name">Name</label>
+              <input type="text" id="contact-name" name="name" placeholder="Your full name" required>
+            </div>
+            <div class="form-group">
+              <label for="contact-email">Email</label>
+              <input type="email" id="contact-email" name="email" placeholder="your@email.com" required>
+            </div>
+            <div class="form-group">
+              <label for="contact-subject">Subject</label>
+              <input type="text" id="contact-subject" name="subject" placeholder="Project inquiry">
+            </div>
+            <div class="form-group">
+              <label for="contact-message">Message</label>
+              <textarea id="contact-message" name="message" placeholder="Tell me about your project..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn--primary magnetic" id="contact-submit">
+              Send Message
+              <span class="btn__arrow">→</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Decorative Glow -->
+    <div class="glow-orb glow-orb--gold" style="width: 400px; height: 400px; bottom: -100px; right: -100px;"></div>
+  </section>
+
+  <!-- ========== CTA BANNER ========== -->
+  <section class="cta-banner" id="cta-banner">
+    <div class="cta-banner__bg"></div>
+    <div class="container">
+      <div class="cta-banner__content reveal">
+        <h2 class="cta-banner__title">Ready to start your next project?</h2>
+        <p class="cta-banner__text">Let's collaborate to create something exceptional that exceeds expectations.</p>
+        <a href="#contact" class="btn btn--primary btn--lg magnetic" id="cta-banner-btn">
+          Start a Conversation
+          <span class="btn__arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer" id="footer">
+    <div class="container">
+      <a href="#" class="footer__logo">E.M</a>
+      <p class="footer__text">© 2024 E.M. All rights reserved. Crafted with precision.</p>
+      <div class="footer__links">
+        <a href="about.html" class="footer__link">About</a>
+        <a href="work.html" class="footer__link">Work</a>
+        <a href="#experience" class="footer__link">Experience</a>
+        <a href="contact.html" class="footer__link">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 15l-6-6-6 6"/>
+    </svg>
+  </button>
+
+  <!-- Page Transition -->
+  <div class="page-transition"></div>
+
+  <!-- JavaScript -->
+  <script src="js/main.js"></script>
+  <script src="js/enhancements.js"></script>
+</body>
+</html>
