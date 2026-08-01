@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bella Italia Ristorante — A Taste of True Italy</title>
+<meta name="description" content="Family-run Italian kitchen. Antipasti, primi, secondi and dolci, made the way they were taught in Emilia-Romagna. Bookings and private events.">
+<meta name="theme-color" content="#FAF4E8">
+<meta property="og:title" content="Bella Italia Ristorante"><meta property="og:type" content="website">
+<meta property="og:description" content="A taste of true Italy. Family-run since 1998.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&amp;family=Source+Sans+3:wght@400;600&amp;display=swap" rel="stylesheet">
+<style>
+/* BELLA ITALIA — "The Trattoria Card"
+   A menu card on linen. Centred masthead, olive rules, a hand-set list
+   of courses. Warm and traditional, never slick. */
+:root{--tuscan:#9B2F2A;--tuscan-d:#7A211D;--olive:#5F6B37;--olive-lt:#8B9557;
+  --cream:#FAF4E8;--cream-2:#F2E9D7;--linen:#E6D9BF;--esp:#2E2117;--ink-2:#5C4B3A;--muted:#695945;
+  --serif:'Cormorant Garamond',Georgia,serif;--sans:'Source Sans 3',system-ui,sans-serif}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:96px}
+body{background:var(--cream);color:var(--ink-2);font-family:var(--sans);font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  background-image:repeating-linear-gradient(90deg,rgba(230,217,191,.28) 0 1px,transparent 1px 4px)}
+img{display:block;max-width:100%;height:auto}a{color:inherit;text-decoration:none}ul{list-style:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+input,select,textarea{font-family:var(--sans);font-size:1rem}
+:focus-visible{outline:2px solid var(--tuscan);outline-offset:3px}
+::selection{background:var(--olive-lt);color:var(--esp)}
+h1,h2,h3{font-family:var(--serif);color:var(--esp);font-weight:600;line-height:1.14;text-wrap:balance}
+.wrap{width:100%;max-width:1060px;margin-inline:auto;padding-inline:clamp(1.1rem,4vw,2.5rem)}
+.sec{padding-block:clamp(3.5rem,8vw,6rem)}
+.lbl{font-size:.7rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--olive)}
+.h2{font-size:clamp(1.9rem,4.4vw,3rem);margin-block:.7rem 1rem}
+.mid{text-align:center}.mid p{margin-inline:auto}.lead{max-width:56ch}
+.rule{border:0;border-top:1px solid var(--linen);border-bottom:1px solid var(--linen);height:4px;max-width:120px;margin:1.5rem auto}
+.skip{position:absolute;left:-9999px}.skip:focus{left:1rem;top:1rem;z-index:200;background:var(--tuscan);color:#fff;padding:.7rem 1.1rem}
+.bar{position:sticky;top:0;z-index:60;background:rgba(250,244,232,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--linen)}
+.bar-in{display:flex;flex-direction:column;align-items:center;padding-block:.75rem}
+.bar-in img{height:50px;width:auto}
+.nav{display:none;gap:clamp(1.1rem,3vw,2.2rem);margin-top:.55rem}
+.nav a{font-weight:600;font-size:.88rem;letter-spacing:.06em;color:var(--esp);padding-bottom:2px;border-bottom:1px solid transparent}
+.nav a:hover{border-bottom-color:var(--tuscan)}
+@media(min-width:760px){.nav{display:flex}}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:.85rem 1.8rem;font-weight:600;font-size:.82rem;
+  letter-spacing:.16em;text-transform:uppercase;background:var(--tuscan);color:#fff;text-align:center}
+.btn:hover{background:var(--tuscan-d)}
+.btn--out{background:transparent;color:var(--esp);border:1px solid var(--linen)}
+.btn--out:hover{border-color:var(--esp)}
+.hero{background:var(--cream-2);border-bottom:1px solid var(--linen);text-align:center}
+.hero-in{padding-block:clamp(3rem,8vw,5.5rem)}
+.hero h1{font-size:clamp(2.3rem,6.4vw,4.2rem);font-style:italic}
+.hero p{margin:1.2rem auto 0;max-width:50ch;font-size:1.06rem}
+.hero-cta{display:flex;flex-wrap:wrap;gap:.85rem;justify-content:center;margin-top:2rem}
+.menu{margin-top:2.5rem;display:grid;gap:clamp(2rem,5vw,3.25rem)}
+@media(min-width:780px){.menu{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.course h3{font-size:1.7rem;font-style:italic;text-align:center;margin-bottom:.4rem}
+.course .sub{text-align:center;font-size:.72rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--olive);margin-bottom:1.25rem}
+.course ul{display:flex;flex-direction:column;gap:1rem}
+.course li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.6rem;align-items:baseline;
+  padding-bottom:.9rem;border-bottom:1px solid var(--linen)}
+.course .n{font-family:var(--serif);font-size:1.22rem;color:var(--esp)}
+.course .p{font-weight:600;color:var(--tuscan);font-variant-numeric:tabular-nums}
+.course .d{grid-column:1/-1;font-size:.9rem;color:var(--muted);margin-top:-.4rem}
+.story{display:grid;gap:clamp(2rem,5vw,3.5rem);align-items:center}
+@media(min-width:860px){.story{grid-template-columns:1fr 1fr}}
+.story blockquote{font-family:var(--serif);font-style:italic;font-size:clamp(1.3rem,2.6vw,1.8rem);color:var(--esp);line-height:1.4;
+  border-left:2px solid var(--olive);padding-left:1.5rem}
+.story cite{display:block;margin-top:1rem;font-family:var(--sans);font-style:normal;font-size:.78rem;
+  font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.dl{border-top:1px solid var(--linen);margin-top:1.75rem}
+.dl>div{display:grid;grid-template-columns:7.5rem minmax(0,1fr);gap:1rem;align-items:baseline;padding-block:.9rem;border-bottom:1px solid var(--linen)}
+.dl dt{font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.dl dd{color:var(--esp);font-weight:600;overflow-wrap:anywhere}
+@media(max-width:420px){.dl>div{grid-template-columns:1fr;gap:.15rem}}
+.form{background:var(--cream-2);border:1px solid var(--linen);padding:clamp(1.4rem,3vw,2rem)}
+.form h3{font-size:1.5rem;font-style:italic;margin-bottom:1.2rem}
+.fld{margin-bottom:1rem}
+.fld label{display:block;font-size:.74rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem}
+.fld input,.fld select,.fld textarea{width:100%;padding:.72rem .85rem;border:1px solid var(--linen);background:#fff;color:var(--esp)}
+.fld textarea{min-height:90px;resize:vertical}
+.fld input:focus,.fld select:focus,.fld textarea:focus{outline:0;border-color:var(--olive)}
+.f2{display:grid;grid-template-columns:1fr;gap:1rem}
+@media(min-width:520px){.f2{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.form .btn{width:100%;margin-top:.3rem}.note{margin-top:.85rem;font-size:.83rem;color:var(--muted)}
+.ft{background:var(--esp);color:#C9B99F;padding-block:2.75rem 1.4rem}
+.ft-g{display:grid;gap:2rem;margin-bottom:2rem}
+@media(min-width:780px){.ft-g{grid-template-columns:1.4fr 1fr 1fr}}
+.ft h3{color:#fff;font-family:var(--sans);font-size:.74rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;margin-bottom:.85rem}
+.ft a{display:block;padding-block:.24rem;color:#C9B99F;overflow-wrap:anywhere}.ft a:hover{color:#fff}
+.ft-logo{background:var(--cream);padding:.5rem .7rem;display:inline-block;margin-bottom:1rem}
+.ft-logo img{height:38px;width:auto}
+.ft-end{border-top:1px solid #4A392A;padding-top:1.15rem;display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;justify-content:space-between;font-size:.83rem}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#menu">Skip to the menu</a>
+<header class="bar"><div class="wrap bar-in">
+  <a href="#top" aria-label="Bella Italia Ristorante — home"><img src="assets/logos/bella-italia.png" alt="Bella Italia Ristorante"></a>
+  <nav class="nav" aria-label="Primary"><a href="#menu">Menu</a><a href="#story">Our story</a><a href="#book">Reservations</a><a href="#book">Private events</a></nav>
+</div></header>
+<main id="top">
+  <section class="hero"><div class="wrap hero-in">
+    <p class="lbl">Family run since 1998</p>
+    <h1 style="margin-top:.8rem">A taste of true Italy.</h1>
+    <hr class="rule">
+    <p>Nonna Rosa's recipes, cooked by her grandson. The pasta is rolled here every morning and the ragù has been on since yesterday.</p>
+    <div class="hero-cta"><a class="btn" href="#book">Book a table</a><a class="btn btn--out" href="#menu">See the menu</a></div>
+  </div></section>
+  <section class="sec" id="menu"><div class="wrap mid">
+    <p class="lbl">Il menù</p><h2 class="h2">Four courses, as they should be.</h2>
+    <p class="lead">The menu changes twice a year. These are the dishes people would riot over if we took them off.</p>
+  </div><div class="wrap">
+    <div class="menu">
+      <div class="course"><h3>Antipasti</h3><p class="sub">To begin</p><ul>
+        <li><span class="n">Burrata e pomodorini</span><span class="p">$16</span><span class="d">Puglian burrata, confit tomatoes, basil oil</span></li>
+        <li><span class="n">Vitello tonnato</span><span class="p">$18</span><span class="d">Cold veal, tuna cream, capers</span></li>
+        <li><span class="n">Tagliere della casa</span><span class="p">$26</span><span class="d">Cured meats and cheese, to share</span></li>
+      </ul></div>
+      <div class="course"><h3>Primi</h3><p class="sub">Pasta &amp; risotto</p><ul>
+        <li><span class="n">Tagliatelle al ragù</span><span class="p">$26</span><span class="d">Eight hours, Emilia-Romagna style</span></li>
+        <li><span class="n">Cacio e pepe</span><span class="p">$22</span><span class="d">Pecorino romano, black pepper, nothing else</span></li>
+        <li><span class="n">Risotto ai funghi</span><span class="p">$25</span><span class="d">Porcini, taleggio, parsley</span></li>
+      </ul></div>
+      <div class="course"><h3>Secondi</h3><p class="sub">Main courses</p><ul>
+        <li><span class="n">Osso buco alla milanese</span><span class="p">$38</span><span class="d">Veal shank, gremolata, saffron risotto</span></li>
+        <li><span class="n">Branzino al forno</span><span class="p">$34</span><span class="d">Whole sea bass, lemon, oregano</span></li>
+        <li><span class="n">Pollo alla cacciatora</span><span class="p">$29</span><span class="d">Free-range chicken, olives, rosemary</span></li>
+      </ul></div>
+      <div class="course"><h3>Dolci</h3><p class="sub">To finish</p><ul>
+        <li><span class="n">Tiramisù</span><span class="p">$12</span><span class="d">Made at 6am, never the day before</span></li>
+        <li><span class="n">Panna cotta</span><span class="p">$11</span><span class="d">Vanilla, seasonal fruit</span></li>
+        <li><span class="n">Affogato</span><span class="p">$10</span><span class="d">Gelato, espresso, a shot of amaro</span></li>
+      </ul></div>
+    </div>
+  </div></section>
+  <section class="sec" id="story" style="background:var(--cream-2);border-block:1px solid var(--linen)"><div class="wrap story">
+    <div><p class="lbl">Our story</p><h2 class="h2">Rosa came over with a suitcase and a rolling pin.</h2>
+      <p class="lead">She opened the first room on Carlton Street in 1998 with nine tables and a menu she never wrote down. Her grandson Matteo runs the kitchen now. The menu is written down these days, but the ragù recipe still is not.</p>
+      <p class="lead" style="margin-top:1rem">We take bookings for the dining room and the back room seats twenty for private events — birthdays, wakes, engagements. Whatever it is, there will be too much food.</p></div>
+    <div><blockquote>“If the sauce is ready in an hour, you have made something else.”<cite>Rosa Bellini, 1932 – 2019</cite></blockquote></div>
+  </div></section>
+  <section class="sec" id="book"><div class="wrap story">
+    <div><p class="lbl">Reservations</p><h2 class="h2">Book a table.</h2>
+      <p class="lead">We hold a few tables back for walk-ins each night. For parties over six, or the private room, please give us a few days.</p>
+      <dl class="dl">
+        <!-- REPLACE: placeholder contact details -->
+        <div><dt>Address</dt><dd>44 Carlton Street</dd></div>
+        <div><dt>Phone</dt><dd>(555) 927-1998</dd></div>
+        <div><dt>Email</dt><dd>tavolo@bellaitalia.example</dd></div>
+        <div><dt>Dinner</dt><dd>Tue–Sun from 5.30pm</dd></div>
+        <div><dt>Lunch</dt><dd>Fri–Sun 12–3pm</dd></div>
+      </dl></div>
+    <div class="form"><h3>Request a table</h3>
+      <form id="f">
+        <div class="f2">
+          <div class="fld"><label for="n">Name</label><input id="n" name="name" type="text" autocomplete="name" required></div>
+          <div class="fld"><label for="p">Phone</label><input id="p" name="phone" type="tel" autocomplete="tel" required></div>
+        </div>
+        <div class="f2">
+          <div class="fld"><label for="dt">Date</label><input id="dt" name="date" type="date"></div>
+          <div class="fld"><label for="g">Guests</label><select id="g" name="guests"><option>2</option><option>3–4</option><option>5–6</option><option>7+ (private room)</option></select></div>
+        </div>
+        <div class="fld"><label for="d">Anything we should know</label><textarea id="d" name="detail" placeholder="Allergies, celebrations, a table by the window…"></textarea></div>
+        <button class="btn" type="submit">Request table</button>
+        <!-- REPLACE: wire to a real endpoint before going live -->
+        <p class="note" id="msg">This demo form is not connected to a mailbox yet.</p>
+      </form>
+    </div>
+  </div></section>
+</main>
+<footer class="ft"><div class="wrap">
+  <div class="ft-g">
+    <div><span class="ft-logo"><img src="assets/logos/bella-italia.png" alt="Bella Italia Ristorante"></span>
+      <p>A family kitchen on Carlton Street. Pasta rolled each morning, ragù started the day before.</p></div>
+    <div><h3>Ristorante</h3><a href="#menu">Menu</a><a href="#story">Our story</a><a href="#book">Reservations</a><a href="#book">Private events</a></div>
+    <div><h3>Find us</h3><a href="tel:+15559271998">(555) 927-1998</a><a href="mailto:tavolo@bellaitalia.example">tavolo@bellaitalia.example</a><p style="margin-top:.5rem">44 Carlton Street · Closed Mondays</p></div>
+  </div>
+  <div class="ft-end"><span>© 2026 Bella Italia Ristorante</span><span>Family run since 1998</span></div>
+</div></footer>
+<script>(function(){'use strict';var f=document.getElementById('f'),m=document.getElementById('msg');
+if(f)f.addEventListener('submit',function(e){e.preventDefault();m.textContent='Not connected yet — please call (555) 927-1998.';m.style.color='#7A211D';});})();</script>
+</body>
+</html>
