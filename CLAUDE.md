@@ -1,5 +1,25 @@
 # Working in this repo
 
+## End every reply with a merge-status line
+
+The owner works across Claude Code and Antigravity and previews the site from a local
+server running off `main`. Once, a PR was merged while work was still in flight: the
+merge captured the branch one commit early, `main` kept serving the old design, and the
+owner reasonably thought something was broken. That cost a rebase and a second PR.
+
+**So finish every reply with a single line saying whether anything is ready to merge.**
+Put it last, after the explanation, separated by a rule. Three forms:
+
+- `**Ready to merge:** PR #N — <one-line description>.` — pushed, verified, safe to merge.
+- `**Not ready yet** — still <what remains>. Don't merge PR #N until I say so.`
+- `**Nothing to merge** — no code changed this turn.`
+
+Never say "ready to merge" for work that is only partly pushed or not yet verified in a
+browser. The point of the line is that the owner can trust it without reading the rest.
+
+Remind them to hard-refresh after merging when CSS or JS changed — a cached stylesheet
+will keep painting the old design over the new files.
+
 ## Always update AGENT_LOG.md
 
 `AGENT_LOG.md` is a shared handoff log for the AI agents working on this repo — Claude

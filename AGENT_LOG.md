@@ -27,9 +27,13 @@ The E.M site links out to all nine business templates from a "Live Sites" sectio
 both `index.html` and `work.html`, reusing the screenshots in
 `business-templates/assets/previews/`.
 
-**Open work:** the E.M redesign. PR #1 was merged, but it merged the branch as it stood
-*before* the redesign commit, so `main` currently still serves the old dark E.M site.
-The redesign is on a fresh branch with a second PR.
+All nine templates have had a quality pass: no sideways scroll from 320px up, every
+element passes WCAG AA contrast, no heading skips, and a 10.24px type floor. Their nine
+design languages are unchanged — the pass raised craft inside each idiom, it did not
+unify them.
+
+**Open work:** PRs #1 and #2 are merged. The template quality pass is on
+branch `claude/portfolio-html-files-3qydbo` awaiting merge.
 
 ---
 
@@ -54,32 +58,56 @@ Things that are easy to get wrong here:
    `deviceScaleFactor: 1.5`, clip `{x:0, y:0, width:1440, height:900}`, JPEG quality 76.
    Keep the 16:10 crop — the card CSS assumes it.
 
-4. **Two CSS traps already hit and fixed in the gallery — don't reintroduce them.**
+4. **The label/value ledger trap — hit in FOUR of the nine templates.**
+   `grid-template-columns:7.5rem 1fr` looks fine until an email address lands in the
+   second track: `1fr` carries `min-width:auto`, so the track cannot shrink below its
+   content and the whole page grows. This caused up to 81px of sideways scroll at 320px.
+   **Always write `minmax(0,1fr)`**, add `overflow-wrap:anywhere` to the value, and stack
+   the pair under ~400px.
+
+5. **Testing for sideways scroll: measure, don't infer.**
+   - `overflow-x:hidden` on `body` does **not** stop the page scrolling while `html` still
+     scrolls. Scroll the window and read `window.scrollX`.
+   - Comparing `scrollWidth` to `clientWidth` gives false positives for anything inside an
+     `overflow-x:auto` scroller.
+   - Raising a type floor can *create* overflow — a bigger wordmark tagline is what pushed
+     vitality-gym's header from 22px of overflow to 57px.
+
+6. **Contrast sweeps must sample headings, not just body text.**
+   The worst defect in the whole pass was a heading: hydro-flow's booking form is a white
+   card inside an `.on-dark` section, and `.on-dark h3{color:#fff}` rendered "Request a
+   booking" white on white at 1.00:1. A body-text-only sweep missed it entirely.
+
+7. **Moving a heading level means moving its CSS selector.** Several templates styled
+   footer headings with `.ft h4`. Changing the markup to `h3` without changing the
+   selector silently strips the styling.
+
+8. **Two CSS traps already hit and fixed in the gallery — don't reintroduce them.**
    - An `<img>` with `width`/`height` HTML attributes needs `height:auto` in CSS, or the
      `height` presentational hint wins and `aspect-ratio` is ignored. This silently
      scaled the previews to ~2.5x.
    - A percentage `max-height` needs a definite containing height to resolve against.
      Without one it is ignored, which made ten logo plates render at ten heights.
 
-5. **Placeholders still in `business-templates/index.html`**, each marked with a
+9. **Placeholders still in `business-templates/index.html`**, each marked with a
    `<!-- REPLACE -->` comment: the contact email (`hello@example.com`) and the top-bar
    wordmark / "Open for work" line. These must be replaced before that page is published
    anywhere public.
 
-6. **The E.M site's `js/enhancements.js` is nearly empty on purpose.** All four pages
+10. **The E.M site's `js/enhancements.js` is nearly empty on purpose.** All four pages
    `<script src>` it, so deleting the file would 404 on every page load. New behaviour
    belongs in `js/main.js`.
 
-7. **The E.M pages carry `<!-- REPLACE -->` markers on every placeholder** — stat
+11. **The E.M pages carry `<!-- REPLACE -->` markers on every placeholder** — stat
    figures, the three testimonials, the four invented case studies, contact details,
    social links and the form endpoint. The stock-photo portraits in `assets/images/`
    are placeholders too. **The site should not go public until these are real.**
 
-8. **Nothing here has a build step.** Hand-written HTML/CSS/vanilla JS across both
+12. **Nothing here has a build step.** Hand-written HTML/CSS/vanilla JS across both
    projects. Google Fonts is the only external request. Don't add a bundler or framework
    without the owner asking.
 
-9. **Claude Code runs in a temporary cloud container**, not on the owner's machine. Its
+13. **Claude Code runs in a temporary cloud container**, not on the owner's machine. Its
    working directory is not visible to Antigravity and is wiped after the session. Only
    what is **committed and pushed** crosses between agents. Git is the handoff medium.
 
@@ -323,3 +351,140 @@ invented testimonials and case studies, and a "$8M+ in client revenue" claim.
 - The invented testimonials, case studies and contact details were kept but marked,
   per the owner's choice. **None of this should go public as-is.**
 - `business-templates/` was not touched.
+
+---
+
+### 2026-08-01 — Claude Code — merge-timing incident and a new convention
+
+**What the owner asked (verbatim):**
+
+> "I told antigravity to open the port for this website but it opened the old version I'm confused"
+
+> "Yes do that and remember to do that"
+
+**What actually happened:**
+
+PR #1 was merged at 14:21, capturing the branch at commit `a05c876` — the gallery and the
+log. The E.M redesign was pushed as `0f7693f` a few minutes **after** that merge. So `main`
+received the gallery but not the redesign, and Antigravity's `npx serve` on port 8080 —
+serving `main` — correctly showed the old dark site. Nothing was broken. The redesign
+simply missed the merge.
+
+**Resolved by:** rebasing the redesign onto current `main` (a merged PR cannot take new
+commits) and opening **PR #2**. The rebase hit a conflict in this file, because Antigravity
+had appended its own entry in the meantime. Resolved by keeping **both** entries in
+chronological order — nothing was discarded. `.gemini/` and `business-templates/` were
+verified untouched by `git diff` against `main`, and all four pages were re-rendered after
+the rebase to confirm the merge of Antigravity's commits disturbed nothing.
+
+**New convention, added to `CLAUDE.md`:** every Claude Code reply now ends with a single
+merge-status line — ready / not ready / nothing to merge. The owner previews from a local
+server off `main`, so they need to know when merging is safe without reading the whole
+reply. The line also carries a hard-refresh reminder whenever CSS or JS changed, since a
+cached stylesheet will keep painting the old design over new files.
+
+**Note for other agents:** if you also work in a tool that ends turns with a summary, the
+same habit would help. The failure mode is generic — the owner merges on a signal that is
+not synchronised with the push.
+
+---
+
+### 2026-08-01 — Claude Code — business templates: quality pass (pilot)
+
+**What the owner asked (verbatim):**
+
+> "Check the logs then with the information so far begin changering the 9 bussiness template websites"
+
+**Direction agreed before starting.** The nine templates are deliberately nine *different*
+design languages, and that variety is the entire pitch of the gallery. Flattening them to
+one style would destroy it. Offered four readings; the owner chose **polish each in its own
+idiom** — raise the craft inside each design without homogenising them — and **pilot one
+site first** before touching the other eight.
+
+**Pilot: `apex-automotive.html`.** Audited rather than restyled by eye. Four real defects
+found and fixed, all within the "spec sheet" idiom:
+
+1. **Horizontal scroll at 320–360px (real bug).** `.bk dl div` used
+   `grid-template-columns:7.5rem 1fr`; the `1fr` track has `min-width:auto`, so the booking
+   email set a floor of 222px. 120 + 16 + 222 = 358px against a 288px content box, pushing
+   the page 54px wide. `body{overflow-x:hidden}` did **not** contain it, because `html`
+   still scrolls — measured `window.scrollX` reached 54. Fixed with `minmax(0,1fr)`,
+   `overflow-wrap:anywhere` on the value, and a stacked layout under 400px.
+   Verified: `scrollX` now 0.
+2. **Contrast.** `.step .sn` (the 41.6px stage numeral) sat at **1.74:1** — far below the
+   3:1 large-text floor. Moved off `--steel-2` to `#6A6A78`. Still recessive, now visible.
+3. **Sub-legible type.** The wordmark's second line rendered at **8px**. Raised it, then set
+   a floor of `.64rem` (10.24px) across the micro-labels. The tracked-mono character of the
+   design is unchanged.
+4. **Heading order.** Footer column headings were `h4` directly after section `h2`, skipping
+   a level. Changed to `h3` — and the CSS rule was `.ft h4`, so that selector had to move
+   with it or the footer would have silently lost its styling.
+
+**Preview recaptured** per gotcha 3 — `assets/previews/apex-automotive.jpg` was rebuilt at
+the documented settings, since it appears both in the gallery and in the E.M site's "Live
+Sites" section.
+
+**Verified:** no overflow at 320/360/414/768/1024/1440/1920; `scrollX` 0 at 320; no low
+contrast; no heading skips; all type ≥10.24px; no console errors; desktop rendering
+unchanged.
+
+**A note for the audit of the remaining eight:** `overflow-x:hidden` on `body` alone is not
+a guard against sideways scroll. Test by scrolling and reading `window.scrollX` — comparing
+`scrollWidth` to `clientWidth` also produces false positives for anything inside an
+`overflow-x:auto` scroller.
+
+**Not done yet:** the other eight templates. Awaiting the owner's sign-off on this approach.
+
+---
+
+### 2026-08-01 — Claude Code — business templates: quality pass (remaining eight)
+
+**What the owner asked (verbatim):**
+
+> "do the other 8 now"
+
+Approach approved, so the same audit-then-fix method was applied to the remaining eight.
+All nine now pass the same bar. **No design was homogenised** — a contact sheet of all
+nine confirms they still read as nine different languages.
+
+**Defects found and fixed:**
+
+- **The same grid trap recurred in three more sites.** `grid-template-columns:7.5rem 1fr`
+  with a `1fr` track whose `min-width:auto` was pinned by an email address — hydro-flow
+  (81px of sideways scroll at 320), lex-associates (44px), nexa. Identical fix each time:
+  `minmax(0,1fr)`, `overflow-wrap:anywhere`, stacked under 400px. **If you write a
+  label/value ledger in a new template, use `minmax(0,1fr)` from the start.**
+- **nexa** — `.metrics-g` had two fixed tracks that could not compress; added
+  `minmax(0,1fr)` and `min-width:0`, and lowered the metric value's clamp floor.
+- **vitality-gym** — the sticky header overflowed at 320. Note the ordering trap: raising
+  the type floor *made this worse* (22px → 57px) because the wordmark tagline grew. Fixed
+  by letting the lockup shrink and dropping the tagline under 430px.
+- **hydro-flow — an invisible heading.** The booking form is a white card inside an
+  `.on-dark` section, and `.on-dark h3{color:#fff}` won. "Request a booking" was rendering
+  **white on white**, 1.00:1. Found only because the second contrast sweep included
+  headings; the first sweep sampled text elements only.
+- **serene-spaces** — footer column headings used `--lav-txt`, a *dark* lavender intended
+  for light grounds, on the plum footer: 2.32:1. Switched to `--lav-lt`. The hero italic
+  sat at 2.89:1, just under the 3:1 large-text floor, and was darkened a shade.
+- **apex-automotive** — the price unit sat at 2.95:1; moved to `--red-lt`.
+- **Heading order** — `h4` after `h2` in artisans-atelier and serene-spaces. As with apex,
+  the CSS selector had to move with the markup or the styling would silently vanish.
+- **Type floor** of 10.24px applied across all nine; the smallest was 8px.
+
+**Verified across all nine:** no sideways scroll at 320/360/414/768/1024/1920 (measured by
+scrolling and reading `window.scrollX`, not by comparing `scrollWidth`); every element
+passes WCAG AA contrast including headings; no heading skips; no missing alt text or form
+labels; no console errors. All nine previews recaptured.
+
+**Method notes for whoever audits next:**
+
+- `overflow-x:hidden` on `body` does **not** prevent sideways scroll while `html` still
+  scrolls. Test it, don't infer it.
+- Comparing `scrollWidth` to `clientWidth` gives false positives for anything inside an
+  `overflow-x:auto` scroller.
+- Sample **headings** in contrast sweeps. The worst defect found in this pass — invisible
+  white-on-white text — was invisible to a sweep that only looked at body text.
+
+**Deliberately not done:** no content changes. Placeholder phone numbers, emails and
+addresses are untouched, and the forms still post nowhere. That is a separate production
+pass the owner has not asked for yet.
