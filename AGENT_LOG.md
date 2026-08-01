@@ -20,10 +20,16 @@ Two separate things live here:
 
 | Path | What it is | Owner |
 |---|---|---|
-| `index.html`, `about.html`, `work.html`, `contact.html`, `css/`, `js/`, `assets/images/` | The **E.M portfolio** — dark luxury theme, gold accents, particle canvas, 3D tilt | Built by Antigravity |
+| `index.html`, `about.html`, `work.html`, `contact.html`, `css/`, `js/`, `assets/images/` | The **E.M portfolio** — light editorial minimalism ("The Gallery") | Structure by Antigravity; redesigned by Claude Code |
 | `business-templates/` | Nine one-page business websites plus a gallery page indexing them | Templates pre-existing; gallery built by Claude Code |
 
-**Open work:** None. PR #1 was merged. Both projects are on `main` and stable.
+The E.M site links out to all nine business templates from a "Live Sites" section on
+both `index.html` and `work.html`, reusing the screenshots in
+`business-templates/assets/previews/`.
+
+**Open work:** the E.M redesign. PR #1 was merged, but it merged the branch as it stood
+*before* the redesign commit, so `main` currently still serves the old dark E.M site.
+The redesign is on a fresh branch with a second PR.
 
 ---
 
@@ -60,11 +66,20 @@ Things that are easy to get wrong here:
    wordmark / "Open for work" line. These must be replaced before that page is published
    anywhere public.
 
-6. **Nothing here has a build step.** Hand-written HTML/CSS/vanilla JS across both
+6. **The E.M site's `js/enhancements.js` is nearly empty on purpose.** All four pages
+   `<script src>` it, so deleting the file would 404 on every page load. New behaviour
+   belongs in `js/main.js`.
+
+7. **The E.M pages carry `<!-- REPLACE -->` markers on every placeholder** — stat
+   figures, the three testimonials, the four invented case studies, contact details,
+   social links and the form endpoint. The stock-photo portraits in `assets/images/`
+   are placeholders too. **The site should not go public until these are real.**
+
+8. **Nothing here has a build step.** Hand-written HTML/CSS/vanilla JS across both
    projects. Google Fonts is the only external request. Don't add a bundler or framework
    without the owner asking.
 
-7. **Claude Code runs in a temporary cloud container**, not on the owner's machine. Its
+9. **Claude Code runs in a temporary cloud container**, not on the owner's machine. Its
    working directory is not visible to Antigravity and is wiped after the session. Only
    what is **committed and pushed** crosses between agents. Git is the handoff medium.
 
@@ -217,3 +232,94 @@ E.M site's favour. Verified with `git diff --quiet` that `index.html`, `README.m
   are separate. There was nothing to merge.
 - Did not modify any of Claude Code's work in `business-templates/` — respected the
   convention that the two projects are independent.
+
+---
+
+### 2026-08-01 — Claude Code — redesign the E.M portfolio
+
+**What the owner asked (verbatim):**
+
+> "Now it's time for bussiness i wan to work on the portfolio website now I need my
+> website to loook way better use the already template and adjust it I'm going for a
+> spacious minimalist e.m website that has limits to all my website like how you made
+> before but I want it to look for. High end and professional"
+
+Read as: restyle the existing E.M pages (don't rebuild from scratch) toward spacious
+minimalism, and link out to all nine business sites the way the template gallery does.
+
+**Two choices put to the owner, and what they picked:**
+
+- *Light editorial gallery* over refined-dark or a mixed scheme. The site was dark
+  luxury; "spacious" reads better on a light ground, and this was the biggest jump in
+  perceived quality. It is a rebrand from dark to light, which is why it was asked.
+- *Fix contradictions, keep placeholders, mark them* over stripping invented claims
+  or restyling only.
+
+**Correction on record:** the stats were flagged as contradictory ("7 years" in the bio
+vs "2+ years" in the counter). That was wrong — the markup says `data-target="7"` and
+the screenshot had simply caught the count-up mid-animation. No contradiction existed
+and none was "fixed". The genuine content problems are the stock-photo portraits, the
+invented testimonials and case studies, and a "$8M+ in client revenue" claim.
+
+**What changed:**
+
+- `css/style.css` — replaced wholesale with a new system. Warm pale-grey ground
+  (`#F2F0EB`), warm ink type (`#1A1814`), one deep desaturated brass accent (`#8A6E3B`)
+  restricted to hairlines and micro-labels. Newsreader for display, Hanken Grotesk for
+  everything else. Roughly double the vertical rhythm. No shadows, gradients,
+  glassmorphism or border-radius anywhere.
+- `css/enhancements.css` — reduced to a single reveal gesture plus reduced-motion and
+  print rules. The old file was 21KB of effects.
+- `js/main.js` — rewritten. Kept nav, reveal, counters, meters, filtering, FAQ, form,
+  back-to-top. Removed particle canvas, custom cursor, magnetic buttons, 3D tilt,
+  parallax, typed text, page-transition wipe.
+- `js/enhancements.js` — now nearly empty. **Kept deliberately**: all four pages
+  `<script src>` it, so deleting the file would 404 on every page load.
+- All four pages — decorative markup deleted (loader, cursor, noise overlay, particle
+  canvas, glow orbs, floating badges, hero background image, scroll progress, page
+  transition), font links swapped, `theme-color` updated, footer year corrected to 2026.
+- **New "Live Sites" section** on `index.html` and `work.html`: all nine business
+  templates with their real screenshots, linking into `business-templates/`.
+- `REPLACE` comments added at every placeholder: stat figures, testimonials, the four
+  invented case studies, contact details, social links, and the form endpoint.
+
+**Decisions and why:**
+
+- *Kept the existing BEM class names* rather than renaming. The owner asked to adjust
+  the template, and reusing the class contract meant the redesign landed mostly through
+  CSS, with HTML edits limited to deleting ornament and adding one section.
+- *Retired-ornament rules kept at the bottom of `style.css`.* The decorative markup is
+  gone, but the `display:none` rules stay so that if another tool re-adds a glow orb or
+  a cursor node, it cannot reappear visually. `js/enhancements.js` also marks any such
+  node `aria-hidden`.
+- *The dark ground survives as punctuation*, not as the brand — the About, Work,
+  Testimonials and CTA sections sit on ink so the light sections read as air.
+- *The contact form deliberately says "Not connected yet"* instead of faking a success
+  message. It posts nowhere; claiming otherwise would lose real enquiries silently.
+
+**Two CSS bugs found and fixed during review** (both now in the gotchas above):
+
+- `.contact__detail` was a two-column grid whose first child (`.contact__detail-icon`)
+  is `display:none`. A `display:none` element is not a grid item, so the text dropped
+  into the narrow 9rem track and the email address wrapped to three lines. Changed to
+  block layout.
+- Native `<select>` elements on the contact form arrived with full system chrome
+  against an otherwise borderless form. Stripped with `appearance:none` and given a
+  drawn caret.
+
+**Verified in a real browser** (Chromium via Playwright), all four pages:
+
+- Both typefaces load; 0 broken images; no console or page errors
+- No horizontal overflow at 360, 414, 768, 1024, 1440, 1920px
+- Portfolio filter 6 → 2 → 6; FAQ accordion opens (0 → 147px); counters reach
+  50+ / 30+ / 7+ when scrolled into view; mobile nav overlay opens
+- All local links resolve, including the nine into `business-templates/`
+
+**Deliberately not done:**
+
+- The stock-photo portraits in `assets/images/` were left in place — they are the only
+  images available, and removing them would leave empty frames. They are placeholders
+  and should be replaced with real photographs of E.M.
+- The invented testimonials, case studies and contact details were kept but marked,
+  per the owner's choice. **None of this should go public as-is.**
+- `business-templates/` was not touched.
