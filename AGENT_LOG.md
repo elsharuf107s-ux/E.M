@@ -406,3 +406,57 @@ a guard against sideways scroll. Test by scrolling and reading `window.scrollX` 
 `overflow-x:auto` scroller.
 
 **Not done yet:** the other eight templates. Awaiting the owner's sign-off on this approach.
+
+---
+
+### 2026-08-01 — Claude Code — business templates: quality pass (remaining eight)
+
+**What the owner asked (verbatim):**
+
+> "do the other 8 now"
+
+Approach approved, so the same audit-then-fix method was applied to the remaining eight.
+All nine now pass the same bar. **No design was homogenised** — a contact sheet of all
+nine confirms they still read as nine different languages.
+
+**Defects found and fixed:**
+
+- **The same grid trap recurred in three more sites.** `grid-template-columns:7.5rem 1fr`
+  with a `1fr` track whose `min-width:auto` was pinned by an email address — hydro-flow
+  (81px of sideways scroll at 320), lex-associates (44px), nexa. Identical fix each time:
+  `minmax(0,1fr)`, `overflow-wrap:anywhere`, stacked under 400px. **If you write a
+  label/value ledger in a new template, use `minmax(0,1fr)` from the start.**
+- **nexa** — `.metrics-g` had two fixed tracks that could not compress; added
+  `minmax(0,1fr)` and `min-width:0`, and lowered the metric value's clamp floor.
+- **vitality-gym** — the sticky header overflowed at 320. Note the ordering trap: raising
+  the type floor *made this worse* (22px → 57px) because the wordmark tagline grew. Fixed
+  by letting the lockup shrink and dropping the tagline under 430px.
+- **hydro-flow — an invisible heading.** The booking form is a white card inside an
+  `.on-dark` section, and `.on-dark h3{color:#fff}` won. "Request a booking" was rendering
+  **white on white**, 1.00:1. Found only because the second contrast sweep included
+  headings; the first sweep sampled text elements only.
+- **serene-spaces** — footer column headings used `--lav-txt`, a *dark* lavender intended
+  for light grounds, on the plum footer: 2.32:1. Switched to `--lav-lt`. The hero italic
+  sat at 2.89:1, just under the 3:1 large-text floor, and was darkened a shade.
+- **apex-automotive** — the price unit sat at 2.95:1; moved to `--red-lt`.
+- **Heading order** — `h4` after `h2` in artisans-atelier and serene-spaces. As with apex,
+  the CSS selector had to move with the markup or the styling would silently vanish.
+- **Type floor** of 10.24px applied across all nine; the smallest was 8px.
+
+**Verified across all nine:** no sideways scroll at 320/360/414/768/1024/1920 (measured by
+scrolling and reading `window.scrollX`, not by comparing `scrollWidth`); every element
+passes WCAG AA contrast including headings; no heading skips; no missing alt text or form
+labels; no console errors. All nine previews recaptured.
+
+**Method notes for whoever audits next:**
+
+- `overflow-x:hidden` on `body` does **not** prevent sideways scroll while `html` still
+  scrolls. Test it, don't infer it.
+- Comparing `scrollWidth` to `clientWidth` gives false positives for anything inside an
+  `overflow-x:auto` scroller.
+- Sample **headings** in contrast sweeps. The worst defect found in this pass — invisible
+  white-on-white text — was invisible to a sweep that only looked at body text.
+
+**Deliberately not done:** no content changes. Placeholder phone numbers, emails and
+addresses are untouched, and the forms still post nowhere. That is a separate production
+pass the owner has not asked for yet.
