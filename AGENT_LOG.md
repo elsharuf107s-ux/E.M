@@ -323,3 +323,38 @@ invented testimonials and case studies, and a "$8M+ in client revenue" claim.
 - The invented testimonials, case studies and contact details were kept but marked,
   per the owner's choice. **None of this should go public as-is.**
 - `business-templates/` was not touched.
+
+---
+
+### 2026-08-01 — Claude Code — merge-timing incident and a new convention
+
+**What the owner asked (verbatim):**
+
+> "I told antigravity to open the port for this website but it opened the old version I'm confused"
+
+> "Yes do that and remember to do that"
+
+**What actually happened:**
+
+PR #1 was merged at 14:21, capturing the branch at commit `a05c876` — the gallery and the
+log. The E.M redesign was pushed as `0f7693f` a few minutes **after** that merge. So `main`
+received the gallery but not the redesign, and Antigravity's `npx serve` on port 8080 —
+serving `main` — correctly showed the old dark site. Nothing was broken. The redesign
+simply missed the merge.
+
+**Resolved by:** rebasing the redesign onto current `main` (a merged PR cannot take new
+commits) and opening **PR #2**. The rebase hit a conflict in this file, because Antigravity
+had appended its own entry in the meantime. Resolved by keeping **both** entries in
+chronological order — nothing was discarded. `.gemini/` and `business-templates/` were
+verified untouched by `git diff` against `main`, and all four pages were re-rendered after
+the rebase to confirm the merge of Antigravity's commits disturbed nothing.
+
+**New convention, added to `CLAUDE.md`:** every Claude Code reply now ends with a single
+merge-status line — ready / not ready / nothing to merge. The owner previews from a local
+server off `main`, so they need to know when merging is safe without reading the whole
+reply. The line also carries a hard-refresh reminder whenever CSS or JS changed, since a
+cached stylesheet will keep painting the old design over new files.
+
+**Note for other agents:** if you also work in a tool that ends turns with a summary, the
+same habit would help. The failure mode is generic — the owner merges on a signal that is
+not synchronised with the push.
