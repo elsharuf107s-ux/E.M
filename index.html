@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — Nine Business Websites</title>
+<meta name="description" content="Nine one-page business websites, each built as a single self-contained HTML file with its own layout language. Workshop, plumber, law firm, IT operations, roastery, nursery, yoga studio, gym and gallery.">
+<meta name="theme-color" content="#0A0A0B">
+<meta property="og:title" content="Portfolio — Nine Business Websites">
+<meta property="og:description" content="Nine one-page business websites, each built as a single self-contained HTML file with its own layout language.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230A0A0B'/%3E%3Crect x='6' y='6' width='9' height='9' fill='%23EFEFF1'/%3E%3Crect x='17' y='6' width='9' height='9' fill='%23575760'/%3E%3Crect x='6' y='17' width='9' height='9' fill='%23575760'/%3E%3Crect x='17' y='17' width='9' height='9' fill='%23EFEFF1'/%3E%3C/svg%3E">
+<style>
+/* ==========================================================
+   PORTFOLIO — "The Index"
+   A deliberately quiet shell for nine very loud websites.
+   Near-black ground, one typographic voice, per-project
+   accents borrowed from each build. Nothing here competes
+   with the work it is framing.
+   ========================================================== */
+:root{
+  --ink:#0A0A0B;
+  --ink-2:#0F0F11;
+  --panel:#141417;
+  --panel-2:#1A1A1E;
+  --line:#232328;
+  --line-2:#32323A;
+  --txt:#EFEFF1;
+  --txt-2:#A2A2AC;
+  --txt-3:#6C6C77;
+  --bone:#E9E4D8;
+  --accent:#EFEFF1;
+  --disp:'Instrument Serif',Georgia,serif;
+  --ui:'Inter',system-ui,-apple-system,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --bar:60px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:calc(var(--bar) + 1.5rem)}
+body{
+  background:var(--ink);color:var(--txt-2);
+  font-family:var(--ui);font-size:16px;line-height:1.65;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+ul,ol{list-style:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+:focus-visible{outline:2px solid var(--bone);outline-offset:3px}
+::selection{background:var(--bone);color:var(--ink)}
+
+h1,h2,h3,h4{color:var(--txt);font-weight:400;line-height:1.06;letter-spacing:-.015em}
+h1,h2{font-family:var(--disp)}
+em{font-family:var(--disp);font-style:italic}
+
+.wrap{width:100%;max-width:1300px;margin-inline:auto;padding-inline:clamp(1.15rem,4vw,3rem)}
+.narrow{max-width:780px}
+.sec{padding-block:clamp(4rem,9vw,7.5rem)}
+
+.mono{font-family:var(--mono);font-size:.68rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase}
+.rule{border:0;border-top:1px solid var(--line)}
+
+.skip{position:absolute;left:-9999px;top:0;z-index:99}
+.skip:focus{left:1rem;top:1rem;background:var(--bone);color:var(--ink);padding:.6rem 1rem;font-weight:600}
+
+/* ---------------- top bar ---------------- */
+.bar{
+  position:sticky;top:0;z-index:60;height:var(--bar);
+  display:flex;align-items:center;gap:1.5rem;
+  background:rgba(10,10,11,.82);backdrop-filter:blur(14px) saturate(140%);
+  border-bottom:1px solid var(--line);
+}
+.bar .wrap{display:flex;align-items:center;gap:1.25rem;width:100%}
+.mark{display:flex;align-items:baseline;gap:.6rem;margin-right:auto}
+.mark b{font-family:var(--disp);font-weight:400;font-size:1.32rem;color:var(--txt);letter-spacing:0}
+.mark span{color:var(--txt-3)}
+.bar nav{display:flex;gap:1.65rem}
+.bar nav a{font-size:.82rem;font-weight:500;color:var(--txt-2);transition:color .18s}
+.bar nav a:hover{color:var(--txt)}
+.bar .avail{display:flex;align-items:center;gap:.5rem;color:var(--txt-3)}
+.pulse{width:6px;height:6px;background:#5BD69A;border-radius:50%;box-shadow:0 0 0 0 rgba(91,214,154,.55);animation:pulse 2.4s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 7px rgba(91,214,154,0)}100%{box-shadow:0 0 0 0 rgba(91,214,154,0)}}
+@media(max-width:880px){.bar nav,.bar .avail{display:none}}
+
+/* ---------------- hero ---------------- */
+.hero{position:relative;padding-block:clamp(4.5rem,12vw,9rem) clamp(3rem,6vw,4.5rem);overflow:hidden}
+.hero::before{
+  content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:64px 64px;
+  mask-image:radial-gradient(ellipse 70% 60% at 20% 0%,#000 5%,transparent 70%);
+  opacity:.85;
+}
+.eyebrow{display:flex;flex-wrap:wrap;align-items:center;gap:.75rem;color:var(--txt-3);margin-bottom:clamp(1.5rem,3vw,2.25rem)}
+.eyebrow .dash{width:34px;height:1px;background:var(--line-2)}
+.hero h1{
+  font-size:clamp(2.9rem,7.4vw,6.1rem);line-height:.99;max-width:16ch;letter-spacing:-.022em;
+}
+.hero h1 em{color:var(--bone)}
+.hero-lead{
+  margin-top:clamp(1.6rem,3vw,2.2rem);max-width:56ch;
+  font-size:clamp(1.02rem,1.5vw,1.18rem);line-height:1.66;color:var(--txt-2);
+}
+.hero-cta{display:flex;flex-wrap:wrap;gap:.85rem;margin-top:clamp(2rem,4vw,2.75rem)}
+.btn{
+  display:inline-flex;align-items:center;gap:.6rem;
+  padding:.86rem 1.5rem;font-size:.85rem;font-weight:600;letter-spacing:.02em;
+  border:1px solid var(--line-2);color:var(--txt);transition:background .2s,border-color .2s,color .2s;
+}
+.btn svg{width:13px;height:13px;flex:none}
+.btn--solid{background:var(--bone);color:var(--ink);border-color:var(--bone)}
+.btn--solid:hover{background:#fff;border-color:#fff}
+.btn--ghost:hover{background:var(--panel);border-color:var(--line-2)}
+
+/* stat strip */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);margin-top:clamp(3rem,7vw,5rem)}
+.stats div{padding:1.5rem 1.35rem 0 0;border-right:1px solid var(--line)}
+.stats div:last-child{border-right:0}
+.stats b{display:block;font-family:var(--disp);font-weight:400;font-size:clamp(1.85rem,3.6vw,2.75rem);color:var(--txt);line-height:1}
+.stats span{display:block;margin-top:.45rem;font-size:.78rem;color:var(--txt-3);line-height:1.45}
+@media(max-width:700px){.stats{grid-template-columns:repeat(2,1fr)}.stats div{padding-bottom:1.25rem;border-bottom:1px solid var(--line)}.stats div:nth-child(2n){border-right:0}.stats div:nth-last-child(-n+2){border-bottom:0}}
+
+/* ---------------- marquee ---------------- */
+.ticker{border-block:1px solid var(--line);background:var(--ink-2);overflow:hidden;padding-block:.9rem}
+.ticker-track{display:flex;width:max-content;gap:0;animation:slide 46s linear infinite}
+.ticker-track span{display:inline-flex;align-items:center;gap:1.5rem;padding-inline:1.5rem;color:var(--txt-3);white-space:nowrap}
+.ticker-track i{width:5px;height:5px;background:currentColor;border-radius:50%;opacity:.75}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* ---------------- section head ---------------- */
+.head{display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;flex-wrap:wrap;margin-bottom:clamp(2rem,4vw,3rem)}
+.head h2{font-size:clamp(2.1rem,4.6vw,3.5rem);max-width:18ch}
+.head p{max-width:44ch;font-size:.95rem;color:var(--txt-2)}
+.head .mono{display:block;color:var(--txt-3);margin-bottom:1rem}
+
+/* ---------------- filters ---------------- */
+.filters{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:clamp(1.75rem,3vw,2.5rem);border-top:1px solid var(--line);padding-top:1.5rem}
+.chip{
+  padding:.5rem 1rem;font-size:.78rem;font-weight:500;color:var(--txt-2);
+  border:1px solid var(--line);transition:color .18s,border-color .18s,background .18s;
+}
+.chip:hover{color:var(--txt);border-color:var(--line-2)}
+.chip[aria-pressed="true"]{background:var(--bone);border-color:var(--bone);color:var(--ink);font-weight:600}
+.chip small{font-family:var(--mono);font-size:.62rem;opacity:.6;margin-left:.45rem}
+.count{margin-left:auto;align-self:center;color:var(--txt-3)}
+
+/* ---------------- work grid ---------------- */
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(1.5rem,3vw,2.5rem)}
+@media(max-width:820px){.grid{grid-template-columns:1fr}}
+
+.card{
+  --accent:#EFEFF1;
+  display:flex;flex-direction:column;
+  background:var(--ink-2);border:1px solid var(--line);
+  transition:border-color .25s,transform .25s,background .25s;
+}
+.card:hover{border-color:var(--line-2);background:var(--panel)}
+.card.is-hidden{display:none}
+.card.wide{grid-column:1/-1}
+@media(min-width:821px){
+  .card.wide{flex-direction:row}
+  .card.wide .shot{width:58%;flex:none;border-right:1px solid var(--line);border-bottom:0}
+  .card.wide .body{width:42%;justify-content:center;flex:none}
+  .card.wide .open{margin-top:1.1rem}
+}
+
+.shot{position:relative;display:block;overflow:hidden;border-bottom:1px solid var(--line);background:var(--panel-2)}
+.chrome{
+  display:flex;align-items:center;gap:.45rem;height:30px;padding-inline:.85rem;
+  background:var(--panel);border-bottom:1px solid var(--line);
+}
+.chrome i{width:7px;height:7px;border-radius:50%;background:var(--line-2);flex:none}
+.chrome .url{
+  margin-left:.6rem;font-family:var(--mono);font-size:.6rem;letter-spacing:.06em;
+  color:var(--txt-3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+.shot img{width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top center;transition:transform .55s cubic-bezier(.2,.7,.3,1),opacity .3s}
+.card:hover .shot img{transform:scale(1.028)}
+.shot::after{
+  content:'';position:absolute;left:0;right:0;bottom:0;height:3px;
+  background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.2,.7,.3,1);
+}
+.card:hover .shot::after{transform:scaleX(1)}
+
+.body{display:flex;flex-direction:column;padding:clamp(1.5rem,2.6vw,2.1rem);gap:.85rem;flex:1}
+.body-top{display:flex;align-items:center;gap:.75rem;color:var(--txt-3)}
+.body-top .num{color:var(--accent);font-family:var(--mono);font-size:.68rem;font-weight:700;letter-spacing:.16em}
+.body-top .sep{flex:1;height:1px;background:var(--line)}
+.body h3{font-size:clamp(1.45rem,2.3vw,1.85rem);letter-spacing:-.02em}
+.concept{font-family:var(--disp);font-style:italic;font-size:1.08rem;color:var(--accent);line-height:1.3;margin-top:-.4rem}
+.desc{font-size:.92rem;line-height:1.62;color:var(--txt-2)}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.15rem}
+.tags li{
+  font-family:var(--mono);font-size:.6rem;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--txt-3);border:1px solid var(--line);padding:.34rem .6rem;
+}
+.open{
+  display:inline-flex;align-items:center;gap:.55rem;margin-top:auto;padding-top:1.1rem;
+  font-size:.82rem;font-weight:600;color:var(--txt);
+  border-top:1px solid var(--line);
+}
+.open .arrow{display:inline-flex;transition:transform .28s cubic-bezier(.2,.7,.3,1);color:var(--accent)}
+.open svg{width:14px;height:14px}
+.card:hover .open .arrow{transform:translate(3px,-3px)}
+.empty{padding:3rem 0;color:var(--txt-3);text-align:center;display:none}
+.empty.show{display:block}
+
+/* ---------------- approach ---------------- */
+.approach{background:var(--ink-2);border-block:1px solid var(--line)}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1.5rem,3vw,2.5rem)}
+@media(max-width:880px){.cols{grid-template-columns:1fr}}
+.col{border-top:1px solid var(--line-2);padding-top:1.35rem}
+.col h3{font-size:1.12rem;font-weight:600;font-family:var(--ui);letter-spacing:-.01em;margin-bottom:.6rem}
+.col p{font-size:.92rem;color:var(--txt-2)}
+.col .mono{display:block;color:var(--txt-3);margin-bottom:.9rem}
+
+.specs{margin-top:clamp(2.5rem,5vw,3.75rem);border:1px solid var(--line);background:var(--ink)}
+.specs-h{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.85rem 1.25rem;border-bottom:1px solid var(--line);background:var(--panel);color:var(--txt-3)}
+.specs ul{display:grid;grid-template-columns:repeat(2,1fr)}
+@media(max-width:760px){.specs ul{grid-template-columns:1fr}}
+.specs li{display:flex;gap:.85rem;align-items:flex-start;padding:1rem 1.25rem;border-bottom:1px solid var(--line);border-right:1px solid var(--line);font-size:.89rem}
+@media(min-width:761px){.specs li:nth-child(2n){border-right:0}}
+@media(max-width:760px){.specs li{border-right:0}}
+.specs li:last-child,.specs li:nth-last-child(2):nth-child(odd){border-bottom:0}
+.specs svg{width:15px;height:15px;flex:none;margin-top:.2rem;color:#5BD69A}
+
+/* ---------------- marks ---------------- */
+.marks{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+@media(max-width:1000px){.marks{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:600px){.marks{grid-template-columns:repeat(2,1fr)}}
+.mk{background:var(--ink-2);padding:1.6rem 1.25rem 1.15rem;display:flex;flex-direction:column;align-items:center;gap:.9rem;transition:background .22s}
+.mk:hover{background:var(--panel)}
+.mk .plate{width:100%;background:#F7F6F3;padding:1.15rem;display:flex;align-items:center;justify-content:center}
+.mk img{width:100%;height:clamp(74px,7vw,98px);object-fit:contain}
+.mk .nm{font-size:.82rem;font-weight:500;color:var(--txt);text-align:center;line-height:1.35}
+.mk .st{font-family:var(--mono);font-size:.58rem;letter-spacing:.13em;text-transform:uppercase;color:var(--txt-3)}
+.mk .st.live{color:#5BD69A}
+
+/* ---------------- contact ---------------- */
+.contact{background:var(--ink-2);border-top:1px solid var(--line)}
+.contact h2{font-size:clamp(2.3rem,5.5vw,4.25rem);max-width:14ch}
+.contact-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(2rem,5vw,4rem);align-items:end}
+@media(max-width:820px){.contact-grid{grid-template-columns:1fr;align-items:start}}
+.dl{display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
+.dl div{background:var(--ink-2);padding:1rem 1.25rem;display:flex;justify-content:space-between;gap:1rem;font-size:.88rem}
+.dl dt{color:var(--txt-3);font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;padding-top:.2rem}
+.dl dd{color:var(--txt);text-align:right}
+.dl a:hover{color:var(--bone);text-decoration:underline;text-underline-offset:3px}
+
+footer{border-top:1px solid var(--line);padding-block:2rem}
+footer .wrap{display:flex;flex-wrap:wrap;gap:1rem 2rem;align-items:center;justify-content:space-between;color:var(--txt-3);font-size:.8rem}
+footer nav{display:flex;flex-wrap:wrap;gap:1.25rem}
+footer a:hover{color:var(--txt)}
+
+/* ---------------- reveal ---------------- */
+.rv{opacity:0;transform:translateY(16px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
+.rv.in{opacity:1;transform:none}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+  .rv{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#work">Skip to the work</a>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="mark" href="#top"><b>Portfolio</b><span class="mono">№ 01—09</span></a>
+    <nav>
+      <a href="#work">Work</a>
+      <a href="#approach">Approach</a>
+      <a href="#marks">Marks</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <span class="avail mono"><i class="pulse"></i>Open for work</span>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow mono"><span class="dash"></span>Portfolio · 2026 <span class="dash"></span> Nine sites, nine sectors</p>
+      <h1>Nine businesses. Nine arguments about how a page should <em>behave</em>.</h1>
+      <p class="hero-lead">
+        A workshop, an emergency plumber, a law firm, an IT operations team, a roastery, a nursery,
+        a yoga studio, a gym and a gallery. Every one is a single self-contained HTML file with its
+        own layout language — no shared template, no component library, no two that look alike.
+      </p>
+      <div class="hero-cta">
+        <a class="btn btn--solid" href="#work">
+          See the work
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M8 2v12M3 9.5 8 14.5l5-5"/></svg>
+        </a>
+        <a class="btn btn--ghost" href="#approach">How they're built</a>
+      </div>
+
+      <div class="stats">
+        <div><b>9</b><span>Complete one-page business sites</span></div>
+        <div><b>1</b><span>HTML file per site, assets inlined</span></div>
+        <div><b>0</b><span>Frameworks, bundlers or build steps</span></div>
+        <div><b>10</b><span>Brand marks drawn alongside</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TICKER ============ -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track mono">
+      <span>Apex Automotive<i></i>Hydro Flow Plumbing<i></i>Lex &amp; Associates<i></i>Nexa Solutions<i></i>Roast &amp; Revel<i></i>Root &amp; Bloom<i></i>Serene Spaces<i></i>Vitality Gym<i></i>The Artisan's Atelier<i></i></span>
+      <span>Apex Automotive<i></i>Hydro Flow Plumbing<i></i>Lex &amp; Associates<i></i>Nexa Solutions<i></i>Roast &amp; Revel<i></i>Root &amp; Bloom<i></i>Serene Spaces<i></i>Vitality Gym<i></i>The Artisan's Atelier<i></i></span>
+    </div>
+  </div>
+
+  <!-- ============ WORK ============ -->
+  <section class="sec" id="work">
+    <div class="wrap">
+      <div class="head rv">
+        <div>
+          <span class="mono">01 — Selected work</span>
+          <h2>Every build starts from the business, not a template.</h2>
+        </div>
+        <p>
+          Each site answers a question its own trade actually gets asked — what will this cost,
+          how fast can you get here, what will live in my soil — and the layout is shaped
+          around that answer rather than around a hero and three cards.
+        </p>
+      </div>
+
+      <div class="filters rv" role="group" aria-label="Filter projects by sector">
+        <button class="chip" data-filter="all" aria-pressed="true">All work<small>9</small></button>
+        <button class="chip" data-filter="trades" aria-pressed="false">Trades &amp; service<small>2</small></button>
+        <button class="chip" data-filter="professional" aria-pressed="false">Professional<small>2</small></button>
+        <button class="chip" data-filter="hospitality" aria-pressed="false">Hospitality &amp; retail<small>2</small></button>
+        <button class="chip" data-filter="wellness" aria-pressed="false">Health &amp; fitness<small>2</small></button>
+        <button class="chip" data-filter="culture" aria-pressed="false">Arts &amp; culture<small>1</small></button>
+        <span class="count mono" id="count" aria-live="polite">Showing 9 of 9</span>
+      </div>
+
+      <div class="grid" id="grid">
+
+        <!-- 01 -->
+        <article class="card wide rv" data-cat="trades" style="--accent:#EE4A44">
+          <a class="shot" href="apex-automotive.html" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+            <div class="chrome"><i></i><i></i><i></i><span class="url">apex-automotive.html</span></div>
+            <img src="assets/previews/apex-automotive.jpg" width="1440" height="900" alt="" loading="lazy" decoding="async">
+          </a>
+          <div class="body">
+            <div class="body-top"><span class="num">01</span><span class="mono">Automotive · Workshop</span><span class="sep"></span></div>
+            <h3>Apex Automotive</h3>
+            <p class="concept">“The Spec Sheet”</p>
+            <p class="desc">
+              An independent workshop that photographs every job and itemises every quote down to the
+              part number. Built like a job card: clipped angular panels, a live bay board across the
+              hero, and published rates instead of “contact us for pricing”.
+            </p>
+            <ul class="tags"><li>Bay status board</li><li>Itemised price list</li><li>Five-stage job flow</li></ul>
+            <a class="open" href="apex-automotive.html" target="_blank" rel="noopener">
+              Open the site <span class="arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6"/></svg></span>
+            </a>
+          </div>
+        </article>
+
+        <!-- 02 -->
+        <article class="card rv" data-cat="trades" style="--accent:#4FA3DC">
+          <a class="shot" href="hydro-flow.html" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+            <div class="chrome"><i></i><i></i><i></i><span class="url">hydro-flow.html</span></div>
+            <img src="assets/previews/hydro-flow.jpg" width="1440" height="900" alt="" loading="lazy" decoding="async">
+          </a>
+          <div class="body">
+            <div class="body-top"><span class="num">02</span><span class="mono">Trades · Emergency</span><span class="sep"></span></div>
+            <h3>Hydro Flow Plumbing</h3>
+            <p class="concept">“The Dispatch”</p>
+            <p class="desc">
+              A 24-hour emergency plumber, laid out as a dispatch board. The symptom triage gives you
+              the make-safe step before it sells you anything, and the phone number never leaves the screen.
+            </p>
+            <ul class="tags"><li>Symptom triage</li><li>Response times by area</li><li>Persistent call bar</li></ul>
+            <a class="open" href="hydro-flow.html" target="_blank" rel="noopener">
+              Open the site <span class="arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6"/></svg></span>
+            </a>
+          </div>
+        </article>
+
+        <!-- 03 -->
+        <article class="card rv" data-cat="professional" style="--accent:#C9A455">
+          <a class="shot" href="lex-associates.html" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+            <div class="chrome"><i></i><i></i><i></i><span class="url">lex-associates.html</span></div>
+            <img src="assets/previews/lex-associates.jpg" width="1440" height="900" alt="" loading="lazy" decoding="async">
+          </a>
+          <div class="body">
+            <div class="body-top"><span class="num">03</span><span class="mono">Professional · Legal</span><span class="sep"></span></div>
+            <h3>Lex &amp; Associates</h3>
+            <p class="concept">“The Brief”</p>
+            <p class="desc">
+              Commercial, property, employment and family law, set as a legal document rather than a
+              website — a fixed left rail, roman-numeral sections, hairline rules and a wide reading
+              measure. No cards, no shadows, no rounded corners.
+            </p>
+            <ul class="tags"><li>Fixed document rail</li><li>Roman-numeral sections</li><li>Matter timeline</li></ul>
+            <a class="open" href="lex-associates.html" target="_blank" rel="noopener">
+              Open the site <span class="arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6"/></svg></span>
+            </a>
+          </div>
+        </article>
+
+        <!-- 04 -->
+        <article class="card rv" data-cat="professional" style="--accent:#3FC7F4">
+          <a class="shot" href="nexa.html" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+            <div class="chrome"><i></i><i></i><i></i><span class="url">nexa.html</span></div>
+            <img src="assets/previews/nexa.jpg" width="1440" height="900" alt="" loading="lazy" decoding="async">
+          </a>
+          <div class="body">
+            <div class="body-top"><span class="num">04</span><span class="mono">Technology · Managed IT</span><span class="sep"></span></div>
+            <h3>Nexa Solutions</h3>
+            <p class="concept">“The Console”</p>
+            <p class="desc">
+              Managed infrastructure, cloud and round-the-clock security monitoring, presented as the
+              operations console the client would actually be logging into — live service board,
+              coverage matrix, incident timeline, flat per-seat pricing.
+            </p>
+            <ul class="tags"><li>Live service board</li><li>Coverage matrix</li><li>Incident timeline</li></ul>
+            <a class="open" href="nexa.html" target="_blank" rel="noopener">
+              Open the site <span class="arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6"/></svg></span>
+            </a>
+          </div>
+        </article>
+
+        <!-- 05 -->
+        <article class="card rv" data-cat="hospitality" style="--accent:#D9A65C">
+          <a class="shot" href="roast-revel.html" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+            <div class="chrome"><i></i><i></i><i></i><span class="url">roast-revel.html</span></div>
+            <img src="assets/previews/roast-revel.jpg" width="1440" height="900" alt="" loading="lazy" decoding="async">
+          </a>
+          <div class="body">
+            <div class="body-top"><span class="num">05</span><span class="mono">Hospitality · Retail</span><span class="sep"></span></div>
+            <h3>Roast &amp; Revel</h3>
+            <p class="concept">“The Broadsheet”</p>
+            <p class="desc">
+              A roastery with the drum at the back of the room you're drinking in. Set like a printed
+              broadsheet — centred masthead, double rules, multi-column text, drop caps and dotted
+              price leaders down the menu.
+            </p>
+            <ul class="tags"><li>Masthead layout</li><li>Drop caps &amp; price leaders</li><li>Roast calendar</li></ul>
+            <a class="open" href="roast-revel.html" target="_blank" rel="noopener">
+              Open the site <span class="arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6"/></svg></span>
+            </a>
+          </div>
+        </article>
+
+        <!-- 06 -->
+        <article class="card rv" data-cat="hospitality" style="--accent:#8FBC5A">
+          <a class="shot" href="root-bloom.html" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+            <div class="chrome"><i></i><i></i><i></i><span class="url">root-bloom.html</span></div>
+            <img src="assets/previews/root-bloom.jpg" width="1440" height="900" alt="" loading="lazy" decoding="async">
+          </a>
+          <div class="body">
+            <div class="body-top"><span class="num">06</span><span class="mono">Retail · Horticulture</span><span class="sep"></span></div>
+            <h3>Root &amp; Bloom</h3>
+            <p class="concept">“The Field Guide”</p>
+            <p class="desc">
+              A working nursery that grows seventy percent of what it sells. Built as a botanical field
+              guide: specimen entries with growing-condition symbols, a twelve-month sowing calendar and
+              soft wavy dividers instead of a hard grid.
+            </p>
+            <ul class="tags"><li>Specimen entries</li><li>Sowing calendar</li><li>Planting service</li></ul>
+            <a class="open" href="root-bloom.html" target="_blank" rel="noopener">
+              Open the site <span class="arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6"/></svg></span>
+            </a>
+          </div>
+        </article>
+
+        <!-- 07 -->
+        <article class="card rv" data-cat="wellness" style="--accent:#B9A3C7">
+          <a class="shot" href="serene-spaces.html" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+            <div class="chrome"><i></i><i></i><i></i><span class="url">serene-spaces.html</span></div>
+            <img src="assets/previews/serene-spaces.jpg" width="1440" height="900" alt="" loading="lazy" decoding="async">
+          </a>
+          <div class="body">
+            <div class="body-top"><span class="num">07</span><span class="mono">Health &amp; Wellness</span><span class="sep"></span></div>
+            <h3>Serene Spaces Yoga</h3>
+            <p class="concept">“The Breath”</p>
+            <p class="desc">
+              Twelve mats, no mirrors, five classes. The page paces itself the way the studio does —
+              long vertical rhythm, hairline rules, almost no colour, and a working breath pacer you
+              can actually follow while you read.
+            </p>
+            <ul class="tags"><li>Working breath pacer</li><li>Timetable</li><li>Teacher roster</li></ul>
+            <a class="open" href="serene-spaces.html" target="_blank" rel="noopener">
+              Open the site <span class="arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6"/></svg></span>
+            </a>
+          </div>
+        </article>
+
+        <!-- 08 -->
+        <article class="card rv" data-cat="wellness" style="--accent:#F0C93A">
+          <a class="shot" href="vitality-gym.html" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+            <div class="chrome"><i></i><i></i><i></i><span class="url">vitality-gym.html</span></div>
+            <img src="assets/previews/vitality-gym.jpg" width="1440" height="900" alt="" loading="lazy" decoding="async">
+          </a>
+          <div class="body">
+            <div class="body-top"><span class="num">08</span><span class="mono">Health &amp; Fitness</span><span class="sep"></span></div>
+            <h3>Vitality Gym</h3>
+            <p class="concept">“The Board”</p>
+            <p class="desc">
+              Thirty-eight classes a week, coaches on the floor, no lock-in contracts. A brutalist
+              training board: full-bleed blocks, oversized condensed type, hazard-stripe dividers and
+              hard edges everywhere.
+            </p>
+            <ul class="tags"><li>Full-bleed blocks</li><li>Class board</li><li>Rolling membership</li></ul>
+            <a class="open" href="vitality-gym.html" target="_blank" rel="noopener">
+              Open the site <span class="arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6"/></svg></span>
+            </a>
+          </div>
+        </article>
+
+        <!-- 09 -->
+        <article class="card wide rv" data-cat="culture" style="--accent:#C79A50">
+          <a class="shot" href="artisans-atelier.html" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+            <div class="chrome"><i></i><i></i><i></i><span class="url">artisans-atelier.html</span></div>
+            <img src="assets/previews/artisans-atelier.jpg" width="1440" height="900" alt="" loading="lazy" decoding="async">
+          </a>
+          <div class="body">
+            <div class="body-top"><span class="num">09</span><span class="mono">Arts &amp; Culture</span><span class="sep"></span></div>
+            <h3>The Artisan's Atelier</h3>
+            <p class="concept">“The Catalogue”</p>
+            <p class="desc">
+              A working studio with a small gallery at the front and the mess at the back. Set as an
+              exhibition catalogue — an asymmetric hanging wall, catalogue numbers, works listed with
+              medium and dimensions, and wide margins doing the work colour normally would.
+            </p>
+            <ul class="tags"><li>Hanging-wall gallery</li><li>Catalogue numbering</li><li>Commission flow</li></ul>
+            <a class="open" href="artisans-atelier.html" target="_blank" rel="noopener">
+              Open the site <span class="arrow"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6"/></svg></span>
+            </a>
+          </div>
+        </article>
+
+      </div>
+      <p class="empty mono" id="empty">No projects in that sector yet.</p>
+    </div>
+  </section>
+
+  <!-- ============ APPROACH ============ -->
+  <section class="sec approach" id="approach">
+    <div class="wrap">
+      <div class="head rv">
+        <div>
+          <span class="mono">02 — Approach</span>
+          <h2>Boring stack, unusual pages.</h2>
+        </div>
+        <p>
+          The interesting decisions belong in the layout, not the toolchain. Every site here is hand-written
+          HTML and CSS in one file, which makes it fast, portable and possible to hand over without a lecture.
+        </p>
+      </div>
+
+      <div class="cols">
+        <div class="col rv">
+          <span class="mono">i</span>
+          <h3>The trade sets the layout</h3>
+          <p>
+            A plumber's site is a dispatch board because a burst pipe is a triage problem. A workshop's is a job
+            card because the anxiety is the invoice. The structure argues the case before the copy does.
+          </p>
+        </div>
+        <div class="col rv">
+          <span class="mono">ii</span>
+          <h3>Answer the question on the page</h3>
+          <p>
+            Prices, response times, timetables and stages are published rather than hidden behind a form. Every
+            build has at least one section that tells a visitor something a competitor makes them phone for.
+          </p>
+        </div>
+        <div class="col rv">
+          <span class="mono">iii</span>
+          <h3>One file, no dependencies</h3>
+          <p>
+            Styles, scripts and logo are inlined. Drop the file on any host — or open it straight off a USB stick —
+            and it works. Nothing to install, nothing to rebuild, nothing that expires.
+          </p>
+        </div>
+      </div>
+
+      <div class="specs rv">
+        <div class="specs-h">
+          <span class="mono">In every build</span>
+          <span class="mono">Standard · 2026</span>
+        </div>
+        <ul>
+          <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="m3 8.5 3.5 3.5L13 5"/></svg>Responsive from 320px to ultrawide, no horizontal scroll</li>
+          <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="m3 8.5 3.5 3.5L13 5"/></svg>Semantic landmarks, skip links and visible focus states</li>
+          <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="m3 8.5 3.5 3.5L13 5"/></svg>Page title, meta description, theme colour and Open Graph tags</li>
+          <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="m3 8.5 3.5 3.5L13 5"/></svg>Contact, enquiry or booking form wired to a real destination on handover</li>
+          <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="m3 8.5 3.5 3.5L13 5"/></svg>Logo embedded as a data URI — no broken image on a bad host</li>
+          <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="m3 8.5 3.5 3.5L13 5"/></svg>Motion respects <span class="mono" style="font-size:.72rem;letter-spacing:.04em;text-transform:none">prefers-reduced-motion</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MARKS ============ -->
+  <section class="sec" id="marks">
+    <div class="wrap">
+      <div class="head rv">
+        <div>
+          <span class="mono">03 — Brand marks</span>
+          <h2>Ten identities, three of them already built out.</h2>
+        </div>
+        <p>
+          Logos drawn in the same run as the sites. Where a mark has a site behind it, the plate links
+          through to the finished build; the rest are identity work waiting on a brief.
+        </p>
+      </div>
+
+      <div class="marks rv">
+        <a class="mk" href="apex-automotive.html" target="_blank" rel="noopener">
+          <span class="plate"><img src="assets/logos/apex-automotive.png" alt="Apex Automotive logo" loading="lazy" decoding="async"></span>
+          <span class="nm">Apex Automotive</span><span class="st live">Site live ↗</span>
+        </a>
+        <a class="mk" href="artisans-atelier.html" target="_blank" rel="noopener">
+          <span class="plate"><img src="assets/logos/artisans-atelier.png" alt="The Artisan's Atelier logo" loading="lazy" decoding="async"></span>
+          <span class="nm">The Artisan's Atelier</span><span class="st live">Site live ↗</span>
+        </a>
+        <a class="mk" href="serene-spaces.html" target="_blank" rel="noopener">
+          <span class="plate"><img src="assets/logos/serene-spaces.png" alt="Serene Spaces Yoga logo" loading="lazy" decoding="async"></span>
+          <span class="nm">Serene Spaces Yoga</span><span class="st live">Site live ↗</span>
+        </a>
+        <div class="mk">
+          <span class="plate"><img src="assets/logos/bloom-petal.png" alt="Bloom &amp; Petal Florist logo" loading="lazy" decoding="async"></span>
+          <span class="nm">Bloom &amp; Petal Florist</span><span class="st">Mark only</span>
+        </div>
+        <div class="mk">
+          <span class="plate"><img src="assets/logos/ecowave.png" alt="EcoWave Solutions logo" loading="lazy" decoding="async"></span>
+          <span class="nm">EcoWave Solutions</span><span class="st">Mark only</span>
+        </div>
+        <div class="mk">
+          <span class="plate"><img src="assets/logos/gourmet-grind.png" alt="Gourmet Grind Coffee Co. logo" loading="lazy" decoding="async"></span>
+          <span class="nm">Gourmet Grind Coffee Co.</span><span class="st">Mark only</span>
+        </div>
+        <div class="mk">
+          <span class="plate"><img src="assets/logos/oak-iron.png" alt="Oak &amp; Iron Builders logo" loading="lazy" decoding="async"></span>
+          <span class="nm">Oak &amp; Iron Builders</span><span class="st">Mark only</span>
+        </div>
+        <div class="mk">
+          <span class="plate"><img src="assets/logos/pixel-code.png" alt="Pixel &amp; Code Agency logo" loading="lazy" decoding="async"></span>
+          <span class="nm">Pixel &amp; Code Agency</span><span class="st">Mark only</span>
+        </div>
+        <div class="mk">
+          <span class="plate"><img src="assets/logos/stellar-tech.png" alt="Stellar Tech logo" loading="lazy" decoding="async"></span>
+          <span class="nm">Stellar Tech</span><span class="st">Mark only</span>
+        </div>
+        <div class="mk">
+          <span class="plate"><img src="assets/logos/summit-ventures.png" alt="Summit Ventures logo" loading="lazy" decoding="async"></span>
+          <span class="nm">Summit Ventures</span><span class="st">Mark only</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="sec contact" id="contact">
+    <div class="wrap">
+      <div class="contact-grid">
+        <div class="rv">
+          <span class="mono" style="display:block;color:var(--txt-3);margin-bottom:1rem">04 — Contact</span>
+          <h2>Tell me the trade. I'll show you the layout.</h2>
+          <p style="max-width:48ch;margin-top:1.5rem">
+            One page, built around what your customers actually ring up to ask. Send a sentence about the
+            business and I'll come back with a structure before anything gets designed.
+          </p>
+          <div class="hero-cta">
+            <!-- REPLACE: swap in the real address before this goes live -->
+            <a class="btn btn--solid" href="mailto:hello@example.com">
+              Start a project
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6"/></svg>
+            </a>
+          </div>
+        </div>
+        <dl class="dl rv">
+          <!-- REPLACE: contact details below are placeholders -->
+          <div><dt>Email</dt><dd><a href="mailto:hello@example.com">hello@example.com</a></dd></div>
+          <div><dt>Availability</dt><dd>Taking work</dd></div>
+          <div><dt>Typical build</dt><dd>2—3 weeks</dd></div>
+          <div><dt>Handover</dt><dd>Files &amp; hosting</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 — Nine sites, hand-written.</span>
+    <nav>
+      <a href="#work">Work</a>
+      <a href="#approach">Approach</a>
+      <a href="#marks">Marks</a>
+      <a href="#contact">Contact</a>
+      <a href="#top">Back to top ↑</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ---------- sector filter ---------- */
+  var grid   = document.getElementById('grid');
+  var cards  = Array.prototype.slice.call(grid.querySelectorAll('.card'));
+  var chips  = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+  var count  = document.getElementById('count');
+  var empty  = document.getElementById('empty');
+
+  function apply(filter){
+    var shown = 0;
+    cards.forEach(function(card){
+      var match = filter === 'all' || card.dataset.cat === filter;
+      card.classList.toggle('is-hidden', !match);
+      if (match) shown++;
+    });
+    chips.forEach(function(c){ c.setAttribute('aria-pressed', String(c.dataset.filter === filter)); });
+    count.textContent = 'Showing ' + shown + ' of ' + cards.length;
+    empty.classList.toggle('show', shown === 0);
+  }
+
+  chips.forEach(function(chip){
+    chip.addEventListener('click', function(){ apply(chip.dataset.filter); });
+  });
+
+  /* ---------- reveal on scroll ---------- */
+  var targets = document.querySelectorAll('.rv');
+  if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    targets.forEach(function(el){ el.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    targets.forEach(function(el, i){
+      el.style.transitionDelay = (Math.min(i, 4) * 60) + 'ms';
+      io.observe(el);
+    });
+  }
+})();
+</script>
+</body>
+</html>
