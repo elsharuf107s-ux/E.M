@@ -21,11 +21,13 @@ Two separate things live here:
 | Path | What it is | Owner |
 |---|---|---|
 | `index.html`, `about.html`, `work.html`, `contact.html`, `css/`, `js/`, `assets/images/` | The **E.M portfolio** — light editorial minimalism ("The Gallery") | Structure by Antigravity; redesigned by Claude Code |
-| `business-templates/` | Nine one-page business websites plus a gallery page indexing them | Templates pre-existing; gallery built by Claude Code |
+| `business-templates/` | Twelve one-page business websites (no index of their own) | Nine pre-existing; three built by Claude Code |
 
-The E.M site links out to all nine business templates from a "Live Sites" section on
-both `index.html` and `work.html`, reusing the screenshots in
-`business-templates/assets/previews/`.
+**The E.M site is the only portfolio front door.** Its "Live Sites" section on `index.html`
+and `work.html` indexes all twelve templates with search, sector filtering and sorting,
+reusing the screenshots in `business-templates/assets/previews/`. The separate gallery page
+that used to live at `business-templates/index.html` was **deleted at the owner's request** —
+do not recreate it.
 
 All nine templates have had a quality pass: no sideways scroll from 320px up, every
 element passes WCAG AA contrast, no heading skips, and a 10.24px type floor. Their nine
@@ -47,13 +49,13 @@ Things that are easy to get wrong here:
    originally written to root `index.html` and would have destroyed the E.M homepage.
 
 2. **`business-templates/` is self-contained by design.**
-   Every path inside `business-templates/index.html` is relative to that folder, so the
-   directory can be moved or served on its own. Keep it that way — don't introduce paths
-   that reach up to the repo root.
+   Every path inside each site is relative to that folder, so the directory can be moved or
+   served on its own. Keep it that way — don't introduce paths that reach *up* to the repo
+   root. The E.M site reaching *down* into the folder is fine and expected.
 
-3. **The gallery's card images are real screenshots, not live renders.**
-   `business-templates/assets/previews/*.jpg` are captures of the nine sites. **If you
-   edit a template's hero, its card image goes stale and must be recaptured.** Settings
+3. **The Live Sites card images are real screenshots, not live renders.**
+   `business-templates/assets/previews/*.jpg` are captures of the sites. **If you edit a
+   template's hero, its card image goes stale and must be recaptured.** Settings
    are in `business-templates/README.md`: Playwright + Chromium, 1440x900 viewport,
    `deviceScaleFactor: 1.5`, clip `{x:0, y:0, width:1440, height:900}`, JPEG quality 76.
    Keep the 16:10 crop — the card CSS assumes it.
@@ -89,10 +91,9 @@ Things that are easy to get wrong here:
    - A percentage `max-height` needs a definite containing height to resolve against.
      Without one it is ignored, which made ten logo plates render at ten heights.
 
-9. **Placeholders still in `business-templates/index.html`**, each marked with a
-   `<!-- REPLACE -->` comment: the contact email (`hello@example.com`) and the top-bar
-   wordmark / "Open for work" line. These must be replaced before that page is published
-   anywhere public.
+9. **Every business template carries `<!-- REPLACE -->` placeholders** — phone numbers,
+   emails and addresses are invented and the forms post nowhere. Replace them before any
+   of these are published as a real business site.
 
 10. **The E.M site's `js/enhancements.js` is nearly empty on purpose.** All four pages
    `<script src>` it, so deleting the file would 404 on every page load. New behaviour
@@ -488,3 +489,53 @@ labels; no console errors. All nine previews recaptured.
 **Deliberately not done:** no content changes. Placeholder phone numbers, emails and
 addresses are untouched, and the forms still post nowhere. That is a separate production
 pass the owner has not asked for yet.
+
+---
+
+### 2026-08-01 — Claude Code — new brand sites, and E.M becomes the only front door
+
+**What the owner asked (verbatim):**
+
+> "Create these websites using the logos and the text as descriptions of them, add them to my portfolio website then, add a way to sort and search website types on my portfolio page"
+
+> "continue"
+
+> "before  you finish I need you to remove the old index.html and add the new one that's like e.m, I'm saying remove portfolio, index.html and keep e.m and make that the main not protfolio"
+
+The owner supplied two brand-kit briefs (20 brands) and two contact sheets of logo assets.
+
+**Done:**
+
+- **All 20 logos extracted** from the sheets into `assets/logos/`. Worth knowing: a
+  Playwright page built with `setContent` cannot load `file://` subresources, so the first
+  run produced twenty blank white PNGs and reported success. Re-cropped from a real
+  file-origin page. **Always open one output rather than trusting the run.**
+- **Three sites built** to their briefs: `flowmaster-plumbing` ("The Service Call"),
+  `climatecontrol-hvac` ("The Thermostat"), `pristine-polish` ("The Studio").
+- **`business-templates/index.html` deleted.** The owner wanted one portfolio, not two, and
+  that page's wordmark literally read "Portfolio". The E.M site is now the sole front door.
+- **Live Sites rebuilt** on `index.html` and `work.html`: twelve cards, plus **search,
+  sector filter and A–Z / Z–A sort**, with a live count and an empty state that offers to
+  clear the filters. Search matches name, sector *and* the description line — typing
+  "calendar" finds Root & Bloom.
+
+**Defects caught while building the three sites** (all fixed, all found by audit rather
+than by eye):
+
+- `.hero p` beat `.card-ft` on specificity in flowmaster, painting the card footer
+  hero-blue on near-white at **1.39:1**. A textbook cascade collision.
+- HVAC's hero service blocks were `h3` straight after `h1`.
+- Pristine's `--chrome-3` sat at 3.60:1 on navy and 3.18:1 on the form panel.
+
+**Verified:** all three sites and both E.M pages — no sideways scroll 320–1920, every
+element passes AA contrast, no heading skips, no unlabelled fields, no console errors.
+Search/filter/sort exercised end to end (12 → 5 on trades, 0 with empty state on a
+contradictory combination, correct A–Z and Z–A order, all twelve links resolving).
+
+**Scope, stated plainly:** the owner asked for **twenty** sites. **Three** are built.
+Each takes roughly a full session at this quality, including its audit-and-fix cycle.
+Three options were put to the owner — continue at depth, build lighter, or pick the best
+six to eight and mark the rest logo-only — and no choice has been made yet, so the default
+has been to continue at full depth.
+
+**Not done:** the remaining 17 sites.
