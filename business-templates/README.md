@@ -1,12 +1,13 @@
 # Business templates
 
-Twelve one-page business websites. They are indexed from the **E.M portfolio at the repo
-root** — see the "Live Sites" section on `index.html` and `work.html`, which has search,
-sector filtering and sorting. There is no separate gallery page here any more; E.M is the
-only front door.
+Twenty-nine one-page business websites. They are indexed from the **E.M portfolio at the
+repo root** — see the "Live Sites" section on `index.html` and `work.html`, which has
+search, sector filtering and sorting. There is no separate gallery page here any more; E.M
+is the only front door.
 
 Everything here is hand-written HTML and CSS with no build step. Each site is a single
-self-contained file with its own layout language and its own logo inlined as a data URI.
+self-contained file with its own layout language, referencing its logo from
+`assets/logos/`.
 
 ## The sites
 
@@ -24,12 +25,29 @@ self-contained file with its own layout language and its own logo inlined as a d
 | 10 | `flowmaster-plumbing.html` | Plumbing | *The Service Call* — click-to-call everywhere, dispatch card |
 | 11 | `climatecontrol-hvac.html` | Heating & cooling | *The Thermostat* — red half, blue half, grey middle |
 | 12 | `pristine-polish.html` | Car detailing | *The Studio* — dark room, one light, drag-to-reveal slider |
+| 13 | `daily-crumb.html` | Bakery | *The Shop Sign* — centred, soft-edged, dotted-leader menu board |
+| 14 | `bella-italia.html` | Restaurant | *The Menu Card* — trattoria linen, four courses, hand-set |
+| 15 | `pawsitive-haven.html` | Animal rescue | *The Noticeboard* — filterable pets, three ways to help |
+| 16 | `harvest-helpers.html` | Food bank | *The Pantry Board* — find food first, appeal second |
+| 17 | `riverkeepers.html` | Conservation charity | *The Field Station* — catchment readings, clean-up calendar |
+| 18 | `future-scholars.html` | Education foundation | *The Certificate* — gold rules, numbered steps, alumni |
+| 19 | `summit-construction.html` | Construction | *The Site Board* — hazard stripes, project grid, safety record |
+| 20 | `apex-outdoor.html` | Outdoor gear retail | *The Spec Tag* — honest weights, field notes, repair-first warranty |
+| 21 | `bloom-botanicals.html` | Skincare | *The Pressed Page* — green washes, six-ingredient formulas |
+| 22 | `chronos-consulting.html` | Consulting | *The Memorandum* — text as hero, numbered services, no photography |
+| 23 | `zenith-tech.html` | Technology platform | *The Lit Grid* — published latency, status board, monospace |
+| 24 | `oasis-wellness.html` | Day spa | *The Still Room* — soft gradients, treatments priced by the hour |
+| 25 | `nova-creative.html` | Creative agency | *The Colour Wheel* — gradient tiles, filterable by discipline |
+| 26 | `urban-harvest.html` | Market garden & veg boxes | *The Chalkboard* — this week's harvest, stall times, box sizes |
+| 27 | `atlas-travel.html` | Small-group tour operator | *The Field Journal* — fixed departures, what the price includes |
+| 28 | `artisan-breads.html` | Sourdough bakery | *The Bake Sheet* — four timed bakes, what comes out of each |
+| 29 | `momentum-fitness.html` | Gym & coaching | *The Split* — hard diagonal, timetable at the centre |
 
 ## Structure
 
 ```
 business-templates/
-├── *.html                the twelve sites, one file each
+├── *.html                the twenty-nine sites, one file each
 ├── assets/
 │   ├── previews/*.jpg    1440x900 hero screenshots used as the Live Sites cards
 │   └── logos/*.png       thirty brand marks (ten original, twenty from the kits)

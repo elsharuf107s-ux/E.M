@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Artisan Breads — Baked With Love</title>
+<meta name="description" content="A sourdough bakery working one wood-fired oven. The bake list, the day each loaf comes out, and a standing order you can pause.">
+<meta name="theme-color" content="#FAF4E8">
+<meta property="og:title" content="Artisan Breads"><meta property="og:type" content="website">
+<meta property="og:description" content="Baked with love. Sourdough, one oven, four bakes a day.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&amp;family=Lato:wght@400;700;900&amp;display=swap" rel="stylesheet">
+<style>
+/* ARTISAN BREADS — "The Bake Sheet"
+   The page is the sheet pinned above the bench: what is baking, at what time,
+   and how much is left. Wheat gold on cream, one crust-brown for weight, and
+   a rule that the timetable is never decorated — it is the most useful thing
+   here and it reads like a timetable. */
+:root{
+  --cream:#FAF4E8;--cream-2:#F2E9D6;--flour:#FFFDF8;--crust:#5B3A1E;--crust-d:#3F2712;
+  --wheat:#B07C1E;--wheat-d:#8A5F12;--wheat-w:#F6EAD0;
+  --ink:#2C2419;--ink-2:#4E4335;--muted:#6E6252;--line:#E2D6BE;
+  --rye:#7A4B2A;--jam:#8E2F3C;
+  --disp:'Playfair Display',Georgia,serif;--sans:'Lato',system-ui,sans-serif}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:92px}
+body{background:var(--cream);color:var(--ink-2);font-family:var(--sans);font-size:17px;line-height:1.74;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}a{color:inherit;text-decoration:none}ul{list-style:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+:focus-visible{outline:2px solid var(--wheat-d);outline-offset:3px}
+::selection{background:var(--wheat-w);color:var(--ink)}
+h1,h2,h3{font-family:var(--disp);font-weight:700;color:var(--ink);line-height:1.18;text-wrap:balance}
+.wrap{width:100%;max-width:1080px;margin-inline:auto;padding-inline:clamp(1.2rem,4.5vw,3rem)}
+.sec{padding-block:clamp(3.5rem,7.5vw,6rem)}
+.lbl{font-size:.7rem;font-weight:900;letter-spacing:.28em;text-transform:uppercase;color:var(--wheat-d)}
+.h2{font-size:clamp(1.8rem,4.2vw,2.8rem);margin-block:.8rem 1rem}
+.lead{max-width:56ch}
+.mid{text-align:center}.mid .lead{margin-inline:auto}
+.skip{position:absolute;left:-9999px}.skip:focus{left:1rem;top:1rem;z-index:200;background:var(--crust);color:#fff;padding:.7rem 1.1rem;border-radius:4px}
+.ears{display:flex;gap:.45rem;justify-content:center;margin:1.1rem auto}
+.ears span{width:22px;height:2px;background:var(--wheat);display:block}
+.ears span:nth-child(2){width:38px}
+/* header */
+.bar{position:sticky;top:0;z-index:60;background:rgba(250,244,232,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar-in{display:flex;flex-wrap:wrap;gap:.6rem 1.5rem;align-items:center;justify-content:space-between;padding-block:.6rem}
+.mk{display:inline-block;min-width:0}.mk img{height:clamp(32px,5.2vw,48px);width:auto}
+.nav{display:flex;flex-wrap:wrap;gap:.5rem 1.3rem;align-items:center}
+.nav a{font-size:.84rem;font-weight:700;letter-spacing:.04em;color:var(--ink)}
+.nav a:hover{color:var(--wheat-d)}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:.76rem 1.5rem;border-radius:2px;font-weight:900;
+  font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;background:var(--crust);color:#fff;text-align:center}
+.btn:hover{background:var(--crust-d)}
+.nav a.btn{color:#fff}
+.btn--out{background:transparent;color:var(--ink);border:1px solid var(--crust);padding-block:calc(.76rem - 1px)}
+.btn--out:hover{background:var(--wheat-w)}
+.nav a.btn--out{color:var(--ink)}
+/* hero */
+.hero{border-bottom:1px solid var(--line);background:linear-gradient(180deg,var(--wheat-w),var(--cream) 78%)}
+.hero-in{padding-block:clamp(3rem,8vw,5.5rem);text-align:center}
+.hero h1{font-size:clamp(2.3rem,6.6vw,4.3rem);font-style:italic}
+.hero p{margin:1.2rem auto 0;max-width:48ch;font-size:1.06rem}
+.hero-cta{display:flex;flex-wrap:wrap;gap:.8rem;justify-content:center;margin-top:1.9rem}
+.today{display:flex;flex-wrap:wrap;gap:.5rem 2rem;justify-content:center;margin-top:2.5rem;padding-top:1.6rem;border-top:1px solid var(--line)}
+.today li{font-size:.78rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+/* bake sheet */
+.sheet{margin-top:2.25rem;background:var(--flour);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.sheet header{background:var(--crust);color:#F6EEE2;padding:1rem 1.35rem}
+.sheet header h3{color:#fff;font-size:1.2rem}
+.sheet header p{font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#DFC9AE;margin-top:.15rem}
+.sheet ol{padding:.4rem 1.35rem 1.2rem}
+.sheet li{display:grid;gap:.15rem 1.5rem;padding-block:.95rem;border-bottom:1px solid var(--line)}
+@media(min-width:600px){.sheet li{grid-template-columns:6.5rem minmax(0,1fr) auto;align-items:baseline}}
+.sheet li:last-child{border-bottom:0}
+.sheet .t{font-weight:900;font-size:.82rem;letter-spacing:.12em;color:var(--wheat-d)}
+.sheet .w{font-weight:700;color:var(--ink)}
+.sheet .n{font-size:.86rem;color:var(--muted);white-space:nowrap}
+@media(min-width:600px){.sheet .n{text-align:right}}
+/* loaves */
+.loaves{display:grid;gap:1.35rem;margin-top:2.25rem}
+@media(min-width:700px){.loaves{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(min-width:1020px){.loaves{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.loaf{background:var(--flour);border:1px solid var(--line);border-radius:6px;overflow:hidden;min-width:0;display:flex;flex-direction:column}
+.loaf .crumb{height:96px;background:repeating-linear-gradient(115deg,var(--wheat-w),var(--wheat-w) 12px,#EEDFC0 12px,#EEDFC0 24px);
+  border-bottom:1px solid var(--line);display:grid;place-items:center;
+  font-size:.68rem;font-weight:900;letter-spacing:.24em;text-transform:uppercase;color:var(--wheat-d)}
+.loaf:nth-child(2) .crumb{background:repeating-linear-gradient(115deg,#EFE0C6,#EFE0C6 12px,#E4D0AC 12px,#E4D0AC 24px)}
+.loaf:nth-child(3) .crumb{background:repeating-linear-gradient(115deg,#E8D8BE,#E8D8BE 12px,#D9C29C 12px,#D9C29C 24px)}
+.loaf:nth-child(4) .crumb{background:repeating-linear-gradient(115deg,#E3D0B2,#E3D0B2 12px,#CFB68C 12px,#CFB68C 24px)}
+.loaf:nth-child(5) .crumb{background:repeating-linear-gradient(115deg,#EDE2CD,#EDE2CD 12px,#DCCBAA 12px,#DCCBAA 24px)}
+.loaf:nth-child(6) .crumb{background:repeating-linear-gradient(115deg,#E6D4B6,#E6D4B6 12px,#D2BB93 12px,#D2BB93 24px)}
+.loaf .bd{padding:1.25rem 1.35rem 1.4rem;flex:1;display:flex;flex-direction:column}
+.loaf h3{font-size:1.18rem;margin-bottom:.35rem}
+.loaf p{font-size:.93rem;flex:1}
+.loaf .row{display:flex;flex-wrap:wrap;gap:.4rem 1rem;justify-content:space-between;align-items:baseline;
+  margin-top:1rem;padding-top:.85rem;border-top:1px solid var(--line)}
+.loaf .p{font-family:var(--disp);font-weight:700;font-size:1.22rem;color:var(--ink)}
+.loaf .d{font-size:.72rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--rye)}
+/* method */
+.brown{background:var(--crust);color:#E5D9C8}
+.brown h2,.brown h3{color:#fff}
+.brown .lbl{color:#E7C489}
+.mth{display:grid;gap:1.5rem;margin-top:2.25rem}
+@media(min-width:800px){.mth{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.mth article{min-width:0;border-top:2px solid #7A542F;padding-top:1.1rem}
+.mth .hr{font-family:var(--disp);font-weight:700;font-size:1.7rem;color:#E7C489;line-height:1.1}
+.mth h3{font-size:1.1rem;margin:.45rem 0 .4rem}
+.mth p{font-size:.94rem}
+/* order */
+.order{display:grid;gap:clamp(2rem,5vw,3.5rem);align-items:start}
+@media(min-width:900px){.order{grid-template-columns:1fr 1fr}}
+.f{display:grid;gap:1rem;margin-top:1.25rem}
+.f label{display:block;font-size:.7rem;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);margin-bottom:.35rem}
+.f input,.f select{width:100%;background:var(--flour);border:1px solid var(--line);border-radius:4px;padding:.78rem .9rem;color:var(--ink);font:inherit;font-size:.95rem}
+.f button{width:100%}
+.dl{border-top:1px solid var(--line);margin-top:1.5rem}
+.dl>div{display:grid;grid-template-columns:6.5rem minmax(0,1fr);gap:1rem;align-items:baseline;padding-block:.85rem;border-bottom:1px solid var(--line)}
+.dl dt{font-size:.7rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.dl dd{color:var(--ink);overflow-wrap:anywhere}
+@media(max-width:400px){.dl>div{grid-template-columns:1fr;gap:.1rem}}
+.tip{background:var(--wheat-w);border-left:4px solid var(--wheat);border-radius:0 6px 6px 0;padding:1.35rem 1.5rem;margin-top:1.6rem}
+.tip p{font-size:.94rem}
+/* footer */
+.ft{background:var(--cream-2);border-top:1px solid var(--line);padding-block:2.75rem 1.4rem}
+.ft-g{display:grid;gap:2rem;margin-bottom:2rem}
+@media(min-width:800px){.ft-g{grid-template-columns:1.5fr 1fr 1fr}}
+.ft h3{font-family:var(--sans);font-size:.7rem;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);margin-bottom:.75rem}
+.ft a{display:block;padding-block:.24rem;overflow-wrap:anywhere}.ft a:hover{color:var(--wheat-d)}
+.ft-end{border-top:1px solid var(--line);padding-top:1.15rem;display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;justify-content:space-between;font-size:.75rem;color:var(--muted)}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#bakes">Skip to today's bakes</a>
+<header class="bar"><div class="wrap bar-in">
+  <a class="mk" href="#top" aria-label="Artisan Breads — home"><img src="assets/logos/artisan-breads.png" alt="Artisan Breads"></a>
+  <nav class="nav" aria-label="Primary">
+    <a href="#bakes">Today</a><a href="#loaves">The loaves</a><a href="#method">Method</a><a class="btn" href="#order">Standing order</a>
+  </nav>
+</div></header>
+<main id="top">
+  <section class="hero"><div class="wrap hero-in">
+    <p class="lbl">Sourdough · One wood-fired oven · Since 2014</p>
+    <h1 style="margin-top:.9rem">Baked with love.</h1>
+    <div class="ears"><span></span><span></span><span></span></div>
+    <p>Four bakes a day out of one oven, starting at six. When a loaf is gone it is gone — we would rather sell out than bake ahead.</p>
+    <div class="hero-cta"><a class="btn" href="#order">Start a standing order</a><a class="btn btn--out" href="#bakes">Today's bakes</a></div>
+    <ul class="today"><li>Open Tue – Sun, 7am</li><li>Bread from 7:30</li><li>Closed Mondays to feed the starter</li></ul>
+  </div></section>
+
+  <section class="sec" id="bakes"><div class="wrap">
+    <p class="lbl">Today</p>
+    <h2 class="h2">The bake sheet, as it is pinned above the bench.</h2>
+    <p class="lead">Four bakes, four hours apart. The last one is small and usually goes within the half hour, so it is worth a phone call first.</p>
+    <div class="sheet">
+      <header><h3>Saturday's bakes</h3><p>Oven at 250°C falling — updated the night before</p></header>
+      <ol>
+        <li><span class="t">07:30</span><span class="w">Country sourdough · Seeded rye · Baguettes</span><span class="n">First bake · largest</span></li>
+        <li><span class="t">10:00</span><span class="w">Country sourdough · Focaccia · Cinnamon buns</span><span class="n">Buns only at this one</span></li>
+        <li><span class="t">13:00</span><span class="w">Country sourdough · Walnut &amp; raisin · Baguettes</span><span class="n">Standing orders held here</span></li>
+        <li><span class="t">16:00</span><span class="w">Whatever the day has left</span><span class="n">Small bake · often sold out</span></li>
+      </ol>
+    </div>
+  </div></section>
+
+  <section class="sec" id="loaves" style="background:var(--cream-2);border-block:1px solid var(--line)"><div class="wrap">
+    <p class="lbl">The loaves</p>
+    <h2 class="h2">Six breads. Nothing has an improver in it.</h2>
+    <p class="lead">Flour, water, salt and our own starter, with a minimum of eighteen hours between mixing and the oven. The days tell you when each one is baked.</p>
+    <div class="loaves">
+      <article class="loaf"><div class="crumb">Open crumb</div><div class="bd"><h3>Country sourdough</h3>
+        <p>The everyday loaf. Eighty per cent white, twenty wholemeal, twenty-four hour cold prove. A 900g round.</p>
+        <div class="row"><span class="p">£4.60</span><span class="d">Every bake</span></div></div></article>
+      <article class="loaf"><div class="crumb">Dense crumb</div><div class="bd"><h3>Seeded rye</h3>
+        <p>Sixty per cent rye with linseed, sunflower and pumpkin. Keeps a week, and is better on day two than day one.</p>
+        <div class="row"><span class="p">£5.20</span><span class="d">Tue · Thu · Sat</span></div></div></article>
+      <article class="loaf"><div class="crumb">Laminated</div><div class="bd"><h3>Walnut &amp; raisin</h3>
+        <p>A wheat and light rye base folded with soaked raisins and walnuts. The one that goes with cheese.</p>
+        <div class="row"><span class="p">£5.80</span><span class="d">Fri · Sat · Sun</span></div></div></article>
+      <article class="loaf"><div class="crumb">Blistered</div><div class="bd"><h3>Baguettes</h3>
+        <p>Poolish overnight, baked twice a day because a baguette four hours old is a different object entirely.</p>
+        <div class="row"><span class="p">£2.40</span><span class="d">07:30 &amp; 13:00</span></div></div></article>
+      <article class="loaf"><div class="crumb">Oiled</div><div class="bd"><h3>Rosemary focaccia</h3>
+        <p>A tray, cut to order, with the rosemary from the yard and more olive oil than seems reasonable.</p>
+        <div class="row"><span class="p">£3.10 / piece</span><span class="d">From 10:00</span></div></div></article>
+      <article class="loaf"><div class="crumb">Enriched</div><div class="bd"><h3>Cinnamon buns</h3>
+        <p>Made with the same starter, which makes them tangier than most. Two dozen, once a day, that is all.</p>
+        <div class="row"><span class="p">£3.40</span><span class="d">10:00 only</span></div></div></article>
+    </div>
+  </div></section>
+
+  <section class="sec brown" id="method"><div class="wrap">
+    <p class="lbl">Method</p>
+    <h2 class="h2">Three days, from flour to counter.</h2>
+    <p class="lead" style="color:#E5D9C8">The timings are not a flourish. They are why the bread keeps, and why we cannot simply bake more when a queue forms.</p>
+    <div class="mth">
+      <article><p class="hr">Day one</p><h3>Feed and mix</h3>
+        <p>The starter is refreshed twice. Dough is mixed late afternoon and left to bulk at room temperature until the bench is cold.</p></article>
+      <article><p class="hr">Day two</p><h3>Shape and retard</h3>
+        <p>Shaped into bannetons and put into the cold room for eighteen to twenty-four hours. This is where the flavour actually happens.</p></article>
+      <article><p class="hr">Day three</p><h3>Bake</h3>
+        <p>Oven lit at four, loaded at six-thirty, and run falling through the day — hottest for the first bake, coolest for the last.</p></article>
+    </div>
+  </div></section>
+
+  <section class="sec" id="order"><div class="wrap order">
+    <div>
+      <p class="lbl">Standing order</p>
+      <h2 class="h2">Reserve a loaf, collect it warm.</h2>
+      <p class="lead">Pick your days and we will hold it at the 13:00 bake until closing. Pause it whenever you are away — a text the day before is enough.</p>
+      <dl class="dl">
+        <!-- REPLACE: placeholder contact details -->
+        <div><dt>Bakery</dt><dd>18 Mill Row</dd></div>
+        <div><dt>Phone</dt><dd>(555) 249-3308</dd></div>
+        <div><dt>Email</dt><dd>counter@artisanbreads.example</dd></div>
+        <div><dt>Open</dt><dd>Tue–Sun 7am – 4pm</dd></div>
+      </dl>
+      <div class="tip"><p><strong style="color:var(--ink)">Wholesale.</strong> We supply nine cafés and two restaurants within three miles. Delivery is by bike before 7am — ask for the trade sheet.</p></div>
+    </div>
+    <div>
+      <h3 style="font-size:1.15rem">Set up a standing order</h3>
+      <!-- REPLACE: this form posts nowhere. Wire it to a real endpoint. -->
+      <form class="f" action="#" method="post" novalidate>
+        <div><label for="b-name">Your name</label><input id="b-name" name="name" type="text" autocomplete="name" required></div>
+        <div><label for="b-phone">Phone</label><input id="b-phone" name="phone" type="tel" autocomplete="tel" required></div>
+        <div><label for="b-loaf">Which loaf</label>
+          <select id="b-loaf" name="loaf"><option>Country sourdough</option><option>Seeded rye</option><option>Walnut &amp; raisin</option><option>Baguettes</option></select></div>
+        <div><label for="b-days">How often</label>
+          <select id="b-days" name="days"><option>Every day we are open</option><option>Tuesdays and Fridays</option><option>Saturdays only</option><option>Weekends</option></select></div>
+        <button class="btn" type="submit">Reserve my loaf</button>
+      </form>
+    </div>
+  </div></section>
+</main>
+<footer class="ft"><div class="wrap">
+  <div class="ft-g">
+    <div><span class="mk" style="display:block;margin-bottom:.9rem"><img src="assets/logos/artisan-breads.png" alt="Artisan Breads"></span>
+      <p>A sourdough bakery on Mill Row. One oven, four bakes a day, closed Mondays.</p></div>
+    <div><h3>Bakery</h3><a href="#bakes">Today's bakes</a><a href="#loaves">The loaves</a><a href="#method">Method</a></div>
+    <div><h3>Contact</h3><a href="tel:+15552493308">(555) 249-3308</a><a href="mailto:counter@artisanbreads.example">counter@artisanbreads.example</a><p style="margin-top:.45rem">18 Mill Row</p></div>
+  </div>
+  <div class="ft-end"><span>© 2026 Artisan Breads</span><span>Sold out by four, usually</span></div>
+</div></footer>
+</body>
+</html>

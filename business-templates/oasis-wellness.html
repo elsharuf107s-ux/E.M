@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oasis Wellness — Find Your Inner Calm</title>
+<meta name="description" content="Day spa and treatment rooms. Massage, facials and thermal bathing, booked by the hour with no upselling at the counter.">
+<meta name="theme-color" content="#FCF8F5">
+<meta property="og:title" content="Oasis Wellness"><meta property="og:type" content="website">
+<meta property="og:description" content="Find your inner calm. Massage, facials and thermal bathing.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&amp;family=Mulish:wght@300;400;500&amp;display=swap" rel="stylesheet">
+<style>
+/* OASIS WELLNESS — "The Still Room"
+   Nothing has a hard edge. Long soft gradients, lotus pink used once per
+   screen, and a treatment list that reads like a menu at a quiet table. */
+:root{--lotus:#B5647A;--lotus-d:#964C60;--lotus-w:#F7EDF0;--ocean:#4A8078;--ocean-d:#356158;--ocean-w:#EAF2F0;
+  --sand:#EDE3D8;--cream:#FCF8F5;--line:#E6DCD2;--ink:#33302C;--ink-2:#5C5751;--muted:#6E6862;
+  --disp:'Marcellus',Georgia,serif;--sans:'Mulish',system-ui,sans-serif}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:96px}
+body{background:var(--cream);color:var(--ink-2);font-family:var(--sans);font-weight:300;font-size:17px;line-height:1.8;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}a{color:inherit;text-decoration:none}ul{list-style:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+:focus-visible{outline:2px solid var(--ocean);outline-offset:4px}
+::selection{background:var(--lotus-w);color:var(--ink)}
+h1,h2,h3{font-family:var(--disp);color:var(--ink);font-weight:400;line-height:1.24;text-wrap:balance}
+.wrap{width:100%;max-width:1060px;margin-inline:auto;padding-inline:clamp(1.2rem,4.5vw,3rem)}
+.sec{padding-block:clamp(4rem,9vw,7rem)}
+.lbl{font-size:.7rem;font-weight:500;letter-spacing:.32em;text-transform:uppercase;color:var(--ocean-d)}
+.h2{font-size:clamp(1.9rem,4.2vw,2.9rem);margin-block:.9rem 1.1rem}
+.mid{text-align:center}.mid p{margin-inline:auto}.lead{max-width:54ch}
+.dots{display:flex;gap:.5rem;justify-content:center;margin:1.4rem auto}
+.dots span{width:5px;height:5px;border-radius:50%;background:var(--lotus);opacity:.5}
+.dots span:nth-child(2){opacity:.85}
+.skip{position:absolute;left:-9999px}.skip:focus{left:1rem;top:1rem;z-index:200;background:var(--ocean-d);color:#fff;padding:.7rem 1.1rem;border-radius:999px}
+.bar{position:sticky;top:0;z-index:60;background:rgba(252,248,245,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar-in{display:flex;flex-direction:column;align-items:center;padding-block:.85rem}
+.bar-in img{height:48px;width:auto}
+.nav{display:flex;flex-wrap:wrap;justify-content:center;gap:.55rem clamp(1.2rem,3vw,2.4rem);margin-top:.7rem;align-items:center}
+.nav a{font-size:.82rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);padding-bottom:2px;border-bottom:1px solid transparent}
+.nav a:hover{border-bottom-color:var(--lotus)}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:.9rem 2rem;font-size:.76rem;font-weight:500;
+  letter-spacing:.22em;text-transform:uppercase;background:var(--lotus-d);color:#fff;border-radius:999px;text-align:center}
+.btn:hover{background:#7E3D4F}
+.nav a.btn{color:#fff}
+.btn--out{background:transparent;color:var(--ink);border:1px solid var(--line)}.btn--out:hover{border-color:var(--ocean)}
+.hero{text-align:center;border-bottom:1px solid var(--line);
+  background:radial-gradient(ellipse 75% 65% at 50% 0%,var(--ocean-w),var(--cream) 62%)}
+.hero-in{padding-block:clamp(4rem,10vw,7.5rem)}
+.hero h1{font-size:clamp(2.2rem,5.8vw,3.9rem)}
+.hero p{margin:1.4rem auto 0;max-width:46ch;font-size:1.06rem}
+.hero-cta{display:flex;flex-wrap:wrap;gap:.9rem;justify-content:center;margin-top:2.2rem}
+.hours{display:flex;flex-wrap:wrap;gap:.6rem 2.5rem;justify-content:center;margin-top:2.75rem;padding-top:1.75rem;border-top:1px solid var(--line)}
+.hours li{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.tr{margin-top:2.75rem;border-top:1px solid var(--line)}
+.tr article{display:grid;gap:.4rem 2rem;padding-block:1.9rem;border-bottom:1px solid var(--line)}
+@media(min-width:760px){.tr article{grid-template-columns:minmax(0,1fr) auto;align-items:start}}
+.tr h3{font-size:1.45rem;margin-bottom:.35rem}
+.tr p{font-size:.96rem;max-width:52ch}
+.tr .meta{text-align:left;white-space:nowrap}
+@media(min-width:760px){.tr .meta{text-align:right}}
+.tr .dur{font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);display:block}
+.tr .price{font-family:var(--disp);font-size:1.5rem;color:var(--lotus-d);display:block;margin-top:.2rem}
+.rooms{display:grid;gap:1.5rem;margin-top:2.75rem}
+@media(min-width:720px){.rooms{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.rooms article{background:#fff;border:1px solid var(--line);border-radius:6px;overflow:hidden;min-width:0;display:flex;flex-direction:column}
+.rooms .ph{aspect-ratio:4/3;background:linear-gradient(150deg,var(--ocean-w),var(--sand));display:grid;place-items:center;
+  font-size:.7rem;letter-spacing:.26em;text-transform:uppercase;color:var(--ocean-d)}
+.rooms .bd{padding:1.4rem 1.5rem 1.6rem}
+.rooms h3{font-size:1.2rem;margin-bottom:.4rem}
+.rooms p{font-size:.93rem}
+.book{display:grid;gap:clamp(2rem,5vw,3.5rem);align-items:start}
+@media(min-width:880px){.book{grid-template-columns:1fr 1fr}}
+.dl{border-top:1px solid var(--line);margin-top:1.75rem}
+.dl>div{display:grid;grid-template-columns:7.5rem minmax(0,1fr);gap:1rem;align-items:baseline;padding-block:.95rem;border-bottom:1px solid var(--line)}
+.dl dt{font-size:.72rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.dl dd{color:var(--ink);overflow-wrap:anywhere}
+@media(max-width:420px){.dl>div{grid-template-columns:1fr;gap:.15rem}}
+.note{background:var(--lotus-w);border-radius:6px;padding:1.5rem 1.6rem;margin-top:1.75rem}
+.note p{font-size:.95rem;color:var(--ink-2)}
+.ft{background:var(--sand);border-top:1px solid var(--line);padding-block:3rem 1.5rem}
+.ft-g{display:grid;gap:2.25rem;margin-bottom:2.25rem}
+@media(min-width:780px){.ft-g{grid-template-columns:1.4fr 1fr 1fr}}
+.ft h3{font-family:var(--sans);font-size:.72rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--ink);margin-bottom:.9rem}
+.ft a{display:block;padding-block:.26rem;overflow-wrap:anywhere}.ft a:hover{color:var(--lotus-d)}
+.ft-logo{margin-bottom:1rem;display:inline-block;background:var(--cream);padding:.5rem .7rem;border-radius:6px}
+.ft-logo img{height:38px;width:auto}
+.ft-end{border-top:1px solid var(--line);padding-top:1.25rem;display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;justify-content:space-between;
+  font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2)}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#treatments">Skip to treatments</a>
+<header class="bar"><div class="wrap bar-in">
+  <a href="#top" aria-label="Oasis Wellness — home"><img src="assets/logos/oasis-wellness.png" alt="Oasis Wellness"></a>
+  <nav class="nav" aria-label="Primary"><a href="#treatments">Treatments</a><a href="#rooms">The spa</a><a class="btn" href="#book">Book now</a></nav>
+</div></header>
+<main id="top">
+  <section class="hero"><div class="wrap hero-in">
+    <p class="lbl">Day spa &amp; thermal bathing</p>
+    <h1 style="margin-top:.9rem">Find your inner calm.</h1>
+    <div class="dots"><span></span><span></span><span></span></div>
+    <p>Six treatment rooms, a thermal suite and no upselling at the counter. Book the hour you want and leave when you are ready.</p>
+    <div class="hero-cta"><a class="btn" href="#book">Book now</a><a class="btn btn--out" href="#treatments">See treatments</a></div>
+    <ul class="hours"><li>Tue – Sun, 9am – 8pm</li><li>Thermal suite included</li><li>Phones stay in lockers</li></ul>
+  </div></section>
+  <section class="sec" id="treatments"><div class="wrap mid">
+    <p class="lbl">Treatments</p><h2 class="h2">Five things, done slowly.</h2>
+    <p class="lead">Every booking includes thermal suite access before and after, so allow longer than the treatment itself.</p>
+  </div><div class="wrap">
+    <div class="tr">
+      <article><div><h3>Deep tissue massage</h3><p>Firm, focused work on the areas you point at. Our most requested, and not a relaxing one.</p></div>
+        <div class="meta"><span class="dur">60 or 90 min</span><span class="price">$135</span></div></article>
+      <article><div><h3>Aromatherapy massage</h3><p>Lighter pressure with blended oils chosen on the day. The one to book if you have never had a massage.</p></div>
+        <div class="meta"><span class="dur">60 min</span><span class="price">$120</span></div></article>
+      <article><div><h3>Facial — clarifying</h3><p>Double cleanse, gentle extraction and a mask matched to your skin, not to a product range.</p></div>
+        <div class="meta"><span class="dur">75 min</span><span class="price">$150</span></div></article>
+      <article><div><h3>Hot stone therapy</h3><p>Basalt stones and slow strokes. Best in winter, and best if you run cold.</p></div>
+        <div class="meta"><span class="dur">90 min</span><span class="price">$180</span></div></article>
+      <article><div><h3>Thermal suite only</h3><p>Steam room, sauna, cold plunge and the quiet room. Two hours, no treatment, no conversation required.</p></div>
+        <div class="meta"><span class="dur">120 min</span><span class="price">$55</span></div></article>
+    </div>
+  </div></section>
+  <section class="sec" id="rooms" style="background:var(--ocean-w);border-block:1px solid var(--line)"><div class="wrap mid">
+    <p class="lbl">The spa</p><h2 class="h2">Three rooms and a very quiet corridor.</h2>
+    <p class="lead">Built into a converted terrace, which is why the ceilings are low and the noise never carries.</p>
+  </div><div class="wrap">
+    <div class="rooms">
+      <article><div class="ph">Treatment rooms</div><div class="bd"><h3>Six rooms</h3><p>Each with its own heating control, because half of you are always cold and half always warm.</p></div></article>
+      <article><div class="ph">Thermal suite</div><div class="bd"><h3>Steam, sauna, plunge</h3><p>Open to every booking, before and after. Most people use it more than the treatment.</p></div></article>
+      <article><div class="ph">Quiet room</div><div class="bd"><h3>No talking</h3><p>Twelve chairs, a pot of tea and a rule about phones that we actually enforce.</p></div></article>
+    </div>
+  </div></section>
+  <section class="sec" id="book"><div class="wrap book">
+    <div>
+      <p class="lbl">Book</p><h2 class="h2">Arrive twenty minutes early.</h2>
+      <p class="lead">That is not a formality — it is the thermal suite, and it makes the treatment work better. Bookings are held for ten minutes past the hour.</p>
+      <dl class="dl">
+        <!-- REPLACE: placeholder contact details -->
+        <div><dt>Address</dt><dd>9 Fennel Lane</dd></div>
+        <div><dt>Phone</dt><dd>(555) 640-2211</dd></div>
+        <div><dt>Email</dt><dd>bookings@oasiswellness.example</dd></div>
+        <div><dt>Open</dt><dd>Tue–Sun 9am – 8pm</dd></div>
+      </dl>
+    </div>
+    <div>
+      <div class="note"><p><strong style="color:var(--ink)">First visit?</strong> Book the 60-minute aromatherapy massage and come an hour early. You will spend most of that hour in the thermal suite, which is the point.</p></div>
+      <div class="hero-cta" style="justify-content:flex-start;margin-top:1.75rem">
+        <!-- REPLACE: connect to a real booking system -->
+        <a class="btn" href="mailto:bookings@oasiswellness.example">Request a booking</a>
+        <a class="btn btn--out" href="tel:+15556402211">Call (555) 640-2211</a>
+      </div>
+    </div>
+  </div></section>
+</main>
+<footer class="ft"><div class="wrap">
+  <div class="ft-g">
+    <div><span class="ft-logo"><img src="assets/logos/oasis-wellness.png" alt="Oasis Wellness"></span>
+      <p>A day spa in a converted terrace. Six rooms, a thermal suite, and nobody selling you a course of ten.</p></div>
+    <div><h3>Spa</h3><a href="#treatments">Treatments</a><a href="#rooms">The rooms</a><a href="#book">Book</a></div>
+    <div><h3>Visit</h3><a href="tel:+15556402211">(555) 640-2211</a><a href="mailto:bookings@oasiswellness.example">bookings@oasiswellness.example</a><p style="margin-top:.5rem">9 Fennel Lane · Closed Mondays</p></div>
+  </div>
+  <div class="ft-end"><span>© 2026 Oasis Wellness</span><span>Phones stay in the lockers</span></div>
+</div></footer>
+</body>
+</html>
