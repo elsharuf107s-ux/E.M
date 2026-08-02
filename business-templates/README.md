@@ -50,10 +50,21 @@ business-templates/
 ├── *.html                the twenty-nine sites, one file each
 ├── assets/
 │   ├── previews/*.jpg    1440x900 hero screenshots used as the Live Sites cards
-│   └── logos/*.png       thirty brand marks (ten original, twenty from the kits)
+│   ├── logos/*.png       thirty brand marks (ten original, twenty from the kits)
+│   ├── icons/            favicons — empty, see ASSET-BRIEF.md
+│   ├── social/           1200x630 share cards — empty
+│   ├── photos/           photography — empty
+│   ├── textures/         tileable textures and grain — empty
+│   └── docs/             menus, price lists — empty
+├── ASSET-BRIEF.md        what to generate, and how to hand it over
 ├── logos-batch-2.zip     the original logo archive
 └── README.md
 ```
+
+The five empty folders are drop zones. **`ASSET-BRIEF.md` holds a paste-ready brief for
+whatever tool generates the images, plus the one thing that catches people out: an image
+attached in chat cannot be saved to disk.** Assets have to be committed, linked or zipped
+into the repo.
 
 All paths inside each site are relative to this folder, so the whole directory can be moved
 or served on its own. The E.M site reaches *down* into it, which does not break that.

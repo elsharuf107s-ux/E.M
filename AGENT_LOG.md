@@ -915,3 +915,56 @@ and 390px; contrast sweep still silent across all four pages; tags balance; one 
 no sideways scroll; no console errors.
 
 **Still placeholder:** the four social links, the form endpoint, and the stock portraits.
+
+
+---
+
+### 2026-08-02 — Claude Code — an asset pipeline the owner can actually use
+
+**What the owner asked (verbatim):**
+
+> "should I generarte more website assets if so what should I make"
+
+> "give me a full universal list of stuff I should gernerate for the websites"
+
+> "what I'm trying to do is gernerate assets then send them to you so you can implement them
+> and save them for later"
+
+**The constraint that shapes all of this, stated plainly for the next agent:**
+**an image attached in chat cannot be written to disk.** It can be viewed; its bytes are
+not reachable. This already cost a round trip when the owner sent their `em` logotype and it
+could not be saved. Assets must arrive **committed to the repo, at a fetchable URL, or in a
+zip pushed to the repo root.** Say so early rather than accepting a file and failing later.
+
+**Added `business-templates/ASSET-BRIEF.md`** — a paste-ready generation brief with the
+handover routes at the top, since that is the part that decides whether anything is usable.
+It is written to be handed to *any* tool and reused per client: four variables at the top,
+then required assets, sector-dependent assets, style rules, prohibitions and a delivery
+tree.
+
+**The prohibitions are the point of the document.** Never generate a photograph of a person
+presented as real; never generate a certification, trade body or award badge; never
+photograph premises or work that do not exist; never imitate an existing brand. These are
+the same failure that put a stock portrait and three fabricated awards on the owner's own
+site — except on a client's live site it misleads *their* customers. The rule written down
+is: **anything a customer could reasonably treat as evidence must be real, and if it cannot
+be real yet the design has to work without it.**
+
+**Five drop-zone folders created** under `business-templates/assets/` — `icons/`,
+`social/`, `photos/`, `textures/`, `docs/` — each with a `.gitkeep` naming the brief.
+
+**Measured, not guessed, and recorded in the brief.** Across all twenty-nine templates there
+are **40 `<img>` tags and every one is a logo**: no photography anywhere, **0 favicons,
+0 `og:image`, 0 reversed logos** for the dark-header sites. Favicons, share cards and
+reversed logos are therefore the first batch worth generating — every site lacks all three
+and all three are seen before a word is read.
+
+**Advice deliberately given against more sites.** Twenty-nine already answers "can this
+person do my sector?". A thirtieth does not. The absence of photography is also **not** a
+defect — every template is built to work without it, and adding photos to a layout designed
+around their absence usually makes it worse.
+
+**Naming convention fixed** so dropped files can be wired up without asking:
+`<site-slug>-<role>.<ext>`, lowercase, hyphens, slug matching the HTML filename.
+
+**Nothing was implemented from it yet** — no assets have been received.
