@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apex Outdoor Gear — Gear for Every Adventure</title>
+<meta name="description" content="Packs, shelters and layers built for multi-day trips. Field-tested specifications, honest weights, and a repair-first warranty.">
+<meta name="theme-color" content="#FFFFFF">
+<meta property="og:title" content="Apex Outdoor Gear"><meta property="og:type" content="website">
+<meta property="og:description" content="Gear for every adventure. Packs, shelters and layers, field-tested.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+/* APEX OUTDOOR — "The Spec Tag"
+   Geometric and squared-off, like a hang tag. Every product carries its
+   real weight and a field-test note. Tan is the only warm thing here. */
+:root{--forest:#1F3B2C;--forest-d:#16291F;--forest-lt:#2E5942;--charcoal:#2B2F31;--charcoal-2:#54595C;
+  --sand:#E3D9C6;--sand-2:#F2ECE0;--line:#D9D5CC;--white:#fff;--muted:#5F6669;
+  --ui:'Space Grotesk',system-ui,sans-serif}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;border-radius:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:84px}
+body{background:var(--white);color:var(--muted);font-family:var(--ui);font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}a{color:inherit;text-decoration:none}ul{list-style:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+:focus-visible{outline:3px solid var(--forest-lt);outline-offset:2px}
+::selection{background:var(--sand);color:var(--charcoal)}
+h1,h2,h3{color:var(--charcoal);font-weight:700;line-height:1.08;letter-spacing:-.02em;text-wrap:balance}
+.wrap{width:100%;max-width:1200px;margin-inline:auto;padding-inline:clamp(1.1rem,4vw,2.5rem)}
+.sec{padding-block:clamp(3.5rem,7.5vw,5.75rem)}
+.lbl{font-size:.72rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--forest-lt)}
+.h2{font-size:clamp(1.8rem,4.2vw,2.8rem);margin-block:.6rem 1rem}
+.lead{max-width:60ch}
+.skip{position:absolute;left:-9999px}.skip:focus{left:1rem;top:1rem;z-index:200;background:var(--forest);color:#fff;padding:.7rem 1.1rem}
+.bar{position:sticky;top:0;z-index:60;background:var(--white);border-bottom:1px solid var(--line)}
+.bar-in{display:flex;align-items:center;gap:1rem;min-height:76px;min-width:0}
+.mk{margin-right:auto;min-width:0}.mk img{height:42px;width:auto}
+.nav{display:none;gap:1.7rem;margin-right:1.25rem}
+.nav a{font-weight:600;font-size:.92rem;letter-spacing:.02em;color:var(--charcoal);padding-bottom:3px;border-bottom:2px solid transparent}
+.nav a:hover{border-bottom-color:var(--forest)}
+@media(min-width:880px){.nav{display:flex}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.9rem 1.7rem;font-weight:600;font-size:.92rem;
+  letter-spacing:.02em;background:var(--charcoal);color:var(--sand-2);text-align:center;flex:none;
+  box-shadow:3px 3px 0 var(--forest);transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translate(1px,1px);box-shadow:2px 2px 0 var(--forest)}
+.btn--tan{background:var(--sand);color:var(--charcoal);box-shadow:3px 3px 0 var(--charcoal)}
+.btn--tan:hover{box-shadow:2px 2px 0 var(--charcoal)}
+.btn--out{background:transparent;color:var(--charcoal);border:2px solid var(--charcoal);box-shadow:none}
+.btn--out:hover{background:var(--sand-2);transform:none}
+.hero{background:var(--sand-2);border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;left:0;right:0;bottom:0;height:38%;pointer-events:none;
+  background:linear-gradient(160deg,transparent 48%,rgba(31,59,44,.14) 48.4%),linear-gradient(200deg,transparent 55%,rgba(43,47,49,.10) 55.4%)}
+.hero-in{position:relative;z-index:1;padding-block:clamp(3rem,8vw,5.75rem)}
+.hero h1{font-size:clamp(2.2rem,6vw,4.1rem);max-width:15ch;text-transform:uppercase}
+.hero p{margin-top:1.2rem;max-width:52ch;font-size:1.06rem}
+.hero-cta{display:flex;flex-wrap:wrap;gap:.9rem;margin-top:2rem}
+.pill{display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;margin-top:2.25rem;padding-top:1.5rem;border-top:2px solid var(--charcoal)}
+.pill li{font-size:.82rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--charcoal)}
+.grid{display:grid;gap:1px;background:var(--line);border:2px solid var(--charcoal);margin-top:2.5rem}
+@media(min-width:660px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(min-width:1020px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.grid article{background:var(--white);min-width:0;display:flex;flex-direction:column}
+.grid .ph{aspect-ratio:1/1;background:var(--sand-2);display:grid;place-items:center;border-bottom:1px solid var(--line);
+  font-size:.72rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--charcoal-2)}
+.grid .bd{padding:1.35rem 1.4rem 1.5rem;display:flex;flex-direction:column;flex:1}
+.grid .kind{font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--forest-lt)}
+.grid h3{font-size:1.2rem;margin-block:.4rem .45rem}
+.grid p{font-size:.92rem;flex:1}
+.grid dl{display:flex;gap:1.4rem;flex-wrap:wrap;margin-top:1rem;padding-top:.85rem;border-top:1px solid var(--line)}
+.grid dt{font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--charcoal-2)}
+.grid dd{font-weight:700;color:var(--charcoal);font-variant-numeric:tabular-nums}
+.grid .price{margin-top:1rem;font-size:1.25rem;font-weight:700;color:var(--charcoal)}
+.app{background:var(--forest);color:#C9D8CE}
+.app-in{display:grid;gap:clamp(2rem,5vw,3.5rem);padding-block:clamp(3rem,7vw,5rem);align-items:center}
+@media(min-width:880px){.app-in{grid-template-columns:1.05fr .95fr}}
+.app h2{color:#fff;font-size:clamp(1.7rem,3.8vw,2.6rem)}
+.app p{margin-top:1.1rem;max-width:48ch}
+.app ul{margin-top:1.5rem;display:flex;flex-direction:column;gap:.65rem}
+.app li{display:flex;gap:.7rem;align-items:flex-start;font-size:.95rem}
+.app li svg{width:16px;height:16px;flex:none;margin-top:.3rem;color:var(--sand)}
+.app .hero-cta{margin-top:1.9rem}
+.badge{border:2px solid #3E6B53;padding:clamp(1.5rem,3vw,2.25rem);background:var(--forest-d)}
+.badge dl>div{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:1rem;padding-block:.8rem;border-bottom:1px solid #35604A;align-items:baseline}
+.badge dl>div:last-child{border-bottom:0}
+.badge dt{font-size:.8rem;letter-spacing:.04em}
+.badge dd{font-weight:700;color:#fff;text-align:right;font-variant-numeric:tabular-nums}
+.ft{background:var(--charcoal);color:#B0B6B9;padding-block:2.75rem 1.4rem}
+.ft-g{display:grid;gap:2rem;margin-bottom:2rem}
+@media(min-width:800px){.ft-g{grid-template-columns:1.4fr 1fr 1fr}}
+.ft h3{color:#fff;font-size:.76rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.85rem}
+.ft a{display:block;padding-block:.24rem;color:#B0B6B9;overflow-wrap:anywhere}.ft a:hover{color:#fff}
+.ft-logo{background:#fff;padding:.5rem .7rem;display:inline-block;margin-bottom:1rem}
+.ft-logo img{height:36px;width:auto}
+.ft-end{border-top:1px solid #43484B;padding-top:1.15rem;display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;justify-content:space-between;font-size:.83rem}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#gear">Skip to the gear</a>
+<header class="bar"><div class="wrap bar-in">
+  <a class="mk" href="#top" aria-label="Apex Outdoor Gear — home"><img src="assets/logos/apex-outdoor.png" alt="Apex Outdoor Gear"></a>
+  <nav class="nav" aria-label="Primary"><a href="#gear">Gear</a><a href="#app">The app</a><a href="#warranty">Warranty</a></nav>
+  <a class="btn btn--tan" href="#gear">Find your gear</a>
+</div></header>
+<main id="top">
+  <section class="hero"><div class="wrap hero-in">
+    <p class="lbl">Field-tested · Repair first</p>
+    <h1 style="margin-top:.8rem">Gear for every adventure.</h1>
+    <p>Packs, shelters and layers built for multi-day trips and tested on them. Every product lists its real weight — including the stuff sack, the pegs and the guy lines.</p>
+    <div class="hero-cta"><a class="btn" href="#gear">Find the right product</a><a class="btn btn--out" href="#warranty">Our warranty</a></div>
+    <ul class="pill"><li>Honest weights</li><li>Repaired, not replaced</li><li>Field notes on every product</li></ul>
+  </div></section>
+  <section class="sec" id="gear"><div class="wrap">
+    <p class="lbl">Product gallery</p><h2 class="h2">Six things worth carrying.</h2>
+    <p class="lead">Each of these has been through at least one full season with our testers before it reached the catalogue. The field note is theirs, not marketing's.</p>
+    <div class="grid">
+      <article><div class="ph">Pack</div><div class="bd"><p class="kind">Packs</p><h3>Cirque 55 Pack</h3>
+        <p>Frame carries load properly above 18kg. Field note: hip belt needs a size up if you are between sizes.</p>
+        <dl><div><dt>Weight</dt><dd>1.42 kg</dd></div><div><dt>Volume</dt><dd>55 L</dd></div></dl><p class="price">$389</p></div></article>
+      <article><div class="ph">Shelter</div><div class="bd"><p class="kind">Shelters</p><h3>Scarp 2 Tent</h3>
+        <p>Two-person, four-season. Field note: pitches outer-first, which matters more than the spec sheet suggests.</p>
+        <dl><div><dt>Weight</dt><dd>2.18 kg</dd></div><div><dt>Season</dt><dd>4</dd></div></dl><p class="price">$749</p></div></article>
+      <article><div class="ph">Insulation</div><div class="bd"><p class="kind">Layers</p><h3>Halden Down Hoody</h3>
+        <p>850-fill, responsibly sourced. Field note: packs to the size of a water bottle, which is the whole point.</p>
+        <dl><div><dt>Weight</dt><dd>384 g</dd></div><div><dt>Fill</dt><dd>850</dd></div></dl><p class="price">$429</p></div></article>
+      <article><div class="ph">Shell</div><div class="bd"><p class="kind">Layers</p><h3>Traverse Hardshell</h3>
+        <p>Three-layer, fully taped. Field note: pit zips are long enough to actually use with a pack on.</p>
+        <dl><div><dt>Weight</dt><dd>412 g</dd></div><div><dt>Rating</dt><dd>20k</dd></div></dl><p class="price">$519</p></div></article>
+      <article><div class="ph">Sleep</div><div class="bd"><p class="kind">Sleep</p><h3>Kestrel −7 Bag</h3>
+        <p>Comfort rated honestly, not to the limit figure. Field note: cut is generous through the shoulders.</p>
+        <dl><div><dt>Weight</dt><dd>1.06 kg</dd></div><div><dt>Comfort</dt><dd>−7 °C</dd></div></dl><p class="price">$579</p></div></article>
+      <article><div class="ph">Cook</div><div class="bd"><p class="kind">Cook</p><h3>Ember Stove System</h3>
+        <p>Boils 500ml in 2m 40s at sea level. Field note: the pot handle gets hot — the older model's did not.</p>
+        <dl><div><dt>Weight</dt><dd>388 g</dd></div><div><dt>Boil</dt><dd>2:40</dd></div></dl><p class="price">$189</p></div></article>
+    </div>
+  </div></section>
+  <section class="app" id="app"><div class="wrap app-in">
+    <div>
+      <p class="lbl" style="color:var(--sand)">Apex Trails</p>
+      <h2 style="margin-top:.7rem">Route notes from people who actually walked it.</h2>
+      <p>Offline topo maps, water source reports and trip logs. Free, no account required to read, and no advertising in it.</p>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg>Offline maps for 400+ multi-day routes</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg>Water sources with dates last checked</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m4 12 5 5L20 6"/></svg>Register your gear for warranty in one tap</li>
+      </ul>
+      <div class="hero-cta">
+        <!-- REPLACE: link to the real app store listings -->
+        <a class="btn btn--tan" href="#warranty">Download the app</a>
+      </div>
+    </div>
+    <div class="badge" id="warranty">
+      <p class="lbl" style="color:var(--sand);margin-bottom:1rem">Warranty — repair first</p>
+      <dl>
+        <div><dt>Coverage</dt><dd>Lifetime</dd></div>
+        <div><dt>Repairs completed 2025</dt><dd>4,180</dd></div>
+        <div><dt>Median turnaround</dt><dd>11 days</dd></div>
+        <div><dt>Cost to you</dt><dd>$0</dd></div>
+        <div><dt>Replaced instead of repaired</dt><dd>6%</dd></div>
+      </dl>
+    </div>
+  </div></section>
+</main>
+<footer class="ft"><div class="wrap">
+  <div class="ft-g">
+    <div><span class="ft-logo"><img src="assets/logos/apex-outdoor.png" alt="Apex Outdoor Gear"></span>
+      <p>Packs, shelters and layers for multi-day trips. Repaired before replaced, and weighed honestly.</p></div>
+    <div><h3>Shop</h3><a href="#gear">Packs</a><a href="#gear">Shelters</a><a href="#gear">Layers</a><a href="#gear">Sleep &amp; cook</a></div>
+    <div><h3>Support</h3>
+      <!-- REPLACE: placeholder contact details -->
+      <a href="#warranty">Warranty &amp; repairs</a><a href="mailto:support@apexoutdoor.example">support@apexoutdoor.example</a><a href="tel:+15557710412">(555) 771-0412</a></div>
+  </div>
+  <div class="ft-end"><span>© 2026 Apex Outdoor Gear</span><span>Lifetime repair warranty</span></div>
+</div></footer>
+</body>
+</html>

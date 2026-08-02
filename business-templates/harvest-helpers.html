@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harvest Helpers Food Bank — Feeding Our Community Together</title>
+<meta name="description" content="Free food for anyone who needs it, no proof required. Find a pantry near you, or help through donating and volunteering.">
+<meta name="theme-color" content="#FBF7EF">
+<meta property="og:title" content="Harvest Helpers Food Bank"><meta property="og:type" content="website">
+<meta property="og:description" content="Feeding our community together. Find food, donate, volunteer.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Asap:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+/* HARVEST HELPERS — "The Pantry Board"
+   Finding food comes before asking for money. Sturdy type, generous tap
+   targets, and the locator sits above the donate appeal on purpose. */
+:root{--earth:#5A3D22;--earth-d:#432C17;--gold:#8F5D0C;--gold-lt:#E4B84E;--leaf:#4A6B2A;--leaf-d:#38511F;
+  --paper:#FBF7EF;--paper-2:#F3EBDC;--line:#E0D4BE;--ink:#2E2115;--ink-2:#57452F;--muted:#6E5B41;
+  --ui:'Asap',system-ui,sans-serif}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:86px}
+body{background:var(--paper);color:var(--ink-2);font-family:var(--ui);font-size:17.5px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}a{color:inherit;text-decoration:none}ul{list-style:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+::selection{background:var(--gold-lt);color:var(--ink)}
+h1,h2,h3{color:var(--ink);font-weight:700;line-height:1.14;text-wrap:balance}
+.wrap{width:100%;max-width:1120px;margin-inline:auto;padding-inline:clamp(1.1rem,4vw,2.5rem)}
+.sec{padding-block:clamp(3.25rem,7vw,5.5rem)}
+.lbl{font-size:.76rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--leaf-d)}
+.h2{font-size:clamp(1.8rem,4.2vw,2.8rem);margin-block:.6rem 1rem}
+.lead{max-width:60ch}
+.skip{position:absolute;left:-9999px}.skip:focus{left:1rem;top:1rem;z-index:200;background:var(--gold);color:#fff;padding:.7rem 1.1rem}
+.bar{position:sticky;top:0;z-index:60;background:rgba(251,247,239,.97);backdrop-filter:blur(8px);border-bottom:2px solid var(--line)}
+.bar-in{display:flex;align-items:center;gap:1rem;min-height:78px;min-width:0}
+.mk{margin-right:auto;min-width:0}.mk img{height:48px;width:auto}
+.nav{display:none;gap:1.6rem;margin-right:1.25rem}
+.nav a{font-weight:600;font-size:.96rem;color:var(--ink);padding-bottom:2px;border-bottom:2px solid transparent}
+.nav a:hover{border-bottom-color:var(--gold)}
+@media(min-width:900px){.nav{display:flex}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.85rem 1.6rem;font-weight:700;font-size:.96rem;
+  background:var(--gold);color:#fff;text-align:center;flex:none;border-radius:4px}
+.btn:hover{background:var(--earth)}
+.btn--leaf{background:var(--leaf)}.btn--leaf:hover{background:var(--leaf-d)}
+.btn--out{background:transparent;color:var(--earth);border:2px solid var(--line)}
+.btn--out:hover{border-color:var(--earth)}
+.hero{background:var(--paper-2);border-bottom:2px solid var(--line)}
+.hero-in{padding-block:clamp(3rem,7vw,5rem)}
+.hero h1{font-size:clamp(2.1rem,5.4vw,3.6rem);max-width:20ch}
+.hero p{margin-top:1.15rem;max-width:56ch;font-size:1.08rem}
+.hero-cta{display:flex;flex-wrap:wrap;gap:.85rem;margin-top:1.9rem}
+.urgent{margin-top:2rem;padding:1.15rem 1.3rem;background:#fff;border-left:5px solid var(--leaf);border-radius:4px;max-width:60ch}
+.urgent b{color:var(--ink)}
+.loc{display:grid;gap:1px;background:var(--line);border:2px solid var(--line);border-radius:6px;overflow:hidden;margin-top:2.5rem}
+@media(min-width:820px){.loc{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.loc article{background:#fff;padding:1.6rem 1.5rem;min-width:0}
+.loc h3{font-size:1.22rem;margin-bottom:.3rem}
+.loc .addr{font-size:.95rem;color:var(--muted);margin-bottom:.9rem}
+.loc dl{border-top:1px solid var(--line)}
+.loc dl>div{display:grid;grid-template-columns:6.5rem minmax(0,1fr);gap:.9rem;padding-block:.55rem;border-bottom:1px solid var(--line);align-items:baseline}
+.loc dt{font-size:.76rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.loc dd{color:var(--ink);font-weight:600;overflow-wrap:anywhere}
+@media(max-width:420px){.loc dl>div{grid-template-columns:1fr;gap:.1rem}}
+.impact{display:grid;gap:1px;background:var(--line);border:2px solid var(--line);border-radius:6px;overflow:hidden;margin-top:2.5rem}
+@media(min-width:640px){.impact{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(min-width:980px){.impact{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.impact div{background:var(--paper);padding:1.75rem 1.35rem;text-align:center;min-width:0}
+.impact b{display:block;color:var(--gold);font-size:clamp(2rem,4.4vw,2.9rem);line-height:1;font-variant-numeric:tabular-nums}
+.impact span{display:block;margin-top:.5rem;font-size:.88rem;font-weight:600;color:var(--ink-2)}
+.give{display:grid;gap:1.25rem;margin-top:2.5rem}
+@media(min-width:760px){.give{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.give article{background:#fff;border:2px solid var(--line);border-radius:6px;padding:1.7rem 1.55rem;min-width:0;display:flex;flex-direction:column}
+.give b{display:block;color:var(--gold);font-size:1.9rem;line-height:1;margin-bottom:.55rem;font-variant-numeric:tabular-nums}
+.give h3{font-size:1.1rem;margin-bottom:.4rem}
+.give p{font-size:.94rem;flex:1}
+.give .btn{margin-top:1.2rem;align-self:flex-start}
+.ft{background:var(--earth);color:#DCC9AE;padding-block:2.75rem 1.4rem}
+.ft-g{display:grid;gap:2rem;margin-bottom:2rem}
+@media(min-width:780px){.ft-g{grid-template-columns:1.4fr 1fr 1fr}}
+.ft h3{color:#fff;font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin-bottom:.85rem}
+.ft a{display:block;padding-block:.24rem;color:#DCC9AE;overflow-wrap:anywhere}.ft a:hover{color:#fff}
+.ft-logo{background:var(--paper);padding:.5rem .7rem;border-radius:6px;display:inline-block;margin-bottom:1rem}
+.ft-logo img{height:38px;width:auto}
+.ft-end{border-top:1px solid #77563A;padding-top:1.15rem;display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;justify-content:space-between;font-size:.85rem}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#find">Skip to find food</a>
+<header class="bar"><div class="wrap bar-in">
+  <a class="mk" href="#top" aria-label="Harvest Helpers Food Bank — home"><img src="assets/logos/harvest-helpers.png" alt="Harvest Helpers Food Bank"></a>
+  <nav class="nav" aria-label="Primary"><a href="#find">Find food</a><a href="#impact">Our impact</a><a href="#give">Volunteer</a></nav>
+  <a class="btn" href="#give">Give today</a>
+</div></header>
+<main id="top">
+  <section class="hero"><div class="wrap hero-in">
+    <p class="lbl">Community food relief · Since 2011</p>
+    <h1 style="margin-top:.7rem">Feeding our community together.</h1>
+    <p>Six pantries, open every weekday. There is no form, no means test and no questions about why you are here. Take what you need.</p>
+    <div class="hero-cta"><a class="btn btn--leaf" href="#find">Find food near you</a><a class="btn btn--out" href="#give">Give today</a></div>
+    <p class="urgent"><b>Need food today?</b> The Kilburn Street pantry is open until 6pm and does not require an appointment. If you cannot travel, call <a href="tel:+15552730144" style="color:var(--leaf-d);font-weight:700;text-decoration:underline">(555) 273-0144</a> and we will arrange a delivery.</p>
+  </div></section>
+  <section class="sec" id="find"><div class="wrap">
+    <p class="lbl">Find food</p><h2 class="h2">Six pantries, open this week.</h2>
+    <p class="lead">Bring a bag if you have one. Every pantry stocks fresh produce, bread, tinned goods and nappies, plus halal and vegetarian options.</p>
+    <div class="loc">
+      <article><h3>Kilburn Street Pantry</h3><p class="addr">12 Kilburn Street, ground floor</p>
+        <dl><div><dt>Open</dt><dd>Mon–Fri 10am – 6pm</dd></div><div><dt>Transport</dt><dd>Bus 14, 22 · parking on site</dd></div><div><dt>Access</dt><dd>Step-free, no appointment</dd></div></dl></article>
+      <article><h3>Eastgate Community Hall</h3><p class="addr">Eastgate Road, behind the library</p>
+        <dl><div><dt>Open</dt><dd>Tue &amp; Thu 9am – 1pm</dd></div><div><dt>Transport</dt><dd>Train — Eastgate, 6 min walk</dd></div><div><dt>Access</dt><dd>Step-free, interpreters Tue</dd></div></dl></article>
+      <article><h3>Northbridge Mobile Van</h3><p class="addr">Northbridge shops, car park</p>
+        <dl><div><dt>Open</dt><dd>Wed 11am – 2pm</dd></div><div><dt>Transport</dt><dd>Bus 8 · roadside stop</dd></div><div><dt>Access</dt><dd>Kerbside service available</dd></div></dl></article>
+      <article><h3>St Aidan's Hall</h3><p class="addr">Corner of Pell and Vine Street</p>
+        <dl><div><dt>Open</dt><dd>Fri 12pm – 5pm · Sat 9am – 12pm</dd></div><div><dt>Transport</dt><dd>Bus 3, 14</dd></div><div><dt>Access</dt><dd>Ramp at side entrance</dd></div></dl></article>
+    </div>
+  </div></section>
+  <section class="sec" id="impact" style="background:var(--paper-2);border-block:2px solid var(--line)"><div class="wrap">
+    <p class="lbl">Our impact</p><h2 class="h2">Last year, in plain numbers.</h2>
+    <p class="lead">We publish these because people giving money deserve to see where it went, and because the scale of the need should be uncomfortable.</p>
+    <div class="impact">
+      <div><b>412,000</b><span>Meals distributed</span></div>
+      <div><b>3,900</b><span>Households supported</span></div>
+      <div><b>78</b><span>Tonnes of food rescued</span></div>
+      <div><b>94¢</b><span>Of each dollar into food</span></div>
+    </div>
+  </div></section>
+  <section class="sec" id="give"><div class="wrap">
+    <p class="lbl">Give &amp; volunteer</p><h2 class="h2">What your help actually buys.</h2>
+    <p class="lead">We buy at wholesale and rescue what we can, so donations stretch a long way further here than at a supermarket checkout.</p>
+    <div class="give">
+      <article><b>$25</b><h3>A week of groceries</h3><p>Feeds a household of four for seven days, including fresh produce and protein.</p>
+        <!-- REPLACE: connect to a real donation processor -->
+        <a class="btn" href="mailto:give@harvesthelpers.example">Give $25</a></article>
+      <article><b>$100</b><h3>A mobile van run</h3><p>Covers fuel, driver costs and stock for one Northbridge visit reaching about 60 households.</p>
+        <a class="btn" href="mailto:give@harvesthelpers.example">Give $100</a></article>
+      <article><b>4 hrs</b><h3>A volunteer shift</h3><p>Sorting, packing or driving. No experience needed and we train you on the day.</p>
+        <a class="btn btn--leaf" href="mailto:volunteer@harvesthelpers.example">Volunteer</a></article>
+    </div>
+  </div></section>
+</main>
+<footer class="ft"><div class="wrap">
+  <div class="ft-g">
+    <div><span class="ft-logo"><img src="assets/logos/harvest-helpers.png" alt="Harvest Helpers Food Bank"></span>
+      <p>A community food bank running six pantries and a mobile van. No means test, no proof of income, no questions.</p></div>
+    <div><h3>Get help</h3><a href="#find">Find a pantry</a><a href="tel:+15552730144">Request a delivery</a><a href="#impact">Our impact</a></div>
+    <div><h3>Contact</h3><a href="tel:+15552730144">(555) 273-0144</a><a href="mailto:hello@harvesthelpers.example">hello@harvesthelpers.example</a><p style="margin-top:.5rem">Charity 62-114-770</p></div>
+  </div>
+  <div class="ft-end"><span>© 2026 Harvest Helpers Food Bank</span><span>94¢ of every dollar goes to food</span></div>
+</div></footer>
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zenith Tech Solutions — Innovating the Future</title>
+<meta name="description" content="Platform engineering, data infrastructure and integration. Published latency figures, a live status page, and a two-week proof of concept.">
+<meta name="theme-color" content="#0A1119">
+<meta property="og:title" content="Zenith Tech Solutions"><meta property="og:type" content="website">
+<meta property="og:description" content="Innovating the future. Platform engineering and data infrastructure.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+/* ZENITH TECH — "The Grid"
+   A lit grid behind everything, glow used only where something is live.
+   Numbers are monospace because they are measurements, not marketing. */
+:root{--bg:#0A1119;--bg-2:#0F1926;--panel:#132234;--edge:#1D3149;--edge-hi:#2A466A;
+  --blue:#2E9BF0;--blue-lt:#5CBEFF;--blue-d:#1B6FB5;
+  --txt:#D3E2F0;--txt-2:#9CB3C9;--txt-3:#8FA6BD;--ok:#3FD69A;
+  --disp:'Sora',system-ui,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:84px}
+body{background:var(--bg);color:var(--txt-2);font-family:var(--disp);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.6;
+  background-image:linear-gradient(var(--edge) 1px,transparent 1px),linear-gradient(90deg,var(--edge) 1px,transparent 1px);
+  background-size:64px 64px;mask-image:radial-gradient(ellipse 80% 55% at 50% 0%,#000 12%,transparent 72%)}
+img{display:block;max-width:100%;height:auto}a{color:inherit;text-decoration:none}ul{list-style:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+input,select,textarea{font-family:var(--disp);font-size:1rem}
+:focus-visible{outline:2px solid var(--blue-lt);outline-offset:3px}
+::selection{background:var(--blue-d);color:#fff}
+h1,h2,h3{color:#fff;font-weight:600;line-height:1.12;letter-spacing:-.02em;text-wrap:balance}
+.wrap{position:relative;z-index:1;width:100%;max-width:1180px;margin-inline:auto;padding-inline:clamp(1.1rem,4vw,2.5rem)}
+.sec{position:relative;z-index:1;padding-block:clamp(3.5rem,7.5vw,5.75rem)}
+.lbl{font-family:var(--mono);font-size:.7rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--blue-lt)}
+.h2{font-size:clamp(1.8rem,4.2vw,2.8rem);margin-block:.7rem 1rem}
+.lead{max-width:60ch}
+.mid{text-align:center}.mid p{margin-inline:auto}
+.skip{position:absolute;left:-9999px}.skip:focus{left:1rem;top:1rem;z-index:200;background:var(--blue);color:#04101C;padding:.7rem 1.1rem;font-weight:600}
+.bar{position:sticky;top:0;z-index:60;background:rgba(10,17,25,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--edge)}
+.bar-in{display:flex;align-items:center;gap:1rem;min-height:74px;min-width:0}
+.mk{margin-right:auto;min-width:0;background:#fff;padding:.35rem .55rem}
+.mk img{height:34px;width:auto}
+.nav{display:none;gap:1.7rem;margin-right:1.25rem}
+.nav a{font-size:.9rem;font-weight:500;color:var(--txt-2)}
+.nav a:hover{color:#fff}
+@media(min-width:880px){.nav{display:flex}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.82rem 1.6rem;font-weight:600;font-size:.92rem;
+  background:var(--blue);color:#04101C;text-align:center;flex:none;box-shadow:0 0 0 rgba(46,155,240,0);transition:box-shadow .3s,background .3s}
+.btn:hover{background:var(--blue-lt);box-shadow:0 0 22px rgba(46,155,240,.4)}
+.nav a.btn{color:#04101C}
+.btn--out{background:transparent;color:#fff;border:1px solid var(--edge-hi)}
+.btn--out:hover{border-color:var(--blue);background:rgba(46,155,240,.08);box-shadow:none}
+.hero{position:relative;border-bottom:1px solid var(--edge);overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse 55% 45% at 50% 8%,rgba(46,155,240,.22),transparent 70%)}
+.hero-in{position:relative;z-index:1;padding-block:clamp(3.5rem,9vw,6.5rem);text-align:center}
+.hero h1{font-size:clamp(2.2rem,6.2vw,4.3rem)}
+.hero p{margin:1.3rem auto 0;max-width:54ch;font-size:1.06rem}
+.hero-cta{display:flex;flex-wrap:wrap;gap:.85rem;justify-content:center;margin-top:2.1rem}
+.stat{display:grid;gap:1px;background:var(--edge);border:1px solid var(--edge);margin-top:clamp(2.5rem,6vw,3.75rem)}
+@media(min-width:700px){.stat{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.stat div{background:var(--bg-2);padding:1.5rem 1.2rem;min-width:0}
+.stat b{display:block;font-family:var(--mono);color:var(--blue-lt);font-size:clamp(1.4rem,3vw,2rem);line-height:1;font-variant-numeric:tabular-nums}
+.stat span{display:block;margin-top:.55rem;font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--txt-3)}
+.tech{display:grid;gap:1px;background:var(--edge);border:1px solid var(--edge);margin-top:2.5rem}
+@media(min-width:700px){.tech{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(min-width:1020px){.tech{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.tech article{background:var(--bg-2);padding:1.75rem 1.5rem;min-width:0;transition:background .35s}
+.tech article:hover{background:var(--panel)}
+.tech .ic{width:42px;height:42px;display:grid;place-items:center;background:rgba(46,155,240,.12);color:var(--blue-lt);margin-bottom:1rem}
+.tech .ic svg{width:20px;height:20px}
+.tech h3{font-size:1.14rem;margin-bottom:.45rem}
+.tech p{font-size:.93rem}
+.tech .m{display:block;margin-top:1rem;padding-top:.8rem;border-top:1px solid var(--edge);font-family:var(--mono);font-size:.72rem;color:var(--blue-lt)}
+.board{border:1px solid var(--edge);background:var(--bg-2);margin-top:2.5rem}
+.board-hd{display:flex;align-items:center;gap:.6rem;padding:.85rem 1.15rem;border-bottom:1px solid var(--edge);
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--txt-3)}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--ok);flex:none;box-shadow:0 0 8px rgba(63,214,154,.7)}
+.board dl>div{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:1rem;padding:.8rem 1.15rem;border-bottom:1px solid var(--edge);align-items:center}
+.board dl>div:last-child{border-bottom:0}
+.board dt{font-size:.92rem;color:var(--txt-2)}
+.board dd{font-family:var(--mono);font-size:.86rem;color:#fff;text-align:right;font-variant-numeric:tabular-nums}
+.board dd.ok{color:var(--ok)}
+.demo{display:grid;gap:clamp(2rem,5vw,3.5rem)}
+@media(min-width:880px){.demo{grid-template-columns:1fr 1fr}}
+.form{border:1px solid var(--edge);background:var(--bg-2);padding:clamp(1.4rem,3vw,2rem)}
+.form h3{font-size:1.3rem;margin-bottom:1.2rem}
+.fld{margin-bottom:1rem}
+.fld label{display:block;font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--txt-3);margin-bottom:.4rem}
+.fld input,.fld select,.fld textarea{width:100%;padding:.72rem .85rem;border:1px solid var(--edge);background:var(--bg);color:#fff}
+.fld textarea{min-height:100px;resize:vertical}
+.fld input:focus,.fld select:focus,.fld textarea:focus{outline:0;border-color:var(--blue)}
+.f2{display:grid;grid-template-columns:1fr;gap:1rem}
+@media(min-width:520px){.f2{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.form .btn{width:100%;margin-top:.3rem}.note{margin-top:.85rem;font-size:.84rem;color:var(--txt-3)}
+.ft{position:relative;z-index:1;border-top:1px solid var(--edge);padding-block:2.75rem 1.4rem}
+.ft-g{display:grid;gap:2rem;margin-bottom:2rem}
+@media(min-width:800px){.ft-g{grid-template-columns:1.4fr 1fr 1fr}}
+.ft h3{color:#fff;font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;margin-bottom:.85rem}
+.ft a{display:block;padding-block:.24rem;overflow-wrap:anywhere}.ft a:hover{color:#fff}
+.ft-logo{background:#fff;padding:.4rem .6rem;display:inline-block;margin-bottom:1rem}
+.ft-logo img{height:32px;width:auto}
+.ft-end{border-top:1px solid var(--edge);padding-top:1.15rem;display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;justify-content:space-between;
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;color:var(--txt-3)}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#tech">Skip to technology</a>
+<header class="bar"><div class="wrap bar-in">
+  <a class="mk" href="#top" aria-label="Zenith Tech Solutions — home"><img src="assets/logos/zenith-tech.png" alt="Zenith Tech Solutions"></a>
+  <nav class="nav" aria-label="Primary"><a href="#tech">Technology</a><a href="#status">Status</a><a href="#demo">Demo</a></nav>
+  <a class="btn" href="#tech">Our services</a>
+</div></header>
+<main id="top">
+  <section class="hero"><div class="wrap hero-in">
+    <p class="lbl">Platform engineering · Data · Integration</p>
+    <h1 style="margin-top:1rem">Innovating the future.</h1>
+    <p>We build the layer your product sits on — event pipelines, service meshes and the integrations nobody wants to own. Latency figures published, status page public, and a two-week proof of concept before you sign anything.</p>
+    <div class="hero-cta"><a class="btn" href="#tech">Our services</a><a class="btn btn--out" href="#demo">Request a demo</a></div>
+    <div class="stat">
+      <div><b>99.98%</b><span>Rolling 12-mo uptime</span></div>
+      <div><b>41ms</b><span>p95 gateway latency</span></div>
+      <div><b>2 wks</b><span>Proof of concept</span></div>
+      <div><b>18min</b><span>Median incident MTTR</span></div>
+    </div>
+  </div></section>
+  <section class="sec" id="tech"><div class="wrap">
+    <p class="lbl">Our technology</p><h2 class="h2">Four capabilities, one contract.</h2>
+    <p class="lead">Every engagement starts with a two-week proof of concept against your real data. If it does not work, you keep the code and owe us nothing.</p>
+    <div class="tech">
+      <article><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="2" y="3" width="20" height="7" rx="1"/><rect x="2" y="14" width="20" height="7" rx="1"/><path d="M6 6.5h.01M6 17.5h.01"/></svg></span>
+        <h3>Platform engineering</h3><p>Kubernetes, service mesh and the deployment pipeline your team actually wants to use.</p><span class="m">deploy_freq: 40+/wk</span></article>
+      <article><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.7 4 3 9 3s9-1.3 9-3V5M3 12c0 1.7 4 3 9 3s9-1.3 9-3"/></svg></span>
+        <h3>Data infrastructure</h3><p>Event streams, warehouses and lineage you can point an auditor at without flinching.</p><span class="m">ingest: 2.4M ev/min</span></article>
+      <article><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><path d="M9 6h6a3 3 0 0 1 3 3v6"/></svg></span>
+        <h3>Integration</h3><p>The connectors between the six systems nobody documented. Idempotent, replayable, monitored.</p><span class="m">retries: exactly-once</span></article>
+      <article><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></span>
+        <h3>Security &amp; compliance</h3><p>SOC 2 evidence collected automatically rather than assembled in a panic each year.</p><span class="m">controls: 114 automated</span></article>
+    </div>
+  </div></section>
+  <section class="sec" id="status" style="border-top:1px solid var(--edge)"><div class="wrap mid">
+    <p class="lbl">Live status</p><h2 class="h2">Published, not promised.</h2>
+    <p class="lead">These are the same numbers our on-call engineers see. We publish them because a vendor who will not show you their latency is telling you something.</p>
+  </div><div class="wrap">
+    <div class="board">
+      <div class="board-hd"><span class="dot"></span>All systems operational — updated continuously</div>
+      <dl>
+        <div><dt>API gateway — p95 latency</dt><dd class="ok">41 ms</dd></div>
+        <div><dt>Event pipeline — lag</dt><dd class="ok">0.8 s</dd></div>
+        <div><dt>Warehouse sync — last run</dt><dd>4 min ago</dd></div>
+        <div><dt>Incidents — last 90 days</dt><dd>2</dd></div>
+        <div><dt>Median time to resolve</dt><dd class="ok">18 min</dd></div>
+        <div><dt>Scheduled maintenance</dt><dd>Sun 02:00 UTC</dd></div>
+      </dl>
+    </div>
+  </div></section>
+  <section class="sec" id="demo" style="border-top:1px solid var(--edge)"><div class="wrap demo">
+    <div>
+      <p class="lbl">Request a demo</p><h2 class="h2">Two weeks, your data, no invoice.</h2>
+      <p class="lead">Tell us the system that is causing the most pain. We will scope a proof of concept against it, run it for two weeks, and show you the numbers. If it does not hold up, you keep the code.</p>
+      <p class="lead" style="margin-top:1rem;font-family:var(--mono);font-size:.85rem;color:var(--txt-3)">
+        <!-- REPLACE: placeholder contact details -->
+        engineering@zenithtech.example · (555) 118-0740
+      </p>
+    </div>
+    <div class="form"><h3>Book a proof of concept</h3>
+      <form id="f">
+        <div class="f2">
+          <div class="fld"><label for="n">Name</label><input id="n" name="name" type="text" autocomplete="name" required></div>
+          <div class="fld"><label for="c">Company</label><input id="c" name="company" type="text" autocomplete="organization"></div>
+        </div>
+        <div class="f2">
+          <div class="fld"><label for="e">Work email</label><input id="e" name="email" type="email" autocomplete="email" required></div>
+          <div class="fld"><label for="s">Focus</label>
+            <select id="s" name="focus"><option>Platform engineering</option><option>Data infrastructure</option><option>Integration</option><option>Security &amp; compliance</option></select></div>
+        </div>
+        <div class="fld"><label for="d">What is hurting</label><textarea id="d" name="detail" placeholder="The system, the symptom, and roughly what scale it runs at."></textarea></div>
+        <button class="btn" type="submit">Request the demo</button>
+        <!-- REPLACE: wire to a real endpoint before going live -->
+        <p class="note" id="msg">This demo form is not connected to a mailbox yet.</p>
+      </form>
+    </div>
+  </div></section>
+</main>
+<footer class="ft"><div class="wrap">
+  <div class="ft-g">
+    <div><span class="ft-logo"><img src="assets/logos/zenith-tech.png" alt="Zenith Tech Solutions"></span>
+      <p>Platform engineering, data infrastructure and integration. Latency published, status page public.</p></div>
+    <div><h3>Services</h3><a href="#tech">Platform</a><a href="#tech">Data</a><a href="#tech">Integration</a><a href="#tech">Security</a></div>
+    <div><h3>Contact</h3><a href="tel:+15551180740">(555) 118-0740</a><a href="mailto:engineering@zenithtech.example">engineering@zenithtech.example</a><a href="#status">Status page</a></div>
+  </div>
+  <div class="ft-end"><span>© 2026 Zenith Tech Solutions</span><span>SOC 2 Type II</span></div>
+</div></footer>
+<script>(function(){'use strict';var f=document.getElementById('f'),m=document.getElementById('msg');
+if(f)f.addEventListener('submit',function(e){e.preventDefault();m.textContent='Not connected yet — please email engineering@zenithtech.example.';m.style.color='#5CBEFF';});})();</script>
+</body>
+</html>

@@ -213,6 +213,69 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  /* ---------- live sites: search, filter, sort --------------------------- */
+  var grid = $('#sites-grid');
+  if (grid) {
+    var sites   = $$('.site', grid);
+    var order   = sites.slice();                 // authored order = by sector
+    var q       = $('#site-q');
+    var sortSel = $('#site-sort');
+    var chips   = $$('.sites-bar .chip');
+    var countEl = $('#site-count');
+    var emptyEl = $('#sites-empty');
+    var reset   = $('#site-reset');
+    var filter  = 'all';
+
+    sites.forEach(function (el) {
+      el.dataset.search = (el.dataset.search || el.textContent).toLowerCase();
+    });
+
+    function apply() {
+      var term = (q && q.value || '').trim().toLowerCase();
+      var shown = 0;
+      sites.forEach(function (el) {
+        var okCat  = filter === 'all' || el.dataset.cat === filter;
+        var okTerm = !term || el.dataset.search.indexOf(term) !== -1;
+        var show   = okCat && okTerm;
+        el.classList.toggle('is-hidden', !show);
+        if (show) shown++;
+      });
+      if (countEl) countEl.textContent = 'Showing ' + shown + ' of ' + sites.length;
+      if (emptyEl) emptyEl.classList.toggle('show', shown === 0);
+    }
+
+    function resort() {
+      var mode = sortSel ? sortSel.value : 'default';
+      var list = order.slice();
+      if (mode === 'az' || mode === 'za') {
+        list.sort(function (a, b) {
+          return (a.dataset.name || '').localeCompare(b.dataset.name || '');
+        });
+        if (mode === 'za') list.reverse();
+      }
+      list.forEach(function (el) { grid.appendChild(el); });
+    }
+
+    if (q) q.addEventListener('input', apply);
+    if (sortSel) sortSel.addEventListener('change', resort);
+    chips.forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        filter = chip.dataset.filter;
+        chips.forEach(function (c) {
+          c.setAttribute('aria-pressed', String(c === chip));
+        });
+        apply();
+      });
+    });
+    if (reset) reset.addEventListener('click', function () {
+      filter = 'all';
+      if (q) q.value = '';
+      chips.forEach(function (c) { c.setAttribute('aria-pressed', String(c.dataset.filter === 'all')); });
+      apply();
+    });
+    apply();
+  }
+
   /* ---------- images fade in as they decode -------------------------------- */
   $$('.image-reveal').forEach(img => {
     if (img.complete) img.classList.add('loaded');

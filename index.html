@@ -446,16 +446,42 @@
     <div class="container">
       <div class="section__header reveal">
         <span class="section__label">Live Sites</span>
-        <h2 class="section__title">Nine businesses, nine <em>different</em> arguments.</h2>
+        <h2 class="section__title">Twenty-three businesses, twenty-three <em>different</em> arguments.</h2>
         <p class="section__subtitle">
-          A workshop, an emergency plumber, a law firm, an IT operations team, a roastery,
-          a nursery, a yoga studio, a gym and a gallery. Each is a single hand-written file
-          with its own layout language — no shared template, no two alike. Open any of them.
+          Trades, hospitality, professional services, health, culture and a non-profit. Each is a single hand-written file with its own
+          layout language — no shared template, no two alike. Search or filter, then open any of them.
         </p>
       </div>
 
-      <div class="sites reveal">
-        <a class="site" href="business-templates/apex-automotive.html" target="_blank" rel="noopener">
+      <div class="sites-bar reveal">
+        <div class="sites-search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <label class="vh" for="site-q">Search the sites</label>
+          <input id="site-q" type="search" placeholder="Search — plumber, yoga, legal, calendar…" autocomplete="off">
+        </div>
+        <div class="sites-filters" role="group" aria-label="Filter by sector">
+          <button class="chip" data-filter="all" aria-pressed="true">All</button>
+          <button class="chip" data-filter="trades" aria-pressed="false">Trades</button>
+          <button class="chip" data-filter="professional" aria-pressed="false">Professional</button>
+          <button class="chip" data-filter="hospitality" aria-pressed="false">Hospitality</button>
+          <button class="chip" data-filter="wellness" aria-pressed="false">Health</button>
+          <button class="chip" data-filter="culture" aria-pressed="false">Culture</button>
+          <button class="chip" data-filter="nonprofit" aria-pressed="false">Non-profit</button>
+        </div>
+        <div class="sites-sort">
+          <label class="vh" for="site-sort">Sort</label>
+          <select id="site-sort">
+            <option value="default">Sort — by sector</option>
+            <option value="az">Name A–Z</option>
+            <option value="za">Name Z–A</option>
+          </select>
+        </div>
+        <p class="sites-count" id="site-count" aria-live="polite">Showing 23 of 23</p>
+      </div>
+
+      <div class="sites reveal" id="sites-grid">
+        <a class="site" href="business-templates/apex-automotive.html" target="_blank" rel="noopener"
+           data-cat="trades" data-name="Apex Automotive" data-search="Apex Automotive Automotive · Workshop Job-card layout with a live bay board and published rates.">
           <span class="site__shot">
             <img src="business-templates/assets/previews/apex-automotive.jpg" width="1440" height="900" alt="Apex Automotive website" loading="lazy" decoding="async">
           </span>
@@ -465,7 +491,19 @@
             <span class="site__note">Job-card layout with a live bay board and published rates.</span>
           </span>
         </a>
-        <a class="site" href="business-templates/hydro-flow.html" target="_blank" rel="noopener">
+        <a class="site" href="business-templates/flowmaster-plumbing.html" target="_blank" rel="noopener"
+           data-cat="trades" data-name="Flowmaster Plumbing" data-search="Flowmaster Plumbing Trades · Plumbing Utility-first: the phone number never leaves the screen.">
+          <span class="site__shot">
+            <img src="business-templates/assets/previews/flowmaster-plumbing.jpg" width="1440" height="900" alt="Flowmaster Plumbing website" loading="lazy" decoding="async">
+          </span>
+          <span class="site__body">
+            <span class="site__sector">Trades · Plumbing</span>
+            <span class="site__name">Flowmaster Plumbing</span>
+            <span class="site__note">Utility-first: the phone number never leaves the screen.</span>
+          </span>
+        </a>
+        <a class="site" href="business-templates/hydro-flow.html" target="_blank" rel="noopener"
+           data-cat="trades" data-name="Hydro Flow Plumbing" data-search="Hydro Flow Plumbing Trades · Emergency A dispatch board — symptom triage before it sells anything.">
           <span class="site__shot">
             <img src="business-templates/assets/previews/hydro-flow.jpg" width="1440" height="900" alt="Hydro Flow Plumbing website" loading="lazy" decoding="async">
           </span>
@@ -475,7 +513,30 @@
             <span class="site__note">A dispatch board — symptom triage before it sells anything.</span>
           </span>
         </a>
-        <a class="site" href="business-templates/lex-associates.html" target="_blank" rel="noopener">
+        <a class="site" href="business-templates/climatecontrol-hvac.html" target="_blank" rel="noopener"
+           data-cat="trades" data-name="ClimateControl HVAC" data-search="ClimateControl HVAC Trades · HVAC Heating one side, cooling the other, grey holding the middle.">
+          <span class="site__shot">
+            <img src="business-templates/assets/previews/climatecontrol-hvac.jpg" width="1440" height="900" alt="ClimateControl HVAC website" loading="lazy" decoding="async">
+          </span>
+          <span class="site__body">
+            <span class="site__sector">Trades · HVAC</span>
+            <span class="site__name">ClimateControl HVAC</span>
+            <span class="site__note">Heating one side, cooling the other, grey holding the middle.</span>
+          </span>
+        </a>
+        <a class="site" href="business-templates/pristine-polish.html" target="_blank" rel="noopener"
+           data-cat="trades" data-name="Pristine Polish Detailing" data-search="Pristine Polish Detailing Automotive · Detailing A dark studio with one light in it, and a slider you drag.">
+          <span class="site__shot">
+            <img src="business-templates/assets/previews/pristine-polish.jpg" width="1440" height="900" alt="Pristine Polish Detailing website" loading="lazy" decoding="async">
+          </span>
+          <span class="site__body">
+            <span class="site__sector">Automotive · Detailing</span>
+            <span class="site__name">Pristine Polish Detailing</span>
+            <span class="site__note">A dark studio with one light in it, and a slider you drag.</span>
+          </span>
+        </a>
+        <a class="site" href="business-templates/lex-associates.html" target="_blank" rel="noopener"
+           data-cat="professional" data-name="Lex & Associates" data-search="Lex & Associates Professional · Legal Set as a legal document: fixed rail, roman numerals, hairlines.">
           <span class="site__shot">
             <img src="business-templates/assets/previews/lex-associates.jpg" width="1440" height="900" alt="Lex &amp; Associates website" loading="lazy" decoding="async">
           </span>
@@ -485,7 +546,8 @@
             <span class="site__note">Set as a legal document: fixed rail, roman numerals, hairlines.</span>
           </span>
         </a>
-        <a class="site" href="business-templates/nexa.html" target="_blank" rel="noopener">
+        <a class="site" href="business-templates/nexa.html" target="_blank" rel="noopener"
+           data-cat="professional" data-name="Nexa Solutions" data-search="Nexa Solutions Technology · Managed IT An operations console — service board, coverage matrix, incidents.">
           <span class="site__shot">
             <img src="business-templates/assets/previews/nexa.jpg" width="1440" height="900" alt="Nexa Solutions website" loading="lazy" decoding="async">
           </span>
@@ -495,7 +557,8 @@
             <span class="site__note">An operations console — service board, coverage matrix, incidents.</span>
           </span>
         </a>
-        <a class="site" href="business-templates/roast-revel.html" target="_blank" rel="noopener">
+        <a class="site" href="business-templates/roast-revel.html" target="_blank" rel="noopener"
+           data-cat="hospitality" data-name="Roast & Revel" data-search="Roast & Revel Hospitality · Retail A printed broadsheet: masthead, drop caps, dotted price leaders.">
           <span class="site__shot">
             <img src="business-templates/assets/previews/roast-revel.jpg" width="1440" height="900" alt="Roast &amp; Revel website" loading="lazy" decoding="async">
           </span>
@@ -505,7 +568,8 @@
             <span class="site__note">A printed broadsheet: masthead, drop caps, dotted price leaders.</span>
           </span>
         </a>
-        <a class="site" href="business-templates/root-bloom.html" target="_blank" rel="noopener">
+        <a class="site" href="business-templates/root-bloom.html" target="_blank" rel="noopener"
+           data-cat="hospitality" data-name="Root & Bloom" data-search="Root & Bloom Retail · Horticulture A botanical field guide with a twelve-month sowing calendar.">
           <span class="site__shot">
             <img src="business-templates/assets/previews/root-bloom.jpg" width="1440" height="900" alt="Root &amp; Bloom website" loading="lazy" decoding="async">
           </span>
@@ -515,7 +579,8 @@
             <span class="site__note">A botanical field guide with a twelve-month sowing calendar.</span>
           </span>
         </a>
-        <a class="site" href="business-templates/serene-spaces.html" target="_blank" rel="noopener">
+        <a class="site" href="business-templates/serene-spaces.html" target="_blank" rel="noopener"
+           data-cat="wellness" data-name="Serene Spaces Yoga" data-search="Serene Spaces Yoga Health &amp; Wellness Long vertical rhythm and a working breath pacer.">
           <span class="site__shot">
             <img src="business-templates/assets/previews/serene-spaces.jpg" width="1440" height="900" alt="Serene Spaces Yoga website" loading="lazy" decoding="async">
           </span>
@@ -525,7 +590,8 @@
             <span class="site__note">Long vertical rhythm and a working breath pacer.</span>
           </span>
         </a>
-        <a class="site" href="business-templates/vitality-gym.html" target="_blank" rel="noopener">
+        <a class="site" href="business-templates/vitality-gym.html" target="_blank" rel="noopener"
+           data-cat="wellness" data-name="Vitality Gym" data-search="Vitality Gym Health &amp; Fitness A brutalist training board — full-bleed blocks, hard edges.">
           <span class="site__shot">
             <img src="business-templates/assets/previews/vitality-gym.jpg" width="1440" height="900" alt="Vitality Gym website" loading="lazy" decoding="async">
           </span>
@@ -535,7 +601,8 @@
             <span class="site__note">A brutalist training board — full-bleed blocks, hard edges.</span>
           </span>
         </a>
-        <a class="site" href="business-templates/artisans-atelier.html" target="_blank" rel="noopener">
+        <a class="site" href="business-templates/artisans-atelier.html" target="_blank" rel="noopener"
+           data-cat="culture" data-name="The Artisan's Atelier" data-search="The Artisan's Atelier Arts &amp; Culture An exhibition catalogue: hanging wall, works listed with medium.">
           <span class="site__shot">
             <img src="business-templates/assets/previews/artisans-atelier.jpg" width="1440" height="900" alt="The Artisan's Atelier website" loading="lazy" decoding="async">
           </span>
@@ -545,7 +612,129 @@
             <span class="site__note">An exhibition catalogue: hanging wall, works listed with medium.</span>
           </span>
         </a>
+        <a class="site" href="business-templates/daily-crumb.html" target="_blank" rel="noopener"
+           data-cat="hospitality" data-name="The Daily Crumb Bakery" data-search="The Daily Crumb Bakery Hospitality · Bakery A shop sign: centred, soft-edged, with a dotted-leader menu board.">
+          <span class="site__shot">
+            <img src="business-templates/assets/previews/daily-crumb.jpg" width="1440" height="900" alt="The Daily Crumb Bakery website" loading="lazy" decoding="async">
+          </span>
+          <span class="site__body">
+            <span class="site__sector">Hospitality · Bakery</span>
+            <span class="site__name">The Daily Crumb Bakery</span>
+            <span class="site__note">A shop sign: centred, soft-edged, with a dotted-leader menu board.</span>
+          </span>
+        </a>
+        <a class="site" href="business-templates/bella-italia.html" target="_blank" rel="noopener"
+           data-cat="hospitality" data-name="Bella Italia Ristorante" data-search="Bella Italia Ristorante Hospitality · Restaurant A trattoria menu card on linen — four courses, hand-set.">
+          <span class="site__shot">
+            <img src="business-templates/assets/previews/bella-italia.jpg" width="1440" height="900" alt="Bella Italia Ristorante website" loading="lazy" decoding="async">
+          </span>
+          <span class="site__body">
+            <span class="site__sector">Hospitality · Restaurant</span>
+            <span class="site__name">Bella Italia Ristorante</span>
+            <span class="site__note">A trattoria menu card on linen — four courses, hand-set.</span>
+          </span>
+        </a>
+        <a class="site" href="business-templates/pawsitive-haven.html" target="_blank" rel="noopener"
+           data-cat="nonprofit" data-name="Pawsitive Haven Rescue" data-search="Pawsitive Haven Rescue Non-profit · Animal rescue A noticeboard of adoptable pets you can filter, and three ways to help.">
+          <span class="site__shot">
+            <img src="business-templates/assets/previews/pawsitive-haven.jpg" width="1440" height="900" alt="Pawsitive Haven Rescue website" loading="lazy" decoding="async">
+          </span>
+          <span class="site__body">
+            <span class="site__sector">Non-profit · Animal rescue</span>
+            <span class="site__name">Pawsitive Haven Rescue</span>
+            <span class="site__note">A noticeboard of adoptable pets you can filter, and three ways to help.</span>
+          </span>
+        </a>
+        <a class="site" href="business-templates/harvest-helpers.html" target="_blank" rel="noopener"
+           data-cat="nonprofit" data-name="Harvest Helpers Food Bank" data-search="Harvest Helpers Food Bank Non-profit · Food relief A pantry board — find food first, the donation appeal second.">
+          <span class="site__shot">
+            <img src="business-templates/assets/previews/harvest-helpers.jpg" width="1440" height="900" alt="Harvest Helpers Food Bank website" loading="lazy" decoding="async">
+          </span>
+          <span class="site__body">
+            <span class="site__sector">Non-profit · Food relief</span>
+            <span class="site__name">Harvest Helpers Food Bank</span>
+            <span class="site__note">A pantry board — find food first, the donation appeal second.</span>
+          </span>
+        </a>
+        <a class="site" href="business-templates/riverkeepers.html" target="_blank" rel="noopener"
+           data-cat="nonprofit" data-name="Riverkeepers Alliance" data-search="Riverkeepers Alliance Non-profit · Conservation A field station: live catchment readings, clean-up calendar, free guides.">
+          <span class="site__shot">
+            <img src="business-templates/assets/previews/riverkeepers.jpg" width="1440" height="900" alt="Riverkeepers Alliance website" loading="lazy" decoding="async">
+          </span>
+          <span class="site__body">
+            <span class="site__sector">Non-profit · Conservation</span>
+            <span class="site__name">Riverkeepers Alliance</span>
+            <span class="site__note">A field station: live catchment readings, clean-up calendar, free guides.</span>
+          </span>
+        </a>
+        <a class="site" href="business-templates/future-scholars.html" target="_blank" rel="noopener"
+           data-cat="nonprofit" data-name="Future Scholars Foundation" data-search="Future Scholars Foundation Non-profit · Education A certificate: gold rules, numbered application steps, alumni profiles.">
+          <span class="site__shot">
+            <img src="business-templates/assets/previews/future-scholars.jpg" width="1440" height="900" alt="Future Scholars Foundation website" loading="lazy" decoding="async">
+          </span>
+          <span class="site__body">
+            <span class="site__sector">Non-profit · Education</span>
+            <span class="site__name">Future Scholars Foundation</span>
+            <span class="site__note">A certificate: gold rules, numbered application steps, alumni profiles.</span>
+          </span>
+        </a>
+        <a class="site" href="business-templates/summit-construction.html" target="_blank" rel="noopener"
+           data-cat="trades" data-name="Summit Construction Group" data-search="Summit Construction Group Trades · Construction A site board — hazard stripes, project grid, published safety record.">
+          <span class="site__shot">
+            <img src="business-templates/assets/previews/summit-construction.jpg" width="1440" height="900" alt="Summit Construction Group website" loading="lazy" decoding="async">
+          </span>
+          <span class="site__body">
+            <span class="site__sector">Trades · Construction</span>
+            <span class="site__name">Summit Construction Group</span>
+            <span class="site__note">A site board — hazard stripes, project grid, published safety record.</span>
+          </span>
+        </a>
+        <a class="site" href="business-templates/apex-outdoor.html" target="_blank" rel="noopener"
+           data-cat="hospitality" data-name="Apex Outdoor Gear" data-search="Apex Outdoor Gear Retail · Outdoor gear A spec tag — honest weights, field notes, repair-first warranty.">
+          <span class="site__shot">
+            <img src="business-templates/assets/previews/apex-outdoor.jpg" width="1440" height="900" alt="Apex Outdoor Gear website" loading="lazy" decoding="async">
+          </span>
+          <span class="site__body">
+            <span class="site__sector">Retail · Outdoor gear</span>
+            <span class="site__name">Apex Outdoor Gear</span>
+            <span class="site__note">A spec tag — honest weights, field notes, repair-first warranty.</span>
+          </span>
+        </a>
+        <a class="site" href="business-templates/bloom-botanicals.html" target="_blank" rel="noopener"
+           data-cat="hospitality" data-name="Bloom Botanicals" data-search="Bloom Botanicals Retail · Skincare A pressed page: soft green washes, six-ingredient formulas, refillable glass.">
+          <span class="site__shot">
+            <img src="business-templates/assets/previews/bloom-botanicals.jpg" width="1440" height="900" alt="Bloom Botanicals website" loading="lazy" decoding="async">
+          </span>
+          <span class="site__body">
+            <span class="site__sector">Retail · Skincare</span>
+            <span class="site__name">Bloom Botanicals</span>
+            <span class="site__note">A pressed page: soft green washes, six-ingredient formulas, refillable glass.</span>
+          </span>
+        </a>
+        <a class="site" href="business-templates/chronos-consulting.html" target="_blank" rel="noopener"
+           data-cat="professional" data-name="Chronos Consulting" data-search="Chronos Consulting Professional · Consulting A memorandum — text is the hero, numbered services, no photography.">
+          <span class="site__shot">
+            <img src="business-templates/assets/previews/chronos-consulting.jpg" width="1440" height="900" alt="Chronos Consulting website" loading="lazy" decoding="async">
+          </span>
+          <span class="site__body">
+            <span class="site__sector">Professional · Consulting</span>
+            <span class="site__name">Chronos Consulting</span>
+            <span class="site__note">A memorandum — text is the hero, numbered services, no photography.</span>
+          </span>
+        </a>
+        <a class="site" href="business-templates/zenith-tech.html" target="_blank" rel="noopener"
+           data-cat="professional" data-name="Zenith Tech Solutions" data-search="Zenith Tech Solutions Technology · Platform A lit grid: published latency, live status board, monospace measurements.">
+          <span class="site__shot">
+            <img src="business-templates/assets/previews/zenith-tech.jpg" width="1440" height="900" alt="Zenith Tech Solutions website" loading="lazy" decoding="async">
+          </span>
+          <span class="site__body">
+            <span class="site__sector">Technology · Platform</span>
+            <span class="site__name">Zenith Tech Solutions</span>
+            <span class="site__note">A lit grid: published latency, live status board, monospace measurements.</span>
+          </span>
+        </a>
       </div>
+      <p class="sites-empty" id="sites-empty">Nothing matches that. <button class="linkish" id="site-reset">Clear the filters</button></p>
     </div>
   </section>
 
