@@ -745,3 +745,87 @@ for now** (they will send a photo), **supply a different email** (not yet given)
 - `about.html` still lists **"Parsons School of Design, New York"** as education, and
   `index.html` still claims **50+ projects and 30+ clients**. Both are invented and are the
   same class of problem as the contact details. They were not in the request.
+
+
+---
+
+### 2026-08-02 — Claude Code — stripping every claim that was not true
+
+**What the owner asked (verbatim):**
+
+> "gix those"
+
+> "I want to be honest and also don't want to provide useless information, this is my first ever website portfolio and those are my first ever websites no lies remove anything that I sent true"
+
+The second message reframed the whole job. A full text audit of all four E.M pages found
+invented claims on **every one of them** — not just the two flagged earlier.
+
+**Deleted outright, because nothing true could replace them:**
+
+- **Six invented case studies on `work.html`** — Aeterna, Zenith Finance, Aurélia Vance,
+  Aurora Analytics, Aeterna Realty, FitPulse — with stock images and a filter bar. The same
+  four fictions had already been removed from `index.html` in an earlier session; **nobody
+  checked `work.html`, so they sat there for two more sessions.** When you delete a lie,
+  grep the whole repo for it.
+- **The awards section on `about.html`.** Awwwards, CSS Design Awards and FWA are real
+  organisations with public, searchable winner databases, and two of the three awards cited
+  case studies that had already been deleted as fictional. This was the most dangerous
+  claim on the site — trivially disprovable by anyone who cared to look.
+- **The education section** — an MFA from Parsons and a BSc from Carnegie Mellon.
+- **The skill percentage meters** (95% HTML, 88% React, 85% Node…). A percentage next to a
+  skill is a number somebody invented; half the rows named technologies that appear nowhere
+  in this repo.
+- **Seven of eleven "tools"** — React, Next.js, Node, PostgreSQL, Docker, AWS, Photoshop,
+  After Effects, Blender. The list is now HTML, CSS, JavaScript, Git, which is what the repo
+  actually contains.
+- **Invented personal detail** ("photography, studying architecture, sketching in my
+  notebook") and an invented client history ("Fortune 500 companies and ambitious
+  startups").
+- **Six service cards** claiming mobile development, motion design and strategy consulting,
+  tagged React Native, Flutter, iOS, GSAP, Framer Motion, Lottie, A/B testing.
+- **The stock project images** `project-1..6.jpg` and `hero-bg.jpg`, unreferenced once the
+  fake case studies went. ~3.6 MB.
+
+**Rewritten to what is true:**
+
+- **The stats** are now `29 / 1 / 0` — sites you can open, person start to finish,
+  frameworks or plugins. Every one is checkable *from the page itself*. That is the rule
+  now: **if a number cannot be verified by clicking, it does not belong.**
+- **The four service cards** are the four things every site in the portfolio is actually
+  made of: one page, hand-written HTML/CSS, readable on a phone, accessible by default.
+- **`about.html` skills** became a two-column **"Can do" / "Can't do yet"** list. The second
+  column names React, back-end, e-commerce, mobile apps and hosting as things the owner
+  cannot do. For a first portfolio this is a stronger sell than a fake 88%, and it prevents
+  the worst outcome — winning a job that cannot be delivered.
+- **Contact pricing.** The budget dropdown ($5k–$50k+) and the FAQ's "most projects range
+  from $5,000 to $50,000+, I offer retainers" are gone. Budget is a free-text field, and the
+  FAQ says plainly that no rates are set yet and the first number will be agreed, not
+  published.
+- **The bio on both pages now states it outright:** first portfolio, first sites, nobody has
+  paid for one yet.
+
+**Dead code removed with the markup** — the portfolio filter and skill-meter handlers in
+`js/main.js`, and the `.filter-btn`, `.portfolio-item`, `.progress-bar`, `.education-card`,
+`.award-card` and `.map-container` rules in `css/style.css`. Deleting a section and leaving
+its CSS behind is how a stylesheet rots.
+
+**A correction I owe.** Earlier entries and PR bodies said the E.M pages pass WCAG AA. **They
+do not, and never did.** A sweep across all four pages found the design tokens `--muted`
+(#78746A) and `--muted-2` (#9A958A) failing on `--paper`: body copy at **4.09:1**, the hero
+scroll label and the sites count at **2.62:1**. Verified against the unmodified pages, so
+this predates every change in this session — but the earlier claim was wrong and should not
+be trusted. **It is a token-level fix (two hex values) and has not been made**, because
+changing the palette is a design decision the owner has not been asked about.
+
+**Also pre-existing, also not fixed:** `about.html` and `contact.html` each have an
+`h1 > h3` skip — their first content block opens at `h3` with no `h2`. `work.html`'s skip
+went away on its own when the fake case studies were deleted.
+
+**Verified:** all four pages balance their `<div>`/`<section>`/`<a>`/`<form>` tags, one `h1`
+each, no empty sections left behind, no sideways scroll at 320/414/768/1280/1920, no console
+errors, and no dead CSS or JS selectors pointing at deleted markup. Deleting the fake grid
+also removed the two worst contrast failures on the site (a 1.13:1 project title and a
+2.01:1 category label).
+
+**Still outstanding:** the email address, the four social links, and the portraits — which
+are still stock photographs of a person who is not the owner.

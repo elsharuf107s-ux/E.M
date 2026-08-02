@@ -86,11 +86,7 @@ p{text-wrap:pretty}
 .hero__label,
 .project-card__number,
 .timeline__date,
-.award-card__year,
-.education-card__year,
 .contact__detail-label,
-.portfolio-item__category,
-.progress-bar__label,
 .footer__text,
 .marquee__item,
 .availability-badge{
@@ -653,42 +649,7 @@ p{text-wrap:pretty}
   font-size:1.05rem;color:var(--muted);
 }
 
-/* ---------- portfolio grid (work.html) -------------------------------- */
-.filter-bar{
-  display:flex;flex-wrap:wrap;gap:2rem;
-  padding-bottom:1.5rem;margin-bottom:clamp(2.5rem,5vw,4rem);
-  border-bottom:1px solid var(--rule);
-}
-.filter-btn{
-  font-size:.72rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--muted-2);padding-bottom:.4rem;
-  border-bottom:1px solid transparent;
-  transition:color .3s,border-color .3s;
-}
-.filter-btn:hover{color:var(--ink)}
-.filter-btn.active{color:var(--ink);border-bottom-color:var(--ink)}
-
-.portfolio-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:clamp(2rem,4vw,3.5rem);
-}
-.portfolio-item{position:relative;overflow:hidden;background:var(--paper-3)}
-.portfolio-item img{width:100%;aspect-ratio:3/4;object-fit:cover;transition:transform 1.1s var(--ease)}
-.portfolio-item:hover img{transform:scale(1.03)}
-.portfolio-item__overlay{
-  position:absolute;inset:auto 0 0 0;
-  padding:1.5rem;
-  background:linear-gradient(to top, rgba(26,24,20,.85), rgba(26,24,20,0));
-  opacity:0;transition:opacity .45s var(--ease);
-}
-.portfolio-item:hover .portfolio-item__overlay,
-.portfolio-item:focus-within .portfolio-item__overlay{opacity:1}
-.portfolio-item__category{display:block;color:var(--brass-lt);margin-bottom:.4rem}
-.portfolio-item__title{font-family:var(--serif);font-size:1.25rem;color:var(--on-ink)}
-@media(max-width:900px){.portfolio-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:560px){.portfolio-grid{grid-template-columns:1fr}}
-
-/* ---------- tools / education / awards -------------------------------- */
+/* ---------- tools ----------------------------------------------------- */
 .tools-grid{
   display:grid;grid-template-columns:repeat(4,1fr);
   gap:1px;background:var(--rule);border:1px solid var(--rule);
@@ -703,46 +664,22 @@ p{text-wrap:pretty}
 .tool-card__name{font-size:.78rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
 @media(max-width:760px){.tools-grid{grid-template-columns:repeat(2,1fr)}}
 
-.education-card,
-.award-card{
-  display:grid;grid-template-columns:minmax(0,10rem) minmax(0,1fr);
-  gap:clamp(1rem,3vw,3rem);
-  padding-block:clamp(1.75rem,3vw,2.5rem);
+/* ---------- plain lists: the can / can't-yet columns ------------------- */
+.plain-list li{
+  position:relative;
+  padding-left:1.5rem;
+  padding-block:.5rem;
   border-bottom:1px solid var(--rule);
+  color:var(--ink-2);
 }
-.section--dark .education-card,
-.section--dark .award-card{border-bottom-color:var(--rule-ink)}
-.education-card__year,.award-card__year{padding-top:.4rem}
-.education-card__degree,.award-card__title{
-  font-family:var(--serif);font-size:clamp(1.2rem,2vw,1.55rem);
-  color:var(--ink);margin-bottom:.4rem;line-height:1.15;
+.section--dark .plain-list li{color:var(--on-ink-2);border-bottom-color:var(--rule-ink)}
+.plain-list li::before{
+  content:'';position:absolute;left:0;top:1.15em;
+  width:.55rem;height:1px;background:var(--brass);
 }
-.section--dark .education-card__degree,
-.section--dark .award-card__title{color:var(--on-ink)}
-.education-card__school,.award-card__desc{color:var(--muted);max-width:56ch}
-.section--dark .education-card__school,
-.section--dark .award-card__desc{color:var(--on-ink-2)}
-.award-card__icon{display:none}
-@media(max-width:700px){
-  .education-card,.award-card{grid-template-columns:1fr;gap:.5rem}
-}
-
-/* ---------- progress bars: hairline meters ---------------------------- */
-.progress-bar{margin-bottom:1.75rem}
-.progress-bar__header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.7rem}
-.progress-bar__label{color:var(--ink-2)}
-.section--dark .progress-bar__label{color:var(--on-ink)}
-.progress-bar__value{
-  font-size:.72rem;font-weight:500;letter-spacing:.12em;color:var(--muted-2);
-  font-variant-numeric:tabular-nums;
-}
-.progress-bar__track{height:1px;background:var(--rule);position:relative;overflow:hidden}
-.section--dark .progress-bar__track{background:var(--rule-ink)}
-.progress-bar__fill{
-  position:absolute;inset:0 auto 0 0;
-  background:var(--brass);
-  width:0;transition:width 1.4s var(--ease);
-}
+.section--dark .plain-list li::before{background:var(--brass-lt)}
+.plain-list--muted li::before{background:var(--muted-2)}
+.section--dark .plain-list--muted li::before{background:var(--muted)}
 
 /* ---------- FAQ -------------------------------------------------------- */
 .faq-list{border-top:1px solid var(--rule)}

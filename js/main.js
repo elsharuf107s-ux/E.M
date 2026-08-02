@@ -1,6 +1,6 @@
 /* ==========================================================================
    E.M — Behaviour
-   Navigation, reveal, counters, filtering, forms. No decorative effects:
+   Navigation, reveal, counters, search/sort, forms. No decorative effects:
    the previous build's particle field, custom cursor, magnetic buttons,
    3D tilt and parallax were removed with the design, not merely hidden.
    Every lookup is guarded so each page can carry only the markup it needs.
@@ -101,22 +101,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  /* ---------- skill meters ---------------------------------------------- */
-  const meters = $$('.progress-bar__fill');
-  if (meters.length && 'IntersectionObserver' in window) {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        const el = entry.target;
-        el.style.width = (el.dataset.width || el.getAttribute('data-value') || '0') + '%';
-        io.unobserve(el);
-      });
-    }, { threshold: 0.4 });
-    meters.forEach(el => io.observe(el));
-  } else {
-    meters.forEach(el => { el.style.width = (el.dataset.width || '0') + '%'; });
-  }
-
   /* ---------- marquee: duplicate the track so the loop is seamless ------ */
   const track = $('.marquee__track');
   if (track && track.children.length === 1) {
@@ -138,26 +122,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
     sections.forEach(s => io.observe(s));
-  }
-
-  /* ---------- portfolio filtering --------------------------------------- */
-  const filterBtns = $$('.filter-btn');
-  const items = $$('.portfolio-item');
-  if (filterBtns.length && items.length) {
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const filter = btn.dataset.filter || 'all';
-        filterBtns.forEach(b => {
-          const on = b === btn;
-          b.classList.toggle('active', on);
-          b.setAttribute('aria-pressed', String(on));
-        });
-        items.forEach(item => {
-          const show = filter === 'all' || item.dataset.category === filter;
-          item.style.display = show ? '' : 'none';
-        });
-      });
-    });
   }
 
   /* ---------- FAQ accordion ---------------------------------------------- */
