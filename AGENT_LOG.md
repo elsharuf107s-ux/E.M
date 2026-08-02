@@ -814,8 +814,8 @@ do not, and never did.** A sweep across all four pages found the design tokens `
 (#78746A) and `--muted-2` (#9A958A) failing on `--paper`: body copy at **4.09:1**, the hero
 scroll label and the sites count at **2.62:1**. Verified against the unmodified pages, so
 this predates every change in this session — but the earlier claim was wrong and should not
-be trusted. **It is a token-level fix (two hex values) and has not been made**, because
-changing the palette is a design decision the owner has not been asked about.
+be trusted. It was fixed in the
+next commit — see the entry below.
 
 **Also pre-existing, also not fixed:** `about.html` and `contact.html` each have an
 `h1 > h3` skip — their first content block opens at `h3` with no `h2`. `work.html`'s skip
@@ -829,3 +829,58 @@ also removed the two worst contrast failures on the site (a 1.13:1 project title
 
 **Still outstanding:** the email address, the four social links, and the portraits — which
 are still stock photographs of a person who is not the owner.
+
+
+---
+
+### 2026-08-02 — Claude Code — fixing the contrast failures for real
+
+**What the owner asked (verbatim):**
+
+> "fix the contrast"
+
+**Every element sampled across all four E.M pages now passes WCAG AA.** The sweep that
+found the failures returns nothing.
+
+**What was actually wrong.** Three design tokens were too light for text on `--paper`:
+
+| Token | Was | Now | On `--paper` |
+|---|---|---|---|
+| `--muted` | `#78746A` | `#656159` | 4.09 → **5.41** |
+| `--muted-2` | `#9A958A` | `#6F6B63` | 2.62 → **4.66** |
+| `--brass` | `#8A6E3B` | `#836838` | 4.22 → **4.61** |
+
+**A judgement worth recording.** The obvious move was to make all three safe against the
+*darkest* light ground (`--paper-3`), but that collapses them to `#646058`, `#635F58` and
+`#745C32` — three near-identical greys with the brass hue gone. The tonal hierarchy is the
+design. Since **every** measured failure occurred on `--paper`, the tokens were tuned
+against that ground instead: `--muted` at a comfortable 5.41, `--muted-2` at the lightest
+legal value it can hold, and `--brass` just clearing the line with its warmth intact. If a
+future change puts these on `--paper-2` or `--paper-3`, re-measure — they are not safe there
+by construction.
+
+**The dark sections were the harder half.** `--brass` is 3.38:1 on `--ink-ground` and
+`--muted` is 2.88:1, so every rule painting them needed a `.section--dark` counterpart
+flipping to `--brass-lt` and `--on-ink-2`. Five of those were added, and three more turned
+up one at a time as the sweep was re-run — `.about__stat-label`, `.skill-card__tag`, and
+`.project-card__tech span`, the last of which is an unclassed `<span>` and only findable by
+querying computed styles. **Fix a token, then re-run the sweep until it is silent; do not
+assume the first pass caught everything.**
+
+**Two decorative glyphs** were painted `--rule` (`#D6D2C8`) at **1.33:1** — the ◆ separators
+in the marquee and the em dash before each skill tag. They are ornament rather than content,
+so they now take `--muted-2` and the marquee separators carry `aria-hidden="true"`.
+
+**Tokens are annotated now.** `--muted` and `--muted-2` carry a comment saying they are
+pinned by contrast rather than taste, and `--brass` carries one saying it is a light-ground
+token that must not be used on ink. The next person to "tidy the palette" needs to know the
+values are load-bearing.
+
+**Verified:** the contrast sweep is silent across all four pages at 1280px with reveals
+forced visible; no sideways scroll at 320/414/768/1280/1920; one `h1` per page; no console
+errors; the design still reads as intended in a screenshot — the greys shifted, the brass
+accent did not lose its hue.
+
+**Still not fixed, still flagged:** `about.html` and `contact.html` open their first content
+block at `h3` with no `h2` (a 1.3.1 failure). It is two lines to fix and the owner has not
+asked. The email, the social links and the stock portraits also remain.

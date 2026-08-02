@@ -17,14 +17,17 @@
   /* ink — warm near-black, never pure */
   --ink:        #1A1814;
   --ink-2:      #4A473F;
-  --muted:      #78746A;
-  --muted-2:    #9A958A;
+  /* both greys are pinned by contrast, not taste: they must clear 4.5:1 on
+     --paper for text. --muted-2 is the lightest legal tone, not a free choice. */
+  --muted:      #656159;
+  --muted-2:    #6F6B63;
 
   --rule:       #D6D2C8;
   --rule-soft:  #E3E0D8;
 
-  /* the single accent: deep, desaturated brass. hairlines and labels only */
-  --brass:      #8A6E3B;
+  /* the single accent: deep, desaturated brass. hairlines and labels only.
+     --brass is for light grounds, --brass-lt for dark. Do not use --brass on ink. */
+  --brass:      #836838;
   --brass-lt:   #B4996A;
 
   /* on dark grounds */
@@ -126,6 +129,22 @@ p{text-wrap:pretty}
 }
 .section--dark h1,.section--dark h2,.section--dark h3,.section--dark h4{color:var(--on-ink)}
 .section--dark .section__subtitle{color:var(--on-ink-2)}
+/* --brass and --muted are light-ground tokens. On ink they fail AA, so every
+   place that paints them has to flip on a dark section. */
+.section--dark .section__label,
+.section--dark .hero__label,
+.section--dark .project-card__number,
+.section--dark .timeline__date,
+.section--dark .contact__detail-label,
+.section--dark .footer__text,
+.section--dark .marquee__item,
+.section--dark .availability-badge{color:var(--brass-lt)}
+.section--dark .skill-card__description,
+.section--dark .timeline__description,
+.section--dark p{color:var(--on-ink-2)}
+.section--dark .about__stat-label,
+.section--dark .skill-card__tag{color:var(--on-ink-2)}
+.section--dark .skill-card__tag::before{color:var(--on-ink-2)}
 
 /* ---------- section header: label + rule, then the statement ---------- */
 .section__header{
@@ -377,7 +396,7 @@ p{text-wrap:pretty}
   font-size:.68rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;
   color:var(--muted-2);
 }
-.skill-card__tag::before{content:'—';margin-right:.6rem;color:var(--rule)}
+.skill-card__tag::before{content:'—';margin-right:.6rem;color:var(--muted-2)}
 @media(max-width:760px){
   .skills__grid{grid-template-columns:1fr}
   .skill-card:nth-child(odd),
@@ -396,7 +415,7 @@ p{text-wrap:pretty}
   padding-inline:1.25rem;white-space:nowrap;
   color:var(--muted-2);
 }
-.marquee__item span{color:var(--rule)}
+.marquee__item span{color:var(--muted-2)}
 @keyframes marquee{to{transform:translateX(-50%)}}
 
 /* ---------- projects: plates on a wall -------------------------------- */
@@ -429,6 +448,7 @@ p{text-wrap:pretty}
   font-size:.68rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;
   color:var(--muted-2);
 }
+.section--dark .project-card__tech span{color:var(--on-ink-2)}
 .project-card__link{margin-top:auto;align-self:flex-start}
 @media(max-width:820px){.projects__grid{grid-template-columns:1fr}}
 
