@@ -35,12 +35,28 @@ h1,h2,h3{font-family:var(--serif);color:var(--esp);font-weight:600;line-height:1
 .rule{border:0;border-top:1px solid var(--linen);border-bottom:1px solid var(--linen);height:4px;max-width:120px;margin:1.5rem auto}
 .skip{position:absolute;left:-9999px}.skip:focus{left:1rem;top:1rem;z-index:200;background:var(--tuscan);color:#fff;padding:.7rem 1.1rem}
 .bar{position:sticky;top:0;z-index:60;background:rgba(250,244,232,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--linen)}
-.bar-in{display:flex;flex-direction:column;align-items:center;padding-block:.75rem}
-.bar-in img{height:50px;width:auto}
-.nav{display:none;gap:clamp(1.1rem,3vw,2.2rem);margin-top:.55rem}
-.nav a{font-weight:600;font-size:.88rem;letter-spacing:.06em;color:var(--esp);padding-bottom:2px;border-bottom:1px solid transparent}
-.nav a:hover{border-bottom-color:var(--tuscan)}
-@media(min-width:760px){.nav{display:flex}}
+.bar-in{display:flex;align-items:center;justify-content:space-between;padding-block:.75rem}
+.bar-in img{height:50px;width:auto;position:relative;z-index:100}
+.nav-toggle{display:flex;flex-direction:column;justify-content:center;align-items:center;width:44px;height:44px;gap:5px;position:relative;z-index:100;background:none;border:0;cursor:pointer}
+.nav-toggle span{display:block;width:24px;height:2px;background:var(--esp);border-radius:1px;transition:transform .3s ease,opacity .3s ease}
+.nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+.nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.nav{position:fixed;inset:0;background:rgba(250,244,232,.98);z-index:90;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2.2rem;opacity:0;visibility:hidden;transform:translateY(-12px);transition:opacity .35s ease,visibility .35s ease,transform .35s ease}
+.nav.is-open{opacity:1;visibility:visible;transform:translateY(0)}
+.nav a{font-family:var(--serif);font-size:1.8rem;font-weight:600;color:var(--esp);padding-bottom:4px;border-bottom:1px solid transparent}
+.nav a:hover{border-bottom-color:var(--tuscan);color:var(--tuscan)}
+.mobile-cta{display:block;position:fixed;bottom:0;left:0;width:100%;background:rgba(250,244,232,.97);backdrop-filter:blur(8px);border-top:1px solid var(--linen);padding:.75rem 1.2rem;z-index:80;text-align:center}
+.mobile-cta .btn{width:100%;padding-block:.9rem}
+body.menu-open{overflow:hidden}
+@media(max-width:759px){body{padding-bottom:72px}}
+@media(min-width:760px){
+  .nav-toggle,.mobile-cta{display:none}
+  .bar-in{flex-direction:column;justify-content:center}
+  .nav{position:static;flex-direction:row;background:transparent;opacity:1;visibility:visible;transform:none;margin-top:.55rem;gap:clamp(1.1rem,3vw,2.2rem)}
+  .nav a{font-family:var(--sans);font-size:.88rem;letter-spacing:.06em}
+  .nav a:hover{color:var(--esp)}
+}
 .btn{display:inline-flex;align-items:center;justify-content:center;padding:.85rem 1.8rem;font-weight:600;font-size:.82rem;
   letter-spacing:.16em;text-transform:uppercase;background:var(--tuscan);color:#fff;text-align:center}
 .btn:hover{background:var(--tuscan-d)}
@@ -97,8 +113,10 @@ h1,h2,h3{font-family:var(--serif);color:var(--esp);font-weight:600;line-height:1
 <a class="skip" href="#menu">Skip to the menu</a>
 <header class="bar"><div class="wrap bar-in">
   <a href="#top" aria-label="Bella Italia Ristorante — home"><img src="assets/logos/bella-italia.png" alt="Bella Italia Ristorante"></a>
-  <nav class="nav" aria-label="Primary"><a href="#menu">Menu</a><a href="#story">Our story</a><a href="#book">Reservations</a><a href="#book">Private events</a></nav>
+  <button class="nav-toggle" aria-expanded="false" aria-label="Toggle menu" aria-controls="mobile-nav"><span></span><span></span><span></span></button>
+  <nav class="nav" id="mobile-nav" aria-label="Primary"><a href="#menu">Menu</a><a href="#story">Our story</a><a href="#book">Reservations</a><a href="#book">Private events</a></nav>
 </div></header>
+<div class="mobile-cta"><a class="btn" href="#book">Reserve a Table</a></div>
 <main id="top">
   <section class="hero"><div class="wrap hero-in">
     <p class="lbl">Family run since 1998</p>
@@ -180,5 +198,13 @@ h1,h2,h3{font-family:var(--serif);color:var(--esp);font-weight:600;line-height:1
 </div></footer>
 <script>(function(){'use strict';var f=document.getElementById('f'),m=document.getElementById('msg');
 if(f)f.addEventListener('submit',function(e){e.preventDefault();m.textContent='Not connected yet — please call (555) 927-1998.';m.style.color='#7A211D';});})();</script>
+<script>
+(function(){'use strict';
+var tog=document.querySelector('.nav-toggle'),nav=document.querySelector('.nav'),links=nav.querySelectorAll('a');
+function toggle(){var open=tog.getAttribute('aria-expanded')==='true';tog.setAttribute('aria-expanded',!open);nav.classList.toggle('is-open');document.body.classList.toggle('menu-open');}
+tog.addEventListener('click',toggle);
+links.forEach(function(l){l.addEventListener('click',function(){if(nav.classList.contains('is-open'))toggle();});});
+})();
+</script>
 </body>
 </html>

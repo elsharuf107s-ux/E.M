@@ -41,12 +41,28 @@ h1,h2,h3{font-family:var(--serif);color:var(--ink);font-weight:700;line-height:1
 .skip{position:absolute;left:-9999px}
 .skip:focus{left:1rem;top:1rem;z-index:200;background:var(--crust);color:#fff;padding:.7rem 1.1rem;border-radius:999px}
 .bar{position:sticky;top:0;z-index:60;background:rgba(251,243,228,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--cream-3)}
-.bar-in{display:flex;flex-direction:column;align-items:center;padding-block:.8rem}
-.bar-in img{height:48px;width:auto}
-.nav{display:none;gap:clamp(1.1rem,3vw,2.2rem);margin-top:.6rem}
-.nav a{font-weight:600;font-size:.9rem;color:var(--ink);padding-bottom:2px;border-bottom:2px solid transparent}
-.nav a:hover{border-bottom-color:var(--wheat)}
-@media(min-width:760px){.nav{display:flex}}
+.bar-in{display:flex;align-items:center;justify-content:space-between;padding-block:.8rem}
+.bar-in img{height:48px;width:auto;position:relative;z-index:100}
+.nav-toggle{display:flex;flex-direction:column;justify-content:center;align-items:center;width:44px;height:44px;gap:5px;position:relative;z-index:100;background:none;border:0;cursor:pointer}
+.nav-toggle span{display:block;width:24px;height:2px;background:var(--ink);border-radius:2px;transition:transform .3s ease,opacity .3s ease}
+.nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+.nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.nav{position:fixed;inset:0;background:rgba(251,243,228,.98);z-index:90;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2.2rem;opacity:0;visibility:hidden;transform:translateY(-12px);transition:opacity .35s ease,visibility .35s ease,transform .35s ease}
+.nav.is-open{opacity:1;visibility:visible;transform:translateY(0)}
+.nav a{font-family:var(--serif);font-size:1.8rem;font-weight:700;color:var(--ink);padding-bottom:4px;border-bottom:2px solid transparent}
+.nav a:hover{border-bottom-color:var(--wheat);color:var(--crust)}
+.mobile-cta{display:block;position:fixed;bottom:0;left:0;width:100%;background:rgba(251,243,228,.97);backdrop-filter:blur(8px);border-top:1px solid var(--cream-3);padding:.75rem 1.2rem;z-index:80;text-align:center}
+.mobile-cta .btn{width:100%;padding-block:.9rem}
+body.menu-open{overflow:hidden}
+@media(max-width:759px){body{padding-bottom:72px}}
+@media(min-width:760px){
+  .nav-toggle,.mobile-cta{display:none}
+  .bar-in{flex-direction:column;justify-content:center}
+  .nav{position:static;flex-direction:row;background:transparent;opacity:1;visibility:visible;transform:none;margin-top:.6rem;gap:clamp(1.1rem,3vw,2.2rem)}
+  .nav a{font-family:var(--sans);font-size:.9rem;font-weight:600;letter-spacing:0}
+  .nav a:hover{color:var(--ink)}
+}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.85rem 1.7rem;
   font-weight:600;font-size:.94rem;border-radius:999px;background:var(--crust);color:#fff;text-align:center}
 .btn:hover{background:var(--crust-d)}
@@ -107,9 +123,11 @@ h1,h2,h3{font-family:var(--serif);color:var(--ink);font-weight:700;line-height:1
 <header class="bar">
   <div class="wrap bar-in">
     <a href="#top" aria-label="The Daily Crumb Bakery — home"><img src="assets/logos/daily-crumb.png" alt="The Daily Crumb Bakery"></a>
-    <nav class="nav" aria-label="Primary"><a href="#menu">Menu</a><a href="#catering">Catering</a><a href="#visit">Visit</a></nav>
+    <button class="nav-toggle" aria-expanded="false" aria-label="Toggle menu" aria-controls="mobile-nav"><span></span><span></span><span></span></button>
+    <nav class="nav" id="mobile-nav" aria-label="Primary"><a href="#menu">Menu</a><a href="#catering">Catering</a><a href="#visit">Visit</a></nav>
   </div>
 </header>
+<div class="mobile-cta"><a class="btn" href="#visit">Order &amp; Visit</a></div>
 <main id="top">
   <section class="hero">
     <div class="wrap hero-in">
@@ -205,6 +223,14 @@ h1,h2,h3{font-family:var(--serif);color:var(--ink);font-weight:700;line-height:1
 <script>
 (function(){'use strict';var f=document.getElementById('f'),m=document.getElementById('msg');
 if(f)f.addEventListener('submit',function(e){e.preventDefault();m.textContent='Not connected yet — please call (555) 318-4402.';m.style.color='#6B3F1D';});})();
+</script>
+<script>
+(function(){'use strict';
+var tog=document.querySelector('.nav-toggle'),nav=document.querySelector('.nav'),links=nav.querySelectorAll('a');
+function toggle(){var open=tog.getAttribute('aria-expanded')==='true';tog.setAttribute('aria-expanded',!open);nav.classList.toggle('is-open');document.body.classList.toggle('menu-open');}
+tog.addEventListener('click',toggle);
+links.forEach(function(l){l.addEventListener('click',function(){if(nav.classList.contains('is-open'))toggle();});});
+})();
 </script>
 </body>
 </html>
