@@ -44,10 +44,10 @@ posts nowhere, and **the portraits in `assets/images/` are stock photographs of 
 is not the owner**, used in three places. The email is real. The site should not go public
 until the portraits are.
 
-**Open work: none from the briefs.** PRs #1–#6 are all merged, so everything described
-above is on `main` — including the last six brand-kit sites, which landed in PR #6. The
-only work left is the production pass named above: real contact details, a real form
-endpoint, and real portraits.
+**Open work: none from the briefs.** PRs #1–#7 are all merged, so everything described
+above is on `main` — the last six brand-kit sites landed in PR #6, and the honesty pass plus
+the contrast fix landed in PR #7. The only work left is the production pass named above:
+**a real portrait**, the four social links, and a form endpoint.
 
 ---
 
@@ -117,10 +117,14 @@ Things that are easy to get wrong here:
    `<script src>` it, so deleting the file would 404 on every page load. New behaviour
    belongs in `js/main.js`.
 
-12. **The E.M pages carry `<!-- REPLACE -->` markers on every placeholder** — stat
-   figures, the three testimonials, the four invented case studies, contact details,
-   social links and the form endpoint. The stock-photo portraits in `assets/images/`
-   are placeholders too. **The site should not go public until these are real.**
+12. **Nothing on the E.M site may claim something that is not true.** This was the
+   owner's explicit instruction — it is their first portfolio and these are their first
+   sites. Invented case studies, awards, degrees, skill percentages, client counts and
+   price bands have all been deleted. **The standing rule: a number that cannot be
+   verified by clicking does not belong on the page.** Two `<!-- REPLACE -->` markers
+   remain — the social links and the form endpoint — plus the stock-photo portraits in
+   `assets/images/`, which are of a person who is not the owner. **The site should not go
+   public until the portrait is real.**
 
 13. **Nothing here has a build step.** Hand-written HTML/CSS/vanilla JS across both
    projects. Google Fonts is the only external request. Don't add a bundler or framework
