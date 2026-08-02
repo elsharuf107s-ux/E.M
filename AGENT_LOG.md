@@ -43,8 +43,10 @@ other — the passes raised craft inside each idiom, they did not unify them.
 nowhere, and the E.M portraits in `assets/images/` are stock. The site should not go public
 until those are real.
 
-**Open work:** PRs #1–#5 are merged. The last six brand-kit sites are on branch
-`claude/portfolio-html-files-3qydbo`.
+**Open work: none from the briefs.** PRs #1–#6 are all merged, so everything described
+above is on `main` — including the last six brand-kit sites, which landed in PR #6. The
+only work left is the production pass named above: real contact details, a real form
+endpoint, and real portraits.
 
 ---
 
@@ -685,3 +687,13 @@ bug. Search, sector filter and A–Z/Z–A sort exercised against all twenty-nin
 **Deliberately not done:** contact details, addresses and phone numbers in the six new
 sites are placeholders marked `<!-- REPLACE -->`, and the forms post nowhere, matching the
 other twenty-three. Making those real is a production pass the owner has not asked for.
+
+**Landed as PR #6, merged.** Everything in this entry is on `main`.
+
+> "fix the log"
+
+The "Open work" line above still said the six sites were sitting on a branch after PR #6
+had already merged — exactly the kind of stale handoff note that caused confusion once
+before. Corrected. **Whoever merges a PR from this repo: update "Open work" in the same
+breath**, because it is the first thing the next agent reads and a wrong answer there is
+worse than no answer.
