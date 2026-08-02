@@ -39,9 +39,10 @@ passes WCAG AA contrast (headings included), no heading skips, no unlabelled for
 and a 10.24px type floor. Their design languages stay deliberately different from each
 other — the passes raised craft inside each idiom, they did not unify them.
 
-**Still placeholder across the whole repo:** contact details are invented, forms post
-nowhere, and the E.M portraits in `assets/images/` are stock. The site should not go public
-until those are real.
+**Still placeholder on the E.M site:** the four social links point at `#`, the contact form
+posts nowhere, and **the portraits in `assets/images/` are stock photographs of a person who
+is not the owner**, used in three places. The email is real. The site should not go public
+until the portraits are.
 
 **Open work: none from the briefs.** PRs #1–#6 are all merged, so everything described
 above is on `main` — including the last six brand-kit sites, which landed in PR #6. The
@@ -884,3 +885,29 @@ accent did not lose its hue.
 **Still not fixed, still flagged:** `about.html` and `contact.html` open their first content
 block at `h3` with no `h2` (a 1.3.1 failure). It is two lines to fix and the owner has not
 asked. The email, the social links and the stock portraits also remain.
+
+
+---
+
+### 2026-08-02 — Claude Code — the real email
+
+**What the owner asked (verbatim):**
+
+> "Use elsharuf107s@gmail.com"
+
+`hello@em-portfolio.com` is gone from `index.html` and `contact.html`. **The E.M site's
+contact address is now real for the first time.**
+
+Made it an actual `mailto:` link rather than plain text in a `<div>` — it was the only
+contact detail left on the page, and a freelance site whose one point of contact cannot be
+tapped is a bad joke on a phone. The anchor takes a hairline underline in the house style
+and `overflow-wrap:anywhere` so a long address cannot push the layout sideways.
+
+The `<!-- REPLACE -->` marker above it is deleted, because there is nothing left to replace
+there.
+
+**Verified:** the rendered `href` is `mailto:elsharuf107s@gmail.com` on both pages at 1280px
+and 390px; contrast sweep still silent across all four pages; tags balance; one `h1` each;
+no sideways scroll; no console errors.
+
+**Still placeholder:** the four social links, the form endpoint, and the stock portraits.
