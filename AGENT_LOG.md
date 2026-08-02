@@ -545,3 +545,55 @@ six to eight and mark the rest logo-only — and no choice has been made yet, so
 has been to continue at full depth.
 
 **Not done:** the remaining 17 sites.
+
+---
+
+### 2026-08-02 — Claude Code — freelance repositioning; real work replaces invented case studies
+
+**What the owner asked (verbatim, via Antigravity then handed to Claude Code):**
+
+> "now charged the fetured works area and put my acutal work also im a freelancer so change my website to fit this bill"
+
+> "are these added and completely"
+
+> "continue from where Gemini left off"
+
+**Answer to "are these added and completely":** 23 of 23 built sites are wired into the
+portfolio — 23 files, 23 cards on both `index.html` and `work.html`, 23 previews, all links
+resolving, no broken images. **6 of the owner's 20 brand-kit sites are still not built:**
+oasis-wellness, nova-creative, urban-harvest, atlas-travel, artisan-breads,
+momentum-fitness.
+
+**A bug of mine that Antigravity found and fixed (commit `93c7f71`).** When the maximalist
+markup was regex-stripped during the redesign, the page-loader pattern matched only part of
+its block, leaving orphan `loader-*` divs and two stray `</div>` immediately after `<body>`.
+My verification checked rendering, contrast, overflow and links — **none of which catch
+unbalanced tags, because browsers silently repair them.** Now checking `<div>`/`</div>` and
+`<section>`/`</section>` counts after any structural edit. All four E.M pages balance.
+
+**What changed this session:**
+
+- **Featured Work now shows real, open sites.** The four invented case studies (Aeterna,
+  Zenith Finance, Aurélia Vance, Aurora Analytics) are gone, replaced by four genuine
+  builds — hydro-flow, lex-associates, serene-spaces, summit-construction — each linking
+  through to the live page. Picked because each solves a different problem in a different
+  language.
+- **Hero repositioned for freelance:** "One-page sites for real businesses", with the
+  freelance promise made explicit — one person from first email to handover.
+- **Experience timeline replaced by "How it works"** — four stages of a freelance
+  engagement (conversation, fixed quote, build in the open, handover you own) instead of
+  an invented employment history at invented companies.
+- **Testimonials section deleted, not rewritten.** The three quotes there were invented.
+  A freelancer quoting fake clients is a liability. A comment in the markup says to add
+  real ones, with permission, when they exist.
+- Title and meta description rewritten to say freelancer.
+
+**Still placeholder:** the portraits in `assets/images/` are stock photos, contact details
+are invented, and the contact form posts nowhere. **The site still should not go public
+until those are real** — that is now the only thing standing between this and a usable
+freelance site.
+
+**Coordination note:** Antigravity had subagents mid-edit on `index.html` when this was
+handed over. This work is on a branch, not `main`, so it lands as a PR rather than
+colliding. If Antigravity later pushes its own version of the featured-work section,
+whoever merges second must reconcile rather than overwrite.
