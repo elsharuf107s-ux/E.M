@@ -968,3 +968,68 @@ around their absence usually makes it worse.
 `<site-slug>-<role>.<ext>`, lowercase, hyphens, slug matching the HTML filename.
 
 **Nothing was implemented from it yet** — no assets have been received.
+
+
+---
+
+### 2026-08-02 — Claude Code — ornaments across all twenty-nine templates
+
+**What the owner asked (verbatim):**
+
+> "Add this too the websites all of them these are generic assets"
+
+Two PNGs were attached — **the first time an upload actually reached disk this session**, at
+`/root/.claude/uploads/…`. Worth knowing for next time: uploads made this way *are* readable;
+it is images pasted inline in the message that are not.
+
+**What they actually were, and why they could not be used as delivered.** Two contact
+sheets, not assets: one flat PNG each holding roughly forty elements — geometric rules,
+corner brackets, artisan flourishes, laurels, badge frames, service icons, step chevrons and
+empty-state graphics. Two problems:
+
+1. Cropping an element out gives a **~100px raster** that blurs the moment it scales.
+2. Everything is in **one fixed navy-and-sage palette**. Dropping that onto Momentum Fitness
+   (red/black), Nova Creative (magenta/violet) or Urban Harvest (green/orange) would read as
+   bolted on.
+
+Every element is simple geometry, so they were **rebuilt as nineteen SVGs** in
+`assets/ornaments/` — total about 6 KB.
+
+**The delivery technique took four attempts, and the first two failed silently.** Tested from
+a `file://` origin, because these pages must work with no server:
+
+| Technique | Result |
+|---|---|
+| `mask-image:url(file.svg)` | **Blank.** Chromium treats `file://` as an opaque origin |
+| `mask-image:url("data:image/svg+xml,…")` | **Broken** — painted a solid block |
+| `<img src="file.svg">` | Works, colour baked in |
+| **inline `<svg>` + `currentColor`** | **Works, inherits the page's colour** |
+
+The first proof sheet came back with **every single cell blank** and would have been easy to
+wave through. **Build a proof sheet and look at it before wiring anything into 29 files.**
+
+**Applied to 28 of 29, chosen per idiom** — dotted and dashed rules for the precise sites,
+chevron bands for trades and gyms, wave rules for the calm ones, flourishes for the
+hospitality sites, sprigs for anything growing, a laurel for the certificate. The whole point
+of this set is that no two sites argue the same way, so a uniform ornament would have worked
+against it. `roast-revel` was deliberately **left alone** — it already has three
+period-appropriate dividers.
+
+**A collision caught before it landed.** The class was going to be `.orn`. `roast-revel`
+already defines `.orn` for its own labelled dividers, and appending a second `.orn{…}` rule
+would have silently overridden them — later declaration wins. Renamed to `.ornament`
+everywhere. **Grep for a class name before introducing it across 29 files.**
+
+**Verified:** all 28 ornaments render at their intended size, each taking its own site's
+computed colour (light on dark sites, dark on light ones), all `aria-hidden="true"`. All 29
+sites re-audited afterwards — no sideways scroll at 320/360/414/768/1024/1920, AA contrast
+throughout, no heading skips, no unlabelled fields, no console errors, tags balanced.
+
+**Previews deliberately not recaptured.** The ornament sits before `</main>`, and its
+y-offset was **measured on all 29** as falling below the 1440×900 crop. Checked rather than
+assumed, because gotcha 3 says a stale preview is a real defect.
+
+**Not placed anywhere yet:** the corner brackets, badge frames, six icons, step chevron,
+empty-state and spinner. They are in the library for when there is a use. **The badge frames
+are decoration only** — a shield or star seal beside a claim about certification reads as a
+credential, which is the prohibition in `ASSET-BRIEF.md`.

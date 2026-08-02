@@ -129,6 +129,14 @@ h1,h2,h3{font-family:var(--slab);font-weight:700;color:var(--ink);line-height:1.
 .ft a{display:block;padding-block:.24rem;overflow-wrap:anywhere}.ft a:hover{color:var(--leaf-d)}
 .ft-end{border-top:1px solid var(--line);padding-top:1.15rem;display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;justify-content:space-between;font-size:.75rem;color:var(--muted)}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}}
+
+/* ---- ornament: a decorative section break, inherits this site's own text
+   colour via currentColor so it can never clash with the palette. Inline SVG
+   because an external mask or file is blocked when the page is opened
+   straight off disk, and these pages must work without a server. ---- */
+.ornament{display:flex;justify-content:center;padding-block:clamp(1.75rem,4vw,3rem);opacity:.4;pointer-events:none}
+.ornament svg{display:block;width:min(100%,34px);height:auto}
+@media(prefers-reduced-motion:no-preference){.ornament{transition:opacity .4s}}
 </style>
 </head>
 <body>
@@ -259,6 +267,7 @@ h1,h2,h3{font-family:var(--slab);font-weight:700;color:var(--ink);line-height:1.
       </form>
     </div>
   </div></section>
+  <div class="ornament" aria-hidden="true"><svg viewBox="0 0 44 60" fill="none" role="presentation"><path d="M22 58V8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><g fill="currentColor"><ellipse cx="13" cy="20" rx="8" ry="4" transform="rotate(-35 13 20)"/><ellipse cx="31" cy="27" rx="8" ry="4" transform="rotate(35 31 27)"/><ellipse cx="13" cy="34" rx="7" ry="3.5" transform="rotate(-35 13 34)"/><ellipse cx="31" cy="41" rx="7" ry="3.5" transform="rotate(35 31 41)"/><ellipse cx="22" cy="11" rx="4" ry="6"/></g></svg></div>
 </main>
 <footer class="ft"><div class="wrap">
   <div class="ft-g">

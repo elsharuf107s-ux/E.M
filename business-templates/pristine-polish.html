@@ -135,6 +135,14 @@ h1,h2,h3{color:var(--white);font-weight:200;line-height:1.12;letter-spacing:.01e
   font-size:.68rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--chrome-3)}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}
   *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}}
+
+/* ---- ornament: a decorative section break, inherits this site's own text
+   colour via currentColor so it can never clash with the palette. Inline SVG
+   because an external mask or file is blocked when the page is opened
+   straight off disk, and these pages must work without a server. ---- */
+.ornament{display:flex;justify-content:center;padding-block:clamp(1.75rem,4vw,3rem);opacity:.4;pointer-events:none}
+.ornament svg{display:block;width:min(100%,200px);height:auto}
+@media(prefers-reduced-motion:no-preference){.ornament{transition:opacity .4s}}
 </style>
 </head>
 <body>
@@ -265,6 +273,7 @@ h1,h2,h3{color:var(--white);font-weight:200;line-height:1.12;letter-spacing:.01e
       </div>
     </div>
   </section>
+  <div class="ornament" aria-hidden="true"><svg viewBox="0 0 240 4" fill="none" role="presentation"><path d="M0 2h240" stroke="currentColor" stroke-width="1.5" stroke-dasharray="10 7"/></svg></div>
 </main>
 
 <footer class="ft">
