@@ -64,6 +64,11 @@ h1,h2,h3{font-family:var(--cond);font-weight:700;color:var(--ink);line-height:1.
 .hero::before{content:"";position:absolute;z-index:0;top:-20%;right:-18%;width:78%;height:150%;
   background:linear-gradient(180deg,rgba(27,42,94,.72),rgba(214,32,47,.30));transform:skewX(-13deg);pointer-events:none}
 .hero::after{content:"";position:absolute;z-index:0;top:-20%;right:26%;width:10px;height:150%;background:var(--red);transform:skewX(-13deg);opacity:.9;pointer-events:none}
+/* below 760px the copy spans the full width, so the diagonal would run
+   behind the paragraph and put body text on red. It is a wide-screen
+   device — drop it rather than fight it. */
+@media(max-width:759px){.hero::before,.hero::after{display:none}
+  .hero{background-image:linear-gradient(160deg,var(--black),#241A33 62%,#3A1520)}}
 .hero-in{position:relative;z-index:2;padding-block:clamp(3.25rem,8.5vw,6rem)}
 .hero h1{color:#fff;font-size:clamp(2.7rem,9vw,6rem);max-width:13ch;margin-top:1rem}
 .hero h1 em{font-style:normal;color:#FF525E;display:block}

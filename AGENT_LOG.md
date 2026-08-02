@@ -664,8 +664,16 @@ rather than cosmetic: gradient elements now declare `background-color` **and**
 The one remaining flag — Nova's `background-clip:text` headline, which computes to
 `color:transparent` by design — was **verified in a screenshot** instead.
 
+- **The same diagonal, still wrong on phones.** With the paint order fixed, the stripe
+  passed *behind* the copy — but below 760px the text column spans the full width, so red
+  ran behind body paragraphs. The diagonal is a wide-screen device; it is now dropped under
+  760px and replaced by a flat gradient. Also found only in a screenshot.
+
 **Also changed:** oasis-wellness's nav was `display:none` below 820px with no hamburger to
 replace it, which simply hid the navigation on phones. It now wraps instead.
+
+**The lesson from momentum-fitness, stated once:** every automated check passed on that
+hero, twice. Both defects were visible only by opening the image. Keep opening the image.
 
 **Verified across all six:** one `h1` each, no heading skips, no missing `alt`, no
 unlabelled fields, no text under 10.24px, **no sideways scroll at 320/360/414/768/1024/1920**
