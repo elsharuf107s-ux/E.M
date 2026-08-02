@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atlas Travel Co. — Explore the World</title>
+<meta name="description" content="Small-group trips with published itineraries, real departure dates and a price that includes the things other operators charge extra for.">
+<meta name="theme-color" content="#0E2A38">
+<meta property="og:title" content="Atlas Travel Co."><meta property="og:type" content="website">
+<meta property="og:description" content="Explore the world. Small-group trips, twelve travellers, published itineraries.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&amp;family=Jost:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+/* ATLAS TRAVEL CO. — "The Field Journal"
+   Laid out like a departures board crossed with a notebook: every trip gives
+   its dates, its group size, its cost and what is actually included, before
+   any adjective. Compass teal is the accent; the deep navy is the cover. */
+:root{
+  --navy:#0E2A38;--navy-2:#14384A;--navy-3:#1C4A60;--rule-navy:#26536A;
+  --on-navy:#EDF4F6;--on-navy-2:#A8C4CE;
+  --paper:#FAF7F1;--paper-2:#F2ECE1;--card:#FFFFFF;--line:#DED5C6;
+  --ink:#1B2A31;--ink-2:#3E5158;--muted:#55636A;
+  --teal:#0E7C8C;--teal-d:#0A5D6A;--teal-w:#E4F1F3;
+  --sun:#C2691A;--sun-d:#9C520F;
+  --disp:'Fraunces',Georgia,serif;--sans:'Jost',system-ui,sans-serif}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:92px}
+body{background:var(--paper);color:var(--ink-2);font-family:var(--sans);font-size:17px;line-height:1.72;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}a{color:inherit;text-decoration:none}ul{list-style:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+:focus-visible{outline:2px solid var(--teal-d);outline-offset:3px}
+::selection{background:var(--teal-w);color:var(--ink)}
+h1,h2,h3{font-family:var(--disp);font-weight:700;color:var(--ink);line-height:1.14;text-wrap:balance}
+.wrap{width:100%;max-width:1140px;margin-inline:auto;padding-inline:clamp(1.2rem,4.5vw,3rem)}
+.sec{padding-block:clamp(3.5rem,7.5vw,6rem)}
+.lbl{font-size:.72rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--teal-d)}
+.h2{font-size:clamp(1.8rem,4.2vw,2.85rem);margin-block:.8rem 1rem}
+.lead{max-width:58ch}
+.skip{position:absolute;left:-9999px}.skip:focus{left:1rem;top:1rem;z-index:200;background:var(--teal-d);color:#fff;padding:.7rem 1.1rem;border-radius:4px}
+/* header */
+.bar{position:sticky;top:0;z-index:60;background:rgba(250,247,241,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar-in{display:flex;flex-wrap:wrap;gap:.6rem 1.5rem;align-items:center;justify-content:space-between;padding-block:.65rem}
+.mk{display:inline-block;min-width:0}.mk img{height:clamp(30px,5vw,46px);width:auto}
+.nav{display:flex;flex-wrap:wrap;gap:.5rem 1.3rem;align-items:center}
+.nav a{font-size:.85rem;font-weight:500;color:var(--ink)}
+.nav a:hover{color:var(--teal-d)}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:.78rem 1.5rem;border-radius:3px;font-weight:600;
+  font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;background:var(--teal-d);color:#fff;text-align:center}
+.btn:hover{background:#084B56}
+.nav a.btn{color:#fff}
+.btn--out{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn--out:hover{border-color:var(--teal-d)}
+.nav a.btn--out{color:var(--ink)}
+.btn--light{background:var(--paper);color:var(--navy)}
+.btn--light:hover{background:#fff}
+.on-navy a.btn--light{color:var(--navy)}
+/* hero */
+.hero{background:var(--navy);color:var(--on-navy-2);position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 55% at 78% 8%,rgba(14,124,140,.42),transparent 60%),
+             radial-gradient(ellipse 60% 50% at 8% 92%,rgba(194,105,26,.20),transparent 62%);
+  pointer-events:none}
+.hero-in{position:relative;padding-block:clamp(3.5rem,9vw,6.5rem)}
+.hero .lbl{color:#7FD4DF}
+.hero h1{color:var(--on-navy);font-size:clamp(2.3rem,6.8vw,4.6rem);max-width:15ch;margin-top:1rem}
+.hero p{margin-top:1.3rem;max-width:50ch;font-size:1.06rem}
+.hero-cta{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:2rem}
+.meters{display:grid;gap:1.25rem;margin-top:3rem;padding-top:1.75rem;border-top:1px solid var(--rule-navy)}
+@media(min-width:620px){.meters{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.meters div{min-width:0}
+.meters b{display:block;font-family:var(--disp);font-weight:700;font-size:1.85rem;color:var(--on-navy);line-height:1.1}
+.meters span{font-size:.74rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--on-navy-2)}
+/* trips */
+.trips{display:grid;gap:1.5rem;margin-top:2.25rem}
+@media(min-width:760px){.trips{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.trip{background:var(--card);border:1px solid var(--line);border-radius:8px;overflow:hidden;min-width:0;display:flex;flex-direction:column}
+.trip .band{padding:1.4rem 1.5rem 1.2rem;color:#fff;position:relative}
+.b1{background-color:#0D4E5E;background-image:linear-gradient(120deg,#0A5D6A,#123F52)}
+.b2{background-color:#8A470D;background-image:linear-gradient(120deg,#7A3C0C,#9C520F)}
+.b3{background-color:#1E4D46;background-image:linear-gradient(120deg,#2A5B3A,#123F52)}
+.b4{background-color:#234C63;background-image:linear-gradient(120deg,#3C3A6B,#0A5D6A)}
+.trip .band h3{color:#fff;font-size:1.4rem}
+.trip .band .where{font-size:.72rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#E8F3F5;display:block;margin-bottom:.4rem}
+.trip .bd{padding:1.4rem 1.5rem 1.6rem;flex:1;display:flex;flex-direction:column}
+.trip .bd>p{font-size:.95rem}
+.spec{margin:1.15rem 0;border-top:1px solid var(--line)}
+.spec>div{display:grid;grid-template-columns:6.5rem minmax(0,1fr);gap:1rem;align-items:baseline;padding-block:.6rem;border-bottom:1px solid var(--line)}
+.spec dt{font-size:.68rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.spec dd{color:var(--ink);font-size:.94rem;overflow-wrap:anywhere}
+@media(max-width:400px){.spec>div{grid-template-columns:1fr;gap:.1rem}}
+.trip .foot{display:flex;flex-wrap:wrap;gap:.75rem 1rem;align-items:center;justify-content:space-between;margin-top:auto}
+.trip .cost{font-family:var(--disp);font-weight:700;font-size:1.45rem;color:var(--ink)}
+.trip .cost small{font-family:var(--sans);font-size:.76rem;font-weight:500;color:var(--muted);display:block;letter-spacing:.1em;text-transform:uppercase}
+/* included */
+.on-navy{background:var(--navy-2);color:var(--on-navy-2);border-block:1px solid var(--rule-navy)}
+.on-navy h1,.on-navy h2,.on-navy h3{color:var(--on-navy)}
+.on-navy .lbl{color:#7FD4DF}
+.cols{display:grid;gap:2rem;margin-top:2.25rem}
+@media(min-width:820px){.cols{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.ticks li,.crosses li{position:relative;padding-left:1.9rem;padding-block:.42rem;font-size:.97rem}
+.ticks li::before{content:"✓";position:absolute;left:0;top:.42rem;color:#7FD4DF;font-weight:600}
+.crosses li::before{content:"—";position:absolute;left:0;top:.42rem;color:var(--on-navy-2)}
+.cols h3{font-size:1.15rem;margin-bottom:.6rem}
+/* how */
+.notes{display:grid;gap:1.25rem;margin-top:2.25rem}
+@media(min-width:780px){.notes{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.note{background:var(--paper-2);border:1px solid var(--line);border-radius:8px;padding:1.5rem;min-width:0}
+.note .n{font-family:var(--disp);font-weight:700;font-size:.82rem;letter-spacing:.14em;color:var(--sun-d)}
+.note h3{font-size:1.12rem;margin:.55rem 0 .4rem}
+.note p{font-size:.94rem}
+/* enquire */
+.ask{display:grid;gap:clamp(2rem,5vw,3.5rem);align-items:start}
+@media(min-width:900px){.ask{grid-template-columns:1fr 1fr}}
+.f{display:grid;gap:1rem;margin-top:1.25rem}
+.f label{display:block;font-size:.7rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);margin-bottom:.35rem}
+.f input,.f select,.f textarea{width:100%;background:#fff;border:1px solid var(--line);border-radius:4px;padding:.78rem .9rem;color:var(--ink);font:inherit;font-size:.95rem}
+.f textarea{min-height:110px;resize:vertical}
+.f button{width:100%}
+.dl{border-top:1px solid var(--line);margin-top:1.5rem}
+.dl>div{display:grid;grid-template-columns:7rem minmax(0,1fr);gap:1rem;align-items:baseline;padding-block:.85rem;border-bottom:1px solid var(--line)}
+.dl dt{font-size:.7rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.dl dd{color:var(--ink);overflow-wrap:anywhere}
+@media(max-width:400px){.dl>div{grid-template-columns:1fr;gap:.1rem}}
+/* footer */
+.ft{background:var(--navy);color:var(--on-navy-2);padding-block:2.75rem 1.4rem}
+.ft h3{font-family:var(--sans);font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--on-navy);margin-bottom:.75rem}
+.ft-g{display:grid;gap:2rem;margin-bottom:2rem}
+@media(min-width:800px){.ft-g{grid-template-columns:1.5fr 1fr 1fr}}
+.ft a{display:block;padding-block:.24rem;overflow-wrap:anywhere}.ft a:hover{color:#7FD4DF}
+.ft-mk{display:inline-block;background:var(--paper);border-radius:6px;padding:.45rem .6rem;margin-bottom:.9rem}
+.ft-mk img{height:38px;width:auto}
+.ft-end{border-top:1px solid var(--rule-navy);padding-top:1.15rem;display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;justify-content:space-between;font-size:.75rem;color:var(--on-navy-2)}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#trips">Skip to the trips</a>
+<header class="bar"><div class="wrap bar-in">
+  <a class="mk" href="#top" aria-label="Atlas Travel Co. — home"><img src="assets/logos/atlas-travel.png" alt="Atlas Travel Co."></a>
+  <nav class="nav" aria-label="Primary">
+    <a href="#trips">Trips</a><a href="#included">What's included</a><a href="#how">How we travel</a><a class="btn" href="#ask">Enquire</a>
+  </nav>
+</div></header>
+<main id="top">
+  <section class="hero"><div class="wrap hero-in">
+    <p class="lbl">Small-group travel since 2011</p>
+    <h1>Explore the world — twelve people at a time.</h1>
+    <p>Published itineraries, real departure dates, and a price that already includes the internal flights, the guide and the tips. Nothing is quoted "from".</p>
+    <div class="hero-cta"><a class="btn btn--light" href="#trips">See departures</a><a class="btn" href="#ask" style="background:transparent;border:1px solid var(--rule-navy);color:var(--on-navy)">Ask a question</a></div>
+    <div class="meters">
+      <div><b>12</b><span>Travellers, maximum</span></div>
+      <div><b>34</b><span>Trips running</span></div>
+      <div><b>2011</b><span>First departure</span></div>
+      <div><b>0</b><span>Single supplements</span></div>
+    </div>
+  </div></section>
+
+  <section class="sec" id="trips"><div class="wrap">
+    <p class="lbl">Departures</p>
+    <h2 class="h2">Four trips, dates already fixed.</h2>
+    <p class="lead">Each one runs whether it fills or not, so the date you book is the date you go. Group size is a ceiling, not a target.</p>
+    <div class="trips">
+      <article class="trip"><div class="band b1"><span class="where">Peru &amp; Bolivia</span><h3>The High Road</h3></div>
+        <div class="bd"><p>Cusco to La Paz overland, with four days on the Salkantay rather than the Inca Trail because the permits are honest and the walking is better.</p>
+          <dl class="spec">
+            <div><dt>Length</dt><dd>16 days</dd></div>
+            <div><dt>Departs</dt><dd>14 Sep · 12 Oct · 9 Nov</dd></div>
+            <div><dt>Group</dt><dd>Max 12</dd></div>
+            <div><dt>Effort</dt><dd>Moderate — four walking days at altitude</dd></div>
+          </dl>
+          <div class="foot"><span class="cost">£3,180<small>per person</small></span><a class="btn btn--out" href="#ask">Ask about this trip</a></div>
+        </div></article>
+      <article class="trip"><div class="band b2"><span class="where">Morocco</span><h3>Atlas &amp; Sahara</h3></div>
+        <div class="bd"><p>Marrakech, three passes of the High Atlas, two nights in the erg. We travel in a minibus, not a 4x4 convoy, and stay in family guesthouses.</p>
+          <dl class="spec">
+            <div><dt>Length</dt><dd>10 days</dd></div>
+            <div><dt>Departs</dt><dd>28 Sep · 26 Oct · 8 Feb</dd></div>
+            <div><dt>Group</dt><dd>Max 12</dd></div>
+            <div><dt>Effort</dt><dd>Easy — short walks, long drives</dd></div>
+          </dl>
+          <div class="foot"><span class="cost">£1,640<small>per person</small></span><a class="btn btn--out" href="#ask">Ask about this trip</a></div>
+        </div></article>
+      <article class="trip"><div class="band b3"><span class="where">Japan</span><h3>The Nakasendō</h3></div>
+        <div class="bd"><p>Kyoto to Tokyo the slow way, walking the surviving post-road stages and taking the train between the ones that are now motorway.</p>
+          <dl class="spec">
+            <div><dt>Length</dt><dd>13 days</dd></div>
+            <div><dt>Departs</dt><dd>5 Apr · 19 Apr · 1 Nov</dd></div>
+            <div><dt>Group</dt><dd>Max 10</dd></div>
+            <div><dt>Effort</dt><dd>Moderate — six walking days, 12–18 km</dd></div>
+          </dl>
+          <div class="foot"><span class="cost">£3,950<small>per person</small></span><a class="btn btn--out" href="#ask">Ask about this trip</a></div>
+        </div></article>
+      <article class="trip"><div class="band b4"><span class="where">Namibia</span><h3>Desert &amp; Coast</h3></div>
+        <div class="bd"><p>Sossusvlei, Damaraland and the Skeleton Coast, self-driving in convoy with a lead guide. Long days, enormous distances, very few people.</p>
+          <dl class="spec">
+            <div><dt>Length</dt><dd>14 days</dd></div>
+            <div><dt>Departs</dt><dd>3 May · 7 Jun · 5 Jul</dd></div>
+            <div><dt>Group</dt><dd>Max 8</dd></div>
+            <div><dt>Effort</dt><dd>Easy — driving, with optional walks</dd></div>
+          </dl>
+          <div class="foot"><span class="cost">£4,420<small>per person</small></span><a class="btn btn--out" href="#ask">Ask about this trip</a></div>
+        </div></article>
+    </div>
+  </div></section>
+
+  <section class="sec on-navy" id="included"><div class="wrap">
+    <p class="lbl">The price</p>
+    <h2 class="h2">What is in it, and what is not.</h2>
+    <p class="lead" style="color:var(--on-navy-2)">Written out because the industry usually does not. If it is on the left, you have already paid for it.</p>
+    <div class="cols">
+      <div><h3>Included</h3><ul class="ticks">
+        <li>All accommodation, twin or single at the same price</li>
+        <li>Every internal flight, train and transfer on the itinerary</li>
+        <li>A local guide throughout, plus a second on walking days</li>
+        <li>All breakfasts and most dinners, named in the day-by-day</li>
+        <li>Entry to every site listed</li>
+        <li>Tips for guides and drivers</li>
+      </ul></div>
+      <div><h3>Not included</h3><ul class="crosses">
+        <li>International flights — we will book them for you at cost if you ask</li>
+        <li>Travel insurance, which is a condition of booking</li>
+        <li>Visas, with a written checklist sent on deposit</li>
+        <li>Lunches, so you can eat where you like</li>
+        <li>Drinks other than water with dinner</li>
+      </ul></div>
+    </div>
+  </div></section>
+
+  <section class="sec" id="how"><div class="wrap">
+    <p class="lbl">How we travel</p>
+    <h2 class="h2">Three rules we have not broken yet.</h2>
+    <div class="notes">
+      <div class="note"><span class="n">01</span><h3>The group stays small</h3>
+        <p>Twelve is the ceiling and eight on some trips. It is the difference between booking a family guesthouse and needing a hotel.</p></div>
+      <div class="note"><span class="n">02</span><h3>The itinerary is the itinerary</h3>
+        <p>Published day by day before you pay, with the driving hours written in. If weather forces a change we tell you why, on the day.</p></div>
+      <div class="note"><span class="n">03</span><h3>The money stays local</h3>
+        <p>Guides, drivers and guesthouses are hired directly in-country. No ground agent takes a cut between you and them.</p></div>
+    </div>
+  </div></section>
+
+  <section class="sec" id="ask" style="background:var(--paper-2);border-top:1px solid var(--line)"><div class="wrap ask">
+    <div>
+      <p class="lbl">Enquire</p>
+      <h2 class="h2">Ask before you book. Everyone does.</h2>
+      <p class="lead">A real person answers, usually within a working day, and will happily tell you a trip is wrong for you. Deposits are £300 and refundable for fourteen days.</p>
+      <dl class="dl">
+        <!-- REPLACE: placeholder contact details -->
+        <div><dt>Office</dt><dd>2 Meridian Wharf</dd></div>
+        <div><dt>Phone</dt><dd>(555) 771-0464</dd></div>
+        <div><dt>Email</dt><dd>hello@atlastravel.example</dd></div>
+        <div><dt>Hours</dt><dd>Mon – Sat, 9am – 6pm</dd></div>
+        <div><dt>Bonded</dt><dd>ATOL 0000 · ABTA X0000</dd></div>
+      </dl>
+    </div>
+    <div>
+      <h3 style="font-size:1.15rem">Trip enquiry</h3>
+      <!-- REPLACE: this form posts nowhere. Wire it to a real endpoint. -->
+      <form class="f" action="#" method="post" novalidate>
+        <div><label for="a-name">Your name</label><input id="a-name" name="name" type="text" autocomplete="name" required></div>
+        <div><label for="a-email">Email</label><input id="a-email" name="email" type="email" autocomplete="email" required></div>
+        <div><label for="a-trip">Which trip</label>
+          <select id="a-trip" name="trip"><option>The High Road — Peru &amp; Bolivia</option><option>Atlas &amp; Sahara — Morocco</option><option>The Nakasendō — Japan</option><option>Desert &amp; Coast — Namibia</option><option>Not sure yet</option></select></div>
+        <div><label for="a-when">Departure you have in mind</label><input id="a-when" name="when" type="text" placeholder="e.g. October, or flexible"></div>
+        <div><label for="a-msg">Your question</label><textarea id="a-msg" name="message"></textarea></div>
+        <button class="btn" type="submit">Send enquiry</button>
+      </form>
+    </div>
+  </div></section>
+</main>
+<footer class="ft"><div class="wrap">
+  <div class="ft-g">
+    <div><span class="ft-mk"><img src="assets/logos/atlas-travel.png" alt="Atlas Travel Co."></span>
+      <p>Small-group trips run direct, with published itineraries and fixed departures. Bonded and insured.</p></div>
+    <div><h3>Travel</h3><a href="#trips">Trips</a><a href="#included">What's included</a><a href="#how">How we travel</a></div>
+    <div><h3>Contact</h3><a href="tel:+15557710464">(555) 771-0464</a><a href="mailto:hello@atlastravel.example">hello@atlastravel.example</a><p style="margin-top:.45rem">2 Meridian Wharf</p></div>
+  </div>
+  <div class="ft-end"><span>© 2026 Atlas Travel Co.</span><span>Explore the world</span></div>
+</div></footer>
+</body>
+</html>

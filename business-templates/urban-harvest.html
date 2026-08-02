@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Urban Harvest — Fresh. Local. Organic.</title>
+<meta name="description" content="A market garden and veg box scheme. This week's harvest, the stall timetable, and three box sizes with no contract.">
+<meta name="theme-color" content="#FBF8F0">
+<meta property="og:title" content="Urban Harvest"><meta property="og:type" content="website">
+<meta property="og:description" content="Fresh. Local. Organic. Veg boxes and four market stalls a week.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;700&amp;family=Karla:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+/* URBAN HARVEST — "The Chalkboard"
+   Structured like the board outside a market stall: what is good this week,
+   where the stall is on which day, what a box costs. The produce grid is a
+   table of facts, not a mood. Warmth comes from paper colour and one crate
+   texture, never from a photograph we do not have. */
+:root{
+  --paper:#FBF8F0;--paper-2:#F4EFE1;--crate:#EFE6D2;--card:#FFFFFF;
+  --ink:#22301F;--ink-2:#414D3D;--muted:#5F6A59;--line:#DED5BF;
+  --leaf:#2F7D32;--leaf-d:#1F5C23;--leaf-w:#E9F3E7;
+  --carrot:#C2560E;--carrot-d:#9C440A;--carrot-w:#FBEDE2;
+  --earth:#5A4126;--earth-d:#402D19;
+  --sky:#1E6E96;--sky-d:#155472;--sky-w:#E6F1F7;
+  --slab:'Bitter',Georgia,serif;--sans:'Karla',system-ui,sans-serif}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:92px}
+body{background:var(--paper);color:var(--ink-2);font-family:var(--sans);font-size:17px;line-height:1.72;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}a{color:inherit;text-decoration:none}ul{list-style:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+:focus-visible{outline:2px solid var(--leaf-d);outline-offset:3px}
+::selection{background:var(--leaf-w);color:var(--ink)}
+h1,h2,h3{font-family:var(--slab);font-weight:700;color:var(--ink);line-height:1.16;text-wrap:balance}
+.wrap{width:100%;max-width:1140px;margin-inline:auto;padding-inline:clamp(1.2rem,4.5vw,3rem)}
+.sec{padding-block:clamp(3.5rem,7.5vw,6rem)}
+.lbl{font-size:.72rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--leaf-d)}
+.h2{font-size:clamp(1.8rem,4.2vw,2.8rem);margin-block:.8rem 1rem}
+.lead{max-width:58ch}
+.skip{position:absolute;left:-9999px}.skip:focus{left:1rem;top:1rem;z-index:200;background:var(--leaf-d);color:#fff;padding:.7rem 1.1rem;border-radius:6px}
+/* header */
+.bar{position:sticky;top:0;z-index:60;background:rgba(251,248,240,.95);backdrop-filter:blur(10px);border-bottom:2px solid var(--leaf)}
+.bar-in{display:flex;flex-wrap:wrap;gap:.6rem 1.5rem;align-items:center;justify-content:space-between;padding-block:.65rem}
+.mk{display:inline-block;min-width:0}.mk img{height:clamp(30px,5vw,44px);width:auto}
+.nav{display:flex;flex-wrap:wrap;gap:.5rem 1.3rem;align-items:center}
+.nav a{font-size:.85rem;font-weight:500;color:var(--ink)}
+.nav a:hover{color:var(--leaf-d)}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:.75rem 1.4rem;border-radius:4px;font-weight:700;
+  font-size:.82rem;letter-spacing:.04em;background:var(--leaf);color:#fff;text-align:center}
+.btn:hover{background:var(--leaf-d)}
+.nav a.btn{color:#fff}
+.btn--carrot{background:var(--carrot)}.btn--carrot:hover{background:var(--carrot-d)}
+.nav a.btn--carrot{color:#fff}
+.btn--out{background:transparent;color:var(--ink);border:2px solid var(--line);padding-block:calc(.75rem - 2px)}
+.btn--out:hover{border-color:var(--leaf)}
+.nav a.btn--out{color:var(--ink)}
+/* hero */
+.hero{background:
+  linear-gradient(180deg,var(--leaf-w),var(--paper) 70%);border-bottom:1px solid var(--line)}
+.hero-in{display:grid;gap:clamp(2rem,5vw,3.5rem);align-items:center;padding-block:clamp(3rem,7vw,5rem)}
+@media(min-width:900px){.hero-in{grid-template-columns:1.15fr .85fr}}
+.hero h1{font-size:clamp(2.2rem,6.4vw,4.1rem);letter-spacing:-.01em}
+.hero h1 span{display:block;color:var(--carrot)}
+.hero p{margin-top:1.2rem;max-width:48ch;font-size:1.06rem}
+.hero-cta{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.9rem}
+.facts{display:flex;flex-wrap:wrap;gap:.5rem 1.75rem;margin-top:2.25rem;padding-top:1.5rem;border-top:1px dashed var(--line)}
+.facts li{font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.board{background:var(--earth);border-radius:10px;padding:clamp(1.4rem,3.5vw,2rem);color:#F3EEE2;min-width:0}
+.board h2{font-family:var(--slab);font-size:1.3rem;color:#fff;margin-bottom:.3rem}
+.board .when{font-size:.74rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#D8C9AC}
+.board ul{margin-top:1.1rem;border-top:1px solid #6F5433}
+.board li{display:flex;flex-wrap:wrap;gap:.25rem 1rem;justify-content:space-between;padding-block:.62rem;border-bottom:1px solid #6F5433;font-size:.95rem}
+.board li b{font-weight:500;color:#FFFFFF}
+.board li span{color:#DCCFB4;white-space:nowrap}
+.board p{margin-top:1.1rem;font-size:.86rem;color:#DCCFB4}
+/* produce */
+.rows{margin-top:2.25rem;border-top:2px solid var(--ink)}
+.rows article{display:grid;gap:.35rem 2rem;padding-block:1.5rem;border-bottom:1px solid var(--line)}
+@media(min-width:720px){.rows article{grid-template-columns:9rem minmax(0,1fr) auto;align-items:baseline}}
+.rows .cat{font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--leaf-d)}
+.rows h3{font-size:1.22rem;margin-bottom:.25rem}
+.rows p{font-size:.95rem;max-width:56ch}
+.rows .price{font-family:var(--slab);font-weight:700;font-size:1.15rem;color:var(--carrot-d);white-space:nowrap}
+@media(min-width:720px){.rows .price{text-align:right}}
+/* boxes */
+.boxes{display:grid;gap:1.35rem;margin-top:2.25rem}
+@media(min-width:800px){.boxes{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.box{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:1.6rem 1.5rem;min-width:0;display:flex;flex-direction:column}
+.box--pick{border:2px solid var(--leaf);padding:calc(1.6rem - 1px) calc(1.5rem - 1px)}
+.box .tag{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  background:var(--leaf-w);color:var(--leaf-d);border-radius:999px;padding:.28rem .7rem;margin-bottom:.9rem;align-self:flex-start}
+.box h3{font-size:1.25rem}
+.box .amt{font-family:var(--slab);font-weight:700;font-size:2rem;color:var(--ink);margin:.6rem 0 .1rem}
+.box .amt small{font-family:var(--sans);font-size:.82rem;font-weight:500;color:var(--muted)}
+.box p{font-size:.94rem;margin-top:.6rem}
+.box ul{margin:1.1rem 0 1.4rem;flex:1}
+.box li{position:relative;padding-left:1.4rem;font-size:.93rem;padding-block:.24rem}
+.box li::before{content:"";position:absolute;left:0;top:.78em;width:.55rem;height:.55rem;border-radius:2px;background:var(--leaf)}
+/* stalls */
+.stalls{display:grid;gap:1.1rem;margin-top:2.25rem}
+@media(min-width:700px){.stalls{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.stall{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--sky);border-radius:8px;padding:1.3rem 1.4rem;min-width:0}
+.stall:nth-child(2){border-left-color:var(--leaf)}
+.stall:nth-child(3){border-left-color:var(--carrot)}
+.stall:nth-child(4){border-left-color:var(--earth)}
+.stall h3{font-size:1.12rem;margin-bottom:.2rem}
+.stall .day{font-size:.74rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--sky-d)}
+.stall p{font-size:.93rem;margin-top:.4rem}
+.map{margin-top:2rem;background:var(--sky-w);border:1px solid var(--line);border-radius:10px;padding:clamp(1.3rem,3.5vw,1.9rem)}
+.map h3{font-size:1.1rem;margin-bottom:.4rem}
+.map p{font-size:.94rem}
+/* join */
+.join{display:grid;gap:clamp(2rem,5vw,3.5rem);align-items:start}
+@media(min-width:900px){.join{grid-template-columns:1fr 1fr}}
+.f{display:grid;gap:1rem;margin-top:1.25rem}
+.f label{display:block;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);margin-bottom:.35rem}
+.f input,.f select{width:100%;background:#fff;border:1px solid var(--line);border-radius:6px;padding:.78rem .9rem;color:var(--ink);font:inherit;font-size:.95rem}
+.f button{width:100%}
+.dl{border-top:1px solid var(--line);margin-top:1.5rem}
+.dl>div{display:grid;grid-template-columns:6.5rem minmax(0,1fr);gap:1rem;align-items:baseline;padding-block:.85rem;border-bottom:1px solid var(--line)}
+.dl dt{font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.dl dd{color:var(--ink);overflow-wrap:anywhere}
+@media(max-width:400px){.dl>div{grid-template-columns:1fr;gap:.1rem}}
+/* footer */
+.ft{background:var(--crate);border-top:1px solid var(--line);padding-block:2.75rem 1.4rem}
+.ft-g{display:grid;gap:2rem;margin-bottom:2rem}
+@media(min-width:800px){.ft-g{grid-template-columns:1.5fr 1fr 1fr}}
+.ft h3{font-family:var(--sans);font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);margin-bottom:.75rem}
+.ft a{display:block;padding-block:.24rem;overflow-wrap:anywhere}.ft a:hover{color:var(--leaf-d)}
+.ft-end{border-top:1px solid var(--line);padding-top:1.15rem;display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;justify-content:space-between;font-size:.75rem;color:var(--muted)}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#harvest">Skip to this week's harvest</a>
+<header class="bar"><div class="wrap bar-in">
+  <a class="mk" href="#top" aria-label="Urban Harvest — home"><img src="assets/logos/urban-harvest.png" alt="Urban Harvest"></a>
+  <nav class="nav" aria-label="Primary">
+    <a href="#harvest">This week</a><a href="#boxes">Veg boxes</a><a href="#stalls">Find us</a><a class="btn btn--carrot" href="#join">Start a box</a>
+  </nav>
+</div></header>
+<main id="top">
+  <section class="hero"><div class="wrap hero-in">
+    <div>
+      <p class="lbl">Market garden · Four acres · No spray</p>
+      <h1 style="margin-top:.9rem">Fresh. Local. <span>Organic.</span></h1>
+      <p>We grow it eleven miles away and pick it the morning you get it. Boxes on Thursdays, stalls four days a week, and nothing flown in to fill a gap.</p>
+      <div class="hero-cta"><a class="btn btn--carrot" href="#join">Start a box</a><a class="btn btn--out" href="#harvest">See this week</a></div>
+      <ul class="facts"><li>Certified organic</li><li>Picked within 24 hours</li><li>Cancel any week</li></ul>
+    </div>
+    <div class="board">
+      <p class="when">Week of 3 August</p>
+      <h2>On the stall today</h2>
+      <ul>
+        <li><b>Tomatoes — Gardener's Delight</b><span>£3.80 / kg</span></li>
+        <li><b>Runner beans</b><span>£2.40 / kg</span></li>
+        <li><b>New potatoes — Charlotte</b><span>£2.10 / kg</span></li>
+        <li><b>Cavolo nero</b><span>£1.60 / bunch</span></li>
+        <li><b>Cucumbers</b><span>90p each</span></li>
+        <li><b>Blackcurrants</b><span>£4.20 / punnet</span></li>
+      </ul>
+      <p>Sold out by 1pm most Saturdays. The board is updated the night before.</p>
+    </div>
+  </div></section>
+
+  <section class="sec" id="harvest"><div class="wrap">
+    <p class="lbl">This week's harvest</p>
+    <h2 class="h2">Everything below was in the ground on Monday.</h2>
+    <p class="lead">The list changes weekly because the field does. If something is missing it is because it is not ready, not because we forgot to order it.</p>
+    <div class="rows">
+      <article><span class="cat">Salad</span><div><h3>Tomatoes, four varieties</h3>
+        <p>Gardener's Delight, Sungold, Marmande and a green zebra that divides opinion. All picked ripe, none refrigerated.</p></div>
+        <span class="price">£3.80 / kg</span></article>
+      <article><span class="cat">Roots</span><div><h3>Carrots &amp; beetroot</h3>
+        <p>Pulled the same morning with the tops on. Keep the tops — the beetroot leaves cook like chard.</p></div>
+        <span class="price">£2.20 / kg</span></article>
+      <article><span class="cat">Greens</span><div><h3>Cavolo nero &amp; chard</h3>
+        <p>Cut-and-come-again beds, so there is a bunch a week from now until the first hard frost.</p></div>
+        <span class="price">£1.60 / bunch</span></article>
+      <article><span class="cat">Legumes</span><div><h3>Runner &amp; French beans</h3>
+        <p>Two rows, staggered a fortnight apart, which is why they last into September here and not elsewhere.</p></div>
+        <span class="price">£2.40 / kg</span></article>
+      <article><span class="cat">Fruit</span><div><h3>Blackcurrants &amp; raspberries</h3>
+        <p>Netted against the birds, picked by hand, and honestly better in a crumble than in a bowl.</p></div>
+        <span class="price">£4.20 / punnet</span></article>
+      <article><span class="cat">Store</span><div><h3>Eggs &amp; raw honey</h3>
+        <p>From the two neighbouring smallholdings we buy from — named on the label, three miles each.</p></div>
+        <span class="price">£3.50 / half dozen</span></article>
+    </div>
+  </div></section>
+
+  <section class="sec" id="boxes" style="background:var(--paper-2);border-block:1px solid var(--line)"><div class="wrap">
+    <p class="lbl">Veg boxes</p>
+    <h2 class="h2">Three sizes, no contract.</h2>
+    <p class="lead">Delivered Thursday, or collected free from the farm gate. Skip a week whenever you like — tell us by Tuesday.</p>
+    <div class="boxes">
+      <article class="box"><span class="tag">One or two people</span><h3>The Small</h3>
+        <p class="amt">£14<small> / week</small></p>
+        <p>Six to seven kinds. Enough for three or four dinners without anything going soft in the drawer.</p>
+        <ul><li>Roughly 4 kg</li><li>Recipe card each week</li><li>Free farm-gate collection</li></ul>
+        <a class="btn btn--out" href="#join">Choose the Small</a></article>
+      <article class="box box--pick"><span class="tag">Most popular</span><h3>The Family</h3>
+        <p class="amt">£24<small> / week</small></p>
+        <p>Nine to eleven kinds, weighted towards things that keep. The box most households settle on.</p>
+        <ul><li>Roughly 8 kg</li><li>Recipe card each week</li><li>Free delivery within 10 miles</li><li>Half-dozen eggs included</li></ul>
+        <a class="btn" href="#join">Choose the Family</a></article>
+      <article class="box"><span class="tag">Cooks and batch-freezers</span><h3>The Harvest</h3>
+        <p class="amt">£38<small> / week</small></p>
+        <p>Everything ready that week, in quantity. Built for people who cook on Sunday for the whole week.</p>
+        <ul><li>Roughly 14 kg</li><li>Recipe card each week</li><li>Free delivery within 10 miles</li><li>Fruit and store cupboard included</li></ul>
+        <a class="btn btn--out" href="#join">Choose the Harvest</a></article>
+    </div>
+  </div></section>
+
+  <section class="sec" id="stalls"><div class="wrap">
+    <p class="lbl">Find us</p>
+    <h2 class="h2">Four stalls a week, all within the ring road.</h2>
+    <p class="lead">Cash and card at every stall. We start packing down thirty minutes before the end time, so come earlier than that.</p>
+    <div class="stalls">
+      <div class="stall"><p class="day">Wednesday · 8am – 1pm</p><h3>Canal Street Market</h3>
+        <p>Under the arches, third stall from the Bridge Road entrance. Busiest before 10am.</p></div>
+      <div class="stall"><p class="day">Thursday · 3pm – 7pm</p><h3>Elmfield Green</h3>
+        <p>The evening stall, aimed at the walk home. Boxes for collection are also here.</p></div>
+      <div class="stall"><p class="day">Saturday · 7am – 2pm</p><h3>Old Corn Exchange</h3>
+        <p>The big one. Everything picked Friday afternoon, and usually gone by one.</p></div>
+      <div class="stall"><p class="day">Sunday · 9am – 12pm</p><h3>Farm gate, Ridgeway Lane</h3>
+        <p>Come to the field itself. Bring a bag, and the dog if it is good with chickens.</p></div>
+    </div>
+    <div class="map"><h3>The farm</h3>
+      <!-- REPLACE: placeholder address, and drop a real map embed in here -->
+      <p>Ridgeway Lane, eleven miles north of the city, signposted from the B4021. Parking in the top field. If the gate is open, we are in.</p></div>
+  </div></section>
+
+  <section class="sec" id="join" style="border-top:1px solid var(--line)"><div class="wrap join">
+    <div>
+      <p class="lbl">Start a box</p>
+      <h2 class="h2">Tell us the size and the street.</h2>
+      <p class="lead">We will confirm by email the same day and start you on the next Thursday. Nothing is taken until the first box goes out.</p>
+      <dl class="dl">
+        <!-- REPLACE: placeholder contact details -->
+        <div><dt>Farm</dt><dd>Ridgeway Lane</dd></div>
+        <div><dt>Phone</dt><dd>(555) 302-7715</dd></div>
+        <div><dt>Email</dt><dd>boxes@urbanharvest.example</dd></div>
+        <div><dt>Boxes</dt><dd>Packed Wednesday, out Thursday</dd></div>
+      </dl>
+    </div>
+    <div>
+      <h3 style="font-size:1.15rem">Box sign-up</h3>
+      <!-- REPLACE: this form posts nowhere. Wire it to a real endpoint. -->
+      <form class="f" action="#" method="post" novalidate>
+        <div><label for="u-name">Your name</label><input id="u-name" name="name" type="text" autocomplete="name" required></div>
+        <div><label for="u-email">Email</label><input id="u-email" name="email" type="email" autocomplete="email" required></div>
+        <div><label for="u-size">Box size</label>
+          <select id="u-size" name="size"><option>The Small — £14</option><option selected>The Family — £24</option><option>The Harvest — £38</option></select></div>
+        <div><label for="u-how">Delivery or collection</label>
+          <select id="u-how" name="how"><option>Deliver to me</option><option>Collect from the farm gate</option><option>Collect at Elmfield Green</option></select></div>
+        <div><label for="u-post">Postcode</label><input id="u-post" name="postcode" type="text" autocomplete="postal-code"></div>
+        <button class="btn btn--carrot" type="submit">Start my box</button>
+      </form>
+    </div>
+  </div></section>
+</main>
+<footer class="ft"><div class="wrap">
+  <div class="ft-g">
+    <div><span class="mk" style="display:block;margin-bottom:.9rem"><img src="assets/logos/urban-harvest.png" alt="Urban Harvest"></span>
+      <p>Four acres, eleven miles out. Veg boxes on Thursdays and four market stalls a week.</p></div>
+    <div><h3>Shop</h3><a href="#harvest">This week</a><a href="#boxes">Veg boxes</a><a href="#stalls">Stall times</a></div>
+    <div><h3>Contact</h3><a href="tel:+15553027715">(555) 302-7715</a><a href="mailto:boxes@urbanharvest.example">boxes@urbanharvest.example</a><p style="margin-top:.45rem">Ridgeway Lane</p></div>
+  </div>
+  <div class="ft-end"><span>© 2026 Urban Harvest</span><span>Certified organic · Soil Association</span></div>
+</div></footer>
+</body>
+</html>

@@ -21,21 +21,30 @@ Two separate things live here:
 | Path | What it is | Owner |
 |---|---|---|
 | `index.html`, `about.html`, `work.html`, `contact.html`, `css/`, `js/`, `assets/images/` | The **E.M portfolio** — light editorial minimalism ("The Gallery") | Structure by Antigravity; redesigned by Claude Code |
-| `business-templates/` | Twelve one-page business websites (no index of their own) | Nine pre-existing; three built by Claude Code |
+| `business-templates/` | **Twenty-nine** one-page business websites (no index of their own) | Nine pre-existing; twenty built by Claude Code |
 
 **The E.M site is the only portfolio front door.** Its "Live Sites" section on `index.html`
-and `work.html` indexes all twelve templates with search, sector filtering and sorting,
+and `work.html` indexes all twenty-nine templates with search, sector filtering and sorting,
 reusing the screenshots in `business-templates/assets/previews/`. The separate gallery page
 that used to live at `business-templates/index.html` was **deleted at the owner's request** —
 do not recreate it.
 
-All nine templates have had a quality pass: no sideways scroll from 320px up, every
-element passes WCAG AA contrast, no heading skips, and a 10.24px type floor. Their nine
-design languages are unchanged — the pass raised craft inside each idiom, it did not
-unify them.
+**All twenty of the owner's brand-kit sites are now built.** The two supplied briefs
+covered twenty brands; every one of them has a site, a logo in `assets/logos/`, a preview
+in `assets/previews/`, and a card on both `index.html` and `work.html`. Nothing from those
+briefs is outstanding.
 
-**Open work:** PRs #1 and #2 are merged. The template quality pass is on
-branch `claude/portfolio-html-files-3qydbo` awaiting merge.
+Every template has had a quality pass: no sideways scroll from 320px up, every element
+passes WCAG AA contrast (headings included), no heading skips, no unlabelled form fields,
+and a 10.24px type floor. Their design languages stay deliberately different from each
+other — the passes raised craft inside each idiom, they did not unify them.
+
+**Still placeholder across the whole repo:** contact details are invented, forms post
+nowhere, and the E.M portraits in `assets/images/` are stock. The site should not go public
+until those are real.
+
+**Open work:** PRs #1–#5 are merged. The last six brand-kit sites are on branch
+`claude/portfolio-html-files-3qydbo`.
 
 ---
 
@@ -597,3 +606,74 @@ freelance site.
 handed over. This work is on a branch, not `main`, so it lands as a PR rather than
 colliding. If Antigravity later pushes its own version of the featured-work section,
 whoever merges second must reconcile rather than overwrite.
+
+
+---
+
+### 2026-08-02 — Claude Code — the last six brand-kit sites; the set is now complete
+
+**What the owner asked (verbatim):**
+
+> "finish the 6 sites"
+
+That is the six brand-kit sites that were still unbuilt after the previous session:
+oasis-wellness, nova-creative, urban-harvest, atlas-travel, artisan-breads,
+momentum-fitness. All six are built. **The twenty-brand brief is now finished — there is
+no remaining backlog from the kits.**
+
+**The six, each in its own idiom** (the house rule is that no two templates share a design
+language, so each got its own structural argument rather than a recoloured shell):
+
+| Site | Idiom | The argument |
+|---|---|---|
+| `oasis-wellness.html` | *The Still Room* | Nothing has a hard edge. A treatment list priced by the hour, thermal suite in every booking. |
+| `nova-creative.html` | *The Colour Wheel* | Dark page where the colour **is** the content — each work tile carries its own gradient, filterable by discipline in vanilla JS. |
+| `urban-harvest.html` | *The Chalkboard* | Structured like the board outside a stall: what is good this week, which day the stall is where, what a box costs. |
+| `atlas-travel.html` | *The Field Journal* | A departures board — dates, group size, cost and a written "what is *not* included" column, before any adjective. |
+| `artisan-breads.html` | *The Bake Sheet* | The page is the sheet pinned above the bench: four timed bakes and what comes out of each. |
+| `momentum-fitness.html` | *The Split* | Built on the logo's forward slash. Red is reserved for the next action only; the timetable is the centre of the page. |
+
+Content decisions worth knowing: every one of these leads with **facts a customer needs**
+— prices, times, group sizes, what is included — rather than atmosphere. That is
+deliberate and consistent with the earlier twenty-three. The taglines come straight from
+the owner's contact sheets ("Find your inner calm.", "Creativity reimagined",
+"Fresh. Local. Organic.", "Explore the world.", "Baked with love.",
+"Power your potential.").
+
+**Defects found by audit and fixed** — none of these were visible by eye:
+
+- **Buttons failing AA on their own brand colour.** Oasis's lotus `#B5647A` gave white
+  text **4.14:1** and Nova's magenta `#FF3D9A` gave **3.29:1**. Fixed by splitting the
+  brand colour from the *button* colour: the vivid hue still runs the gradients and
+  decoration, a darkened variant (`--magenta-btn:#D41A78`, lotus `#964C60`) carries text.
+  Worth copying — a brand hue that is legal as a decoration is often illegal behind text.
+- **A red diagonal painting over the copy.** momentum-fitness's `.hero::after` stripe is a
+  child of `.hero`, so it painted *after* `.hero-in` and cut through the stats row, eating
+  the `£` of "£0 joining fee". `position:relative` alone does not decide paint order —
+  both pseudo-elements now carry `z-index:0` and the content `z-index:2`. **Caught only by
+  opening the screenshot**; every automated check passed.
+- Three muted greys under 4.5:1 on their own paper (`#6E6862` on sand, `#67787E` on
+  `#F2ECE1`, `#0A8478` on near-white). Darkened at the token, not per-rule.
+
+**A sweep artefact worth recording so the next agent does not chase it.** The contrast
+script walks up the tree for a background colour, and `background:linear-gradient(...)`
+leaves `background-color` transparent — so white text on a gradient band reports **1.00:1**
+against whatever opaque ancestor is behind it. Three of these appeared. The fix is real
+rather than cosmetic: gradient elements now declare `background-color` **and**
+`background-image`, which both silences the false positive and gives a genuine fallback.
+The one remaining flag — Nova's `background-clip:text` headline, which computes to
+`color:transparent` by design — was **verified in a screenshot** instead.
+
+**Also changed:** oasis-wellness's nav was `display:none` below 820px with no hamburger to
+replace it, which simply hid the navigation on phones. It now wraps instead.
+
+**Verified across all six:** one `h1` each, no heading skips, no missing `alt`, no
+unlabelled fields, no text under 10.24px, **no sideways scroll at 320/360/414/768/1024/1920**
+(measured by scrolling and reading `window.scrollX`), every element passing AA including
+headings, and no console errors. Six previews captured at the documented settings. Both
+E.M pages balance their `<div>`/`<section>`/`<a>` tags — the check added after the orphan-div
+bug. Search, sector filter and A–Z/Z–A sort exercised against all twenty-nine cards.
+
+**Deliberately not done:** contact details, addresses and phone numbers in the six new
+sites are placeholders marked `<!-- REPLACE -->`, and the forms post nowhere, matching the
+other twenty-three. Making those real is a production pass the owner has not asked for.
