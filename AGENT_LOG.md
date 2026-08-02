@@ -697,3 +697,51 @@ had already merged — exactly the kind of stale handoff note that caused confus
 before. Corrected. **Whoever merges a PR from this repo: update "Open work" in the same
 breath**, because it is the first thing the next agent reads and a wrong answer there is
 worse than no answer.
+
+
+---
+
+### 2026-08-02 — Claude Code — removing invented contact details
+
+**What the owner asked (verbatim):**
+
+> "now update the portriate and contact details"
+
+Asked what to use, since none of it can be invented. The owner chose: **leave the portrait
+for now** (they will send a photo), **supply a different email** (not yet given), and
+**drop the phone number and location entirely**, keeping email as the only contact channel.
+
+**Done — everything that did not depend on the missing email:**
+
+- **Phone and location blocks deleted** from `index.html` and `contact.html`. Email is now
+  the only `.contact__detail`.
+- **`contact.html`'s map section deleted.** It existed solely to print "New York, NY —
+  Available Worldwide" over a placeholder panel; with the location gone it had no content
+  left. Its now-unused `.map-container` rule was removed from `css/style.css` too, rather
+  than left to rot.
+- **The "do you work remotely?" FAQ answer rewritten.** It claimed a home city and a client
+  history across Europe, Asia and Australia — all invented. It now says the work is remote
+  end to end and asks for your timezone, which is true and just as useful.
+
+**Not done, and why:**
+
+- **The email is still `hello@em-portfolio.com`.** The owner said they would supply a
+  different address and has not yet. The `<!-- REPLACE -->` marker above it was narrowed to
+  name the email specifically, so it is obvious what is left.
+- **The portraits are untouched** — `hero-portrait.jpg` and `about-hero.jpg` are still stock
+  photographs of someone who is not the owner, used in four places. At the owner's request
+  they stay until a real photo arrives. **This is the single most important thing to fix
+  before the site goes public.**
+- **The four social links still point at `#`.** No URLs supplied.
+- The owner sent their **"em" logotype** (lowercase serif with a connecting swash) as a chat
+  attachment. **An attached image cannot be written to disk from a session** — it can be
+  viewed but its bytes are not reachable. The file has to be committed to the repo, or
+  fetched from a URL, before it can be used. Nothing was approximated or redrawn.
+
+**Noticed but deliberately left alone (out of the scope asked for):**
+
+- `contact.html` has a **pre-existing `h1 > h3` heading skip** — it predates this session's
+  changes, confirmed by re-running the check against the previous commit.
+- `about.html` still lists **"Parsons School of Design, New York"** as education, and
+  `index.html` still claims **50+ projects and 30+ clients**. Both are invented and are the
+  same class of problem as the contact details. They were not in the request.

@@ -780,16 +780,6 @@ p{text-wrap:pretty}
 }
 .cta-banner .btn{margin-top:clamp(2.25rem,4vw,3rem)}
 
-/* ---------- map -------------------------------------------------------- */
-.map-container{
-  aspect-ratio:21/9;background:var(--paper-3);
-  display:grid;place-items:center;
-  border:1px solid var(--rule);
-  color:var(--muted-2);
-  font-size:.72rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase;
-  text-align:center;padding:1.5rem;
-}
-
 /* ---------- footer ----------------------------------------------------- */
 .footer{
   border-top:1px solid var(--rule);
