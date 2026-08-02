@@ -611,7 +611,9 @@ p{text-wrap:pretty}
 }
 .contact__detail-icon{display:none}
 .contact__detail-label{display:block;margin-bottom:.3rem}
-.contact__detail-text{color:var(--ink);font-size:1rem}
+.contact__detail-text{color:var(--ink);font-size:1rem;overflow-wrap:anywhere}
+a.contact__detail-text{border-bottom:1px solid var(--rule);padding-bottom:1px;transition:border-color .3s var(--ease)}
+a.contact__detail-text:hover{border-bottom-color:var(--ink)}
 .contact__socials{display:flex;gap:2rem;margin-top:2.5rem}
 .social-link{color:var(--muted-2);transition:color .3s var(--ease)}
 .social-link:hover{color:var(--ink)}

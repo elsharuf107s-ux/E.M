@@ -39,14 +39,15 @@ passes WCAG AA contrast (headings included), no heading skips, no unlabelled for
 and a 10.24px type floor. Their design languages stay deliberately different from each
 other — the passes raised craft inside each idiom, they did not unify them.
 
-**Still placeholder across the whole repo:** contact details are invented, forms post
-nowhere, and the E.M portraits in `assets/images/` are stock. The site should not go public
-until those are real.
+**Still placeholder on the E.M site:** the four social links point at `#`, the contact form
+posts nowhere, and **the portraits in `assets/images/` are stock photographs of a person who
+is not the owner**, used in three places. The email is real. The site should not go public
+until the portraits are.
 
-**Open work: none from the briefs.** PRs #1–#6 are all merged, so everything described
-above is on `main` — including the last six brand-kit sites, which landed in PR #6. The
-only work left is the production pass named above: real contact details, a real form
-endpoint, and real portraits.
+**Open work: none from the briefs.** PRs #1–#7 are all merged, so everything described
+above is on `main` — the last six brand-kit sites landed in PR #6, and the honesty pass plus
+the contrast fix landed in PR #7. The only work left is the production pass named above:
+**a real portrait**, the four social links, and a form endpoint.
 
 ---
 
@@ -116,10 +117,14 @@ Things that are easy to get wrong here:
    `<script src>` it, so deleting the file would 404 on every page load. New behaviour
    belongs in `js/main.js`.
 
-12. **The E.M pages carry `<!-- REPLACE -->` markers on every placeholder** — stat
-   figures, the three testimonials, the four invented case studies, contact details,
-   social links and the form endpoint. The stock-photo portraits in `assets/images/`
-   are placeholders too. **The site should not go public until these are real.**
+12. **Nothing on the E.M site may claim something that is not true.** This was the
+   owner's explicit instruction — it is their first portfolio and these are their first
+   sites. Invented case studies, awards, degrees, skill percentages, client counts and
+   price bands have all been deleted. **The standing rule: a number that cannot be
+   verified by clicking does not belong on the page.** Two `<!-- REPLACE -->` markers
+   remain — the social links and the form endpoint — plus the stock-photo portraits in
+   `assets/images/`, which are of a person who is not the owner. **The site should not go
+   public until the portrait is real.**
 
 13. **Nothing here has a build step.** Hand-written HTML/CSS/vanilla JS across both
    projects. Google Fonts is the only external request. Don't add a bundler or framework
@@ -884,3 +889,82 @@ accent did not lose its hue.
 **Still not fixed, still flagged:** `about.html` and `contact.html` open their first content
 block at `h3` with no `h2` (a 1.3.1 failure). It is two lines to fix and the owner has not
 asked. The email, the social links and the stock portraits also remain.
+
+
+---
+
+### 2026-08-02 — Claude Code — the real email
+
+**What the owner asked (verbatim):**
+
+> "Use elsharuf107s@gmail.com"
+
+`hello@em-portfolio.com` is gone from `index.html` and `contact.html`. **The E.M site's
+contact address is now real for the first time.**
+
+Made it an actual `mailto:` link rather than plain text in a `<div>` — it was the only
+contact detail left on the page, and a freelance site whose one point of contact cannot be
+tapped is a bad joke on a phone. The anchor takes a hairline underline in the house style
+and `overflow-wrap:anywhere` so a long address cannot push the layout sideways.
+
+The `<!-- REPLACE -->` marker above it is deleted, because there is nothing left to replace
+there.
+
+**Verified:** the rendered `href` is `mailto:elsharuf107s@gmail.com` on both pages at 1280px
+and 390px; contrast sweep still silent across all four pages; tags balance; one `h1` each;
+no sideways scroll; no console errors.
+
+**Still placeholder:** the four social links, the form endpoint, and the stock portraits.
+
+
+---
+
+### 2026-08-02 — Claude Code — an asset pipeline the owner can actually use
+
+**What the owner asked (verbatim):**
+
+> "should I generarte more website assets if so what should I make"
+
+> "give me a full universal list of stuff I should gernerate for the websites"
+
+> "what I'm trying to do is gernerate assets then send them to you so you can implement them
+> and save them for later"
+
+**The constraint that shapes all of this, stated plainly for the next agent:**
+**an image attached in chat cannot be written to disk.** It can be viewed; its bytes are
+not reachable. This already cost a round trip when the owner sent their `em` logotype and it
+could not be saved. Assets must arrive **committed to the repo, at a fetchable URL, or in a
+zip pushed to the repo root.** Say so early rather than accepting a file and failing later.
+
+**Added `business-templates/ASSET-BRIEF.md`** — a paste-ready generation brief with the
+handover routes at the top, since that is the part that decides whether anything is usable.
+It is written to be handed to *any* tool and reused per client: four variables at the top,
+then required assets, sector-dependent assets, style rules, prohibitions and a delivery
+tree.
+
+**The prohibitions are the point of the document.** Never generate a photograph of a person
+presented as real; never generate a certification, trade body or award badge; never
+photograph premises or work that do not exist; never imitate an existing brand. These are
+the same failure that put a stock portrait and three fabricated awards on the owner's own
+site — except on a client's live site it misleads *their* customers. The rule written down
+is: **anything a customer could reasonably treat as evidence must be real, and if it cannot
+be real yet the design has to work without it.**
+
+**Five drop-zone folders created** under `business-templates/assets/` — `icons/`,
+`social/`, `photos/`, `textures/`, `docs/` — each with a `.gitkeep` naming the brief.
+
+**Measured, not guessed, and recorded in the brief.** Across all twenty-nine templates there
+are **40 `<img>` tags and every one is a logo**: no photography anywhere, **0 favicons,
+0 `og:image`, 0 reversed logos** for the dark-header sites. Favicons, share cards and
+reversed logos are therefore the first batch worth generating — every site lacks all three
+and all three are seen before a word is read.
+
+**Advice deliberately given against more sites.** Twenty-nine already answers "can this
+person do my sector?". A thirtieth does not. The absence of photography is also **not** a
+defect — every template is built to work without it, and adding photos to a layout designed
+around their absence usually makes it worse.
+
+**Naming convention fixed** so dropped files can be wired up without asking:
+`<site-slug>-<role>.<ext>`, lowercase, hyphens, slug matching the HTML filename.
+
+**Nothing was implemented from it yet** — no assets have been received.
