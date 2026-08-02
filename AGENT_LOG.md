@@ -80,35 +80,41 @@ Things that are easy to get wrong here:
    card inside an `.on-dark` section, and `.on-dark h3{color:#fff}` rendered "Request a
    booking" white on white at 1.00:1. A body-text-only sweep missed it entirely.
 
-7. **Moving a heading level means moving its CSS selector.** Several templates styled
+7. **A button inside a nav inherits the nav's link colour.** Hit twice —
+   flowmaster and future-scholars. `.nav a{color:...}` is specificity 0,1,1 and beats
+   `.btn--gold{color:#fff}` at 0,1,0, so the button renders the nav's text colour on the
+   button's background. Scope the button rule (`.nav a.btn--gold`) or raise its
+   specificity. Same family as `.hero p` beating `.card-ft`.
+
+8. **Moving a heading level means moving its CSS selector.** Several templates styled
    footer headings with `.ft h4`. Changing the markup to `h3` without changing the
    selector silently strips the styling.
 
-8. **Two CSS traps already hit and fixed in the gallery — don't reintroduce them.**
+9. **Two CSS traps already hit and fixed in the gallery — don't reintroduce them.**
    - An `<img>` with `width`/`height` HTML attributes needs `height:auto` in CSS, or the
      `height` presentational hint wins and `aspect-ratio` is ignored. This silently
      scaled the previews to ~2.5x.
    - A percentage `max-height` needs a definite containing height to resolve against.
      Without one it is ignored, which made ten logo plates render at ten heights.
 
-9. **Every business template carries `<!-- REPLACE -->` placeholders** — phone numbers,
+10. **Every business template carries `<!-- REPLACE -->` placeholders** — phone numbers,
    emails and addresses are invented and the forms post nowhere. Replace them before any
    of these are published as a real business site.
 
-10. **The E.M site's `js/enhancements.js` is nearly empty on purpose.** All four pages
+11. **The E.M site's `js/enhancements.js` is nearly empty on purpose.** All four pages
    `<script src>` it, so deleting the file would 404 on every page load. New behaviour
    belongs in `js/main.js`.
 
-11. **The E.M pages carry `<!-- REPLACE -->` markers on every placeholder** — stat
+12. **The E.M pages carry `<!-- REPLACE -->` markers on every placeholder** — stat
    figures, the three testimonials, the four invented case studies, contact details,
    social links and the form endpoint. The stock-photo portraits in `assets/images/`
    are placeholders too. **The site should not go public until these are real.**
 
-12. **Nothing here has a build step.** Hand-written HTML/CSS/vanilla JS across both
+13. **Nothing here has a build step.** Hand-written HTML/CSS/vanilla JS across both
    projects. Google Fonts is the only external request. Don't add a bundler or framework
    without the owner asking.
 
-13. **Claude Code runs in a temporary cloud container**, not on the owner's machine. Its
+14. **Claude Code runs in a temporary cloud container**, not on the owner's machine. Its
    working directory is not visible to Antigravity and is wiped after the session. Only
    what is **committed and pushed** crosses between agents. Git is the handoff medium.
 
