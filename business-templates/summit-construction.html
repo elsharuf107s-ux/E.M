@@ -99,13 +99,59 @@ h1,h2,h3{font-family:var(--disp);color:var(--ink);font-weight:800;text-transform
 .ornament{display:flex;justify-content:center;padding-block:clamp(1.75rem,4vw,3rem);opacity:.4;pointer-events:none}
 .ornament svg{display:block;width:min(100%,210px);height:auto}
 @media(prefers-reduced-motion:no-preference){.ornament{transition:opacity .4s}}
+
+/* ---- integration panel -------------------------------------------------
+   A slide-out that hosts a third-party embed. Nothing third-party ships
+   here: the slot is empty and documented, so a client drops their own
+   provider in without touching layout. Colours are this site's own.
+   Accessibility: role=dialog + aria-modal, focus moved in on open and
+   returned to the trigger on close, Tab trapped inside, Escape closes,
+   background scroll locked. ---- */
+.ip-open{overflow:hidden}
+.ip-backdrop{position:fixed;inset:0;z-index:900;background:rgba(0,0,0,.55);
+  opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}
+.ip-backdrop.is-on{opacity:1;visibility:visible}
+.ip{position:fixed;z-index:901;background:rgb(255, 255, 255);color:rgb(90, 102, 117);
+  display:flex;flex-direction:column;
+  inset:auto 0 0 0;max-height:92dvh;border-radius:14px 14px 0 0;
+  transform:translateY(100%);transition:transform .34s cubic-bezier(.22,.7,.28,1);
+  box-shadow:0 -8px 40px rgba(0,0,0,.28)}
+.ip.is-on{transform:translateY(0)}
+@media(min-width:720px){
+  .ip{inset:0 0 0 auto;width:min(30rem,100%);max-height:none;border-radius:0;
+       transform:translateX(100%);box-shadow:-8px 0 40px rgba(0,0,0,.28)}
+  .ip.is-on{transform:translateX(0)}
+}
+.ip-head{display:flex;align-items:flex-start;gap:1rem;justify-content:space-between;
+  padding:1.25rem 1.35rem;border-bottom:1px solid rgb(44, 68, 112)}
+.ip-head h2{font-family:Saira, system-ui, sans-serif;color:rgb(90, 102, 117);font-size:1.35rem;line-height:1.2;margin:0}
+.ip-head p{font-size:.9rem;margin:.4rem 0 0;color:rgb(90, 102, 117)}
+.ip-x{flex:0 0 auto;width:44px;height:44px;margin:-.4rem -.5rem 0 0;
+  display:inline-flex;align-items:center;justify-content:center;
+  border-radius:8px;color:rgb(90, 102, 117);background:none;border:0;cursor:pointer;font-size:1.5rem;line-height:1}
+.ip-x:hover{background:rgba(128,128,128,.16)}
+.ip-body{padding:1.35rem;overflow-y:auto;-webkit-overflow-scrolling:touch;flex:1}
+.ip-slot{min-height:min(26rem,52dvh);border:1px dashed rgb(44, 68, 112);border-radius:10px;
+  display:grid;place-items:center;text-align:center;padding:1.5rem;gap:.5rem}
+.ip-slot p{font-size:.9rem;max-width:32ch;margin:0}
+.ip-slot code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.8rem;
+  background:rgba(128,128,128,.14);padding:.15rem .4rem;border-radius:4px}
+.ip-alt{margin-top:1.1rem;padding-top:1.1rem;border-top:1px solid rgb(44, 68, 112);font-size:.92rem}
+.ip-alt a{text-decoration:underline;text-underline-offset:3px}
+@media(prefers-reduced-motion:reduce){.ip,.ip-backdrop{transition:none}}
+
+/* the panel trigger sits in the nav and must read as part of it, not as a
+   browser default button */
+.ip-cta{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;
+  text-decoration:underline;text-underline-offset:4px;white-space:nowrap}
+.ip-cta:hover{opacity:.75}
 </style>
 </head>
 <body>
 <a class="skip" href="#projects">Skip to projects</a>
 <header class="bar"><div class="wrap bar-in">
   <a class="mk" href="#top" aria-label="Summit Construction Group — home"><img src="assets/logos/summit-construction.png" alt="Summit Construction Group"></a>
-  <nav class="nav" aria-label="Primary"><a href="#projects">Projects</a><a href="#safety">Safety</a></nav>
+  <nav class="nav" aria-label="Primary"><a href="#projects">Projects</a><a href="#safety">Safety</a><button type="button" class="ip-cta" data-ip-open>Request a site visit</button></nav>
   <a class="btn" href="#bid">Request a bid</a>
 </div></header>
 <div class="hz" aria-hidden="true"></div>
@@ -114,7 +160,7 @@ h1,h2,h3{font-family:var(--disp);color:var(--ink);font-weight:800;text-transform
     <p class="lbl" style="color:var(--yellow)">Commercial · Residential · Civil</p>
     <h1 style="margin-top:.8rem">Building the future,<em>solid as a rock.</em></h1>
     <p>Thirty-one years of commercial and residential work. Fixed-price bids, a published safety record, and a project manager whose mobile number you are actually given.</p>
-    <div class="hero-cta"><a class="btn" href="#projects">View our projects</a><a class="btn btn--navy" href="#bid" style="border:2px solid #2C4470">Request a bid</a></div>
+    <div class="hero-cta"><a class="btn" href="#projects">View our projects</a><a href="#projects" class="btn" data-ip-open aria-haspopup="dialog">Request a site visit</a><a class="btn btn--navy" href="#bid" style="border:2px solid #2C4470">Request a bid</a></div>
     <div class="stats">
       <div><b>31</b><span>Years operating</span></div>
       <div><b>$740m</b><span>Delivered to date</span></div>
@@ -190,5 +236,76 @@ h1,h2,h3{font-family:var(--disp);color:var(--ink);font-weight:800;text-transform
   </div>
   <div class="ft-end"><span>© 2026 Summit Construction Group</span><span>Zero lost-time injuries, four years running</span></div>
 </div></footer>
+
+<div class="ip-backdrop" id="ip-backdrop-summit-construction" hidden></div>
+<aside class="ip" id="ip-summit-construction" role="dialog" aria-modal="true"
+       aria-labelledby="ip-title-summit-construction" aria-describedby="ip-desc-summit-construction" hidden>
+  <div class="ip-head">
+    <div>
+      <h2 id="ip-title-summit-construction">Request a site visit</h2>
+      <p id="ip-desc-summit-construction">We come and look before quoting. No charge, no obligation, no salesman.</p>
+    </div>
+    <button class="ip-x" type="button" data-ip-close aria-label="Close">&times;</button>
+  </div>
+  <div class="ip-body">
+    <!-- REPLACE: drop the booking system embed in here.
+         Suggested providers for this sector: Jobber, Buildertrend.
+         Most give you a container element plus one script tag - paste both inside .ip-slot
+         and delete the placeholder paragraph. Sizing is already handled:
+         .ip-slot fills the panel and scrolls if the widget is taller. -->
+    <div class="ip-slot">
+      <p><strong>Booking system goes here.</strong></p>
+      <p>Paste the embed from <code>Jobber</code> into
+         <code>.ip-slot</code>. Nothing else needs to change.</p>
+    </div>
+    <p class="ip-alt">Rather not use a form?
+      <!-- REPLACE: placeholder contact route -->
+      <a href="#contact" data-ip-close>Use the contact details instead</a>.</p>
+  </div>
+</aside>
+
+<script>
+/* integration panel — open/close, focus management, Escape, scroll lock.
+   Written to work with any number of triggers on the page. */
+(function(){
+  var panel=document.querySelector('.ip'), back=document.querySelector('.ip-backdrop');
+  if(!panel||!back) return;
+  var last=null;
+  var F='a[href],button:not([disabled]),input,select,textarea,[tabindex]:not([tabindex="-1"])';
+  function open(trigger){
+    last=trigger||document.activeElement;
+    panel.hidden=false; back.hidden=false;
+    requestAnimationFrame(function(){
+      back.classList.add('is-on'); panel.classList.add('is-on');
+    });
+    document.body.classList.add('ip-open');
+    var first=panel.querySelector(F); if(first) first.focus();
+  }
+  function close(){
+    panel.classList.remove('is-on'); back.classList.remove('is-on');
+    document.body.classList.remove('ip-open');
+    var done=function(){ panel.hidden=true; back.hidden=true; };
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) done();
+    else setTimeout(done,340);
+    if(last&&last.focus) last.focus();
+  }
+  document.addEventListener('click',function(e){
+    var t=e.target.closest('[data-ip-open]');
+    if(t){ e.preventDefault(); open(t); return; }
+    if(e.target.closest('[data-ip-close]')||e.target===back){ e.preventDefault(); close(); }
+  });
+  document.addEventListener('keydown',function(e){
+    if(panel.hidden) return;
+    if(e.key==='Escape'){ close(); return; }
+    if(e.key!=='Tab') return;
+    var f=[].slice.call(panel.querySelectorAll(F)).filter(function(el){
+      return el.offsetWidth||el.offsetHeight||el.getClientRects().length; });
+    if(!f.length) return;
+    var first=f[0], lastEl=f[f.length-1];
+    if(e.shiftKey && document.activeElement===first){ e.preventDefault(); lastEl.focus(); }
+    else if(!e.shiftKey && document.activeElement===lastEl){ e.preventDefault(); first.focus(); }
+  });
+})();
+</script>
 </body>
 </html>

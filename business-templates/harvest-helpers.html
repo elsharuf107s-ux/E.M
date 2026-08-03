@@ -93,6 +93,49 @@ h1,h2,h3{color:var(--ink);font-weight:700;line-height:1.14;text-wrap:balance}
 .ornament{display:flex;justify-content:center;padding-block:clamp(1.75rem,4vw,3rem);opacity:.4;pointer-events:none}
 .ornament svg{display:block;width:min(100%,34px);height:auto}
 @media(prefers-reduced-motion:no-preference){.ornament{transition:opacity .4s}}
+
+/* ---- integration panel -------------------------------------------------
+   A slide-out that hosts a third-party embed. Nothing third-party ships
+   here: the slot is empty and documented, so a client drops their own
+   provider in without touching layout. Colours are this site's own.
+   Accessibility: role=dialog + aria-modal, focus moved in on open and
+   returned to the trigger on close, Tab trapped inside, Escape closes,
+   background scroll locked. ---- */
+.ip-open{overflow:hidden}
+.ip-backdrop{position:fixed;inset:0;z-index:900;background:rgba(0,0,0,.55);
+  opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}
+.ip-backdrop.is-on{opacity:1;visibility:visible}
+.ip{position:fixed;z-index:901;background:rgb(251, 247, 239);color:rgb(87, 69, 47);
+  display:flex;flex-direction:column;
+  inset:auto 0 0 0;max-height:92dvh;border-radius:14px 14px 0 0;
+  transform:translateY(100%);transition:transform .34s cubic-bezier(.22,.7,.28,1);
+  box-shadow:0 -8px 40px rgba(0,0,0,.28)}
+.ip.is-on{transform:translateY(0)}
+@media(min-width:720px){
+  .ip{inset:0 0 0 auto;width:min(30rem,100%);max-height:none;border-radius:0;
+       transform:translateX(100%);box-shadow:-8px 0 40px rgba(0,0,0,.28)}
+  .ip.is-on{transform:translateX(0)}
+}
+.ip-head{display:flex;align-items:flex-start;gap:1rem;justify-content:space-between;
+  padding:1.25rem 1.35rem;border-bottom:1px solid rgb(224, 212, 190)}
+.ip-head h2{font-family:Asap, system-ui, sans-serif;color:rgb(87, 69, 47);font-size:1.35rem;line-height:1.2;margin:0}
+.ip-head p{font-size:.9rem;margin:.4rem 0 0;color:rgb(87, 69, 47)}
+.ip-x{flex:0 0 auto;width:44px;height:44px;margin:-.4rem -.5rem 0 0;
+  display:inline-flex;align-items:center;justify-content:center;
+  border-radius:8px;color:rgb(87, 69, 47);background:none;border:0;cursor:pointer;font-size:1.5rem;line-height:1}
+.ip-x:hover{background:rgba(128,128,128,.16)}
+.ip-body{padding:1.35rem;overflow-y:auto;-webkit-overflow-scrolling:touch;flex:1}
+.ip-slot{min-height:min(26rem,52dvh);border:1px dashed rgb(224, 212, 190);border-radius:10px;
+  display:grid;place-items:center;text-align:center;padding:1.5rem;gap:.5rem}
+.ip-slot p{font-size:.9rem;max-width:32ch;margin:0}
+.ip-slot code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.8rem;
+  background:rgba(128,128,128,.14);padding:.15rem .4rem;border-radius:4px}
+.ip-alt{margin-top:1.1rem;padding-top:1.1rem;border-top:1px solid rgb(224, 212, 190);font-size:.92rem}
+.ip-alt a{text-decoration:underline;text-underline-offset:3px}
+@media(prefers-reduced-motion:reduce){.ip,.ip-backdrop{transition:none}}
+
+/* the panel trigger sits in the nav and must read as part of it, not as a
+   browser default button */
 </style>
 </head>
 <body>
@@ -100,14 +143,14 @@ h1,h2,h3{color:var(--ink);font-weight:700;line-height:1.14;text-wrap:balance}
 <header class="bar"><div class="wrap bar-in">
   <a class="mk" href="#top" aria-label="Harvest Helpers Food Bank — home"><img src="assets/logos/harvest-helpers.png" alt="Harvest Helpers Food Bank"></a>
   <nav class="nav" aria-label="Primary"><a href="#find">Find food</a><a href="#impact">Our impact</a><a href="#give">Volunteer</a></nav>
-  <a class="btn" href="#give">Give today</a>
+  <a class="btn" href="#give" data-ip-open aria-haspopup="dialog">Give today</a>
 </div></header>
 <main id="top">
   <section class="hero"><div class="wrap hero-in">
     <p class="lbl">Community food relief · Since 2011</p>
     <h1 style="margin-top:.7rem">Feeding our community together.</h1>
     <p>Six pantries, open every weekday. There is no form, no means test and no questions about why you are here. Take what you need.</p>
-    <div class="hero-cta"><a class="btn btn--leaf" href="#find">Find food near you</a><a class="btn btn--out" href="#give">Give today</a></div>
+    <div class="hero-cta"><a class="btn btn--leaf" href="#find">Find food near you</a><a href="#find" class="btn btn--leaf" data-ip-open aria-haspopup="dialog">Donate</a><a class="btn btn--out" href="#give">Give today</a></div>
     <p class="urgent"><b>Need food today?</b> The Kilburn Street pantry is open until 6pm and does not require an appointment. If you cannot travel, call <a href="tel:+15552730144" style="color:var(--leaf-d);font-weight:700;text-decoration:underline">(555) 273-0144</a> and we will arrange a delivery.</p>
   </div></section>
   <section class="sec" id="find"><div class="wrap">
@@ -158,5 +201,76 @@ h1,h2,h3{color:var(--ink);font-weight:700;line-height:1.14;text-wrap:balance}
   </div>
   <div class="ft-end"><span>© 2026 Harvest Helpers Food Bank</span><span>94¢ of every dollar goes to food</span></div>
 </div></footer>
+
+<div class="ip-backdrop" id="ip-backdrop-harvest-helpers" hidden></div>
+<aside class="ip" id="ip-harvest-helpers" role="dialog" aria-modal="true"
+       aria-labelledby="ip-title-harvest-helpers" aria-describedby="ip-desc-harvest-helpers" hidden>
+  <div class="ip-head">
+    <div>
+      <h2 id="ip-title-harvest-helpers">Support the pantry</h2>
+      <p id="ip-desc-harvest-helpers">£1 buys three meals. Give once or monthly, cancel any time.</p>
+    </div>
+    <button class="ip-x" type="button" data-ip-close aria-label="Close">&times;</button>
+  </div>
+  <div class="ip-body">
+    <!-- REPLACE: drop the donation form embed in here.
+         Suggested providers for this sector: Stripe, Donorbox.
+         Most give you a container element plus one script tag - paste both inside .ip-slot
+         and delete the placeholder paragraph. Sizing is already handled:
+         .ip-slot fills the panel and scrolls if the widget is taller. -->
+    <div class="ip-slot">
+      <p><strong>Donation form goes here.</strong></p>
+      <p>Paste the embed from <code>Stripe</code> into
+         <code>.ip-slot</code>. Nothing else needs to change.</p>
+    </div>
+    <p class="ip-alt">Rather not use a form?
+      <!-- REPLACE: placeholder contact route -->
+      <a href="#contact" data-ip-close>Use the contact details instead</a>.</p>
+  </div>
+</aside>
+
+<script>
+/* integration panel — open/close, focus management, Escape, scroll lock.
+   Written to work with any number of triggers on the page. */
+(function(){
+  var panel=document.querySelector('.ip'), back=document.querySelector('.ip-backdrop');
+  if(!panel||!back) return;
+  var last=null;
+  var F='a[href],button:not([disabled]),input,select,textarea,[tabindex]:not([tabindex="-1"])';
+  function open(trigger){
+    last=trigger||document.activeElement;
+    panel.hidden=false; back.hidden=false;
+    requestAnimationFrame(function(){
+      back.classList.add('is-on'); panel.classList.add('is-on');
+    });
+    document.body.classList.add('ip-open');
+    var first=panel.querySelector(F); if(first) first.focus();
+  }
+  function close(){
+    panel.classList.remove('is-on'); back.classList.remove('is-on');
+    document.body.classList.remove('ip-open');
+    var done=function(){ panel.hidden=true; back.hidden=true; };
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) done();
+    else setTimeout(done,340);
+    if(last&&last.focus) last.focus();
+  }
+  document.addEventListener('click',function(e){
+    var t=e.target.closest('[data-ip-open]');
+    if(t){ e.preventDefault(); open(t); return; }
+    if(e.target.closest('[data-ip-close]')||e.target===back){ e.preventDefault(); close(); }
+  });
+  document.addEventListener('keydown',function(e){
+    if(panel.hidden) return;
+    if(e.key==='Escape'){ close(); return; }
+    if(e.key!=='Tab') return;
+    var f=[].slice.call(panel.querySelectorAll(F)).filter(function(el){
+      return el.offsetWidth||el.offsetHeight||el.getClientRects().length; });
+    if(!f.length) return;
+    var first=f[0], lastEl=f[f.length-1];
+    if(e.shiftKey && document.activeElement===first){ e.preventDefault(); lastEl.focus(); }
+    else if(!e.shiftKey && document.activeElement===lastEl){ e.preventDefault(); first.focus(); }
+  });
+})();
+</script>
 </body>
 </html>
