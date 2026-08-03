@@ -1033,3 +1033,45 @@ assumed, because gotcha 3 says a stale preview is a real defect.
 empty-state and spinner. They are in the library for when there is a use. **The badge frames
 are decoration only** — a shield or star seal beside a claim about certification reads as a
 credential, which is the prohibition in `ASSET-BRIEF.md`.
+
+
+---
+
+### 2026-08-02 — Claude Code — a hidden image, found by looking
+
+**What the owner asked (verbatim):**
+
+> "Isn't to view why the website looks now send me some screenshots"
+
+Captured full-page screenshots of all four E.M pages at 1440px plus the home page at 390px.
+**Taking them found a live bug that every automated check had passed over.**
+
+**`about.html`'s only image had been invisible the entire time.** `.image-reveal` starts at
+`opacity:0` in `css/enhancements.css` and is only revealed when JS adds `.loaded`. The
+handler assumed the class always sat on an `<img>`:
+
+```js
+$$('.image-reveal').forEach(img => {
+  if (img.complete) img.classList.add('loaded');
+  else img.addEventListener('load', …);
+});
+```
+
+On `about.html` the class is on a wrapper `<div>`. `div.complete` is `undefined`, so the
+`else` branch ran and attached a `load` listener **to a div**, which never fires. The
+wrapper sat at `opacity:0` forever. `index.html` has no `.image-reveal`, so it was
+unaffected — which is why this survived so long.
+
+Now handles both shapes, and **reveals on `error` as well as `load`**: a broken image should
+render as a broken image, not silently delete the section around it.
+
+**Why nothing caught it.** The contrast sweep skips images. The overflow check measures
+`window.scrollX`. The link checker verified the file *loads* — and it did load, at
+`naturalWidth` 531px, perfectly fine, just painted at zero opacity by its parent. **An image
+that loads is not the same as an image that is visible.** Check computed opacity on the
+ancestor chain, not just `img.complete`.
+
+**A consequence worth stating:** fixing this makes the stock workspace photo *visible* on the
+About page, where it previously was not. That is the right outcome for the code and the wrong
+outcome for the content — it strengthens rather than weakens the case for replacing the
+placeholder photography.
