@@ -11,9 +11,17 @@ Two things live here:
 
 ## Handing assets to Claude Code
 
-**A file pasted into the chat cannot be saved.** Claude Code can *see* an attached image but
-has no access to its bytes, so it cannot write it to disk. This has already cost one round
-trip with the E.M logotype. Files must arrive by one of these three routes instead.
+**Uploaded files work. Inline-pasted images do not.** The distinction is narrow and both
+have now happened here:
+
+- A file **uploaded** as an attachment lands on disk (`/root/.claude/uploads/…`) and can be
+  read, cropped and committed. The two ornament contact sheets arrived this way and were
+  used directly.
+- An image **pasted inline into the message body** can be *seen* but has no reachable bytes,
+  so it cannot be written to disk. The E.M logotype arrived this way and cost a round trip.
+
+If in doubt, use one of the three routes below — they always work, and they put the file in
+version control where the next agent can find it too.
 
 ### 1. Commit them yourself — best
 

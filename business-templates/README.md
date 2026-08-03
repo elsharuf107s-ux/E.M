@@ -63,9 +63,9 @@ business-templates/
 ```
 
 The five empty folders are drop zones. **`ASSET-BRIEF.md` holds a paste-ready brief for
-whatever tool generates the images, plus the one thing that catches people out: an image
-attached in chat cannot be saved to disk.** Assets have to be committed, linked or zipped
-into the repo.
+whatever tool generates the images, plus the thing that catches people out: an *uploaded*
+file reaches disk and can be used, but an image *pasted inline* into a message cannot.**
+Committing, linking or zipping assets into the repo always works.
 
 All paths inside each site are relative to this folder, so the whole directory can be moved
 or served on its own. The E.M site reaches *down* into it, which does not break that.
