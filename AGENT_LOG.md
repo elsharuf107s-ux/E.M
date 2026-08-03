@@ -39,10 +39,10 @@ passes WCAG AA contrast (headings included), no heading skips, no unlabelled for
 and a 10.24px type floor. Their design languages stay deliberately different from each
 other — the passes raised craft inside each idiom, they did not unify them.
 
-**Still placeholder on the E.M site:** the four social links point at `#`, the contact form
-posts nowhere, and **the portraits in `assets/images/` are stock photographs of a person who
-is not the owner**, used in three places. The email is real. The site should not go public
-until the portraits are.
+**Still placeholder on the E.M site:** the contact form posts nowhere, and **the portraits
+in `assets/images/` are stock photographs of a person who is not the owner**, used in three
+places. The email and the GitHub link are real. **The portrait is now the only thing
+standing between this site and being publishable.**
 
 **Open work: none from the briefs.** PRs #1–#7 are all merged, so everything described
 above is on `main` — the last six brand-kit sites landed in PR #6, and the honesty pass plus
@@ -1075,3 +1075,41 @@ ancestor chain, not just `img.complete`.
 About page, where it previously was not. That is the right outcome for the code and the wrong
 outcome for the content — it strengthens rather than weakens the case for replacing the
 placeholder photography.
+
+
+---
+
+### 2026-08-02 — Claude Code — the social links
+
+**What the owner asked (verbatim):**
+
+> "fix the socail links"
+
+Asked which of the four profiles actually exist rather than guessing. Answer: **GitHub only.**
+
+- `github.com/elsharuf107s-ux` wired into `index.html` and `contact.html`, with
+  `target="_blank" rel="noopener me"` and an `aria-label` naming the account. `rel="me"`
+  because this is an identity link, which is what that value is for.
+- **LinkedIn, Dribbble and Twitter deleted.** An icon pointing at `#` looks like a profile
+  that exists and is not there — the same class of problem as the invented awards, just
+  quieter.
+- The `<!-- REPLACE -->` marker is gone; there is nothing left to replace in that block.
+
+**Two things found while in there:**
+
+- **`index.html`'s header and footer logos also pointed at `#`** — the only two dead links
+  left on the site. The other three pages link theirs to `index.html`; on `index` itself a
+  bare `#` is a no-op that moves focus and appends a stray `#` to the URL. Pointed both at
+  `#hero`, which already exists and is what the nav's own Home link uses. **Every in-page
+  anchor across all four pages now resolves** — checked by diffing every `href="#…"` against
+  every `id="…"`.
+- **The social link's tap target was 17×30px.** Below the 24×24 WCAG 2.2 minimum and far
+  below a comfortable thumb, on a site whose entire pitch is that it works on a phone. Now
+  44×44 via `display:inline-flex` with a fixed box, the 17px glyph centred inside it, and a
+  negative margin on the row so the icon stays optically aligned with the text above despite
+  the new padding.
+
+**Verified:** both pages render the single icon correctly at 1280px and 390px, `href`
+resolving to the real profile, `svg` still `aria-hidden`; zero `href="#"` anywhere on the
+site; contrast sweep silent across all four pages; one `h1` each; no sideways scroll; no
+console errors.

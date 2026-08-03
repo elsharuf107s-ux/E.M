@@ -614,8 +614,15 @@ p{text-wrap:pretty}
 .contact__detail-text{color:var(--ink);font-size:1rem;overflow-wrap:anywhere}
 a.contact__detail-text{border-bottom:1px solid var(--rule);padding-bottom:1px;transition:border-color .3s var(--ease)}
 a.contact__detail-text:hover{border-bottom-color:var(--ink)}
-.contact__socials{display:flex;gap:2rem;margin-top:2.5rem}
-.social-link{color:var(--muted-2);transition:color .3s var(--ease)}
+.contact__socials{display:flex;gap:.5rem;margin-top:2.5rem;margin-left:-.75rem}
+/* the glyph is 17px but the target must not be. 44x44 is the comfortable
+   thumb size; the negative margin above keeps the icon optically aligned
+   with the text baseline above it despite the padding. */
+.social-link{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:44px;height:44px;
+  color:var(--muted-2);transition:color .3s var(--ease);
+}
 .social-link:hover{color:var(--ink)}
 .social-link svg{width:17px;height:17px}
 
