@@ -44,10 +44,14 @@ in `assets/images/` are stock photographs of a person who is not the owner**, us
 places. The email and the GitHub link are real. **The portrait is now the only thing
 standing between this site and being publishable.**
 
-**Open work: none from the briefs.** PRs #1–#7 are all merged, so everything described
-above is on `main` — the last six brand-kit sites landed in PR #6, and the honesty pass plus
-the contrast fix landed in PR #7. The only work left is the production pass named above:
-**a real portrait**, the four social links, and a form endpoint.
+**Every template carries an integration panel** — a slide-out hosting a third-party booking
+(20 sites), ordering (5) or donation (4) embed. The slot ships **empty and marked `REPLACE`**;
+no third-party code is in this repo. See `business-templates/INTEGRATIONS.md`. The E.M site
+documents this in its `#integrations` section on `index.html`.
+
+**Open work: none from the briefs.** PRs #1–#11 are all merged. The only work left is the
+production pass named above: **a real portrait**, a form endpoint, and — per site, before any
+client goes live — the `REPLACE` markers: contact details and the integration embed.
 
 ---
 
@@ -92,32 +96,43 @@ Things that are easy to get wrong here:
    card inside an `.on-dark` section, and `.on-dark h3{color:#fff}` rendered "Request a
    booking" white on white at 1.00:1. A body-text-only sweep missed it entirely.
 
-7. **A button inside a nav inherits the nav's link colour.** Hit twice —
+7. **A trigger that only lives in the nav is invisible on a phone.** Most of these sites
+   set `display:none` on the primary `<nav>` below their breakpoint, and two park it
+   off-canvas where it still reports a bounding box. A nav-only CTA was unreachable on
+   **17 of 29** sites at 390px and nobody noticed until the sweep ran at that width.
+   Anything that must be reachable everywhere goes in the hero.
+
+8. **Before adding a CTA, check the site does not already have that button.** Twelve
+   headers ended up reading "Donate  Donate" and "Start a box  Start a box". Wiring the
+   site's own button beats adding a second one beside it. A passing test suite will not
+   tell you this — **open the screenshot.**
+
+9. **A button inside a nav inherits the nav's link colour.** Hit twice —
    flowmaster and future-scholars. `.nav a{color:...}` is specificity 0,1,1 and beats
    `.btn--gold{color:#fff}` at 0,1,0, so the button renders the nav's text colour on the
    button's background. Scope the button rule (`.nav a.btn--gold`) or raise its
    specificity. Same family as `.hero p` beating `.card-ft`.
 
-8. **Moving a heading level means moving its CSS selector.** Several templates styled
+10. **Moving a heading level means moving its CSS selector.** Several templates styled
    footer headings with `.ft h4`. Changing the markup to `h3` without changing the
    selector silently strips the styling.
 
-9. **Two CSS traps already hit and fixed in the gallery — don't reintroduce them.**
+11. **Two CSS traps already hit and fixed in the gallery — don't reintroduce them.**
    - An `<img>` with `width`/`height` HTML attributes needs `height:auto` in CSS, or the
      `height` presentational hint wins and `aspect-ratio` is ignored. This silently
      scaled the previews to ~2.5x.
    - A percentage `max-height` needs a definite containing height to resolve against.
      Without one it is ignored, which made ten logo plates render at ten heights.
 
-10. **Every business template carries `<!-- REPLACE -->` placeholders** — phone numbers,
+12. **Every business template carries `<!-- REPLACE -->` placeholders** — phone numbers,
    emails and addresses are invented and the forms post nowhere. Replace them before any
    of these are published as a real business site.
 
-11. **The E.M site's `js/enhancements.js` is nearly empty on purpose.** All four pages
+13. **The E.M site's `js/enhancements.js` is nearly empty on purpose.** All four pages
    `<script src>` it, so deleting the file would 404 on every page load. New behaviour
    belongs in `js/main.js`.
 
-12. **Nothing on the E.M site may claim something that is not true.** This was the
+14. **Nothing on the E.M site may claim something that is not true.** This was the
    owner's explicit instruction — it is their first portfolio and these are their first
    sites. Invented case studies, awards, degrees, skill percentages, client counts and
    price bands have all been deleted. **The standing rule: a number that cannot be
@@ -126,11 +141,11 @@ Things that are easy to get wrong here:
    `assets/images/`, which are of a person who is not the owner. **The site should not go
    public until the portrait is real.**
 
-13. **Nothing here has a build step.** Hand-written HTML/CSS/vanilla JS across both
+15. **Nothing here has a build step.** Hand-written HTML/CSS/vanilla JS across both
    projects. Google Fonts is the only external request. Don't add a bundler or framework
    without the owner asking.
 
-14. **Claude Code runs in a temporary cloud container**, not on the owner's machine. Its
+16. **Claude Code runs in a temporary cloud container**, not on the owner's machine. Its
    working directory is not visible to Antigravity and is wiped after the session. Only
    what is **committed and pushed** crosses between agents. Git is the handoff medium.
 
@@ -1162,3 +1177,131 @@ letter at 16px; every letter/ground pair clears 4.5:1; all four E.M pages still 
 **Contrast note:** the pairs come from real buttons, which already pass AA — but the script
 asserts it anyway and would substitute black or white if one ever failed. None did; the
 lowest is `urban-harvest` at 4.53:1.
+
+---
+
+## 2026-08-03 — Claude Code — integration panel on all 29 templates, and an Integrations section on the E.M site
+
+**The owner's requests, verbatim:**
+
+> "We need to integrate an advanced booking system into the template. Create a dedicated
+> 'Schedule Service' modal or slide-out panel. For now, build a placeholder structure that
+> can accept a third-party script embed (like Jobber or Calendly). Ensure the modal is fully
+> responsive, accessible, and can be triggered by CTA buttons placed throughout the homepage
+> and service pages."
+
+> "and add other integrations needed based on the website types and include what's needed
+> into the portfolio page e.m"
+
+### One thing in the brief did not fit the repo, and I said so rather than inventing it
+
+"the homepage and service pages" describes a multi-page site. **These are one-page sites —
+there are no separate service pages.** So "throughout the homepage" is the whole of it, and
+the triggers went in the hero and the header rather than being spread over pages that do
+not exist. Nothing was scaled down; there was simply nowhere else to put them.
+
+I also did not hard-code Jobber or Calendly. The brief said "like" them, and the sites span
+three different sectors, so hard-coding one provider into 29 files would have to be undone
+28 times. The slot is provider-agnostic and the suggested providers are named in a comment
+beside it.
+
+### What each site got
+
+A slide-out `<aside class="ip">` plus backdrop before `</body>`, CSS appended to the site's
+own `<style>` block using that site's palette tokens. Bottom sheet under 720px, right-hand
+slide-out above. **The embed slot is empty and marked `REPLACE`.** No third-party code is in
+this repo and none should be added — the client supplies their own provider on their own
+account.
+
+Three kinds, chosen by sector rather than one label everywhere — the second half of the
+owner's request:
+
+- **booking / scheduling — 20 sites** (trades, clinics, studios, restaurants, legal, consulting)
+- **ordering / subscriptions — 5 sites** (apex-outdoor, artisan-breads, daily-crumb, roast-revel, urban-harvest)
+- **donations — 4 sites** (future-scholars, harvest-helpers, pawsitive-haven, riverkeepers)
+
+Full documentation is now in **`business-templates/INTEGRATIONS.md`** — which site is which,
+where the two `REPLACE` markers are, and the accessibility contract.
+
+### The trigger placement was wrong first time, and the sweep is what caught it
+
+The first pass appended a button to each site's primary `<nav>`. That looked fine at 1280px.
+**At 390px, 17 of the 29 sites had no reachable trigger at all** — the nav is `display:none`
+below each site's breakpoint — and two more (`apex-outdoor`, `lex-associates`) rendered it
+off-canvas, where it reports a bounding box but cannot be clicked. A feature that is
+invisible on a phone is not shipped.
+
+Fixed by moving the trigger into the **hero**, the one region visible at every width:
+
+- **converted in place** (14 sites) where the hero's primary button already *was* the
+  integration action — "Book a table", "Order ahead", "Start a box". Adding a second button
+  saying the same thing would have been worse than useless.
+- **added beside it** (13 sites) where the primary was a browse action — "View our projects",
+  "Read the menu".
+
+Both reuse the site's own `<a class="btn ...">` element and classes, so each site's button
+styling applies verbatim, and both keep the original `href` — **without JavaScript the button
+still jumps to the relevant section instead of doing nothing.**
+
+### Then the screenshots caught what the sweep could not
+
+The automated sweep went 29/29 green while the header on twelve sites read **"Donate  Donate"**
+and **"Start a box  Start a box"** — our injected nav button sitting next to the site's own
+header CTA meaning exactly the same thing. A passing test says nothing about whether the page
+looks stupid. On those twelve the site's own header button is now the trigger and ours is
+deleted, along with its now-dead `.ip-cta` rule. Where the header CTA says something genuinely
+different — "Request a bid" beside "Request a site visit", "Join us" beside "Donate" — both stay.
+
+`roast-revel` was worse: its centred serif nav could not hold a button at all, and the thing
+broke out to `x=0` and hung off the left edge over the rule. Removed; that site relies on its
+hero trigger. Two hero near-duplicates went the same way — `zenith-tech` had our "Book a demo"
+beside the site's "Request a demo", `atlas-travel` had "Talk to us" beside "Ask a question".
+
+### Accessibility, verified rather than asserted
+
+`modal-all.mjs` drives every site at 1280px and 390px and checks: hidden at rest, opens from a
+visible in-viewport trigger, `role=dialog` + `aria-modal`, `aria-labelledby`/`aria-describedby`
+resolving to real elements, focus moved inside, panel on screen and large enough, background
+scroll-locked, embed slot present, close target ≥24px, Tab trapped over 25 presses, no sideways
+scroll while open, Escape closes, focus returned to the trigger, lock released, no page errors.
+
+**29/29 pass.** Also: no sideways scroll at 320/390/768/1280 on any site, all 29 well-formed
+under a real `HTMLParser`, and the heroes reviewed as contact sheets at both widths.
+
+### On the E.M site
+
+New `#integrations` section on `index.html`, dark, between Live Sites and How it works. Three
+columns — 20 / 5 / 4 — naming the providers each slot is shaped for, plus a closing note. The
+Live Sites subtitle on both `index.html` and `work.html` now links into it.
+
+**The honesty rule (now gotcha 14) governed every word of it.** What is true and is claimed: the panel is built, it is
+keyboard-operable, it was checked on all 29. What is not claimed: that any booking, payment or
+donation service is live, or that there is any arrangement with the companies named. The note
+says so outright — *"I have no arrangement with any of those companies and I will not sign you
+up to one."* New CSS is token-only; the section audits clean at AA at both widths.
+
+### What I deliberately did not do
+
+- **No provider embedded.** Signing the owner up to Calendly or Stripe is his decision and his
+  billing relationship, not something to bury in 29 files.
+- **No nav link for `#integrations`.** `#sites` does not have one either; the nav is five items
+  and adding a sixth for a supporting section unbalances it.
+- **`work.html` did not get the section duplicated**, only a link to it. Two copies of the same
+  block drift apart — that is how the six invented case studies survived on `work.html` after
+  being deleted from `index.html`.
+- **The stock portraits are still there.** Unrelated to this request, still the one thing
+  blocking publication.
+
+### Lessons worth carrying
+
+- **A green test suite is not a look at the page.** The sweep passed while a dozen headers read
+  "Donate  Donate". Screenshots found it; assertions never would have.
+- **Test at the width the customer uses.** Desktop-only verification would have shipped a
+  feature that 17 of 29 sites could not open on a phone.
+- **When a revert regex matches more than you meant, it deletes real work.** Un-wiring the first
+  pass with `re.subn` on the whole anchor destroyed five hero buttons whose attribute order put
+  `href` before `class`. Caught by reading `git diff` for deleted lines and restoring each by
+  hand — but the honest fix is to check the pattern against the corpus before running it.
+- **Playwright hanging is not always Playwright.** Navigation took ~13s per page because the
+  Google Fonts stylesheet blocks DCL through the proxy. Routing non-`file:` requests to `abort`
+  cut a 12-minute sweep to under two. The sites themselves are fine.
