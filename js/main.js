@@ -240,9 +240,23 @@ document.addEventListener('DOMContentLoaded', () => {
     apply();
   }
 
-  /* ---------- images fade in as they decode -------------------------------- */
-  $$('.image-reveal').forEach(img => {
-    if (img.complete) img.classList.add('loaded');
-    else img.addEventListener('load', () => img.classList.add('loaded'), { once: true });
+  /* ---------- images fade in as they decode --------------------------------
+     .image-reveal starts at opacity:0 and only becomes visible once .loaded
+     lands, so anything this misses stays invisible forever. It used to assume
+     the class was always on the <img> — on about.html it sits on a wrapper
+     <div>, whose .complete is undefined, so a 'load' listener was attached to
+     a div and never fired. That page's only image was hidden the whole time.
+     Handle both shapes, and reveal on error too: a broken image should show a
+     broken image, not silently delete the section. */
+  $$('.image-reveal').forEach(el => {
+    const imgs = el.tagName === 'IMG' ? [el] : $$('img', el);
+    if (!imgs.length) { el.classList.add('loaded'); return; }
+    let pending = imgs.length;
+    const settle = () => { if (--pending <= 0) el.classList.add('loaded'); };
+    imgs.forEach(img => {
+      if (img.complete) { settle(); return; }
+      img.addEventListener('load', settle, { once: true });
+      img.addEventListener('error', settle, { once: true });
+    });
   });
 });

@@ -54,6 +54,7 @@ business-templates/
 │   ├── icons/            favicons — empty, see ASSET-BRIEF.md
 │   ├── social/           1200x630 share cards — empty
 │   ├── photos/           photography — empty
+│   ├── ornaments/*.svg   nineteen decorative SVGs + how they are used
 │   ├── textures/         tileable textures and grain — empty
 │   └── docs/             menus, price lists — empty
 ├── ASSET-BRIEF.md        what to generate, and how to hand it over
@@ -68,6 +69,11 @@ into the repo.
 
 All paths inside each site are relative to this folder, so the whole directory can be moved
 or served on its own. The E.M site reaches *down* into it, which does not break that.
+
+**Ornaments are inlined, not linked.** Twenty-eight sites carry a decorative section break
+before `</main>`, inline SVG painted with `currentColor` so it takes each site's own palette.
+`assets/ornaments/` is the source library and explains why a linked SVG could not be used —
+a CSS mask pointing at a file is blocked when the page is opened straight off disk.
 
 ## Viewing
 

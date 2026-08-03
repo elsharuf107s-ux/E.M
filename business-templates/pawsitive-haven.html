@@ -88,6 +88,14 @@ h1,h2,h3{color:var(--ink);font-weight:800;line-height:1.16;text-wrap:balance}
 .ft-logo img{height:38px;width:auto}
 .ft-end{border-top:1px solid #35507A;padding-top:1.15rem;display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;justify-content:space-between;font-size:.83rem}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}}
+
+/* ---- ornament: a decorative section break, inherits this site's own text
+   colour via currentColor so it can never clash with the palette. Inline SVG
+   because an external mask or file is blocked when the page is opened
+   straight off disk, and these pages must work without a server. ---- */
+.ornament{display:flex;justify-content:center;padding-block:clamp(1.75rem,4vw,3rem);opacity:.4;pointer-events:none}
+.ornament svg{display:block;width:min(100%,200px);height:auto}
+@media(prefers-reduced-motion:no-preference){.ornament{transition:opacity .4s}}
 </style>
 </head>
 <body>
@@ -170,6 +178,7 @@ h1,h2,h3{color:var(--ink);font-weight:800;line-height:1.16;text-wrap:balance}
       Registered charity 41-882-093 · <a href="tel:+15554820113" style="font-weight:700;color:var(--navy);text-decoration:underline">(555) 482-0113</a> · hello@pawsitivehaven.example
     </p>
   </div></section>
+  <div class="ornament" aria-hidden="true"><svg viewBox="0 0 240 4" fill="none" role="presentation"><path d="M0 2h240" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-dasharray=".1 6"/></svg></div>
 </main>
 <footer class="ft"><div class="wrap">
   <div class="ft-g">

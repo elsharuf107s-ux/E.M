@@ -247,6 +247,14 @@ h1,h2,h3{font-family:var(--cond);font-weight:700;text-transform:uppercase;line-h
 .mk{min-width:0}
 .mk b{min-width:0;overflow:hidden;text-overflow:ellipsis}
 @media (max-width:430px){.mk b span{display:none}.mk{padding-right:.7rem;gap:.5rem}}
+
+/* ---- ornament: a decorative section break, inherits this site's own text
+   colour via currentColor so it can never clash with the palette. Inline SVG
+   because an external mask or file is blocked when the page is opened
+   straight off disk, and these pages must work without a server. ---- */
+.ornament{display:flex;justify-content:center;padding-block:clamp(1.75rem,4vw,3rem);opacity:.4;pointer-events:none}
+.ornament svg{display:block;width:min(100%,210px);height:auto}
+@media(prefers-reduced-motion:no-preference){.ornament{transition:opacity .4s}}
 </style>
 </head>
 <body>
@@ -525,6 +533,7 @@ h1,h2,h3{font-family:var(--cond);font-weight:700;text-transform:uppercase;line-h
     </div>
   </section>
 
+  <div class="ornament" aria-hidden="true"><svg viewBox="0 0 240 26" fill="none" role="presentation"><g stroke="currentColor" stroke-width="1.6" stroke-linecap="square"><path d="M0 20 10 6l10 14M20 20 30 6l10 14M40 20 50 6l10 14M60 20 70 6l10 14M80 20 90 6l10 14M100 20l10-14 10 14M120 20l10-14 10 14M140 20l10-14 10 14M160 20l10-14 10 14M180 20l10-14 10 14M200 20l10-14 10 14M220 20l10-14 10 14"/></g></svg></div>
 </main>
 
 <footer class="ft">
