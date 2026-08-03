@@ -1113,3 +1113,52 @@ Asked which of the four profiles actually exist rather than guessing. Answer: **
 resolving to the real profile, `svg` still `aria-hidden`; zero `href="#"` anywhere on the
 site; contrast sweep silent across all four pages; one `h1` each; no sideways scroll; no
 console errors.
+
+
+---
+
+### 2026-08-03 — Claude Code — favicons on all 33 pages
+
+**What the owner asked (verbatim):**
+
+> "now add favicons to all the websites"
+
+**All 29 templates and all 4 E.M pages now carry a favicon.** Before this, 29 of 33 had
+none at all and the E.M pages had a `✦` emoji nobody chose.
+
+**Brand colours were measured, not guessed.** A script loaded every template in Chromium and
+read the computed `background-color` of its primary action button — the most reliable read on
+a site's brand colour — plus the button's text colour and the site's display font. All 29
+returned a value. Palette is in the scratchpad as `palettes.json`.
+
+Each favicon is a **rounded tile in the site's own brand colour with its initial in the
+button's text colour**: `A` on Apex red, `M` on Momentum red, `S` on Summit yellow. Written
+as SVG, embedded as a percent-encoded data URI so there is **no extra request and it works
+offline**, matching the no-build-step rule. Source SVGs also live in `assets/icons/`.
+
+**Three things caught by checking rather than assuming:**
+
+1. **The font stack broke the data URI.** `font-family="system-ui,-apple-system,'Segoe UI',
+   sans-serif"` — the inner single quotes collided with the attribute quoting and produced
+   malformed SVG in all 29 files. Fixed by using quote-free stacks (`system-ui,sans-serif`,
+   `Georgia,serif`) and percent-encoding via `urllib.parse.quote` rather than hand-rolled
+   replacements. **Stripped all 29 and redid them.**
+2. **Two near-white tiles.** `pristine-polish` measured `#F7FAFD` and `apex-outdoor`
+   `#E3D9C6` — a white square is invisible on a light browser tab, it has no silhouette.
+   Any ground with luminance above 0.6 is now inverted, ground and letter swapped.
+3. **My verification was wrong before the favicons were.** The first probe sampled the pixel
+   at dead centre and reported 13 "blank tiles" — every one of them a letter with an open
+   counter (A, C, D, L, O, U, V). The icons were fine; the test was not. Rewritten to render
+   at 16px and count distinct colours. **Check the checker before believing a failure.**
+
+**Apple touch icons are real 180×180 PNGs** — iOS ignores SVG for these. Rendered in
+Chromium, opaque, square, no rounded corners because iOS applies its own mask. All 29
+verified as 180×180 and **opened as a contact sheet and looked at**, per the blank-PNG
+lesson from the logo crops.
+
+**Verified:** every favicon decodes in the browser, fills its tile, and renders a distinct
+letter at 16px; every letter/ground pair clears 4.5:1; all four E.M pages still audit clean.
+
+**Contrast note:** the pairs come from real buttons, which already pass AA — but the script
+asserts it anyway and would substitute black or white if one ever failed. None did; the
+lowest is `urban-harvest` at 4.53:1.
