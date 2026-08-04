@@ -44,10 +44,18 @@ in `assets/images/` are stock photographs of a person who is not the owner**, us
 places. The email and the GitHub link are real. **The portrait is now the only thing
 standing between this site and being publishable.**
 
+**There are now THIRTY templates.** `cadence.html` (2026-08-04) is a SaaS product site and a
+new idiom here — pricing tiers, a help centre, a launcher dock. Any count of "twenty-nine"
+anywhere is stale; if you add a thirty-first, the checkable places are the Live Sites heading,
+subtitle and counter on `index.html` and `work.html`, the `data-target` counter on
+`index.html`, the CTA banner, a sentence on `about.html`, and both READMEs.
+
 **Every template carries an integration panel** — a slide-out hosting a third-party booking
 (20 sites), ordering (5) or donation (4) embed. The slot ships **empty and marked `REPLACE`**;
-no third-party code is in this repo. See `business-templates/INTEGRATIONS.md`. The E.M site
-documents this in its `#integrations` section on `index.html`.
+no third-party code is in this repo. `cadence.html` is the exception: it carries **twenty**
+mount points and uses an id-addressed controller rather than the single-panel `.ip` pattern,
+because it has four overlays. See `business-templates/INTEGRATIONS.md`. The E.M site documents
+all of this in its `#integrations` section on `index.html`.
 
 **Open work: none from the briefs.** PRs #1–#11 are all merged. The only work left is the
 production pass named above: **a real portrait**, a form endpoint, and — per site, before any
@@ -1305,3 +1313,105 @@ up to one."* New CSS is token-only; the section audits clean at AA at both width
 - **Playwright hanging is not always Playwright.** Navigation took ~13s per page because the
   Google Fonts stylesheet blocks DCL through the proxy. Routing non-`file:` requests to `abort`
   cut a 12-minute sweep to under two. The sites themselves are fine.
+
+---
+
+## 2026-08-04 — Claude Code — a thirtieth template: `cadence.html`, wired for twenty integrations
+
+**The owner's request, verbatim:**
+
+> "Create a modern business website template with these integrations:
+> AI chatbot / website assistant, appointment booking / scheduling, contact form to CRM sync,
+> email marketing automation, lead capture popups / exit-intent forms, live chat / customer
+> messaging, payment gateway, CRM integration, analytics / tracking, meeting transcription /
+> notes, automation platform connector, review / testimonial collection, SMS / text follow-up,
+> support ticketing, newsletter signup, calendar sync, lead scoring, visitor identification,
+> social media scheduling, and knowledge base / help center.
+>
+> Use clean section cards, icons, short labels, and a professional SaaS/business style."
+
+### What was built
+
+`business-templates/cadence.html` — a SaaS product site. **A new idiom for this folder:**
+nothing among the other twenty-nine is a software product with pricing tiers, a status mock
+and a help centre. Warm off-white ground, near-black ink, one saturated indigo, hairline
+cards, monospace micro-labels. Deliberately unlike the two existing light business sites
+(pure-white corporate) and the greens (organic).
+
+The twenty appear twice: as a **twenty-card grid** with icons and short labels — that is the
+"clean section cards" the owner asked for — and again as an indexed comment block at the foot
+of the file, next to the code. Each card carries an honest status dot: seven are built and
+working on the page, thirteen are a marked endpoint, tag or webhook.
+
+Seven are real, working shells rather than descriptions: four overlays (assistant, booking,
+live chat, exit intent), the help-centre search, the review grid, the newsletter and lead
+forms. **Every one has an empty `.slot`.** No third-party script is in the file.
+
+### Why it does not use the `.ip` pattern
+
+The other twenty-nine carry one panel and their controller does
+`document.querySelector('.ip')`. Cadence has four overlays, so they are addressed by id via
+`[data-open="ID"]`, with one extra rule the single-panel sites never needed: **only one
+overlay open at a time.** Opening a second closes the first — which is what stops the
+assistant and live chat fighting over focus and leaving two scroll locks on the body.
+`cadence-a11y.mjs` tests that swap case explicitly. Documented in `INTEGRATIONS.md`.
+
+### Three bugs, all found by measuring rather than looking at the code
+
+1. **`.ov{display:flex}` outranks the UA's `[hidden]{display:none}`.** All four overlays were
+   live at rest — parked off-screen by their transform, but still swallowing clicks across the
+   bottom of the viewport. Playwright surfaced it as "`<p>` from `<aside hidden id="ov-chat">`
+   subtree intercepts pointer events". An explicit `.ov[hidden]{display:none}` fixes it, and
+   the rule now carries a comment saying it is load-bearing.
+
+2. **The mobile drawer was `class="draw wrap"`, and `.bar .wrap` is the 72px flex header row.**
+   So the drawer became a 72px-tall flex row and shoved its links 160px past the viewport
+   edge — `scrollWidth` 553 at a 390 viewport. `overflow-x:hidden` hid it until a Tab keypress
+   scrolled the off-screen button into view. This is gotcha 11 (CSS class collision) and
+   gotcha 5 (measure, don't infer) at the same time.
+
+3. **`.kb__search input` had `min-width:auto`**, so the flex input kept its intrinsic width and
+   pushed its button off screen. `min-width:0` and a wrap.
+
+### Verified
+
+- **All four overlays pass at 1280px and 390px** — dialog semantics, labelled and described,
+  focus moved in, Tab trapped over 25 presses, Escape, focus returned, scroll locked and
+  released, 44×44 close, no sideways scroll while open, plus the swap case leaving exactly one
+  open and clearing cleanly.
+- **Clean at 320 / 390 / 768 / 1280 / 1600** — contrast AA, no sideways scroll, no type under
+  10.24px, no unlabelled fields, no heading skips, no JS errors, target sizes.
+- Well-formed under a real `HTMLParser`. Preview and apple-touch icon generated and **opened
+  and looked at**, per the blank-PNG lesson.
+- All four E.M pages still clean after the count changes; all 30 previews load.
+
+### A checker that was wrong again
+
+The target-size check flagged eleven 16px-tall anchors as WCAG 2.2 failures. They are not:
+two are inline links in a sentence, and all eleven clear the spacing exception with 35–39px
+between target centres against a 24px requirement. **The audit script was fixed to apply both
+exceptions** rather than the site being changed. That is the third time this has happened —
+the favicon probe and the tag-balance grep were the others.
+
+### Repo-wide consequences of a thirtieth site
+
+Twenty-nine became thirty in every checkable place: the Live Sites heading, subtitle and
+counter on `index.html` and `work.html`, the "Sites you can open" counter (`data-target`),
+the CTA banner, the sentence on `about.html`, and both READMEs. A card was added to the grid
+on both pages under `professional`, which now filters to 5.
+
+The E.M `#integrations` section keeps its 20 / 5 / 4 breakdown — those denominators describe
+the twenty-nine one-action sites and adding Cadence to "booking" would have been false. The
+label now reads "of the 29 one-action sites" and a new paragraph names Cadence as the
+exception that carries twenty.
+
+### What I deliberately did not do
+
+- **No provider embedded, no keys, no analytics tag.** Same rule as the other twenty-nine.
+- **No consent banner.** Three of the twenty (analytics, lead scoring, visitor identification)
+  must not load before consent. Rather than ship a fake banner, the file and `INTEGRATIONS.md`
+  both say plainly that one has to be added before those tags go live. **This is the one item
+  on the page that is a legal problem rather than a taste one.**
+- **No invented testimonials and no real company names.** The review cards say "Placeholder
+  review" in the copy itself, and the logo strip is labelled "Placeholder — replace or remove"
+  on the page. A logo wall is a claim about who you work for.
