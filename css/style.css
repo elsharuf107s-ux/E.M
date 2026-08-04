@@ -336,7 +336,7 @@ p{text-wrap:pretty}
   gap:clamp(2.5rem,7vw,7rem);
   align-items:start;
 }
-.about__text h3{
+.about__text h2{
   font-size:clamp(1.6rem,3vw,2.35rem);
   margin-bottom:2rem;
   max-width:22ch;
@@ -659,7 +659,7 @@ p{text-wrap:pretty}
   display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);
   gap:clamp(2.5rem,7vw,7rem);align-items:start;
 }
-.contact__info h3{font-size:clamp(1.6rem,2.8vw,2.2rem);margin-bottom:1.5rem;max-width:16ch}
+.contact__info h2{font-size:clamp(1.6rem,2.8vw,2.2rem);margin-bottom:1.5rem;max-width:16ch}
 .contact__info p{max-width:46ch;color:var(--muted)}
 .contact__details{margin-top:clamp(2.5rem,5vw,3.5rem);border-top:1px solid var(--rule)}
 /* block, not grid: the icon is display:none, so a two-column grid would

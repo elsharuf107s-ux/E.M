@@ -102,8 +102,13 @@ Delete the two placeholder `<p>`s and paste the provider's snippet — most give
 you a container element plus one script tag; both go inside `.ip-slot`. Sizing is
 already handled: the slot fills the panel and scrolls if the widget is taller.
 
-**2. The fallback line.** Under `.ip-alt`, a placeholder link points at
-`#contact`. Point it at the client's real phone number or address.
+**2. The fallback line.** Under `.ip-alt`, the link points at `#contact-details`
+— the site's own `<footer>`, which carries the address, phone and email. Point it
+at the client's real contact route if the footer is not where you want it to land.
+
+(It used to point at `#contact`, which 27 of the 29 sites do not have, so the link
+went nowhere. Fixed 2026-08-04 — do not reintroduce a hardcoded anchor that has
+not been checked against every file.)
 
 Nothing else needs to change. Do not restyle the panel to match the provider —
 the panel already uses the site's own palette, and a provider's default theme
