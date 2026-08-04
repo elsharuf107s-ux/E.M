@@ -304,6 +304,16 @@ h1,h2,h3{font-family:var(--cond);font-weight:700;text-transform:uppercase;line-h
   text-decoration:underline;text-underline-offset:4px;white-space:nowrap}
 .ip-cta:hover{opacity:.75}
 </style>
+
+<!-- ============================================================
+     INTEGRATION SLOT — tracking tags
+     REPLACE: analytics and visitor-identification tags go here.
+
+     NOTHING IN THIS BLOCK MAY LOAD BEFORE CONSENT. There is no
+     consent banner in this file. Add one, and gate these on it,
+     before either tag goes live. This is a legal requirement in
+     the UK and EU, not a preference.
+     ============================================================ -->
 </head>
 <body>
 
@@ -529,7 +539,9 @@ h1,h2,h3{font-family:var(--cond);font-weight:700;text-transform:uppercase;line-h
         <h2>Straight from the floor.</h2>
       </div>
       <figure class="shout" data-r>
-        <blockquote>First gym where a coach fixed my deadlift in <em>week one</em> instead of letting me wreck my back for a year.</blockquote>
+        <!-- REPLACE: review collection — point the feed at these quotes.
+     Never invent a quote or attach a real name to one not given. -->
+<blockquote>First gym where a coach fixed my deadlift in <em>week one</em> instead of letting me wreck my back for a year.</blockquote>
         <figcaption>Dane N. — member, 2 years</figcaption>
       </figure>
       <figure class="shout" data-r>
@@ -557,13 +569,17 @@ h1,h2,h3{font-family:var(--cond);font-weight:700;text-transform:uppercase;line-h
           <div><dt>Parking</dt><dd>Free, out front, from 5am</dd></div>
         </dl>
       </div>
-      <form class="frm" id="frm" data-r novalidate>
+      <!-- REPLACE: contact form to CRM. Set action= to the CRM form
+     endpoint and method="post", or POST it from your own script.
+     Until then this form goes nowhere. -->
+<form class="frm" id="frm" data-r novalidate data-int="crm">
         <h3>Claim your free week</h3>
         <p>We'll call to book your assessment. No card required.</p>
         <div class="fl"><label for="n">Name</label><input id="n" name="name" type="text" autocomplete="name" required></div>
         <div class="f2">
           <div class="fl"><label for="p">Phone</label><input id="p" name="phone" type="tel" autocomplete="tel" required></div>
-          <div class="fl"><label for="e">Email</label><input id="e" name="email" type="email" autocomplete="email"></div>
+          <div class="fl"><label for="e">Email</label><!-- REPLACE: newsletter / email automation — list endpoint -->
+<input id="e" name="email" type="email" autocomplete="email" data-int="list"></div>
         </div>
         <div class="fl">
           <label for="g">Where are you starting</label>
@@ -797,5 +813,26 @@ h1,h2,h3{font-family:var(--cond);font-weight:700;text-transform:uppercase;line-h
   });
 })();
 </script>
+
+<!-- ============================================================
+     INTEGRATION MOUNTS — 9 for this site, matched to the trade.
+
+     No third-party code ships in this file. Each line says where
+     that integration attaches. Search REPLACE to find the marked
+     places. Full notes: business-templates/INTEGRATIONS.md
+
+     Booking / scheduling       the `.ip` panel — `.ip-slot`  [shell built, slot empty]
+     Analytics / tracking       the head slot above  [CONSENT REQUIRED]
+     Contact form to CRM        the `<form>` — set its `action` to the CRM endpoint  [form marked]
+     Live chat / assistant      paste the widget before `</body>`  [no markup needed]
+     Review collection          the quote block — point the feed at it  [block marked]
+     SMS / email follow-up      the provider sends; triggered by the action panel  [provider side]
+     Calendar sync              configured inside the booking provider, two-way  [provider side]
+     Payment gateway            deposits and invoices — the provider hosts checkout  [provider side]
+     Newsletter / email automation the email field — set the form `action` to the list endpoint  [field marked]
+
+     Deliberately NOT here: the integrations that do not suit this
+     trade. Adding all twenty everywhere would be padding.
+     ============================================================ -->
 </body>
 </html>

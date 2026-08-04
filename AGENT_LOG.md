@@ -50,6 +50,10 @@ anywhere is stale; if you add a thirty-first, the checkable places are the Live 
 subtitle and counter on `index.html` and `work.html`, the `data-target` counter on
 `index.html`, the CTA banner, a sentence on `about.html`, and both READMEs.
 
+**Every template carries a matched integration mount set** — 9 to 11 per site, listed in a
+manifest comment before `</body>` in each file. Search a file for `INTEGRATION MOUNTS`. Sets
+differ by sector on purpose; do not "helpfully" level them up to twenty everywhere.
+
 **Every template carries an integration panel** — a slide-out hosting a third-party booking
 (20 sites), ordering (5) or donation (4) embed. The slot ships **empty and marked `REPLACE`**;
 no third-party code is in this repo. `cadence.html` is the exception: it carries **twenty**
@@ -1415,3 +1419,86 @@ exception that carries twenty.
 - **No invented testimonials and no real company names.** The review cards say "Placeholder
   review" in the copy itself, and the logo strip is labelled "Placeholder — replace or remove"
   on the page. A logo wall is a claim about who you work for.
+
+---
+
+## 2026-08-04 (2) — Claude Code — matched integration mounts on all 29 remaining templates
+
+**The owner's request, verbatim:**
+
+> "I ment include these updates to all the websites not on one website or should I sell it
+> as a speperate service, but I do need the templates to have their respected integrations,"
+
+Two things in one message: a correction (the twenty were meant for all the sites, not only
+Cadence) and a real business question.
+
+### The business answer, which decided the shape of the work
+
+**Sell the wiring-up as a service; ship the empty mounts for free.** Those are not in
+tension. An empty documented mount costs nothing and makes the sale easy — the site is
+already built for it. The chargeable work is the part with real cost: an account per
+provider, keys, configuration, testing, and the support call when a client's booking widget
+breaks at 8am. Bundled into a site price, that is eaten forever.
+
+So: mounts in the templates, setup as an add-on. The E.M site was **not** given a service or
+pricing section — the owner did not answer the question about it, and inventing prices would
+break the honesty rule.
+
+### What was actually added, and what deliberately was not
+
+**Most of the twenty are not user interface.** Analytics, CRM sync, lead scoring, visitor
+identification, automation, SMS, calendar sync and meeting transcription are a head tag, a
+form endpoint or a webhook. Only a handful need markup.
+
+So no chat dock, no review grid and no newsletter block was bolted onto 29 bespoke designs.
+That would have wrecked finished work to add features most of these trades will never switch
+on — and would have repeated, at scale, the "a passing test says nothing about whether the
+page looks stupid" mistake from the panel rollout.
+
+Each of the 29 got:
+
+- a **`<head>` slot** for tracking tags, carrying the consent warning
+- its **`<form>` marked** `data-int="crm"` — 21 of 29 have one
+- its **email field marked** `data-int="list"` — 14 of 29
+- its **quote block marked** as the review render target — 4 of 29
+- a **manifest comment** before `</body>` naming that site's own set and where each attaches
+
+**Nothing renders differently.** The changes are HTML comments and two inert data attributes.
+
+### The sets, and why they differ
+
+Core five everywhere — analytics, contact→CRM, messaging, review collection, SMS/email
+follow-up — plus the booking/ordering/donation panel already there. Then by sector:
+
+| Sector | Sites | Extras | Total |
+|---|---|---|---|
+| Trades | 6 | calendar sync, ticketing, payments | 9 |
+| Retail & food | 6 | payments, social scheduling, newsletter | 9 |
+| Wellness & fitness | 6 | calendar sync, payments, newsletter | 9 |
+| Professional / B2B | 7 | lead scoring, visitor ID, meeting notes, automation | 11 |
+| Charity | 4 | payments, social scheduling, automation | 9 |
+
+**A bakery does not get lead scoring and a food bank does not get a checkout.** Putting all
+twenty everywhere would be padding the owner would have to defend in a sales conversation.
+
+### Verified
+
+- **29/29 pass the `.ip` modal sweep**, cadence passes its own four-overlay harness
+- No sideways scroll on any of the 30 at 320/390/768/1280
+- All 30 well-formed under a real `HTMLParser`
+- Spot-rendered the four sites carrying every marker type: no comment leaked into visible
+  text, both data attributes resolve, no JS errors, layout unchanged
+
+### A checker wrong for the fourth time
+
+`modal-all.mjs` reported cadence failing — "not hidden at rest", "no visible trigger". It
+looks for `.ip` and `[data-ip-open]`; cadence uses the id-addressed `.ov` controller. The
+site was fine; **the harness was pointed at the wrong pattern.** It now skips cadence with a
+comment saying where cadence's own harness lives. Favicon probe, tag-balance grep,
+target-size check, and now this.
+
+### Open question the owner did not answer
+
+Whether to build an integration-setup service section on the E.M site. Left undone rather
+than guessed. If it is wanted later, the honest framing is already written down above: the
+slots ship with every site, the wiring-up is the service, and no figures should be invented.

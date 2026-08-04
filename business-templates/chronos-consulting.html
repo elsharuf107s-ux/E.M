@@ -155,6 +155,16 @@ h1,h2,h3{color:var(--navy);font-weight:600;line-height:1.14;letter-spacing:-.018
 /* the panel trigger sits in the nav and must read as part of it, not as a
    browser default button */
 </style>
+
+<!-- ============================================================
+     INTEGRATION SLOT — tracking tags
+     REPLACE: analytics and visitor-identification tags go here.
+
+     NOTHING IN THIS BLOCK MAY LOAD BEFORE CONSENT. There is no
+     consent banner in this file. Add one, and gate these on it,
+     before either tag goes live. This is a legal requirement in
+     the UK and EU, not a preference.
+     ============================================================ -->
 </head>
 <body>
 <a class="skip" href="#services">Skip to services</a>
@@ -218,13 +228,17 @@ h1,h2,h3{color:var(--navy);font-weight:600;line-height:1.14;letter-spacing:-.018
       </dl>
     </div>
     <div class="form"><h3>Request a consultation</h3>
-      <form id="f">
+      <!-- REPLACE: contact form to CRM. Set action= to the CRM form
+     endpoint and method="post", or POST it from your own script.
+     Until then this form goes nowhere. -->
+<form id="f" data-int="crm">
         <div class="f2">
           <div class="fld"><label for="n">Name</label><input id="n" name="name" type="text" autocomplete="name" required></div>
           <div class="fld"><label for="c">Company</label><input id="c" name="company" type="text" autocomplete="organization"></div>
         </div>
         <div class="f2">
-          <div class="fld"><label for="e">Email</label><input id="e" name="email" type="email" autocomplete="email" required></div>
+          <div class="fld"><label for="e">Email</label><!-- REPLACE: newsletter / email automation — list endpoint -->
+<input id="e" name="email" type="email" autocomplete="email" required data-int="list"></div>
           <div class="fld"><label for="s">Service</label>
             <select id="s" name="service"><option>Strategy review</option><option>Operating model</option><option>Due diligence</option><option>Performance improvement</option><option>Not sure yet</option></select></div>
         </div>
@@ -319,5 +333,28 @@ if(f)f.addEventListener('submit',function(e){e.preventDefault();m.textContent='N
   });
 })();
 </script>
+
+<!-- ============================================================
+     INTEGRATION MOUNTS — 11 for this site, matched to the trade.
+
+     No third-party code ships in this file. Each line says where
+     that integration attaches. Search REPLACE to find the marked
+     places. Full notes: business-templates/INTEGRATIONS.md
+
+     Booking / scheduling       the `.ip` panel — `.ip-slot`  [shell built, slot empty]
+     Analytics / tracking       the head slot above  [CONSENT REQUIRED]
+     Contact form to CRM        the `<form>` — set its `action` to the CRM endpoint  [form marked]
+     Live chat / assistant      paste the widget before `</body>`  [no markup needed]
+     Review collection          no quote block yet — add one when there are real reviews  [nothing to render into yet]
+     SMS / email follow-up      the provider sends; triggered by the action panel  [provider side]
+     Lead scoring               events from analytics + form starts  [provider side]
+     Visitor identification     the head slot above  [CONSENT REQUIRED]
+     Meeting transcription      the booking provider's post-call webhook  [provider side]
+     Automation connector       one webhook, subscribed to the form and the panel  [provider side]
+     Newsletter / email automation the email field — set the form `action` to the list endpoint  [field marked]
+
+     Deliberately NOT here: the integrations that do not suit this
+     trade. Adding all twenty everywhere would be padding.
+     ============================================================ -->
 </body>
 </html>

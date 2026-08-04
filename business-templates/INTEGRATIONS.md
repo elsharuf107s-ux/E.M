@@ -6,8 +6,10 @@ built, wired and tested; the slots inside them are empty and documented, so a
 client drops in their own provider's snippet without touching layout.
 
 Twenty-nine of the thirty are local businesses with **one** action that matters,
-so they carry one panel. The thirtieth, `cadence.html`, is a SaaS product
-template and carries **twenty** mount points — see the last section.
+so they carry one *panel*. Each of them also carries a **matched set of 9–11
+mount points** for the rest of the stack — analytics, CRM, reviews, messaging
+and so on — listed in a manifest comment at the foot of its own file. The
+thirtieth, `cadence.html`, is a SaaS product template and carries **twenty**.
 
 ---
 
@@ -34,6 +36,50 @@ urban-harvest
 
 **Donations (4):** future-scholars · harvest-helpers · pawsitive-haven ·
 riverkeepers
+
+---
+
+## The per-site mount set
+
+Beyond the action panel, every site carries mounts for the integrations that
+suit its trade. **Nothing visual was added for these** — most of the twenty are
+a head tag, a form endpoint or a webhook, not user interface, and bolting a chat
+dock and a review grid onto 29 finished designs would have been padding.
+
+What each file now has:
+
+- a **`<head>` slot** for tracking tags, with the consent warning attached
+- its **`<form>` marked** `data-int="crm"` (21 of the 29 have one)
+- its **email field marked** `data-int="list"` where it has one (14)
+- its **quote block marked** as the review render target where it has one (4)
+- a **manifest** as the last thing before `</body>`, naming that site's own set
+  and where each one attaches
+
+Open any file and search `INTEGRATION MOUNTS` to see its set.
+
+| Sector | Sites | On top of the core five |
+|---|---|---|
+| Trades | 6 | calendar sync · support ticketing · payments |
+| Retail & food | 6 | payments · social scheduling · newsletter |
+| Wellness & fitness | 6 | calendar sync · payments · newsletter |
+| Professional / B2B | 7 | lead scoring · visitor ID · meeting notes · automation |
+| Charity | 4 | payments · social scheduling · automation |
+
+The core five on every site: **analytics, contact→CRM, messaging, review
+collection, SMS/email follow-up** — plus the booking, ordering or donation panel
+it already had.
+
+**Sets are matched on purpose.** A bakery does not get lead scoring and a food
+bank does not get a checkout. If a client wants one that is not there, adding it
+is a per-client job, and a chargeable one.
+
+### Selling this
+
+The mounts ship free because an empty documented slot costs nothing and makes
+the sale easy — the site is already built for it. **The wiring-up is the
+service**: an account per provider, keys, configuration, testing, and the
+support call when something breaks. That has a real, recurring cost and should
+be priced separately from the build.
 
 ---
 

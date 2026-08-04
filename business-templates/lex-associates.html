@@ -300,6 +300,16 @@ input,select,textarea{font-family:var(--sans);font-size:.95rem}
   text-decoration:underline;text-underline-offset:4px;white-space:nowrap}
 .ip-cta:hover{opacity:.75}
 </style>
+
+<!-- ============================================================
+     INTEGRATION SLOT — tracking tags
+     REPLACE: analytics and visitor-identification tags go here.
+
+     NOTHING IN THIS BLOCK MAY LOAD BEFORE CONSENT. There is no
+     consent banner in this file. Add one, and gate these on it,
+     before either tag goes live. This is a legal requirement in
+     the UK and EU, not a preference.
+     ============================================================ -->
 </head>
 <body>
 
@@ -476,7 +486,9 @@ input,select,textarea{font-family:var(--sans);font-size:.95rem}
     <div class="hold">
       <span class="lbl">IV — Testimony</span>
       <figure class="tq" data-r>
-        <blockquote>"They told me in the first meeting that I didn't have a claim worth running. It cost me nothing and saved me a great deal more."</blockquote>
+        <!-- REPLACE: review collection — point the feed at these quotes.
+     Never invent a quote or attach a real name to one not given. -->
+<blockquote>"They told me in the first meeting that I didn't have a claim worth running. It cost me nothing and saved me a great deal more."</blockquote>
         <figcaption><b>B. Fenwick</b>Commercial dispute<br>Consultation, 2025</figcaption>
       </figure>
       <figure class="tq" data-r>
@@ -523,13 +535,17 @@ input,select,textarea{font-family:var(--sans);font-size:.95rem}
         </dl>
       </div>
 
-      <form class="form" id="frm" data-r novalidate>
+      <!-- REPLACE: contact form to CRM. Set action= to the CRM form
+     endpoint and method="post", or POST it from your own script.
+     Until then this form goes nowhere. -->
+<form class="form" id="frm" data-r novalidate data-int="crm">
         <h3>Consultation request</h3>
         <p>Reception will respond within one business day to arrange a time.</p>
         <div class="fld"><label for="n">Full name</label><input id="n" name="name" type="text" autocomplete="name" required></div>
         <div class="f2">
           <div class="fld"><label for="p">Telephone</label><input id="p" name="phone" type="tel" autocomplete="tel" required></div>
-          <div class="fld"><label for="e">Email</label><input id="e" name="email" type="email" autocomplete="email"></div>
+          <div class="fld"><label for="e">Email</label><!-- REPLACE: newsletter / email automation — list endpoint -->
+<input id="e" name="email" type="email" autocomplete="email" data-int="list"></div>
         </div>
         <div class="fld">
           <label for="a">Area of law</label>
@@ -711,5 +727,28 @@ input,select,textarea{font-family:var(--sans);font-size:.95rem}
   });
 })();
 </script>
+
+<!-- ============================================================
+     INTEGRATION MOUNTS — 11 for this site, matched to the trade.
+
+     No third-party code ships in this file. Each line says where
+     that integration attaches. Search REPLACE to find the marked
+     places. Full notes: business-templates/INTEGRATIONS.md
+
+     Booking / scheduling       the `.ip` panel — `.ip-slot`  [shell built, slot empty]
+     Analytics / tracking       the head slot above  [CONSENT REQUIRED]
+     Contact form to CRM        the `<form>` — set its `action` to the CRM endpoint  [form marked]
+     Live chat / assistant      paste the widget before `</body>`  [no markup needed]
+     Review collection          the quote block — point the feed at it  [block marked]
+     SMS / email follow-up      the provider sends; triggered by the action panel  [provider side]
+     Lead scoring               events from analytics + form starts  [provider side]
+     Visitor identification     the head slot above  [CONSENT REQUIRED]
+     Meeting transcription      the booking provider's post-call webhook  [provider side]
+     Automation connector       one webhook, subscribed to the form and the panel  [provider side]
+     Newsletter / email automation the email field — set the form `action` to the list endpoint  [field marked]
+
+     Deliberately NOT here: the integrations that do not suit this
+     trade. Adding all twenty everywhere would be padding.
+     ============================================================ -->
 </body>
 </html>
