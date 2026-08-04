@@ -6,6 +6,8 @@
 <title>Serene Spaces Yoga — Studio, Classes &amp; Stillness</title>
 <meta name="description" content="A small yoga studio with unhurried classes, teachers who learn your name, and no mirrors. Beginners' courses, restorative evenings and morning practice.">
 <meta name="theme-color" content="#3B2F45">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2064%2064%22%3E%3Crect%20width=%2264%22%20height=%2264%22%20rx=%2212%22%20fill=%22%233B2F45%22/%3E%3Ctext%20x=%2232%22%20y=%2233%22%20font-family=%22Georgia,serif%22%20font-size=%2242%22%20font-weight=%22700%22%20fill=%22%23FBF9F6%22%20text-anchor=%22middle%22%20dominant-baseline=%22central%22%3ES%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="assets/icons/serene-spaces-apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&amp;family=Jost:wght@300;400;500&amp;display=swap" rel="stylesheet">
@@ -253,6 +255,49 @@ h1,h2,h3{font-family:var(--disp);font-weight:300;color:var(--plum);line-height:1
 .ornament{display:flex;justify-content:center;padding-block:clamp(1.75rem,4vw,3rem);opacity:.4;pointer-events:none}
 .ornament svg{display:block;width:min(100%,200px);height:auto}
 @media(prefers-reduced-motion:no-preference){.ornament{transition:opacity .4s}}
+
+/* ---- integration panel -------------------------------------------------
+   A slide-out that hosts a third-party embed. Nothing third-party ships
+   here: the slot is empty and documented, so a client drops their own
+   provider in without touching layout. Colours are this site's own.
+   Accessibility: role=dialog + aria-modal, focus moved in on open and
+   returned to the trigger on close, Tab trapped inside, Escape closes,
+   background scroll locked. ---- */
+.ip-open{overflow:hidden}
+.ip-backdrop{position:fixed;inset:0;z-index:900;background:rgba(0,0,0,.55);
+  opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}
+.ip-backdrop.is-on{opacity:1;visibility:visible}
+.ip{position:fixed;z-index:901;background:rgb(251, 249, 246);color:rgb(101, 93, 108);
+  display:flex;flex-direction:column;
+  inset:auto 0 0 0;max-height:92dvh;border-radius:14px 14px 0 0;
+  transform:translateY(100%);transition:transform .34s cubic-bezier(.22,.7,.28,1);
+  box-shadow:0 -8px 40px rgba(0,0,0,.28)}
+.ip.is-on{transform:translateY(0)}
+@media(min-width:720px){
+  .ip{inset:0 0 0 auto;width:min(30rem,100%);max-height:none;border-radius:0;
+       transform:translateX(100%);box-shadow:-8px 0 40px rgba(0,0,0,.28)}
+  .ip.is-on{transform:translateX(0)}
+}
+.ip-head{display:flex;align-items:flex-start;gap:1rem;justify-content:space-between;
+  padding:1.25rem 1.35rem;border-bottom:1px solid rgb(162, 140, 177)}
+.ip-head h2{font-family:"Cormorant Garamond", Georgia, serif;color:rgb(101, 93, 108);font-size:1.35rem;line-height:1.2;margin:0}
+.ip-head p{font-size:.9rem;margin:.4rem 0 0;color:rgb(101, 93, 108)}
+.ip-x{flex:0 0 auto;width:44px;height:44px;margin:-.4rem -.5rem 0 0;
+  display:inline-flex;align-items:center;justify-content:center;
+  border-radius:8px;color:rgb(101, 93, 108);background:none;border:0;cursor:pointer;font-size:1.5rem;line-height:1}
+.ip-x:hover{background:rgba(128,128,128,.16)}
+.ip-body{padding:1.35rem;overflow-y:auto;-webkit-overflow-scrolling:touch;flex:1}
+.ip-slot{min-height:min(26rem,52dvh);border:1px dashed rgb(162, 140, 177);border-radius:10px;
+  display:grid;place-items:center;text-align:center;padding:1.5rem;gap:.5rem}
+.ip-slot p{font-size:.9rem;max-width:32ch;margin:0}
+.ip-slot code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.8rem;
+  background:rgba(128,128,128,.14);padding:.15rem .4rem;border-radius:4px}
+.ip-alt{margin-top:1.1rem;padding-top:1.1rem;border-top:1px solid rgb(162, 140, 177);font-size:.92rem}
+.ip-alt a{text-decoration:underline;text-underline-offset:3px}
+@media(prefers-reduced-motion:reduce){.ip,.ip-backdrop{transition:none}}
+
+/* the panel trigger sits in the nav and must read as part of it, not as a
+   browser default button */
 </style>
 </head>
 <body>
@@ -270,7 +315,7 @@ h1,h2,h3{font-family:var(--disp);font-weight:300;color:var(--plum);line-height:1
       <a href="#rates">Rates</a>
       <a href="#visit">Visit</a>
     </nav>
-    <a href="#visit" class="book">Book a class</a>
+    <a href="#visit" class="book" data-ip-open aria-haspopup="dialog">Book a class</a>
     <button class="ttog" id="ttog" aria-label="Open menu" aria-expanded="false" aria-controls="tdraw"><i></i></button>
   </div>
 </header>
@@ -290,7 +335,7 @@ h1,h2,h3{font-family:var(--disp);font-weight:300;color:var(--plum);line-height:1
       <h1>Come as you are. <em>Leave unhurried.</em></h1>
       <p class="lede">No mirrors, no leaderboard, no one calling out how far behind you are. Twelve mats, teachers who learn your name, and classes that end when they end.</p>
       <div class="acts">
-        <a href="#visit" class="btn btn-solid">Book your first class</a>
+        <a href="#visit" class="btn btn-solid" data-ip-open aria-haspopup="dialog">Book your first class</a>
         <a href="#week" class="btn btn-quiet">See the timetable</a>
       </div>
     </div>
@@ -694,6 +739,77 @@ h1,h2,h3{font-family:var(--disp);font-weight:300;color:var(--plum);line-height:1
     toast.classList.add('up');
     clearTimeout(t);
     t = setTimeout(function(){ toast.classList.remove('up'); }, 4400);
+  });
+})();
+</script>
+
+<div class="ip-backdrop" id="ip-backdrop-serene-spaces" hidden></div>
+<aside class="ip" id="ip-serene-spaces" role="dialog" aria-modal="true"
+       aria-labelledby="ip-title-serene-spaces" aria-describedby="ip-desc-serene-spaces" hidden>
+  <div class="ip-head">
+    <div>
+      <h2 id="ip-title-serene-spaces">Book a class</h2>
+      <p id="ip-desc-serene-spaces">Twelve mats a class. Booking opens seven days ahead.</p>
+    </div>
+    <button class="ip-x" type="button" data-ip-close aria-label="Close">&times;</button>
+  </div>
+  <div class="ip-body">
+    <!-- REPLACE: drop the booking system embed in here.
+         Suggested providers for this sector: Mindbody, Momence.
+         Most give you a container element plus one script tag - paste both inside .ip-slot
+         and delete the placeholder paragraph. Sizing is already handled:
+         .ip-slot fills the panel and scrolls if the widget is taller. -->
+    <div class="ip-slot">
+      <p><strong>Booking system goes here.</strong></p>
+      <p>Paste the embed from <code>Mindbody</code> into
+         <code>.ip-slot</code>. Nothing else needs to change.</p>
+    </div>
+    <p class="ip-alt">Rather not use a form?
+      <!-- REPLACE: placeholder contact route -->
+      <a href="#contact" data-ip-close>Use the contact details instead</a>.</p>
+  </div>
+</aside>
+
+<script>
+/* integration panel — open/close, focus management, Escape, scroll lock.
+   Written to work with any number of triggers on the page. */
+(function(){
+  var panel=document.querySelector('.ip'), back=document.querySelector('.ip-backdrop');
+  if(!panel||!back) return;
+  var last=null;
+  var F='a[href],button:not([disabled]),input,select,textarea,[tabindex]:not([tabindex="-1"])';
+  function open(trigger){
+    last=trigger||document.activeElement;
+    panel.hidden=false; back.hidden=false;
+    requestAnimationFrame(function(){
+      back.classList.add('is-on'); panel.classList.add('is-on');
+    });
+    document.body.classList.add('ip-open');
+    var first=panel.querySelector(F); if(first) first.focus();
+  }
+  function close(){
+    panel.classList.remove('is-on'); back.classList.remove('is-on');
+    document.body.classList.remove('ip-open');
+    var done=function(){ panel.hidden=true; back.hidden=true; };
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) done();
+    else setTimeout(done,340);
+    if(last&&last.focus) last.focus();
+  }
+  document.addEventListener('click',function(e){
+    var t=e.target.closest('[data-ip-open]');
+    if(t){ e.preventDefault(); open(t); return; }
+    if(e.target.closest('[data-ip-close]')||e.target===back){ e.preventDefault(); close(); }
+  });
+  document.addEventListener('keydown',function(e){
+    if(panel.hidden) return;
+    if(e.key==='Escape'){ close(); return; }
+    if(e.key!=='Tab') return;
+    var f=[].slice.call(panel.querySelectorAll(F)).filter(function(el){
+      return el.offsetWidth||el.offsetHeight||el.getClientRects().length; });
+    if(!f.length) return;
+    var first=f[0], lastEl=f[f.length-1];
+    if(e.shiftKey && document.activeElement===first){ e.preventDefault(); lastEl.focus(); }
+    else if(!e.shiftKey && document.activeElement===lastEl){ e.preventDefault(); first.focus(); }
   });
 })();
 </script>

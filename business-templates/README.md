@@ -51,13 +51,14 @@ business-templates/
 ├── assets/
 │   ├── previews/*.jpg    1440x900 hero screenshots used as the Live Sites cards
 │   ├── logos/*.png       thirty brand marks (ten original, twenty from the kits)
-│   ├── icons/            favicons — empty, see ASSET-BRIEF.md
+│   ├── icons/            29 favicon SVGs + 29 180x180 apple-touch PNGs
 │   ├── social/           1200x630 share cards — empty
 │   ├── photos/           photography — empty
 │   ├── ornaments/*.svg   nineteen decorative SVGs + how they are used
 │   ├── textures/         tileable textures and grain — empty
 │   └── docs/             menus, price lists — empty
 ├── ASSET-BRIEF.md        what to generate, and how to hand it over
+├── INTEGRATIONS.md       the booking/ordering/donation panel, and how to fill it
 ├── logos-batch-2.zip     the original logo archive
 └── README.md
 ```
@@ -75,6 +76,12 @@ before `</main>`, inline SVG painted with `currentColor` so it takes each site's
 `assets/ornaments/` is the source library and explains why a linked SVG could not be used —
 a CSS mask pointing at a file is blocked when the page is opened straight off disk.
 
+**Every site carries an integration panel.** A slide-out that hosts a third-party booking,
+ordering or donation embed — 20 booking, 5 ordering, 4 donations. No third-party code ships
+here: the slot is empty and marked `REPLACE`, so a client pastes their own provider's
+snippet in without touching layout. `INTEGRATIONS.md` covers which site is which, how to
+drop a provider in, and why the trigger lives in the hero rather than the nav.
+
 ## Viewing
 
 Open the E.M site's `index.html` at the repo root and use the Live Sites section, or open
@@ -84,7 +91,9 @@ every page falls back to system fonts offline.
 ## Before publishing
 
 Contact details in every site are placeholders, each marked with a `<!-- REPLACE -->`
-comment, and the forms post nowhere.
+comment, and the forms post nowhere. The integration panel is the same: it opens and
+behaves correctly, but its slot is empty until a provider's embed goes in. Search a file
+for `REPLACE` to find every one of these in it.
 
 ## Regenerating the previews
 

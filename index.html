@@ -21,7 +21,8 @@
   <link rel="stylesheet" href="css/enhancements.css">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E✦%3C/text%3E%3C/svg%3E">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2064%2064%22%3E%3Crect%20width=%2264%22%20height=%2264%22%20rx=%2212%22%20fill=%22%231A1814%22/%3E%3Ctext%20x=%2232%22%20y=%2234%22%20font-family=%22Georgia,serif%22%20font-size=%2234%22%20font-weight=%22400%22%20fill=%22%23B4996A%22%20text-anchor=%22middle%22%20dominant-baseline=%22central%22%3EEM%3C/text%3E%3C/svg%3E">
+  <link rel="apple-touch-icon" href="assets/icons/em-apple-touch-icon.png">
 
   <!-- Open Graph -->
   <meta property="og:title" content="E.M — Creative Designer & Developer">
@@ -353,6 +354,7 @@
         <p class="section__subtitle">
           Trades, hospitality, professional services, health, culture and a non-profit. Each is a single hand-written file with its own
           layout language — no shared template, no two alike. Search or filter, then open any of them.
+          Every one is wired for <a href="#integrations" class="linkish">booking, ordering or donations</a>.
         </p>
       </div>
 
@@ -704,6 +706,84 @@
         </a>
       </div>
       <p class="sites-empty" id="sites-empty">Nothing matches that. <button class="linkish" id="site-reset">Clear the filters</button></p>
+    </div>
+  </section>
+
+  <!-- ========== INTEGRATIONS ==========
+       Careful with the wording here. What is true: every site carries a
+       working, keyboard-operable panel whose embed slot is empty and
+       documented. What is not true and must never be implied: that any
+       booking, payment or donation service is live, or that I have any
+       relationship with the providers named below. They are named as
+       examples of what the slot takes. -->
+  <section class="section section--dark" id="integrations">
+    <div class="container">
+      <div class="section__header reveal">
+        <span class="section__label">Integrations</span>
+        <h2 class="section__title">Every site is already wired for the <em>one</em> button that matters.</h2>
+        <p class="section__subtitle">
+          A plumber needs a booking slot. A bakery needs an order. A food bank needs a donation.
+          It is nearly always one action, and the site is worth very little if that action is a
+          dead link. So each of the twenty-nine ships with the panel for it already built.
+        </p>
+      </div>
+
+      <div class="integrations reveal">
+        <div class="integration">
+          <span class="integration__count">20</span>
+          <span class="integration__of">of 29 sites</span>
+          <h3 class="integration__title">Booking &amp; scheduling</h3>
+          <p class="integration__description">
+            Trades, clinics, studios, restaurants, legal and consulting. The customer picks a
+            slot without leaving the page — the panel slides over it and the page stays put
+            underneath.
+          </p>
+          <p class="integration__providers">
+            <b>Takes an embed from</b>
+            Jobber · Housecall Pro · ServiceTitan · Calendly · Cal.com · Acuity · Fresha ·
+            Mindbody · TeamUp · OpenTable · Resy
+          </p>
+        </div>
+
+        <div class="integration">
+          <span class="integration__count">5</span>
+          <span class="integration__of">of 29 sites</span>
+          <h3 class="integration__title">Ordering &amp; subscriptions</h3>
+          <p class="integration__description">
+            Bakeries, a roastery, a veg-box scheme and an outdoor retailer. Same panel, pointed
+            at a basket or a standing order instead of a calendar.
+          </p>
+          <p class="integration__providers">
+            <b>Takes an embed from</b>
+            Shopify Buy Button · Square Online · Toast · Snipcart · Stripe
+          </p>
+        </div>
+
+        <div class="integration">
+          <span class="integration__count">4</span>
+          <span class="integration__of">of 29 sites</span>
+          <h3 class="integration__title">Donations</h3>
+          <p class="integration__description">
+            The rescue, the food bank, the river trust and the scholarship fund. A giving form
+            has to open in one tap from anywhere on the page, so it does.
+          </p>
+          <p class="integration__providers">
+            <b>Takes an embed from</b>
+            Stripe · JustGiving · Donorbox
+          </p>
+        </div>
+      </div>
+
+      <p class="integrations-note">
+        <strong>The slot ships empty, and that is deliberate.</strong> I have no arrangement with
+        any of those companies and I will not sign you up to one. You choose the provider, on your
+        own account, at your own price — then the embed goes into a single documented place in the
+        file and nothing about the layout changes. What is already done is the part that is
+        fiddly to get right: the panel opens from any button on the page, moves keyboard focus
+        into itself, traps Tab while it is open, closes on Escape, hands focus back to the button
+        you came from, and stops the page behind it scrolling. That was checked on all twenty-nine,
+        at phone width and desktop width.
+      </p>
     </div>
   </section>
 
