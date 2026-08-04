@@ -25,6 +25,9 @@
   --blk-3:#242120;
   --red:#C81E1B;
   --red-lt:#E8342F;
+  /* text-on-ink red. --red is 3.11:1 and --red-lt is 4.22:1 at the sizes
+     used in .shout; this one clears 4.5:1. Do not use it for fills. */
+  --red-txt:#EF544E;
   --bone:#F2EFEA;
   --bone-d:#A39D95;
   --hi:#F0C93A;
@@ -182,7 +185,7 @@ h1,h2,h3{font-family:var(--cond);font-weight:700;text-transform:uppercase;line-h
 .shout{border-top:1px solid var(--edge);padding-block:2.4rem}
 .shout:first-of-type{border-top:0}
 .shout blockquote{font-family:var(--cond);font-weight:500;text-transform:uppercase;font-size:clamp(1.35rem,3.4vw,2.5rem);line-height:1.05;letter-spacing:.005em;max-width:24ch}
-.shout blockquote em{font-style:normal;color:var(--red)}
+.shout blockquote em{font-style:normal;color:var(--red-txt)}
 .shout figcaption{font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--bone-d);margin-top:1rem}
 
 /* ---------- join ---------- */
@@ -600,7 +603,7 @@ h1,h2,h3{font-family:var(--cond);font-weight:700;text-transform:uppercase;line-h
   <div class="ornament" aria-hidden="true"><svg viewBox="0 0 240 26" fill="none" role="presentation"><g stroke="currentColor" stroke-width="1.6" stroke-linecap="square"><path d="M0 20 10 6l10 14M20 20 30 6l10 14M40 20 50 6l10 14M60 20 70 6l10 14M80 20 90 6l10 14M100 20l10-14 10 14M120 20l10-14 10 14M140 20l10-14 10 14M160 20l10-14 10 14M180 20l10-14 10 14M200 20l10-14 10 14M220 20l10-14 10 14"/></g></svg></div>
 </main>
 
-<footer class="ft">
+<footer id="contact-details" class="ft">
   <div class="hold">
     <div class="ft-g">
       <div>
@@ -766,7 +769,7 @@ h1,h2,h3{font-family:var(--cond);font-weight:700;text-transform:uppercase;line-h
     </div>
     <p class="ip-alt">Rather not use a form?
       <!-- REPLACE: placeholder contact route -->
-      <a href="#contact" data-ip-close>Use the contact details instead</a>.</p>
+      <a href="#contact-details" data-ip-close>Use the contact details instead</a>.</p>
   </div>
 </aside>
 

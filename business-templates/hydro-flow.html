@@ -337,7 +337,13 @@ h1,h2,h3{font-family:var(--cond);font-weight:700;text-transform:uppercase;line-h
 @media(prefers-reduced-motion:reduce){.ip,.ip-backdrop{transition:none}}
 
 .hnav-cta,.hdraw button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;padding:0}
-.hnav-cta{text-decoration:underline;text-underline-offset:4px}
+/* color:inherit picked up the header, not .hnav a, and landed on 2.24:1.
+   Match the sibling links exactly — this is the third time a button in a
+   nav has inherited the wrong colour in this repo. */
+.hnav-cta{font-family:var(--cond);font-size:1rem;font-weight:600;text-transform:uppercase;
+  letter-spacing:.05em;color:var(--txt-2);padding:.5rem .85rem;
+  text-decoration:underline;text-underline-offset:4px;transition:color .15s,background .15s}
+.hnav-cta:hover{color:#fff;background:var(--navy-3)}
 </style>
 
 <!-- ============================================================
@@ -587,7 +593,7 @@ h1,h2,h3{font-family:var(--cond);font-weight:700;text-transform:uppercase;line-h
   <div class="ornament" aria-hidden="true"><svg viewBox="0 0 240 26" fill="none" role="presentation"><g stroke="currentColor" stroke-width="1.6" stroke-linecap="square"><path d="M0 20 10 6l10 14M20 20 30 6l10 14M40 20 50 6l10 14M60 20 70 6l10 14M80 20 90 6l10 14M100 20l10-14 10 14M120 20l10-14 10 14M140 20l10-14 10 14M160 20l10-14 10 14M180 20l10-14 10 14M200 20l10-14 10 14M220 20l10-14 10 14"/></g></svg></div>
 </main>
 
-<footer class="ft">
+<footer id="contact-details" class="ft">
   <div class="rig">
     <div class="ft-g">
       <div>
@@ -804,7 +810,7 @@ h1,h2,h3{font-family:var(--cond);font-weight:700;text-transform:uppercase;line-h
     </div>
     <p class="ip-alt">Rather not use a form?
       <!-- REPLACE: placeholder contact route -->
-      <a href="#contact" data-ip-close>Use the contact details instead</a>.</p>
+      <a href="#contact-details" data-ip-close>Use the contact details instead</a>.</p>
   </div>
 </aside>
 

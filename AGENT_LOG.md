@@ -1502,3 +1502,94 @@ target-size check, and now this.
 Whether to build an integration-setup service section on the E.M site. Left undone rather
 than guessed. If it is wanted later, the honest framing is already written down above: the
 slots ship with every site, the wiring-up is the service, and no figures should be invented.
+
+---
+
+## 2026-08-04 (3) — Claude Code — full-repository bug audit
+
+**The owner's request, verbatim:**
+
+> "I want you to look over the full repository check all code for any bugs and make better
+> visual updates for all websites"
+
+### How the second half was interpreted, and why
+
+"Better visual updates for all websites" was read narrowly: **find and fix what is wrong, do
+not redesign.** Each of these thirty sites has its own deliberate design language that the
+owner has already signed off. Unilaterally restyling them would destroy work rather than
+improve it. This was said to the owner up front rather than assumed silently.
+
+### The audit
+
+A new `fullaudit.mjs` runs all 34 pages (30 templates + 4 E.M) at 320/390/768/1280 and checks:
+duplicate ids, `lang`, `<title>`, viewport, positive tabindex, dead in-page anchors, empty
+hrefs, `target=_blank` without `rel=noopener`, broken images, missing `alt`, unlabelled
+fields, controls with no accessible name, `aria-*` pointing at missing ids, `<h1>` count,
+heading skips, sideways scroll, contrast, type floor, and target size with both WCAG 2.2
+exceptions applied.
+
+130 raw findings. **Most were the harness, not the sites** — see below. Six were real.
+
+### The six real bugs
+
+1. **27 sites had a dead `#contact` link — and it was mine.** The `.ip-alt` fallback in the
+   panel rollout hardcoded `href="#contact"`; only two of the twenty-nine have such a section.
+   "Use the contact details instead" did nothing on 27 sites. Every site has a `<footer>`
+   carrying the contact details, which is exactly what the link promises, so each footer got
+   `id="contact-details"` and the link now points there.
+
+   **While fixing it I broke two sites that were fine.** `chronos-consulting` and `nexa` *do*
+   have a real `#contact` section; the blanket replace repointed their working links. Caught by
+   re-reading the finding list, and both were restored.
+
+2. **`riverkeepers` had nine dead `#join` links** — the nav item, the hero button, four
+   Register buttons and three download buttons all pointed at a section that does not exist.
+   Register/Join now go to `#events`, the downloads to `#learn`.
+
+3. **`hydro-flow`'s nav CTA sat at 2.24:1.** `.hnav-cta{color:inherit}` inherited from the
+   header, not from `.hnav a`. **This is gotcha 9 for the third time in this repo.**
+
+4. **`apex-automotive` and `vitality-gym` had red `<em>` failing on near-black** — 3.84:1 and
+   3.11:1, at every width below 1280 where the text drops under 18.66px. Both sites already
+   defined a text-safe red token for exactly this; the rules were pointing at the fill red.
+   `vitality-gym` needed a new `--red-txt` because neither of its existing reds cleared 4.5:1.
+
+5. **`nexa` had a duplicate `id="ops"`** on a section and an inner div.
+
+6. **`about.html` and `contact.html` skipped h1→h3.** Both ledes are now `<h2>`, and the CSS
+   selectors moved with them — gotcha 10.
+
+Also fixed from the visual sweep: **`artisans-atelier` had two header CTAs meaning the same
+thing** — our injected "Book a viewing" beside the site's own "Enquire". The earlier dedupe
+missed it because the detector's padding threshold did not match that button. Same treatment
+as the twelve: the site's own button is now the trigger and ours is gone.
+
+### Checkers wrong again — twice more, five and six
+
+- **62 of the 64 contrast findings were my checker ignoring alpha.** `bgOf` returned
+  `rgba(128,128,128,.14)` and the ratio maths parsed it as *solid* mid-grey, so the `<code>`
+  chips inside every `.ip-slot` looked like 1.48:1 failures. A rewritten checker composites
+  translucent layers down to the real painted colour, and skips text painted by
+  `background-clip:text` because a colour ratio is meaningless there.
+- **The nameless-control finding was `aria-hidden="true" tabindex="-1"`** — a redundant card
+  link deliberately removed from the accessibility tree. The checker did not honour
+  `aria-hidden`.
+
+Running total: favicon probe, tag-balance grep, target-size check, cadence-vs-`.ip` harness,
+alpha-blind contrast, aria-hidden controls. **Six.** Before believing a failure, check the
+checker — it is now the single most reliable pattern in this repo's history.
+
+### Visual sweep
+
+All 30 templates screenshotted full-page at 1280 and 390 and reviewed as contact sheets. A
+blank-region detector flagged three sites with 320px+ of empty page; all three turned out to
+be ordinary section padding or, on `serene-spaces`, deliberate whitespace on a site whose
+whole argument is being unhurried. **No design was changed on that basis.**
+
+### Verified after the fixes
+
+- 29/29 pass the `.ip` modal sweep; cadence passes its own four-overlay harness
+- No sideways scroll on any of the 30 at 320/390/768/1280
+- **0 contrast failures** across all 34 pages at four widths, alpha composited
+- Full audit clean on all 34 pages
+- All 34 files well-formed under a real `HTMLParser`
