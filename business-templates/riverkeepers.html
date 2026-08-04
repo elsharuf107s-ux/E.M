@@ -138,6 +138,16 @@ h1,h2,h3{color:var(--ink);font-weight:700;line-height:1.13;letter-spacing:-.015e
   text-decoration:underline;text-underline-offset:4px;white-space:nowrap}
 .ip-cta:hover{opacity:.75}
 </style>
+
+<!-- ============================================================
+     INTEGRATION SLOT — tracking tags
+     REPLACE: analytics and visitor-identification tags go here.
+
+     NOTHING IN THIS BLOCK MAY LOAD BEFORE CONSENT. There is no
+     consent banner in this file. Add one, and gate these on it,
+     before either tag goes live. This is a legal requirement in
+     the UK and EU, not a preference.
+     ============================================================ -->
 </head>
 <body>
 <a class="skip" href="#events">Skip to clean-ups</a>
@@ -276,5 +286,26 @@ h1,h2,h3{color:var(--ink);font-weight:700;line-height:1.13;letter-spacing:-.015e
   });
 })();
 </script>
+
+<!-- ============================================================
+     INTEGRATION MOUNTS — 9 for this site, matched to the trade.
+
+     No third-party code ships in this file. Each line says where
+     that integration attaches. Search REPLACE to find the marked
+     places. Full notes: business-templates/INTEGRATIONS.md
+
+     Donations                  the `.ip` panel — `.ip-slot`  [shell built, slot empty]
+     Analytics / tracking       the head slot above  [CONSENT REQUIRED]
+     Contact form to CRM        no form on this site — the panel fallback, `tel:` and `mailto:` are the routes  [no form — see note]
+     Live chat / assistant      paste the widget before `</body>`  [no markup needed]
+     Review collection          no quote block yet — add one when there are real reviews  [nothing to render into yet]
+     SMS / email follow-up      the provider sends; triggered by the action panel  [provider side]
+     Payment gateway            deposits and invoices — the provider hosts checkout  [provider side]
+     Social scheduling          webhook on publish  [provider side]
+     Automation connector       one webhook, subscribed to the form and the panel  [provider side]
+
+     Deliberately NOT here: the integrations that do not suit this
+     trade. Adding all twenty everywhere would be padding.
+     ============================================================ -->
 </body>
 </html>

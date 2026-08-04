@@ -195,6 +195,16 @@ h1,h2,h3{font-family:var(--disp);font-weight:800;line-height:1.1;letter-spacing:
 /* the panel trigger sits in the nav and must read as part of it, not as a
    browser default button */
 </style>
+
+<!-- ============================================================
+     INTEGRATION SLOT — tracking tags
+     REPLACE: analytics and visitor-identification tags go here.
+
+     NOTHING IN THIS BLOCK MAY LOAD BEFORE CONSENT. There is no
+     consent banner in this file. Add one, and gate these on it,
+     before either tag goes live. This is a legal requirement in
+     the UK and EU, not a preference.
+     ============================================================ -->
 </head>
 <body>
 <a class="skip" href="#work">Skip to the work</a>
@@ -292,9 +302,13 @@ h1,h2,h3{font-family:var(--disp);font-weight:800;line-height:1.1;letter-spacing:
     <div class="card">
       <h3 style="font-size:1.15rem">Project enquiry</h3>
       <!-- REPLACE: this form posts nowhere. Wire it to a real endpoint. -->
-      <form class="f" action="#" method="post" novalidate>
+      <!-- REPLACE: contact form to CRM. Set action= to the CRM form
+     endpoint and method="post", or POST it from your own script.
+     Until then this form goes nowhere. -->
+<form class="f" action="#" method="post" novalidate data-int="crm">
         <div><label for="n-name">Your name</label><input id="n-name" name="name" type="text" autocomplete="name" required></div>
-        <div><label for="n-email">Email</label><input id="n-email" name="email" type="email" autocomplete="email" required></div>
+        <div><label for="n-email">Email</label><!-- REPLACE: newsletter / email automation — list endpoint -->
+<input id="n-email" name="email" type="email" autocomplete="email" required data-int="list"></div>
         <div><label for="n-kind">What do you need</label>
           <select id="n-kind" name="kind">
             <option>Brand identity</option><option>Campaign art direction</option><option>Packaging</option><option>Something else</option>
@@ -409,5 +423,28 @@ h1,h2,h3{font-family:var(--disp);font-weight:800;line-height:1.1;letter-spacing:
   });
 })();
 </script>
+
+<!-- ============================================================
+     INTEGRATION MOUNTS — 11 for this site, matched to the trade.
+
+     No third-party code ships in this file. Each line says where
+     that integration attaches. Search REPLACE to find the marked
+     places. Full notes: business-templates/INTEGRATIONS.md
+
+     Booking / scheduling       the `.ip` panel — `.ip-slot`  [shell built, slot empty]
+     Analytics / tracking       the head slot above  [CONSENT REQUIRED]
+     Contact form to CRM        the `<form>` — set its `action` to the CRM endpoint  [form marked]
+     Live chat / assistant      paste the widget before `</body>`  [no markup needed]
+     Review collection          no quote block yet — add one when there are real reviews  [nothing to render into yet]
+     SMS / email follow-up      the provider sends; triggered by the action panel  [provider side]
+     Lead scoring               events from analytics + form starts  [provider side]
+     Visitor identification     the head slot above  [CONSENT REQUIRED]
+     Meeting transcription      the booking provider's post-call webhook  [provider side]
+     Automation connector       one webhook, subscribed to the form and the panel  [provider side]
+     Newsletter / email automation the email field — set the form `action` to the list endpoint  [field marked]
+
+     Deliberately NOT here: the integrations that do not suit this
+     trade. Adding all twenty everywhere would be padding.
+     ============================================================ -->
 </body>
 </html>

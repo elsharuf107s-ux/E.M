@@ -78,7 +78,10 @@ a CSS mask pointing at a file is blocked when the page is opened straight off di
 
 **Every site carries an integration panel.** A slide-out that hosts a third-party booking,
 ordering or donation embed — 20 booking, 5 ordering, 4 donations. The thirtieth,
-`cadence.html`, is a SaaS product template carrying twenty mount points instead of one. No third-party code ships
+`cadence.html`, is a SaaS product template carrying twenty mount points instead of one.
+Beyond that panel, **every site carries a matched set of 9–11 mounts** for the rest of the
+stack, listed in a manifest comment at the foot of its own file. Search a file for
+`INTEGRATION MOUNTS`. No third-party code ships
 here: the slot is empty and marked `REPLACE`, so a client pastes their own provider's
 snippet in without touching layout. `INTEGRATIONS.md` covers which site is which, how to
 drop a provider in, and why the trigger lives in the hero rather than the nav.
