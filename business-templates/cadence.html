@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cadence — Client operations for service businesses</title>
+<meta name="description" content="Cadence keeps every client job, quote and follow-up in one place. A business website template wired for twenty integrations.">
+<meta name="theme-color" content="#F7F6F3">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2064%2064%22%3E%3Crect%20width=%2264%22%20height=%2264%22%20rx=%2212%22%20fill=%22%233A37C9%22/%3E%3Ctext%20x=%2232%22%20y=%2233%22%20font-family=%22system-ui,sans-serif%22%20font-size=%2242%22%20font-weight=%22700%22%20fill=%22%23FFFFFF%22%20text-anchor=%22middle%22%20dominant-baseline=%22central%22%3EC%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="assets/icons/cadence-apple-touch-icon.png">
+
+<style>
+/* ==========================================================================
+   CADENCE — a SaaS product site.
+
+   House style for this file: warm off-white ground, near-black ink, one
+   saturated indigo. Hairline cards in a dense grid, monospace micro-labels,
+   pill badges. Deliberately unlike the other templates in this folder — the
+   two other light business sites here are pure-white corporate, and the
+   greens are organic.
+
+   Everything third-party is a documented empty slot. Search REPLACE.
+   ========================================================================== */
+:root{
+  --paper:#F7F6F3;
+  --paper-2:#EFEDE7;
+  --card:#FFFFFF;
+  --ink:#14161A;
+  --ink-2:#3E434C;
+  /* --muted is pinned by contrast, not taste: 5.51:1 on --paper */
+  --muted:#5E646E;
+  --rule:#E2DFD7;
+  --rule-2:#D3CFC4;
+  --accent:#3A37C9;        /* 7.56:1 on paper, 8.17:1 behind white text */
+  --accent-ink:#2B2999;
+  --accent-soft:#EDECFA;
+  --ok:#0B7A5B;
+  --sans:'Instrument Sans',system-ui,-apple-system,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --shell:1200px;
+  --ease:cubic-bezier(.22,.7,.28,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:88px}
+body{
+  background:var(--paper);color:var(--ink-2);
+  font-family:var(--sans);font-size:16.5px;line-height:1.65;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+ul,ol{list-style:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+input,select,textarea{font-family:var(--sans);font-size:1rem}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+h1,h2,h3,h4{color:var(--ink);font-weight:600;line-height:1.12;letter-spacing:-.021em}
+h1{font-size:clamp(2.3rem,5.4vw,3.9rem);letter-spacing:-.032em}
+h2{font-size:clamp(1.75rem,3.4vw,2.6rem);letter-spacing:-.026em}
+h3{font-size:1.06rem;letter-spacing:-.012em}
+p{text-wrap:pretty}
+
+.wrap{width:100%;max-width:var(--shell);margin-inline:auto;padding-inline:clamp(1.15rem,4vw,2.5rem)}
+.sec{padding-block:clamp(4rem,9vw,7.5rem)}
+.sec--line{border-top:1px solid var(--rule)}
+
+/* wide-tracked mono micro-label — the only uppercase on the page */
+.lbl{
+  display:inline-block;font-family:var(--mono);font-size:.7rem;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:1.1rem;
+}
+.lede{max-width:60ch;color:var(--muted);font-size:1.06rem;margin-top:1.1rem}
+
+/* ---------- buttons --------------------------------------------------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+  min-height:46px;padding:.6rem 1.3rem;border-radius:9px;
+  font-weight:500;font-size:.95rem;white-space:nowrap;
+  border:1px solid transparent;transition:background .2s var(--ease),border-color .2s var(--ease);
+}
+.btn--solid{background:var(--accent);color:#fff}
+.btn--solid:hover{background:var(--accent-ink)}
+.btn--line{border-color:var(--rule-2);color:var(--ink);background:var(--card)}
+.btn--line:hover{border-color:var(--ink);background:var(--paper-2)}
+.btn--ghost{color:var(--ink);padding-inline:.4rem}
+.btn--ghost:hover{color:var(--accent)}
+.btn--wide{width:100%}
+
+/* ---------- header ---------------------------------------------------- */
+.bar{
+  position:sticky;top:0;z-index:60;background:rgba(247,246,243,.88);
+  backdrop-filter:blur(9px);border-bottom:1px solid transparent;transition:border-color .3s;
+}
+.bar.is-stuck{border-bottom-color:var(--rule)}
+.bar .wrap{display:flex;align-items:center;gap:1.25rem;height:72px}
+.brand{display:flex;align-items:center;gap:.55rem;margin-right:auto;font-weight:600;color:var(--ink);letter-spacing:-.02em}
+.brand__mark{
+  width:28px;height:28px;border-radius:8px;background:var(--accent);color:#fff;
+  display:grid;place-items:center;font-size:.95rem;font-weight:700;flex:0 0 auto;
+}
+.bar__nav{display:flex;align-items:center;gap:clamp(1rem,2.2vw,1.9rem)}
+.bar__nav a{font-size:.93rem;color:var(--ink-2)}
+.bar__nav a:hover{color:var(--ink)}
+.bar__acts{display:flex;align-items:center;gap:.6rem}
+.bar__tog{display:none;width:44px;height:44px;place-items:center;margin-right:-.5rem}
+.bar__tog i{display:block;width:19px;height:1.6px;background:var(--ink);position:relative}
+.bar__tog i::before,.bar__tog i::after{content:'';position:absolute;left:0;width:19px;height:1.6px;background:var(--ink)}
+.bar__tog i::before{top:-6px}.bar__tog i::after{top:6px}
+/* The drawer must NOT carry the .wrap class: `.bar .wrap` is the 72px flex
+   header row, and it would lay the drawer's links out sideways and push them
+   past the viewport. It gets .wrap's padding here instead. */
+.draw{display:none;border-top:1px solid var(--rule);background:var(--paper);
+  padding:.5rem clamp(1.15rem,4vw,2.5rem) 1.1rem;
+  width:100%;max-width:var(--shell);margin-inline:auto}
+.draw a{display:block;padding:.72rem 0;font-size:1rem;color:var(--ink-2);border-bottom:1px solid var(--rule)}
+.draw .btn{margin-top:1rem}
+@media(max-width:900px){
+  .bar__nav,.bar__acts .btn--ghost{display:none}
+  .bar__tog{display:grid}
+  .draw.is-open{display:block}
+}
+/* below this the brand, the CTA and the toggle stop fitting on one line.
+   The drawer carries the same CTA, so drop it from the bar rather than
+   letting the row overflow. */
+@media(max-width:560px){
+  .bar .wrap{gap:.75rem}
+  .bar__acts{display:none}
+}
+
+/* ---------- hero ------------------------------------------------------ */
+.hero{padding-block:clamp(3.5rem,8vw,6.5rem) clamp(3rem,6vw,5rem)}
+.hero__grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(2rem,5vw,4.5rem);align-items:center}
+.pill{
+  display:inline-flex;align-items:center;gap:.5rem;padding:.34rem .75rem .34rem .6rem;
+  border:1px solid var(--rule-2);border-radius:999px;background:var(--card);
+  font-size:.79rem;color:var(--ink-2);margin-bottom:1.5rem;
+}
+.pill__dot{width:7px;height:7px;border-radius:50%;background:var(--ok);flex:0 0 auto}
+.hero p.lede{font-size:1.12rem}
+.hero__acts{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:2rem}
+.hero__meta{margin-top:1.6rem;font-size:.85rem;color:var(--muted)}
+
+/* the product frame — a static mock, no screenshot to go stale */
+.frame{border:1px solid var(--rule-2);border-radius:14px;background:var(--card);overflow:hidden}
+.frame__bar{display:flex;align-items:center;gap:.4rem;padding:.7rem .9rem;border-bottom:1px solid var(--rule);background:var(--paper-2)}
+.frame__dot{width:9px;height:9px;border-radius:50%;background:var(--rule-2)}
+.frame__tab{margin-left:.6rem;font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+.frame__body{padding:1.15rem}
+.row{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.72rem 0;border-bottom:1px solid var(--rule)}
+.row:last-child{border-bottom:0}
+.row__k{font-size:.88rem;color:var(--ink);font-weight:500}
+.row__s{font-size:.76rem;color:var(--muted);display:block;font-weight:400}
+.tag{font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;
+  padding:.22rem .5rem;border-radius:5px;background:var(--accent-soft);color:var(--accent-ink);white-space:nowrap}
+.tag--ok{background:#E4F2ED;color:#075A43}
+@media(max-width:900px){.hero__grid{grid-template-columns:1fr;gap:2.5rem}}
+
+/* ---------- trust strip ----------------------------------------------- */
+.strip{border-block:1px solid var(--rule);padding-block:1.6rem;background:var(--paper-2)}
+.strip__in{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:.9rem clamp(1.5rem,4vw,3.2rem)}
+.strip__k{font-family:var(--mono);font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}
+.strip__logo{font-weight:600;font-size:1rem;color:var(--ink);opacity:.5;letter-spacing:-.02em}
+
+/* ---------- generic card grid ----------------------------------------- */
+.grid{display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:14px;overflow:hidden}
+.grid--3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.grid--4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.cell{background:var(--card);padding:clamp(1.35rem,2.6vw,1.9rem)}
+.cell__ico{width:34px;height:34px;border-radius:9px;background:var(--accent-soft);color:var(--accent-ink);
+  display:grid;place-items:center;margin-bottom:1rem}
+.cell__ico svg{width:18px;height:18px;stroke-width:1.7}
+.cell h3{margin-bottom:.45rem}
+.cell p{font-size:.9rem;color:var(--muted)}
+@media(max-width:980px){.grid--4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:820px){.grid--3{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.grid--3,.grid--4{grid-template-columns:1fr}}
+
+/* ---------- the integration grid — the twenty ------------------------- */
+.stack{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;
+  background:var(--rule);border:1px solid var(--rule);border-radius:14px;overflow:hidden}
+.int{background:var(--card);padding:1.25rem 1.15rem;display:flex;flex-direction:column;gap:.5rem}
+.int__top{display:flex;align-items:center;gap:.6rem}
+.int__ico{width:30px;height:30px;border-radius:8px;background:var(--paper-2);color:var(--accent-ink);
+  display:grid;place-items:center;flex:0 0 auto}
+.int__ico svg{width:16px;height:16px;stroke-width:1.8}
+.int__name{font-size:.9rem;font-weight:600;color:var(--ink);letter-spacing:-.01em;line-height:1.25}
+.int__note{font-size:.8rem;color:var(--muted);line-height:1.5}
+.int__state{
+  margin-top:auto;padding-top:.6rem;display:inline-flex;align-items:center;gap:.4rem;
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);
+}
+.int__state::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--rule-2);flex:0 0 auto}
+.int--live .int__state::before{background:var(--ok)}
+@media(max-width:1000px){.stack{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:760px){.stack{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* one column below 420: at 390 the two-column version wrapped every name
+   beside its icon and split the state label across two lines. A long scroll
+   beats twenty cramped cards. */
+@media(max-width:420px){.stack{grid-template-columns:1fr}}
+
+.legend{display:flex;flex-wrap:wrap;gap:.6rem 1.6rem;margin-top:1.4rem;font-size:.84rem;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:.45rem}
+.legend i{width:7px;height:7px;border-radius:50%;background:var(--rule-2);display:block}
+.legend i.on{background:var(--ok)}
+
+/* ---------- pricing --------------------------------------------------- */
+.plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.1rem}
+.plan{border:1px solid var(--rule);border-radius:14px;background:var(--card);padding:1.6rem;display:flex;flex-direction:column}
+.plan--pick{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.plan__n{font-family:var(--mono);font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}
+.plan__p{font-size:2.25rem;font-weight:600;color:var(--ink);letter-spacing:-.03em;margin:.7rem 0 .1rem}
+.plan__p small{font-size:.92rem;font-weight:400;color:var(--muted);letter-spacing:0}
+.plan__d{font-size:.88rem;color:var(--muted);margin-bottom:1.2rem}
+.plan ul{margin:0 0 1.5rem;display:grid;gap:.55rem}
+.plan li{display:flex;gap:.55rem;font-size:.89rem;color:var(--ink-2)}
+.plan li svg{width:15px;height:15px;flex:0 0 auto;margin-top:.3rem;color:var(--ok);stroke-width:2.4}
+.plan .btn{margin-top:auto}
+@media(max-width:880px){.plans{grid-template-columns:1fr}}
+
+/* ---------- quotes ---------------------------------------------------- */
+.quotes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.1rem}
+.quote{border:1px solid var(--rule);border-radius:14px;background:var(--card);padding:1.5rem}
+.quote blockquote{font-size:.98rem;color:var(--ink);margin-bottom:1.1rem}
+.quote figcaption{font-size:.8rem;color:var(--muted);border-top:1px solid var(--rule);padding-top:.9rem}
+@media(max-width:880px){.quotes{grid-template-columns:1fr}}
+
+/* ---------- help centre ----------------------------------------------- */
+.kb__search{display:flex;flex-wrap:wrap;gap:.6rem;max-width:520px;margin-bottom:2rem}
+/* min-width:0 or the input keeps its intrinsic width and shoves the button
+   out of the viewport — flex items do not shrink below content by default. */
+.kb__search input{flex:1 1 12rem;min-width:0;min-height:46px;padding:.6rem .9rem;
+  border:1px solid var(--rule-2);border-radius:9px;background:var(--card);color:var(--ink)}
+.kb__search input::placeholder{color:var(--muted)}
+.kb__list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;
+  background:var(--rule);border:1px solid var(--rule);border-radius:14px;overflow:hidden}
+.kb__item{background:var(--card);padding:1.3rem;display:block}
+.kb__item:hover{background:var(--paper-2)}
+.kb__item span{font-family:var(--mono);font-size:.67rem;letter-spacing:.11em;text-transform:uppercase;color:var(--accent-ink)}
+.kb__item h3{margin:.55rem 0 .35rem}
+.kb__item p{font-size:.86rem;color:var(--muted)}
+.kb__none{padding:1.3rem;background:var(--card);font-size:.9rem;color:var(--muted)}
+@media(max-width:880px){.kb__list{grid-template-columns:1fr}}
+
+/* ---------- forms ----------------------------------------------------- */
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(1.5rem,4vw,3rem)}
+@media(max-width:880px){.two{grid-template-columns:1fr}}
+.field{margin-bottom:.9rem}
+.field label{display:block;font-size:.83rem;font-weight:500;color:var(--ink);margin-bottom:.35rem}
+.field input,.field textarea,.field select{
+  width:100%;min-height:46px;padding:.6rem .8rem;border:1px solid var(--rule-2);
+  border-radius:9px;background:var(--card);color:var(--ink);
+}
+.field textarea{min-height:120px;resize:vertical}
+.hint{font-size:.79rem;color:var(--muted);margin-top:.7rem}
+.news{border:1px solid var(--rule);border-radius:14px;background:var(--paper-2);padding:1.5rem}
+.news__row{display:flex;gap:.6rem;margin-top:1rem}
+.news__row input{flex:1;min-height:46px;padding:.6rem .8rem;border:1px solid var(--rule-2);border-radius:9px;background:var(--card)}
+@media(max-width:480px){.news__row{flex-direction:column}}
+.said{font-size:.86rem;color:var(--ok);margin-top:.7rem}
+.said[hidden]{display:none}
+
+/* ---------- ornament — inline so it takes this file's own colour ------ */
+.ornament{display:flex;justify-content:center;padding-block:clamp(2.5rem,6vw,4.5rem);color:var(--rule-2)}
+.ornament svg{width:min(210px,58%);height:auto}
+
+/* ---------- footer ---------------------------------------------------- */
+.ft{border-top:1px solid var(--rule);background:var(--paper-2);padding-block:3rem 2rem}
+.ft__grid{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:2rem}
+.ft h4{font-family:var(--mono);font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin-bottom:.85rem;font-weight:500}
+.ft li{margin-bottom:.45rem}
+.ft a,.ft p{font-size:.88rem;color:var(--ink-2)}
+.ft a:hover{color:var(--accent)}
+.ft__base{margin-top:2.5rem;padding-top:1.3rem;border-top:1px solid var(--rule-2);
+  display:flex;flex-wrap:wrap;gap:.6rem 1.4rem;justify-content:space-between;font-size:.82rem;color:var(--muted)}
+@media(max-width:820px){.ft__grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:460px){.ft__grid{grid-template-columns:1fr}}
+
+/* ==========================================================================
+   OVERLAYS — one controller drives all four (booking, assistant, live chat,
+   exit intent). Each is role=dialog + aria-modal with focus moved in on open,
+   Tab trapped, Escape to close, focus returned to the trigger, and the page
+   behind scroll-locked.
+   ========================================================================== */
+body.ov-open{overflow:hidden}
+/* This rule is load-bearing. `.ov{display:flex}` outranks the user agent's
+   `[hidden]{display:none}`, so without it a "hidden" overlay stays in the
+   layout — parked off-screen by its transform but still swallowing clicks
+   across the bottom of the viewport. Do not remove it. */
+.ov[hidden],.ov-back[hidden]{display:none}
+.ov-back{position:fixed;inset:0;z-index:900;background:rgba(14,16,20,.5);
+  opacity:0;visibility:hidden;transition:opacity .28s,visibility .28s}
+.ov-back.is-on{opacity:1;visibility:visible}
+
+.ov{position:fixed;z-index:901;background:var(--card);color:var(--ink-2);
+  display:flex;flex-direction:column;box-shadow:0 -8px 40px rgba(14,16,20,.22)}
+.ov__head{display:flex;align-items:flex-start;gap:1rem;justify-content:space-between;
+  padding:1.2rem 1.3rem;border-bottom:1px solid var(--rule)}
+.ov__head h2{font-size:1.22rem}
+.ov__head p{font-size:.87rem;color:var(--muted);margin-top:.35rem}
+.ov__x{flex:0 0 auto;width:44px;height:44px;margin:-.45rem -.55rem 0 0;display:grid;place-items:center;
+  border-radius:8px;color:var(--ink-2);font-size:1.45rem;line-height:1}
+.ov__x:hover{background:var(--paper-2);color:var(--ink)}
+.ov__body{padding:1.3rem;overflow-y:auto;-webkit-overflow-scrolling:touch;flex:1}
+
+/* the empty, documented mount every overlay is built around */
+.slot{min-height:min(24rem,48dvh);border:1px dashed var(--rule-2);border-radius:11px;
+  display:grid;place-items:center;text-align:center;padding:1.5rem;gap:.5rem;background:var(--paper)}
+.slot p{font-size:.88rem;max-width:34ch;color:var(--muted)}
+.slot p strong{color:var(--ink)}
+.slot code{font-family:var(--mono);font-size:.78rem;background:var(--paper-2);
+  padding:.13rem .38rem;border-radius:4px;color:var(--accent-ink)}
+.ov__alt{margin-top:1.1rem;padding-top:1.1rem;border-top:1px solid var(--rule);font-size:.88rem}
+.ov__alt a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+
+/* sheet from the bottom on phones, panel from the right above 720px */
+.ov--panel{inset:auto 0 0 0;max-height:92dvh;border-radius:14px 14px 0 0;
+  transform:translateY(100%);transition:transform .32s var(--ease)}
+.ov--panel.is-on{transform:translateY(0)}
+@media(min-width:720px){
+  .ov--panel{inset:0 0 0 auto;width:min(30rem,100%);max-height:none;border-radius:0;
+    transform:translateX(100%);box-shadow:-8px 0 40px rgba(14,16,20,.22)}
+  .ov--panel.is-on{transform:translateX(0)}
+}
+/* the assistant and live chat sit in the corner above 720px, sheet below */
+.ov--dock{inset:auto 0 0 0;max-height:88dvh;border-radius:14px 14px 0 0;
+  transform:translateY(100%);transition:transform .32s var(--ease)}
+.ov--dock.is-on{transform:translateY(0)}
+@media(min-width:720px){
+  .ov--dock{inset:auto 1.25rem 5.6rem auto;width:min(23rem,calc(100vw - 2.5rem));
+    max-height:min(34rem,calc(100dvh - 8rem));border-radius:14px;
+    transform:translateY(14px) scale(.98);opacity:0;transition:transform .24s var(--ease),opacity .24s}
+  .ov--dock.is-on{transform:none;opacity:1}
+}
+/* the exit-intent form is centred */
+.ov--mid{inset:auto 0 0 0;max-height:92dvh;border-radius:14px 14px 0 0;
+  transform:translateY(100%);transition:transform .32s var(--ease)}
+.ov--mid.is-on{transform:translateY(0)}
+@media(min-width:640px){
+  .ov--mid{inset:50% auto auto 50%;width:min(30rem,calc(100vw - 2.5rem));max-height:86dvh;
+    border-radius:14px;transform:translate(-50%,-46%);opacity:0;
+    transition:transform .26s var(--ease),opacity .26s}
+  .ov--mid.is-on{transform:translate(-50%,-50%);opacity:1}
+}
+
+/* the launcher dock — one button per messaging channel */
+.dock{position:fixed;right:1.25rem;bottom:1.25rem;z-index:880;display:flex;gap:.6rem}
+.dock__btn{
+  display:inline-flex;align-items:center;gap:.5rem;min-height:48px;padding:.6rem 1rem;
+  border-radius:999px;background:var(--accent);color:#fff;font-size:.9rem;font-weight:500;
+  box-shadow:0 6px 22px rgba(58,55,201,.28);transition:background .2s var(--ease);
+}
+.dock__btn:hover{background:var(--accent-ink)}
+.dock__btn--alt{background:var(--ink);box-shadow:0 6px 22px rgba(20,22,26,.24)}
+.dock__btn--alt:hover{background:#000}
+.dock__btn svg{width:17px;height:17px;stroke-width:1.9;flex:0 0 auto}
+@media(max-width:520px){.dock{right:.9rem;bottom:.9rem;gap:.45rem}.dock__btn span{display:none}
+  .dock__btn{padding:.6rem;width:48px;justify-content:center}}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .ov,.ov-back,.btn,.dock__btn{transition:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="bar" id="bar">
+  <div class="wrap">
+    <a class="brand" href="#top"><span class="brand__mark" aria-hidden="true">C</span>Cadence</a>
+    <nav class="bar__nav" aria-label="Primary">
+      <a href="#what">Platform</a>
+      <a href="#stack">Integrations</a>
+      <a href="#plans">Pricing</a>
+      <a href="#help">Help centre</a>
+    </nav>
+    <div class="bar__acts">
+      <a class="btn btn--ghost" href="#contact">Talk to sales</a>
+      <button type="button" class="btn btn--solid" data-open="ov-book" aria-haspopup="dialog">Book a demo</button>
+    </div>
+    <button class="bar__tog" id="tog" aria-label="Open menu" aria-expanded="false" aria-controls="draw"><i></i></button>
+  </div>
+  <div class="draw" id="draw">
+    <a href="#what">Platform</a>
+    <a href="#stack">Integrations</a>
+    <a href="#plans">Pricing</a>
+    <a href="#help">Help centre</a>
+    <a href="#contact">Talk to sales</a>
+    <button type="button" class="btn btn--solid btn--wide" data-open="ov-book" aria-haspopup="dialog">Book a demo</button>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap hero__grid">
+    <div>
+      <span class="pill"><span class="pill__dot" aria-hidden="true"></span>Twenty integrations, wired and waiting</span>
+      <h1>Every client job, quote and follow-up in one place.</h1>
+      <p class="lede">
+        Cadence is the operating layer for service businesses — scheduling, quoting, invoicing
+        and the follow-up that usually falls through. Your existing tools keep working; this is
+        the thing that finally connects them.
+      </p>
+      <div class="hero__acts">
+        <button type="button" class="btn btn--solid" data-open="ov-book" aria-haspopup="dialog">Book a demo</button>
+        <a class="btn btn--line" href="#stack">See the integrations</a>
+      </div>
+      <p class="hero__meta">14-day trial · no card · cancel from inside the app</p>
+    </div>
+
+    <!-- A drawn mock rather than a screenshot: nothing to go stale, nothing to recapture. -->
+    <div class="frame" aria-hidden="true">
+      <div class="frame__bar">
+        <span class="frame__dot"></span><span class="frame__dot"></span><span class="frame__dot"></span>
+        <span class="frame__tab">cadence — today</span>
+      </div>
+      <div class="frame__body">
+        <div class="row"><span class="row__k">Boiler service — 14 Pinfold St<span class="row__s">Engineer assigned · 09:30</span></span><span class="tag tag--ok">Confirmed</span></div>
+        <div class="row"><span class="row__k">Quote #4471 — Harlow Dental<span class="row__s">Sent Tuesday · viewed twice</span></span><span class="tag">Follow up</span></div>
+        <div class="row"><span class="row__k">New enquiry — website form<span class="row__s">Scored 82 · synced to CRM</span></span><span class="tag">Hot lead</span></div>
+        <div class="row"><span class="row__k">Invoice #2210<span class="row__s">Paid by card · 11 minutes ago</span></span><span class="tag tag--ok">Settled</span></div>
+        <div class="row"><span class="row__k">Review request<span class="row__s">SMS queued for 18:00</span></span><span class="tag">Scheduled</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REPLACE: swap these for the client's real customer wordmarks, or delete
+     the strip entirely. Do not put a real company's name here without
+     their written permission — a logo wall is a claim about who you work for. -->
+<div class="strip">
+  <div class="wrap strip__in">
+    <span class="strip__k">Placeholder — replace or remove</span>
+    <span class="strip__logo">Northgate</span>
+    <span class="strip__logo">Peregrine</span>
+    <span class="strip__logo">Halewood</span>
+    <span class="strip__logo">Studio Ferrous</span>
+    <span class="strip__logo">Ashby &amp; Co</span>
+  </div>
+</div>
+
+<!-- ============ WHAT IT DOES ============ -->
+<section class="sec" id="what">
+  <div class="wrap">
+    <span class="lbl">The platform</span>
+    <h2>Four things, done properly.</h2>
+    <p class="lede">Not a suite of forty half-features. The jobs a service business actually
+      loses money on, and nothing else.</p>
+
+    <div class="grid grid--4" style="margin-top:clamp(2rem,4vw,3rem)">
+      <div class="cell">
+        <div class="cell__ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></div>
+        <h3>Scheduling</h3>
+        <p>Jobs, engineers and vans on one board. Drag to move; the customer gets the new window automatically.</p>
+      </div>
+      <div class="cell">
+        <div class="cell__ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v5h5"/><path d="M6 3h8l5 5v13H6z"/><path d="M9 13h6M9 17h4"/></svg></div>
+        <h3>Quoting</h3>
+        <p>Itemised quotes that go out the same day, with a record of when they were opened.</p>
+      </div>
+      <div class="cell">
+        <div class="cell__ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg></div>
+        <h3>Payment</h3>
+        <p>Card, transfer or a deposit up front. Reconciled against the job, not a separate spreadsheet.</p>
+      </div>
+      <div class="cell">
+        <div class="cell__ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16h16"/><path d="M8 15l3.5-4 3 2.5L20 8"/></svg></div>
+        <h3>Follow-up</h3>
+        <p>The chase nobody has time for — text, email, review request — queued and sent on its own.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE TWENTY INTEGRATIONS ============ -->
+<section class="sec sec--line" id="stack">
+  <div class="wrap">
+    <span class="lbl">Integrations</span>
+    <h2>Twenty connections, one page.</h2>
+    <p class="lede">
+      Every one of these has a mount point already built into this file — markup, styling and
+      the wiring around it. <strong>The slots ship empty.</strong> You choose the provider on
+      your own account, paste their snippet into the marked place, and nothing about the
+      layout changes.
+    </p>
+
+    <div class="stack" style="margin-top:clamp(2rem,4vw,3rem)">
+
+      <!-- 1 -->
+      <div class="int int--live">
+        <div class="int__top">
+          <span class="int__ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="12" rx="3"/><path d="M12 3v4M8.5 12v1.5M15.5 12v1.5"/></svg></span>
+          <span class="int__name">AI assistant</span>
+        </div>
+        <p class="int__note">Answers from your own documents, hands over to a human on request.</p>
+        <span class="int__state">Shell built · slot empty</span>
+      </div>
+
+      <!-- 2 -->
+      <div class="int int--live">
+        <div class="int__top">
+          <span class="int__ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M9 15l2 2 4-4"/></svg></span>
+          <span class="int__name">Booking</span>
+        </div>
+        <p class="int__note">Slide-out scheduler, opened from any button on the page.</p>
+        <span class="int__state">Shell built · slot empty</span>
+      </div>
+
+      <!-- 3 -->
+      <div class="int">
+        <div class="int__top">
+          <span class="int__ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg></span>
+          <span class="int__name">Form → CRM</span>
+        </div>
+        <p class="int__note">Contact submissions posted straight into the pipeline, not an inbox.</p>
+        <span class="int__state">Endpoint marked</span>
+      </div>
+
+      <!-- 4 -->
+      <div class="int">
+        <div class="int__top">
+          <span class="int__ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h18v14H3z"/><path d="M3 9h18M8 13h8M8 16h5"/></svg></span>
+          <span class="int__name">Email automation</span>
+        </div>
+        <p class="int__note">Welcome sequence, quote chasers, dormant-customer win-back.</p>
+        <span class="int__state">List ID marked</span>
+      </div>
+
+      <!-- 5 -->
+      <div class="int int--live">
+        <div class="int__top">
+          <span class="int__ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="m6 11 6-6 6 6"/><rect x="3" y="19" width="18" height="2" rx="1"/></svg></span>
+          <span class="int__name">Exit-intent capture</span>
+        </div>
+        <p class="int__note">One offer, once per visitor, on the way out. Never on a first scroll.</p>
+        <span class="int__state">Shell built · slot empty</span>
+      </div>
+
+      <!-- 6 -->
+      <div class="int int--live">
+        <div class="int__top">
+          <span class="int__ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-8 8H7l-4 3V12a8 8 0 0 1 8-8h2a8 8 0 0 1 8 8Z"/></svg></span>
+          <span class="int__name">Live chat</span>
+        </div>
+        <p class="int__note">A real person, in hours. Separate launcher from the assistant.</p>
+        <span class="int__state">Shell built · slot empty</span>
+      </div>
+
+      <!-- 7 -->
+      <div class="int">
+        <div class="int__top">
+          <span class="int__ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></svg></span>
+          <span class="int__name">Payments</span>
+        </div>
+        <p class="int__note">Checkout on each plan, plus deposits taken against a job.</p>
+        <span class="int__state">Buttons marked</span>
+      </div>
+
+      <!-- 8 -->
+      <div class="int">
+        <div class="int__top">
+          <span class="int__ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M17 8h4M19 6v4M16 20a5 5 0 0 0-2-4"/></svg></span>
+          <span class="int__name">CRM</span>
+        </div>
+        <p class="int__note">One contact record shared by the site, the app and the phone.</p>
+        <span class="int__state">Endpoint marked</span>
+      </div>
+
+      <!-- 9 -->
+      <div class="int">
+        <div class="int__top">
+          <span class="int__ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span>
+          <span class="int__name">Analytics</span>
+        </div>
+        <p class="int__note">One tag in the head. Consent gate sits in front of it.</p>
+        <span class="int__state">Head slot marked</span>
+      </div>
+
+      <!-- 10 -->
+      <div class="int">
+        <div class="int__top">
+          <span class="int__ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></span>
+          <span class="int__name">Meeting notes</span>
+        </div>
+        <p class="int__note">Demo calls transcribed and filed against the deal automatically.</p>
+        <span class="int__state">Webhook marked</span>
+      </div>
+
+      <!-- 11 -->
+      <div class="int">
+        <div class="int__top">
+          <span class="int__ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4.5 13H11l-1 9 8.5-11H12z"/></svg></span>
+          <span class="int__name">Automation</span>
+        </div>
+        <p class="int__note">The connector that joins anything here to anything you already run.</p>
+        <span class="int__state">Webhook marked</span>
+      </div>
+
+      <!-- 12 -->
+      <div class="int int--live">
+        <div class="int__top">
+          <span class="int__ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2.6 5.6 6 .8-4.4 4.2 1.1 6L12 16.8 6.7 19.6l1.1-6L3.4 9.4l6-.8z"/></svg></span>
+          <span class="int__name">Review collection</span>
+        </div>
+        <p class="int__note">Asks after the job is signed off, not the moment the invoice lands.</p>
+        <span class="int__state">Section built · feed empty</span>
+      </div>
+
+      <!-- 13 -->
+      <div class="int">
+        <div class="int__top">
+          <span class="int__ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg></span>
+          <span class="int__name">SMS follow-up</span>
+        </div>
+        <p class="int__note">Appointment reminders and the review ask. Opt-out on every message.</p>
+        <span class="int__state">Endpoint marked</span>
+      </div>
+
+      <!-- 14 -->
+      <div class="int">
+        <div class="int__top">
+          <span class="int__ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H8l-4 4z"/><path d="M12 8v3M12 13h.01"/></svg></span>
+          <span class="int__name">Support tickets</span>
+        </div>
+        <p class="int__note">Chat that goes unanswered becomes a ticket rather than disappearing.</p>
+        <span class="int__state">Endpoint marked</span>
+      </div>
+
+      <!-- 15 -->
+      <div class="int int--live">
+        <div class="int__top">
+          <span class="int__ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18v13H3z"/><path d="m3 7 9 7 9-7"/></svg></span>
+          <span class="int__name">Newsletter</span>
+        </div>
+        <p class="int__note">One field, double opt-in, and an unsubscribe that actually works.</p>
+        <span class="int__state">Form built · list empty</span>
+      </div>
+
+      <!-- 16 -->
+      <div class="int">
+        <div class="int__top">
+          <span class="int__ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/><path d="m9 16 2 2 4-4"/></svg></span>
+          <span class="int__name">Calendar sync</span>
+        </div>
+        <p class="int__note">Two-way, so a booking can never land on top of a real appointment.</p>
+        <span class="int__state">Endpoint marked</span>
+      </div>
+
+      <!-- 17 -->
+      <div class="int">
+        <div class="int__top">
+          <span class="int__ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21a9 9 0 1 0-9-9"/><path d="M12 12 7 7M3 12h3"/></svg></span>
+          <span class="int__name">Lead scoring</span>
+        </div>
+        <p class="int__note">Pages read, forms started, quote opened — one number on the record.</p>
+        <span class="int__state">Event hooks marked</span>
+      </div>
+
+      <!-- 18 -->
+      <div class="int">
+        <div class="int__top">
+          <span class="int__ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7Z"/></svg></span>
+          <span class="int__name">Visitor identification</span>
+        </div>
+        <p class="int__note">Which companies looked, and at what. Consent-gated, like the rest.</p>
+        <span class="int__state">Head slot marked</span>
+      </div>
+
+      <!-- 19 -->
+      <div class="int">
+        <div class="int__top">
+          <span class="int__ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></svg></span>
+          <span class="int__name">Social scheduling</span>
+        </div>
+        <p class="int__note">New case study publishes, the posts queue themselves.</p>
+        <span class="int__state">Webhook marked</span>
+      </div>
+
+      <!-- 20 -->
+      <div class="int int--live">
+        <div class="int__top">
+          <span class="int__ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M8 8h8M8 12h8M8 16h4"/></svg></span>
+          <span class="int__name">Help centre</span>
+        </div>
+        <p class="int__note">Searchable articles the assistant can quote from. Live below.</p>
+        <span class="int__state">Section built · content sample</span>
+      </div>
+
+    </div>
+
+    <div class="legend">
+      <span><i class="on"></i> Built and working on this page — open it and see</span>
+      <span><i></i> Mount point marked in the file, waiting for a key or endpoint</span>
+    </div>
+
+    <p class="hint" style="margin-top:1.4rem;max-width:66ch">
+      No third-party script ships in this file and none should be added without the client's
+      account behind it. Every mount is listed once more, with its exact location, in the
+      commented block at the foot of this document.
+    </p>
+  </div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<section class="sec sec--line" id="plans">
+  <div class="wrap">
+    <span class="lbl">Pricing</span>
+    <h2>Per seat, per month. That is the whole model.</h2>
+    <p class="lede">No setup fee, no onboarding package, no minimum term. Placeholder figures —
+      replace before this goes anywhere near a customer.</p>
+
+    <div class="plans" style="margin-top:clamp(2rem,4vw,3rem)">
+      <div class="plan">
+        <span class="plan__n">Starter</span>
+        <p class="plan__p">£19 <small>/ seat / month</small></p>
+        <p class="plan__d">One crew, one calendar, invoicing included.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>Up to 5 seats</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>Scheduling and quoting</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>Card payments</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>Email support</li>
+        </ul>
+        <!-- REPLACE #7 — payment gateway. Swap this button for the provider's
+             hosted-checkout button or link. Keep the .btn classes. -->
+        <button type="button" class="btn btn--line btn--wide" data-checkout="starter">Start free trial</button>
+      </div>
+
+      <div class="plan plan--pick">
+        <span class="plan__n">Team · most picked</span>
+        <p class="plan__p">£34 <small>/ seat / month</small></p>
+        <p class="plan__d">Automations, follow-up and the full integration set.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>Unlimited seats</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>SMS and email sequences</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>CRM and calendar sync</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>Review collection</li>
+        </ul>
+        <!-- REPLACE #7 — payment gateway -->
+        <button type="button" class="btn btn--solid btn--wide" data-checkout="team">Start free trial</button>
+      </div>
+
+      <div class="plan">
+        <span class="plan__n">Scale</span>
+        <p class="plan__p">Talk to us</p>
+        <p class="plan__d">Multi-branch, SSO, and a named account manager.</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>Everything in Team</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>SSO and audit log</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>Sandbox environment</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>Priority support line</li>
+        </ul>
+        <button type="button" class="btn btn--line btn--wide" data-open="ov-book" aria-haspopup="dialog">Book a demo</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REVIEWS ============ -->
+<section class="sec sec--line" id="proof">
+  <div class="wrap">
+    <span class="lbl">Customer reviews</span>
+    <h2>Collected after the job, not before.</h2>
+    <p class="lede">
+      This grid is the render target for the review integration. The three below are
+      <strong>placeholder copy with no real person attached</strong> — replace them with a
+      live feed, or delete the section until you have real ones.
+    </p>
+
+    <!-- REPLACE #12 — review / testimonial collection.
+         Point this grid at the provider's feed, or paste their widget in place
+         of the three <figure>s. Never invent a quote and never attach a real
+         person's name to one they did not give you. -->
+    <div class="quotes" style="margin-top:clamp(2rem,4vw,3rem)">
+      <figure class="quote">
+        <blockquote>“Placeholder review. Replace with a real one from the review feed, or remove this card.”</blockquote>
+        <figcaption>Placeholder attribution — role, sector</figcaption>
+      </figure>
+      <figure class="quote">
+        <blockquote>“Placeholder review. Replace with a real one from the review feed, or remove this card.”</blockquote>
+        <figcaption>Placeholder attribution — role, sector</figcaption>
+      </figure>
+      <figure class="quote">
+        <blockquote>“Placeholder review. Replace with a real one from the review feed, or remove this card.”</blockquote>
+        <figcaption>Placeholder attribution — role, sector</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HELP CENTRE ============ -->
+<section class="sec sec--line" id="help">
+  <div class="wrap">
+    <span class="lbl">Help centre</span>
+    <h2>Answers, without opening a ticket.</h2>
+    <p class="lede">Search filters the list as you type. Swap these cards for the real
+      knowledge base and the assistant can quote from the same source.</p>
+
+    <div style="margin-top:clamp(2rem,4vw,3rem)">
+      <div class="kb__search">
+        <label class="visually-hidden" for="kb-q" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap">Search the help centre</label>
+        <input id="kb-q" type="search" placeholder="Search — booking, invoice, sync…" autocomplete="off">
+        <button type="button" class="btn btn--line" data-open="ov-chat" aria-haspopup="dialog">Ask a person</button>
+      </div>
+
+      <!-- REPLACE #20 — knowledge base. Replace these anchors with the real
+           article list, or point the whole block at a hosted help centre. -->
+      <div class="kb__list" id="kb-list">
+        <a class="kb__item" href="#help" data-kb="booking calendar sync appointment slot"><span>Bookings</span><h3>Why a slot shows as unavailable</h3><p>Calendar sync, buffers, and the two-way rule.</p></a>
+        <a class="kb__item" href="#help" data-kb="invoice payment card refund deposit"><span>Payments</span><h3>Taking a deposit against a job</h3><p>Part-payment up front and how it reconciles.</p></a>
+        <a class="kb__item" href="#help" data-kb="crm contact sync duplicate merge"><span>CRM</span><h3>Stopping duplicate contacts</h3><p>Matching rules when the website and the app disagree.</p></a>
+        <a class="kb__item" href="#help" data-kb="sms text message reminder opt out"><span>Messaging</span><h3>Opt-outs and quiet hours</h3><p>What sends, when, and how a customer stops it.</p></a>
+        <a class="kb__item" href="#help" data-kb="quote template pdf branding logo"><span>Quoting</span><h3>Putting your logo on a quote</h3><p>Branding a template without breaking the layout.</p></a>
+        <a class="kb__item" href="#help" data-kb="user seat permission role admin"><span>Accounts</span><h3>Seats, roles and permissions</h3><p>Who can see pricing, who can issue a refund.</p></a>
+      </div>
+      <p class="kb__none" id="kb-none" hidden>Nothing matches that. <button type="button" class="btn btn--ghost" data-open="ov-chat" aria-haspopup="dialog">Ask us instead</button></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT + NEWSLETTER ============ -->
+<section class="sec sec--line" id="contact">
+  <div class="wrap two">
+    <div>
+      <span class="lbl">Talk to sales</span>
+      <h2>Tell us what you run.</h2>
+      <p class="lede">Twenty minutes, no deck. If Cadence is wrong for you we will say so.</p>
+
+      <!-- REPLACE #3 — contact form to CRM.
+           Set action= to the CRM's form endpoint and method="post", or keep
+           this handler and POST from your own script. The submit handler below
+           is a stub: it does not send anywhere. -->
+      <form id="lead-form" style="margin-top:1.8rem" novalidate>
+        <div class="field">
+          <label for="lf-name">Your name</label>
+          <input id="lf-name" name="name" type="text" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="lf-email">Work email</label>
+          <input id="lf-email" name="email" type="email" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="lf-size">Team size</label>
+          <select id="lf-size" name="size">
+            <option>1–5</option><option>6–20</option><option>21–50</option><option>50+</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="lf-msg">What are you using today?</label>
+          <textarea id="lf-msg" name="message"></textarea>
+        </div>
+        <button type="submit" class="btn btn--solid">Send it</button>
+        <p class="said" id="lead-said" hidden role="status">Thanks — this form is a placeholder and has not sent anything yet.</p>
+        <p class="hint">Placeholder form. It posts nowhere until the CRM endpoint is set.</p>
+      </form>
+    </div>
+
+    <div>
+      <div class="news">
+        <span class="lbl" style="margin-bottom:.6rem">Newsletter</span>
+        <h3 style="font-size:1.2rem">One email a month, about the trade.</h3>
+        <p style="font-size:.9rem;color:var(--muted);margin-top:.5rem">
+          What is changing in scheduling and payments, and what we shipped. Unsubscribe in one click.
+        </p>
+        <!-- REPLACE #15 — newsletter. Point action= at the list provider's
+             hosted endpoint and delete the stub handler below. -->
+        <form class="news__row" id="news-form" novalidate>
+          <label for="nf-email" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap">Email address</label>
+          <input id="nf-email" name="email" type="email" placeholder="you@company.com" required>
+          <button type="submit" class="btn btn--solid">Subscribe</button>
+        </form>
+        <p class="said" id="news-said" hidden role="status">Placeholder — no list is connected yet.</p>
+      </div>
+
+      <div class="news" style="margin-top:1.1rem;background:var(--card)">
+        <span class="lbl" style="margin-bottom:.6rem">Other ways in</span>
+        <div class="row"><span class="row__k">Book a demo<span class="row__s">30 minutes, screen shared</span></span>
+          <button type="button" class="btn btn--line" data-open="ov-book" aria-haspopup="dialog">Open</button></div>
+        <div class="row"><span class="row__k">Ask the assistant<span class="row__s">Any hour</span></span>
+          <button type="button" class="btn btn--line" data-open="ov-bot" aria-haspopup="dialog">Open</button></div>
+        <div class="row"><span class="row__k">Live chat<span class="row__s">Mon–Fri, 9–6</span></span>
+          <button type="button" class="btn btn--line" data-open="ov-chat" aria-haspopup="dialog">Open</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- a quiet section break, inline so it takes this file's own colour -->
+<div class="ornament" aria-hidden="true">
+  <svg viewBox="0 0 200 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
+    <path d="M0 8h74M126 8h74"/>
+    <path d="M92 8h16M100 2v12"/>
+    <circle cx="86" cy="8" r="2.4"/><circle cx="114" cy="8" r="2.4"/>
+  </svg>
+</div>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="ft">
+  <div class="wrap">
+    <div class="ft__grid">
+      <div>
+        <a class="brand" href="#top" style="margin-bottom:.8rem"><span class="brand__mark" aria-hidden="true">C</span>Cadence</a>
+        <!-- REPLACE: real address, phone and company number -->
+        <p>Placeholder Works, 4 Sandhill Row<br>Placeholder City, PC1 2AB</p>
+        <p style="margin-top:.6rem"><a href="tel:5550117400">(555) 011-7400</a><br><a href="mailto:hello@cadence.example">hello@cadence.example</a></p>
+      </div>
+      <div>
+        <h4>Platform</h4>
+        <ul><li><a href="#what">Scheduling</a></li><li><a href="#what">Quoting</a></li><li><a href="#plans">Pricing</a></li><li><a href="#stack">Integrations</a></li></ul>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <ul><li><a href="#help">Help centre</a></li><li><button type="button" class="btn btn--ghost" style="min-height:0;padding:0;font-size:.88rem;font-weight:400" data-open="ov-chat" aria-haspopup="dialog">Live chat</button></li><li><a href="#contact">Talk to sales</a></li></ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul><li><a href="#proof">Customers</a></li><li><a href="#contact">Contact</a></li><li><a href="#help">Status</a></li></ul>
+      </div>
+    </div>
+    <div class="ft__base">
+      <span>© 2026 Cadence. Placeholder content throughout — search REPLACE.</span>
+      <span>Privacy · Terms · Cookies</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ LAUNCHER DOCK ============ -->
+<div class="dock">
+  <button type="button" class="dock__btn dock__btn--alt" data-open="ov-bot" aria-haspopup="dialog">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="12" rx="3"/><path d="M12 3v4M8.5 12v1.5M15.5 12v1.5"/></svg>
+    <span>Assistant</span>
+  </button>
+  <button type="button" class="dock__btn" data-open="ov-chat" aria-haspopup="dialog">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-8 8H7l-4 3V12a8 8 0 0 1 8-8h2a8 8 0 0 1 8 8Z"/></svg>
+    <span>Chat</span>
+  </button>
+</div>
+
+<!-- ============ OVERLAYS ============ -->
+<div class="ov-back" id="ov-back" hidden></div>
+
+<!-- 2 — booking -->
+<aside class="ov ov--panel" id="ov-book" role="dialog" aria-modal="true"
+       aria-labelledby="ov-book-t" aria-describedby="ov-book-d" hidden>
+  <div class="ov__head">
+    <div>
+      <h2 id="ov-book-t">Book a demo</h2>
+      <p id="ov-book-d">Thirty minutes on your own data. No deck, no second call before you get an answer.</p>
+    </div>
+    <button type="button" class="ov__x" data-close aria-label="Close">&times;</button>
+  </div>
+  <div class="ov__body">
+    <!-- REPLACE #2 — appointment booking / scheduling.
+         Paste the scheduler embed inside .slot and delete the two placeholder
+         paragraphs. Most providers give a container element plus one script
+         tag; both go inside. Sizing is handled — .slot fills the panel and
+         scrolls if the widget is taller. -->
+    <div class="slot">
+      <p><strong>Scheduler goes here.</strong></p>
+      <p>Paste the embed into <code>.slot</code> inside <code>#ov-book</code>. Nothing else changes.</p>
+    </div>
+    <p class="ov__alt">Rather not use a form?
+      <!-- REPLACE: real contact route -->
+      <a href="#contact" data-close>Send us a message instead</a>.</p>
+  </div>
+</aside>
+
+<!-- 1 — AI assistant -->
+<aside class="ov ov--dock" id="ov-bot" role="dialog" aria-modal="true"
+       aria-labelledby="ov-bot-t" aria-describedby="ov-bot-d" hidden>
+  <div class="ov__head">
+    <div>
+      <h2 id="ov-bot-t">Assistant</h2>
+      <p id="ov-bot-d">Answers from the help centre. Ask for a human at any point.</p>
+    </div>
+    <button type="button" class="ov__x" data-close aria-label="Close">&times;</button>
+  </div>
+  <div class="ov__body">
+    <!-- REPLACE #1 — AI chatbot / website assistant.
+         Paste the assistant widget inside .slot. Point it at the same source
+         as the help centre above so the two never disagree. -->
+    <div class="slot" style="min-height:min(16rem,34dvh)">
+      <p><strong>Assistant goes here.</strong></p>
+      <p>Paste the widget into <code>.slot</code> inside <code>#ov-bot</code>.</p>
+    </div>
+    <p class="ov__alt">Want a person?
+      <button type="button" class="btn btn--ghost" style="min-height:0;padding:0;text-decoration:underline;text-underline-offset:3px;color:var(--accent)" data-open="ov-chat">Switch to live chat</button>.</p>
+  </div>
+</aside>
+
+<!-- 6 — live chat -->
+<aside class="ov ov--dock" id="ov-chat" role="dialog" aria-modal="true"
+       aria-labelledby="ov-chat-t" aria-describedby="ov-chat-d" hidden>
+  <div class="ov__head">
+    <div>
+      <h2 id="ov-chat-t">Live chat</h2>
+      <p id="ov-chat-d">A real person, Monday to Friday, 9 to 6. Outside those hours it becomes a ticket.</p>
+    </div>
+    <button type="button" class="ov__x" data-close aria-label="Close">&times;</button>
+  </div>
+  <div class="ov__body">
+    <!-- REPLACE #6 — live chat / customer messaging.
+         Paste the messaging widget inside .slot.
+         REPLACE #14 — support ticketing: set the same provider's out-of-hours
+         fallback to create a ticket, so nothing sent at 2am is lost. -->
+    <div class="slot" style="min-height:min(16rem,34dvh)">
+      <p><strong>Live chat goes here.</strong></p>
+      <p>Paste the widget into <code>.slot</code> inside <code>#ov-chat</code>.</p>
+    </div>
+    <p class="ov__alt">Out of hours?
+      <a href="#contact" data-close>Leave it on the contact form</a> and it becomes a ticket.</p>
+  </div>
+</aside>
+
+<!-- 5 — exit intent -->
+<aside class="ov ov--mid" id="ov-exit" role="dialog" aria-modal="true"
+       aria-labelledby="ov-exit-t" aria-describedby="ov-exit-d" hidden>
+  <div class="ov__head">
+    <div>
+      <h2 id="ov-exit-t">Before you go</h2>
+      <p id="ov-exit-d">The one-page guide to moving off spreadsheets without losing a week of jobs.</p>
+    </div>
+    <button type="button" class="ov__x" data-close aria-label="Close">&times;</button>
+  </div>
+  <div class="ov__body">
+    <!-- REPLACE #5 — lead capture popup / exit intent.
+         Either paste the provider's form inside .slot, or keep this field and
+         POST it yourself. Shown at most once per visitor per session; the rule
+         lives in the controller below and is deliberately conservative. -->
+    <div class="slot" style="min-height:0;display:block;text-align:left;padding:1.1rem">
+      <form id="exit-form" novalidate>
+        <div class="field" style="margin-bottom:.7rem">
+          <label for="xf-email">Where should we send it?</label>
+          <input id="xf-email" name="email" type="email" placeholder="you@company.com" required>
+        </div>
+        <button type="submit" class="btn btn--solid btn--wide">Send me the guide</button>
+        <p class="said" id="exit-said" hidden role="status">Placeholder — nothing was sent.</p>
+      </form>
+    </div>
+    <p class="ov__alt"><button type="button" class="btn btn--ghost" style="min-height:0;padding:0;font-size:.88rem;font-weight:400;color:var(--muted)" data-close>No thanks — I'm just looking</button></p>
+  </div>
+</aside>
+
+<script>
+/* ==========================================================================
+   One controller for every overlay on the page.
+
+   The other templates in this folder carry a single panel and query it with
+   document.querySelector('.ip'). This site has four, so they are addressed by
+   id instead: [data-open="ID"] opens, [data-close] closes. Only one is ever
+   open at a time — opening a second closes the first, which is what stops the
+   assistant and live chat fighting over focus.
+   ========================================================================== */
+(function(){
+  var back = document.getElementById('ov-back');
+  var FOCUS = 'a[href],button:not([disabled]),input:not([type=hidden]),select,textarea,[tabindex]:not([tabindex="-1"])';
+  var current = null, last = null;
+
+  function visible(el){ return el.offsetWidth || el.offsetHeight || el.getClientRects().length; }
+
+  function open(id, trigger){
+    var panel = document.getElementById(id);
+    if(!panel) return;
+    if(current && current !== panel) close(true);
+    last = trigger || document.activeElement;
+    current = panel;
+    panel.hidden = false; back.hidden = false;
+    requestAnimationFrame(function(){ back.classList.add('is-on'); panel.classList.add('is-on'); });
+    document.body.classList.add('ov-open');
+    var first = panel.querySelector(FOCUS);
+    if(first) first.focus();
+  }
+
+  function close(swapping){
+    if(!current) return;
+    var panel = current; current = null;
+    panel.classList.remove('is-on');
+    if(!swapping) back.classList.remove('is-on');
+    var settle = function(){ panel.hidden = true; if(!swapping) back.hidden = true; };
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) settle();
+    else setTimeout(settle, 320);
+    if(!swapping){
+      document.body.classList.remove('ov-open');
+      if(last && last.focus) last.focus();
+      last = null;
+    }
+  }
+
+  document.addEventListener('click', function(e){
+    var opener = e.target.closest('[data-open]');
+    if(opener){ e.preventDefault(); open(opener.getAttribute('data-open'), opener); return; }
+    if(e.target.closest('[data-close]') || e.target === back){ e.preventDefault(); close(); }
+  });
+
+  document.addEventListener('keydown', function(e){
+    if(!current) return;
+    if(e.key === 'Escape'){ close(); return; }
+    if(e.key !== 'Tab') return;
+    var f = [].slice.call(current.querySelectorAll(FOCUS)).filter(visible);
+    if(!f.length) return;
+    var first = f[0], lastEl = f[f.length - 1];
+    if(e.shiftKey && document.activeElement === first){ e.preventDefault(); lastEl.focus(); }
+    else if(!e.shiftKey && document.activeElement === lastEl){ e.preventDefault(); first.focus(); }
+  });
+
+  /* ---- 5. exit intent -------------------------------------------------
+     Conservative on purpose: desktop pointer leaving through the top of the
+     window, once per session, and never while another overlay is open or
+     before the visitor has actually read something. A popup that fires on a
+     first scroll is the reason people hate popups. */
+  var armed = false;
+  try { armed = !sessionStorage.getItem('cadence-exit-seen'); } catch(err) { armed = false; }
+  function maybeExit(e){
+    if(!armed || current) return;
+    if(e.clientY > 6 || window.scrollY < 400) return;
+    armed = false;
+    try { sessionStorage.setItem('cadence-exit-seen', '1'); } catch(err) {}
+    open('ov-exit', null);
+  }
+  if(window.matchMedia('(hover: hover) and (pointer: fine)').matches){
+    document.addEventListener('mouseout', function(e){ if(!e.relatedTarget) maybeExit(e); });
+  }
+
+  window.cadenceOverlay = { open: open, close: close };
+})();
+
+/* ---- header, drawer, help-centre search, form stubs -------------------- */
+(function(){
+  var bar = document.getElementById('bar');
+  var onScroll = function(){ bar.classList.toggle('is-stuck', window.scrollY > 4); };
+  onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+  var tog = document.getElementById('tog'), draw = document.getElementById('draw');
+  tog.addEventListener('click', function(){
+    var open = draw.classList.toggle('is-open');
+    tog.setAttribute('aria-expanded', open ? 'true' : 'false');
+    tog.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+  draw.addEventListener('click', function(e){
+    if(e.target.closest('a')){ draw.classList.remove('is-open'); tog.setAttribute('aria-expanded','false'); }
+  });
+
+  /* 20. help centre — filters the sample list. Swap for the real search when
+     the knowledge base is connected. */
+  var q = document.getElementById('kb-q'),
+      items = [].slice.call(document.querySelectorAll('#kb-list .kb__item')),
+      none = document.getElementById('kb-none');
+  q.addEventListener('input', function(){
+    var t = q.value.trim().toLowerCase(), shown = 0;
+    items.forEach(function(el){
+      var hay = (el.textContent + ' ' + el.getAttribute('data-kb')).toLowerCase();
+      var hit = !t || hay.indexOf(t) > -1;
+      el.style.display = hit ? '' : 'none';
+      if(hit) shown++;
+    });
+    none.hidden = shown > 0;
+  });
+
+  /* 3, 5, 15. Form stubs. These deliberately do NOT send anywhere — they
+     confirm to the visitor and say so. Wire the endpoint and delete the stub. */
+  function stub(formId, saidId){
+    var form = document.getElementById(formId), said = document.getElementById(saidId);
+    if(!form) return;
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      if(!form.checkValidity()){ form.reportValidity(); return; }
+      said.hidden = false;
+    });
+  }
+  stub('lead-form','lead-said');
+  stub('news-form','news-said');
+  stub('exit-form','exit-said');
+
+  /* 7. payment gateway — the checkout buttons. Replace this handler with the
+     provider's hosted checkout redirect. */
+  document.addEventListener('click', function(e){
+    var b = e.target.closest('[data-checkout]');
+    if(!b) return;
+    e.preventDefault();
+    window.cadenceOverlay.open('ov-book', b);
+  });
+})();
+</script>
+
+<!-- ==========================================================================
+     INTEGRATION MOUNTS — all twenty, and where each one lives.
+
+     Nothing third-party is in this file. Every item below is either a built
+     shell with an empty slot, or a marked place for a key, endpoint or tag.
+     Search this file for REPLACE to jump between them.
+
+      1. AI assistant .............. #ov-bot > .slot          (shell built)
+      2. Booking / scheduling ...... #ov-book > .slot         (shell built)
+      3. Contact form -> CRM ....... #lead-form action + stub in the script
+      4. Email automation .......... list id on #news-form; sequences are the
+                                     provider's side, nothing needed here
+      5. Exit-intent capture ....... #ov-exit > .slot         (shell built)
+      6. Live chat ................. #ov-chat > .slot         (shell built)
+      7. Payment gateway ........... [data-checkout] buttons in #plans
+      8. CRM ....................... same endpoint as 3; also the booking
+                                     provider's contact push
+      9. Analytics / tracking ...... add the tag in <head>, behind consent
+     10. Meeting transcription ..... the booking provider's post-call webhook
+     11. Automation connector ...... one webhook, subscribed to 3, 7 and 12
+     12. Review collection ........ #proof .quotes            (section built)
+     13. SMS follow-up ............ triggered from 11, or the CRM's own sender
+     14. Support ticketing ........ out-of-hours fallback on 6
+     15. Newsletter ............... #news-form action         (form built)
+     16. Calendar sync ............ configured inside 2, two-way
+     17. Lead scoring ............. events from 9 + form starts on 3
+     18. Visitor identification ... add the tag in <head>, behind consent
+     19. Social scheduling ........ webhook from 11 on publish
+     20. Knowledge base ........... #help .kb__list           (section built)
+
+     Two rules worth keeping:
+     - Nothing that identifies or tracks a visitor (9, 17, 18) should load
+       before consent. There is no consent banner in this file yet; add one
+       before those tags go live.
+     - Do not restyle a widget to match the page and do not restyle the page
+       to match a widget. Every slot already sits on this file's own palette.
+     ========================================================================== -->
+
+</body>
+</html>
