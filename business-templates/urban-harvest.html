@@ -182,6 +182,13 @@ h1,h2,h3{font-family:var(--slab);font-weight:700;color:var(--ink);line-height:1.
 
 /* the panel trigger sits in the nav and must read as part of it, not as a
    browser default button */
+
+/* ios-zoom: Safari zooms the whole page when a focused field is under
+   16px. Mobile only, so the designed desktop size is untouched. */
+@media(max-width:768px){input,select,textarea{font-size:16px!important}}
+/* !important is deliberate: several of these files style fields through a
+   class (.fl input, .sites-sort select), which outranks a bare element rule
+   whatever the order. Losing that battle means iOS zooms the page on focus. */
 </style>
 
 <!-- ============================================================
@@ -193,11 +200,33 @@ h1,h2,h3{font-family:var(--slab);font-weight:700;color:var(--ink);line-height:1.
      before either tag goes live. This is a legal requirement in
      the UK and EU, not a preference.
      ============================================================ -->
+
+<!-- REPLACE: canonical + share URLs. Point these at the real domain
+     before launch; example.com is a placeholder like the phone number. -->
+<link rel="canonical" href="https://example.com/">
+<meta property="og:image" content="assets/previews/urban-harvest.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<!-- Structured data: lets search engines show hours, phone and
+     ratings directly in results. Fill in address and openingHours
+     with the client's real details. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Store",
+  "name": "Urban Harvest",
+  "description": "A market garden and veg box scheme. This week's harvest, the stall timetable, and three box sizes with no contract.",
+  "telephone": "+15553027715",
+  "email": "boxes@urbanharvest.example",
+  "image": "assets/previews/urban-harvest.jpg",
+  "url": "https://example.com/"
+}
+</script>
+
 </head>
 <body>
 <a class="skip" href="#harvest">Skip to this week's harvest</a>
 <header class="bar"><div class="wrap bar-in">
-  <a class="mk" href="#top" aria-label="Urban Harvest — home"><img src="assets/logos/urban-harvest.png" alt="Urban Harvest"></a>
+  <a class="mk" href="#top" aria-label="Urban Harvest — home"><img src="assets/logos/urban-harvest.png" alt="Urban Harvest" width="720" height="222"></a>
   <nav class="nav" aria-label="Primary">
     <a href="#harvest">This week</a><a href="#boxes">Veg boxes</a><a href="#stalls">Find us</a><a class="btn btn--carrot" href="#join" data-ip-open aria-haspopup="dialog">Start a box</a>
   </nav>
@@ -330,7 +359,7 @@ h1,h2,h3{font-family:var(--slab);font-weight:700;color:var(--ink);line-height:1.
 </main>
 <footer id="contact-details" class="ft"><div class="wrap">
   <div class="ft-g">
-    <div><span class="mk" style="display:block;margin-bottom:.9rem"><img src="assets/logos/urban-harvest.png" alt="Urban Harvest"></span>
+    <div><span class="mk" style="display:block;margin-bottom:.9rem"><img src="assets/logos/urban-harvest.png" alt="Urban Harvest" width="720" height="222" loading="lazy" decoding="async"></span>
       <p>Four acres, eleven miles out. Veg boxes on Thursdays and four market stalls a week.</p></div>
     <div><h3>Shop</h3><a href="#harvest">This week</a><a href="#boxes">Veg boxes</a><a href="#stalls">Stall times</a></div>
     <div><h3>Contact</h3><a href="tel:+15553027715">(555) 302-7715</a><a href="mailto:boxes@urbanharvest.example">boxes@urbanharvest.example</a><p style="margin-top:.45rem">Ridgeway Lane</p></div>

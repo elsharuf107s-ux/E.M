@@ -147,11 +147,33 @@ h1,h2,h3{color:var(--ink);font-weight:700;line-height:1.14;text-wrap:balance}
      before either tag goes live. This is a legal requirement in
      the UK and EU, not a preference.
      ============================================================ -->
+
+<!-- REPLACE: canonical + share URLs. Point these at the real domain
+     before launch; example.com is a placeholder like the phone number. -->
+<link rel="canonical" href="https://example.com/">
+<meta property="og:image" content="assets/previews/harvest-helpers.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<!-- Structured data: lets search engines show hours, phone and
+     ratings directly in results. Fill in address and openingHours
+     with the client's real details. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NGO",
+  "name": "Harvest Helpers Food Bank",
+  "description": "Free food for anyone who needs it, no proof required. Find a pantry near you, or help through donating and volunteering.",
+  "telephone": "+15552730144",
+  "email": "give@harvesthelpers.example",
+  "image": "assets/previews/harvest-helpers.jpg",
+  "url": "https://example.com/"
+}
+</script>
+
 </head>
 <body>
 <a class="skip" href="#find">Skip to find food</a>
 <header class="bar"><div class="wrap bar-in">
-  <a class="mk" href="#top" aria-label="Harvest Helpers Food Bank — home"><img src="assets/logos/harvest-helpers.png" alt="Harvest Helpers Food Bank"></a>
+  <a class="mk" href="#top" aria-label="Harvest Helpers Food Bank — home"><img src="assets/logos/harvest-helpers.png" alt="Harvest Helpers Food Bank" width="720" height="222"></a>
   <nav class="nav" aria-label="Primary"><a href="#find">Find food</a><a href="#impact">Our impact</a><a href="#give">Volunteer</a></nav>
   <a class="btn" href="#give" data-ip-open aria-haspopup="dialog">Give today</a>
 </div></header>
@@ -204,7 +226,7 @@ h1,h2,h3{color:var(--ink);font-weight:700;line-height:1.14;text-wrap:balance}
 </main>
 <footer id="contact-details" class="ft"><div class="wrap">
   <div class="ft-g">
-    <div><span class="ft-logo"><img src="assets/logos/harvest-helpers.png" alt="Harvest Helpers Food Bank"></span>
+    <div><span class="ft-logo"><img src="assets/logos/harvest-helpers.png" alt="Harvest Helpers Food Bank" width="720" height="222" loading="lazy" decoding="async"></span>
       <p>A community food bank running six pantries and a mobile van. No means test, no proof of income, no questions.</p></div>
     <div><h3>Get help</h3><a href="#find">Find a pantry</a><a href="tel:+15552730144">Request a delivery</a><a href="#impact">Our impact</a></div>
     <div><h3>Contact</h3><a href="tel:+15552730144">(555) 273-0144</a><a href="mailto:hello@harvesthelpers.example">hello@harvesthelpers.example</a><p style="margin-top:.5rem">Charity 62-114-770</p></div>

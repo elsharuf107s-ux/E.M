@@ -1659,3 +1659,94 @@ plain, wrong for the trade), and take them a few at a time with screenshots at e
 
 **Next agent: do not interpret this entry as licence to bulk-restyle the templates.** If the
 owner reaffirms the redesign, get a direction first, then work in small reviewed batches.
+
+---
+
+## 2026-08-04 (5) — Claude Code — graded every page against web standards, then fixed the low scorers
+
+**The owner's request, verbatim:**
+
+> "How bout this play test the websites and compare them to the web grade them then fix the
+> ones with a low grade"
+
+This is the direction the redesign request was missing. Grading against measurable benchmarks
+gives evidence to act on instead of taste.
+
+### The grader
+
+`grade.mjs` scores all 34 pages out of 100 across five bands, every threshold a published or
+widely-held benchmark rather than a preference:
+
+| band | /100 | what it measures |
+|---|---|---|
+| Weight & structure | 25 | total bytes, DOM nodes, inline CSS, lazy loading, image dimensions |
+| Mobile | 20 | sideways scroll, 16px inputs (iOS zoom), action above the fold |
+| Typography | 20 | 45–85 character measure, distinct font sizes, line-height, over-long lines |
+| Meta / SEO | 20 | title and description length, og tags, canonical, JSON-LD, one h1 |
+| Conversion & polish | 15 | tel: link, number of real actions, favicon, touch icon |
+
+**Caveat stated to the owner:** this compares against best-practice benchmarks, not against
+scraped competitor sites. That is not the same as "compared to the web" and was not claimed
+to be.
+
+### First run: average 79.5, no A grades, 2 D grades
+
+The gaps were systematic rather than per-site:
+
+- **34/34 had no structured data** and **34/34 no canonical**
+- **33/34 had incomplete og tags**
+- **22/34 had images with no width/height** (layout shift), **21/34 loaded every image eagerly**
+- **16/34 had inputs under 16px**, which makes iOS zoom the page on focus
+
+### What was fixed
+
+1. **JSON-LD on all 34**, typed to the trade rather than one generic `LocalBusiness` —
+   `Plumber`, `Bakery`, `Restaurant`, `AutoRepair`, `LegalService`, `ExerciseGym`, `NGO`,
+   `SoftwareApplication` and so on. Name, phone, email and description come from what the file
+   already contains. Validated: all 34 parse as JSON.
+2. **canonical + og + twitter card** on all 34, with `example.com` marked REPLACE like the
+   phone numbers.
+3. **16px form fields at mobile widths.** First attempt lost a specificity battle — several
+   files style fields through a class (`.fl input`, `.sites-sort select`) which outranks a bare
+   element rule whatever the order. Now uses a scoped `!important`, which is the correct tool
+   for this specific override.
+4. **Image dimensions and lazy loading** filled in from the real files on disk.
+5. **The previews were 2160×1350 rendering in ~300px cards.** Re-encoded at 720×450 —
+   **3,572KB → 849KB, 76% smaller.** `work.html` went from **999KB to 297KB**.
+6. **The two E.M photographs were stored near-uncompressed** — 660KB for a 896×1200 image is
+   about five times what it should be. Re-encoded at the same pixel dimensions, so nothing
+   moved: **781KB → 162KB** and **660KB → 95KB**.
+
+### Result: average 79.5 → 91.7, and no page below B
+
+**A:24 · B:10 · C:0 · D:0 · F:0.** No sideways scroll, zero contrast failures, 29/29 panels,
+all 34 well-formed — re-checked after every change.
+
+### An eighth checker fault, caught before it caused work
+
+The first run flagged **33/34 for "median measure 43 characters"**. The 45–85 character rule
+is a *desktop* reading metric and the grader was measuring at 390px, where 43 characters is
+correct and good. Had that been believed, it would have meant re-typesetting 33 pages to fix
+nothing. The grader now takes line length at 1280 and everything else at 390.
+
+Running total of checkers that were wrong before the code was: favicon probe, tag-balance
+grep, target-size check, cadence-vs-`.ip` harness, alpha-blind contrast, aria-hidden controls,
+the logo-path grep, and this. **Eight.**
+
+### Also mine, caught after the fact
+
+The uplift script's og-deduplication used the wrong string index, so **21 files ended up with
+duplicate `og:title`, `og:description` and `og:type`**. Found by grepping for duplicates
+straight after, and removed — keeping the hand-written originals, which were better worded
+than the generated ones.
+
+### What is still costing marks, and why it was left
+
+- **"no action above the fold on mobile"** on the four E.M pages — the hero CTA sits below
+  844px. That is a design decision about the hero, not a defect.
+- **"desktop measure 25 chars"** on `work.html` and `lex-associates` — the grader is reading
+  card captions and a sidebar rail, which are meant to be narrow.
+- **50–60KB of inline CSS** on four templates. Splitting it into a file would help a repeat
+  visit but costs a request on the first, and these are single-page sites. Not worth it.
+- **"28 distinct font sizes"** on `index.html`. Real, but reducing it means retyping the scale
+  across the whole design system — a redesign job, not a bug fix.

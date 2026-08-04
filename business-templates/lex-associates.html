@@ -299,6 +299,13 @@ input,select,textarea{font-family:var(--sans);font-size:.95rem}
 .ip-cta{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;
   text-decoration:underline;text-underline-offset:4px;white-space:nowrap}
 .ip-cta:hover{opacity:.75}
+
+/* ios-zoom: Safari zooms the whole page when a focused field is under
+   16px. Mobile only, so the designed desktop size is untouched. */
+@media(max-width:768px){input,select,textarea{font-size:16px!important}}
+/* !important is deliberate: several of these files style fields through a
+   class (.fl input, .sites-sort select), which outranks a bare element rule
+   whatever the order. Losing that battle means iOS zooms the page on focus. */
 </style>
 
 <!-- ============================================================
@@ -310,6 +317,31 @@ input,select,textarea{font-family:var(--sans);font-size:.95rem}
      before either tag goes live. This is a legal requirement in
      the UK and EU, not a preference.
      ============================================================ -->
+
+<!-- REPLACE: canonical + share URLs. Point these at the real domain
+     before launch; example.com is a placeholder like the phone number. -->
+<link rel="canonical" href="https://example.com/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Lex &amp; Associates">
+<meta property="og:description" content="Commercial, property, employment and family law. Senior lawyers on every matter, fees agreed in writing before we start, advice in plain English.">
+<meta property="og:image" content="assets/previews/lex-associates.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<!-- Structured data: lets search engines show hours, phone and
+     ratings directly in results. Fill in address and openingHours
+     with the client's real details. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LegalService",
+  "name": "Lex &amp; Associates",
+  "description": "Commercial, property, employment and family law. Senior lawyers on every matter, fees agreed in writing before we start, advice in plain English.",
+  "telephone": "5554028890",
+  "email": "reception@lexassociates.law",
+  "image": "assets/previews/lex-associates.jpg",
+  "url": "https://example.com/"
+}
+</script>
+
 </head>
 <body>
 

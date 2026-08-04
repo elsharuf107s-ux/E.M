@@ -175,11 +175,33 @@ body.nav-open{overflow:hidden}
      before either tag goes live. This is a legal requirement in
      the UK and EU, not a preference.
      ============================================================ -->
+
+<!-- REPLACE: canonical + share URLs. Point these at the real domain
+     before launch; example.com is a placeholder like the phone number. -->
+<link rel="canonical" href="https://example.com/">
+<meta property="og:image" content="assets/previews/apex-outdoor.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<!-- Structured data: lets search engines show hours, phone and
+     ratings directly in results. Fill in address and openingHours
+     with the client's real details. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SportingGoodsStore",
+  "name": "Apex Outdoor Gear",
+  "description": "Packs, shelters and layers built for multi-day trips. Field-tested specifications, honest weights, and a repair-first warranty.",
+  "telephone": "+15557710412",
+  "email": "support@apexoutdoor.example",
+  "image": "assets/previews/apex-outdoor.jpg",
+  "url": "https://example.com/"
+}
+</script>
+
 </head>
 <body>
 <a class="skip" href="#gear">Skip to the gear</a>
 <header class="bar"><div class="wrap bar-in">
-  <a class="mk" href="#top" aria-label="Apex Outdoor Gear — home"><img src="assets/logos/apex-outdoor.png" alt="Apex Outdoor Gear"></a>
+  <a class="mk" href="#top" aria-label="Apex Outdoor Gear — home"><img src="assets/logos/apex-outdoor.png" alt="Apex Outdoor Gear" width="720" height="222"></a>
   <nav class="nav" id="primary-nav" aria-label="Primary"><a href="#gear">Gear</a><a href="#app">The app</a><a href="#warranty">Warranty</a><button type="button" class="ip-cta" data-ip-open>Shop the range</button></nav>
   <a class="btn btn--tan header-cta" href="#gear">Find your gear</a>
   <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation">
@@ -249,7 +271,7 @@ body.nav-open{overflow:hidden}
 </main>
 <footer id="contact-details" class="ft"><div class="wrap">
   <div class="ft-g">
-    <div><span class="ft-logo"><img src="assets/logos/apex-outdoor.png" alt="Apex Outdoor Gear"></span>
+    <div><span class="ft-logo"><img src="assets/logos/apex-outdoor.png" alt="Apex Outdoor Gear" width="720" height="222" loading="lazy" decoding="async"></span>
       <p>Packs, shelters and layers for multi-day trips. Repaired before replaced, and weighed honestly.</p></div>
     <div><h3>Shop</h3><a href="#gear">Packs</a><a href="#gear">Shelters</a><a href="#gear">Layers</a><a href="#gear">Sleep &amp; cook</a></div>
     <div><h3>Support</h3>

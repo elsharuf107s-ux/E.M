@@ -184,6 +184,13 @@ h1,h2,h3{font-family:var(--disp);font-weight:700;color:var(--ink);line-height:1.
 
 /* the panel trigger sits in the nav and must read as part of it, not as a
    browser default button */
+
+/* ios-zoom: Safari zooms the whole page when a focused field is under
+   16px. Mobile only, so the designed desktop size is untouched. */
+@media(max-width:768px){input,select,textarea{font-size:16px!important}}
+/* !important is deliberate: several of these files style fields through a
+   class (.fl input, .sites-sort select), which outranks a bare element rule
+   whatever the order. Losing that battle means iOS zooms the page on focus. */
 </style>
 
 <!-- ============================================================
@@ -195,11 +202,33 @@ h1,h2,h3{font-family:var(--disp);font-weight:700;color:var(--ink);line-height:1.
      before either tag goes live. This is a legal requirement in
      the UK and EU, not a preference.
      ============================================================ -->
+
+<!-- REPLACE: canonical + share URLs. Point these at the real domain
+     before launch; example.com is a placeholder like the phone number. -->
+<link rel="canonical" href="https://example.com/">
+<meta property="og:image" content="assets/previews/atlas-travel.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<!-- Structured data: lets search engines show hours, phone and
+     ratings directly in results. Fill in address and openingHours
+     with the client's real details. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TravelAgency",
+  "name": "Atlas Travel Co.",
+  "description": "Small-group trips with published itineraries, real departure dates and a price that includes the things other operators charge extra for.",
+  "telephone": "+15557710464",
+  "email": "hello@atlastravel.example",
+  "image": "assets/previews/atlas-travel.jpg",
+  "url": "https://example.com/"
+}
+</script>
+
 </head>
 <body>
 <a class="skip" href="#trips">Skip to the trips</a>
 <header class="bar"><div class="wrap bar-in">
-  <a class="mk" href="#top" aria-label="Atlas Travel Co. — home"><img src="assets/logos/atlas-travel.png" alt="Atlas Travel Co."></a>
+  <a class="mk" href="#top" aria-label="Atlas Travel Co. — home"><img src="assets/logos/atlas-travel.png" alt="Atlas Travel Co." width="720" height="222"></a>
   <nav class="nav" aria-label="Primary">
     <a href="#trips">Trips</a><a href="#included">What's included</a><a href="#how">How we travel</a><a class="btn" href="#ask" data-ip-open aria-haspopup="dialog">Enquire</a>
   </nav>
@@ -338,7 +367,7 @@ h1,h2,h3{font-family:var(--disp);font-weight:700;color:var(--ink);line-height:1.
 </main>
 <footer id="contact-details" class="ft"><div class="wrap">
   <div class="ft-g">
-    <div><span class="ft-mk"><img src="assets/logos/atlas-travel.png" alt="Atlas Travel Co."></span>
+    <div><span class="ft-mk"><img src="assets/logos/atlas-travel.png" alt="Atlas Travel Co." width="720" height="222" loading="lazy" decoding="async"></span>
       <p>Small-group trips run direct, with published itineraries and fixed departures. Bonded and insured.</p></div>
     <div><h3>Travel</h3><a href="#trips">Trips</a><a href="#included">What's included</a><a href="#how">How we travel</a></div>
     <div><h3>Contact</h3><a href="tel:+15557710464">(555) 771-0464</a><a href="mailto:hello@atlastravel.example">hello@atlastravel.example</a><p style="margin-top:.45rem">2 Meridian Wharf</p></div>

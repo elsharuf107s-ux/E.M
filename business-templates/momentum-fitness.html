@@ -206,6 +206,13 @@ h1,h2,h3{font-family:var(--cond);font-weight:700;color:var(--ink);line-height:1.
 
 /* the panel trigger sits in the nav and must read as part of it, not as a
    browser default button */
+
+/* ios-zoom: Safari zooms the whole page when a focused field is under
+   16px. Mobile only, so the designed desktop size is untouched. */
+@media(max-width:768px){input,select,textarea{font-size:16px!important}}
+/* !important is deliberate: several of these files style fields through a
+   class (.fl input, .sites-sort select), which outranks a bare element rule
+   whatever the order. Losing that battle means iOS zooms the page on focus. */
 </style>
 
 <!-- ============================================================
@@ -217,11 +224,33 @@ h1,h2,h3{font-family:var(--cond);font-weight:700;color:var(--ink);line-height:1.
      before either tag goes live. This is a legal requirement in
      the UK and EU, not a preference.
      ============================================================ -->
+
+<!-- REPLACE: canonical + share URLs. Point these at the real domain
+     before launch; example.com is a placeholder like the phone number. -->
+<link rel="canonical" href="https://example.com/">
+<meta property="og:image" content="assets/previews/momentum-fitness.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<!-- Structured data: lets search engines show hours, phone and
+     ratings directly in results. Fill in address and openingHours
+     with the client's real details. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ExerciseGym",
+  "name": "Momentum Fitness",
+  "description": "Coached strength and conditioning. The full timetable, three membership tiers with the prices written down, and no joining fee.",
+  "telephone": "+15554869012",
+  "email": "train@momentumfitness.example",
+  "image": "assets/previews/momentum-fitness.jpg",
+  "url": "https://example.com/"
+}
+</script>
+
 </head>
 <body>
 <a class="skip" href="#timetable">Skip to the timetable</a>
 <header class="bar"><div class="wrap bar-in">
-  <a class="mk" href="#top" aria-label="Momentum Fitness — home"><img src="assets/logos/momentum-fitness.png" alt="Momentum Fitness"></a>
+  <a class="mk" href="#top" aria-label="Momentum Fitness — home"><img src="assets/logos/momentum-fitness.png" alt="Momentum Fitness" width="720" height="222"></a>
   <nav class="nav" aria-label="Primary">
     <a href="#timetable">Timetable</a><a href="#programmes">Programmes</a><a href="#pricing">Pricing</a><a class="btn" href="#join" data-ip-open aria-haspopup="dialog">Free trial week</a>
   </nav>
@@ -356,7 +385,7 @@ h1,h2,h3{font-family:var(--cond);font-weight:700;color:var(--ink);line-height:1.
 </main>
 <footer id="contact-details" class="ft"><div class="wrap">
   <div class="ft-g">
-    <div><span class="mk" style="display:inline-block;margin-bottom:.9rem"><img src="assets/logos/momentum-fitness.png" alt="Momentum Fitness"></span>
+    <div><span class="mk" style="display:inline-block;margin-bottom:.9rem"><img src="assets/logos/momentum-fitness.png" alt="Momentum Fitness" width="720" height="222" loading="lazy" decoding="async"></span>
       <p>Coached strength and conditioning at Forge Park. Classes capped at twelve, no joining fee.</p></div>
     <div><h3>Train</h3><a href="#timetable">Timetable</a><a href="#programmes">Programmes</a><a href="#pricing">Pricing</a><a href="#coaches">Coaches</a></div>
     <div><h3>Contact</h3><a href="tel:+15554869012">(555) 486-9012</a><a href="mailto:train@momentumfitness.example">train@momentumfitness.example</a><p style="margin-top:.45rem">Unit 7, Forge Park</p></div>

@@ -298,6 +298,13 @@ h1,h2,h3{font-family:var(--disp);font-weight:300;color:var(--plum);line-height:1
 
 /* the panel trigger sits in the nav and must read as part of it, not as a
    browser default button */
+
+/* ios-zoom: Safari zooms the whole page when a focused field is under
+   16px. Mobile only, so the designed desktop size is untouched. */
+@media(max-width:768px){input,select,textarea{font-size:16px!important}}
+/* !important is deliberate: several of these files style fields through a
+   class (.fl input, .sites-sort select), which outranks a bare element rule
+   whatever the order. Losing that battle means iOS zooms the page on focus. */
 </style>
 
 <!-- ============================================================
@@ -309,6 +316,31 @@ h1,h2,h3{font-family:var(--disp);font-weight:300;color:var(--plum);line-height:1
      before either tag goes live. This is a legal requirement in
      the UK and EU, not a preference.
      ============================================================ -->
+
+<!-- REPLACE: canonical + share URLs. Point these at the real domain
+     before launch; example.com is a placeholder like the phone number. -->
+<link rel="canonical" href="https://example.com/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Serene Spaces Yoga">
+<meta property="og:description" content="A small yoga studio with unhurried classes, teachers who learn your name, and no mirrors. Beginners' courses, restorative evenings and morning practice.">
+<meta property="og:image" content="assets/previews/serene-spaces.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<!-- Structured data: lets search engines show hours, phone and
+     ratings directly in results. Fill in address and openingHours
+     with the client's real details. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ExerciseGym",
+  "name": "Serene Spaces Yoga",
+  "description": "A small yoga studio with unhurried classes, teachers who learn your name, and no mirrors. Beginners' courses, restorative evenings and morning practice.",
+  "telephone": "5553318820",
+  "email": "hello@serenespaces.yoga",
+  "image": "assets/previews/serene-spaces.jpg",
+  "url": "https://example.com/"
+}
+</script>
+
 </head>
 <body>
 

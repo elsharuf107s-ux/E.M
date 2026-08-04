@@ -320,6 +320,13 @@ h1,h2,h3{font-family:var(--disp);font-weight:700;letter-spacing:-.02em;line-heig
 
 /* the panel trigger sits in the nav and must read as part of it, not as a
    browser default button */
+
+/* ios-zoom: Safari zooms the whole page when a focused field is under
+   16px. Mobile only, so the designed desktop size is untouched. */
+@media(max-width:768px){input,select,textarea{font-size:16px!important}}
+/* !important is deliberate: several of these files style fields through a
+   class (.fl input, .sites-sort select), which outranks a bare element rule
+   whatever the order. Losing that battle means iOS zooms the page on focus. */
 </style>
 
 <!-- ============================================================
@@ -331,6 +338,31 @@ h1,h2,h3{font-family:var(--disp);font-weight:700;letter-spacing:-.02em;line-heig
      before either tag goes live. This is a legal requirement in
      the UK and EU, not a preference.
      ============================================================ -->
+
+<!-- REPLACE: canonical + share URLs. Point these at the real domain
+     before launch; example.com is a placeholder like the phone number. -->
+<link rel="canonical" href="https://example.com/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Nexa Solutions">
+<meta property="og:description" content="Managed infrastructure, cloud and 24/7 security monitoring. Named engineers, flat per-seat pricing, and a fifteen-minute response on priority-one incidents.">
+<meta property="og:image" content="assets/previews/nexa.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<!-- Structured data: lets search engines show hours, phone and
+     ratings directly in results. Fill in address and openingHours
+     with the client's real details. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Nexa Solutions",
+  "description": "Managed infrastructure, cloud and 24/7 security monitoring. Named engineers, flat per-seat pricing, and a fifteen-minute response on priority-one incidents.",
+  "telephone": "5554662100",
+  "email": "hello@nexasolutions.io",
+  "image": "assets/previews/nexa.jpg",
+  "url": "https://example.com/"
+}
+</script>
+
 </head>
 <body>
 
