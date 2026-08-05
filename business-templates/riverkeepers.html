@@ -148,11 +148,33 @@ h1,h2,h3{color:var(--ink);font-weight:700;line-height:1.13;letter-spacing:-.015e
      before either tag goes live. This is a legal requirement in
      the UK and EU, not a preference.
      ============================================================ -->
+
+<!-- REPLACE: canonical + share URLs. Point these at the real domain
+     before launch; example.com is a placeholder like the phone number. -->
+<link rel="canonical" href="https://example.com/">
+<meta property="og:image" content="assets/previews/riverkeepers.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<!-- Structured data: lets search engines show hours, phone and
+     ratings directly in results. Fill in address and openingHours
+     with the client's real details. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NGO",
+  "name": "Riverkeepers Alliance",
+  "description": "Volunteer-led river conservation. Monthly clean-ups, water quality monitoring and free field guides to local ecology.",
+  "telephone": "+15556140288",
+  "email": "hello@riverkeepers.example",
+  "image": "assets/previews/riverkeepers.jpg",
+  "url": "https://example.com/"
+}
+</script>
+
 </head>
 <body>
 <a class="skip" href="#events">Skip to clean-ups</a>
 <header class="bar"><div class="wrap bar-in">
-  <a class="mk" href="#top" aria-label="Riverkeepers Alliance — home"><img src="assets/logos/riverkeepers.png" alt="Riverkeepers Alliance"></a>
+  <a class="mk" href="#top" aria-label="Riverkeepers Alliance — home"><img src="assets/logos/riverkeepers.png" alt="Riverkeepers Alliance" width="720" height="222"></a>
   <nav class="nav" aria-label="Primary"><a href="#events">Clean-ups</a><a href="#learn">Resources</a><a href="#events">Join us</a><button type="button" class="ip-cta" data-ip-open>Donate</button></nav>
   <a class="btn" href="#events">Join us</a>
 </div></header>
@@ -205,7 +227,7 @@ h1,h2,h3{color:var(--ink);font-weight:700;line-height:1.13;letter-spacing:-.015e
 </main>
 <footer id="contact-details" class="ft"><div class="wrap">
   <div class="ft-g">
-    <div><span class="ft-logo"><img src="assets/logos/riverkeepers.png" alt="Riverkeepers Alliance"></span>
+    <div><span class="ft-logo"><img src="assets/logos/riverkeepers.png" alt="Riverkeepers Alliance" width="720" height="222" loading="lazy" decoding="async"></span>
       <p>A volunteer alliance monitoring and restoring 42km of river. All readings published, good and bad.</p></div>
     <div><h3>Take part</h3><a href="#events">Clean-ups</a><a href="#events">Water monitoring</a><a href="#learn">Field guides</a></div>
     <div><h3>Contact</h3>

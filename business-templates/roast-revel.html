@@ -255,6 +255,13 @@ h1,h2,h3{font-family:var(--disp);color:var(--ink);line-height:1.12;font-weight:7
 
 /* the panel trigger sits in the nav and must read as part of it, not as a
    browser default button */
+
+/* ios-zoom: Safari zooms the whole page when a focused field is under
+   16px. Mobile only, so the designed desktop size is untouched. */
+@media(max-width:768px){input,select,textarea{font-size:16px!important}}
+/* !important is deliberate: several of these files style fields through a
+   class (.fl input, .sites-sort select), which outranks a bare element rule
+   whatever the order. Losing that battle means iOS zooms the page on focus. */
 </style>
 
 <!-- ============================================================
@@ -266,6 +273,31 @@ h1,h2,h3{font-family:var(--disp);color:var(--ink);line-height:1.12;font-weight:7
      before either tag goes live. This is a legal requirement in
      the UK and EU, not a preference.
      ============================================================ -->
+
+<!-- REPLACE: canonical + share URLs. Point these at the real domain
+     before launch; example.com is a placeholder like the phone number. -->
+<link rel="canonical" href="https://example.com/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Roast &amp; Revel">
+<meta property="og:description" content="Small-batch speciality coffee roasted on site at 21 Kiln Lane. Café open daily from six, roasting Mondays and Thursdays, beans shipped every Wednesday.">
+<meta property="og:image" content="assets/previews/roast-revel.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<!-- Structured data: lets search engines show hours, phone and
+     ratings directly in results. Fill in address and openingHours
+     with the client's real details. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CafeOrCoffeeShop",
+  "name": "Roast &amp; Revel",
+  "description": "Small-batch speciality coffee roasted on site at 21 Kiln Lane. Caf\u00e9 open daily from six, roasting Mondays and Thursdays, beans shipped every Wednesday.",
+  "telephone": "5553027788",
+  "email": "hello@roastandrevel.coffee",
+  "image": "assets/previews/roast-revel.jpg",
+  "url": "https://example.com/"
+}
+</script>
+
 </head>
 <body>
 

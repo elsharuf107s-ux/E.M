@@ -180,6 +180,13 @@ h1,h2,h3{font-family:var(--disp);font-weight:700;color:var(--ink);line-height:1.
 
 /* the panel trigger sits in the nav and must read as part of it, not as a
    browser default button */
+
+/* ios-zoom: Safari zooms the whole page when a focused field is under
+   16px. Mobile only, so the designed desktop size is untouched. */
+@media(max-width:768px){input,select,textarea{font-size:16px!important}}
+/* !important is deliberate: several of these files style fields through a
+   class (.fl input, .sites-sort select), which outranks a bare element rule
+   whatever the order. Losing that battle means iOS zooms the page on focus. */
 </style>
 
 <!-- ============================================================
@@ -191,11 +198,33 @@ h1,h2,h3{font-family:var(--disp);font-weight:700;color:var(--ink);line-height:1.
      before either tag goes live. This is a legal requirement in
      the UK and EU, not a preference.
      ============================================================ -->
+
+<!-- REPLACE: canonical + share URLs. Point these at the real domain
+     before launch; example.com is a placeholder like the phone number. -->
+<link rel="canonical" href="https://example.com/">
+<meta property="og:image" content="assets/previews/artisan-breads.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<!-- Structured data: lets search engines show hours, phone and
+     ratings directly in results. Fill in address and openingHours
+     with the client's real details. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Bakery",
+  "name": "Artisan Breads",
+  "description": "A sourdough bakery working one wood-fired oven. The bake list, the day each loaf comes out, and a standing order you can pause.",
+  "telephone": "+15552493308",
+  "email": "counter@artisanbreads.example",
+  "image": "assets/previews/artisan-breads.jpg",
+  "url": "https://example.com/"
+}
+</script>
+
 </head>
 <body>
 <a class="skip" href="#bakes">Skip to today's bakes</a>
 <header class="bar"><div class="wrap bar-in">
-  <a class="mk" href="#top" aria-label="Artisan Breads — home"><img src="assets/logos/artisan-breads.png" alt="Artisan Breads"></a>
+  <a class="mk" href="#top" aria-label="Artisan Breads — home"><img src="assets/logos/artisan-breads.png" alt="Artisan Breads" width="720" height="222"></a>
   <nav class="nav" aria-label="Primary">
     <a href="#bakes">Today</a><a href="#loaves">The loaves</a><a href="#method">Method</a><a class="btn" href="#order" data-ip-open aria-haspopup="dialog">Standing order</a>
   </nav>
@@ -300,7 +329,7 @@ h1,h2,h3{font-family:var(--disp);font-weight:700;color:var(--ink);line-height:1.
 </main>
 <footer id="contact-details" class="ft"><div class="wrap">
   <div class="ft-g">
-    <div><span class="mk" style="display:block;margin-bottom:.9rem"><img src="assets/logos/artisan-breads.png" alt="Artisan Breads"></span>
+    <div><span class="mk" style="display:block;margin-bottom:.9rem"><img src="assets/logos/artisan-breads.png" alt="Artisan Breads" width="720" height="222" loading="lazy" decoding="async"></span>
       <p>A sourdough bakery on Mill Row. One oven, four bakes a day, closed Mondays.</p></div>
     <div><h3>Bakery</h3><a href="#bakes">Today's bakes</a><a href="#loaves">The loaves</a><a href="#method">Method</a></div>
     <div><h3>Contact</h3><a href="tel:+15552493308">(555) 249-3308</a><a href="mailto:counter@artisanbreads.example">counter@artisanbreads.example</a><p style="margin-top:.45rem">18 Mill Row</p></div>

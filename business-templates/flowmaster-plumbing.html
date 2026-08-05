@@ -238,6 +238,13 @@ h1,h2,h3{color:var(--ink);font-weight:800;line-height:1.08;letter-spacing:-.02em
 .ip-cta{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;
   text-decoration:underline;text-underline-offset:4px;white-space:nowrap}
 .ip-cta:hover{opacity:.75}
+
+/* ios-zoom: Safari zooms the whole page when a focused field is under
+   16px. Mobile only, so the designed desktop size is untouched. */
+@media(max-width:768px){input,select,textarea{font-size:16px!important}}
+/* !important is deliberate: several of these files style fields through a
+   class (.fl input, .sites-sort select), which outranks a bare element rule
+   whatever the order. Losing that battle means iOS zooms the page on focus. */
 </style>
 
 <!-- ============================================================
@@ -249,6 +256,28 @@ h1,h2,h3{color:var(--ink);font-weight:800;line-height:1.08;letter-spacing:-.02em
      before either tag goes live. This is a legal requirement in
      the UK and EU, not a preference.
      ============================================================ -->
+
+<!-- REPLACE: canonical + share URLs. Point these at the real domain
+     before launch; example.com is a placeholder like the phone number. -->
+<link rel="canonical" href="https://example.com/">
+<meta property="og:image" content="assets/previews/flowmaster-plumbing.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<!-- Structured data: lets search engines show hours, phone and
+     ratings directly in results. Fill in address and openingHours
+     with the client's real details. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Plumber",
+  "name": "Flowmaster Plumbing",
+  "description": "Licensed, insured plumbers for residential, commercial, emergency and water heater work. Straight answers, fixed pricing, and a technician on the way.",
+  "telephone": "+15551840199",
+  "email": "dispatch@flowmasterplumbing.example",
+  "image": "assets/previews/flowmaster-plumbing.jpg",
+  "url": "https://example.com/"
+}
+</script>
+
 </head>
 <body>
 <a class="skip" href="#services">Skip to services</a>
@@ -256,7 +285,7 @@ h1,h2,h3{color:var(--ink);font-weight:800;line-height:1.08;letter-spacing:-.02em
 <header class="bar">
   <div class="wrap bar-in">
     <a class="mk" href="#top" aria-label="Flowmaster Plumbing — home">
-      <img src="assets/logos/flowmaster-plumbing.png" alt="Flowmaster Plumbing">
+      <img src="assets/logos/flowmaster-plumbing.png" alt="Flowmaster Plumbing" width="720" height="222">
     </a>
     <nav class="nav" aria-label="Primary">
       <a href="#services">Services</a>
@@ -415,7 +444,7 @@ h1,h2,h3{color:var(--ink);font-weight:800;line-height:1.08;letter-spacing:-.02em
   <div class="wrap">
     <div class="ft-g">
       <div>
-        <span class="ft-logo"><img src="assets/logos/flowmaster-plumbing.png" alt="Flowmaster Plumbing"></span>
+        <span class="ft-logo"><img src="assets/logos/flowmaster-plumbing.png" alt="Flowmaster Plumbing" width="720" height="222" loading="lazy" decoding="async"></span>
         <p>Licensed plumbers covering the metro area and surrounding shires. Answering the phone since 2009.</p>
       </div>
       <div>

@@ -153,11 +153,33 @@ h1,h2,h3{font-family:var(--disp);color:var(--ink);font-weight:400;line-height:1.
      before either tag goes live. This is a legal requirement in
      the UK and EU, not a preference.
      ============================================================ -->
+
+<!-- REPLACE: canonical + share URLs. Point these at the real domain
+     before launch; example.com is a placeholder like the phone number. -->
+<link rel="canonical" href="https://example.com/">
+<meta property="og:image" content="assets/previews/oasis-wellness.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<!-- Structured data: lets search engines show hours, phone and
+     ratings directly in results. Fill in address and openingHours
+     with the client's real details. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "DaySpa",
+  "name": "Oasis Wellness",
+  "description": "Day spa and treatment rooms. Massage, facials and thermal bathing, booked by the hour with no upselling at the counter.",
+  "telephone": "+15556402211",
+  "email": "bookings@oasiswellness.example",
+  "image": "assets/previews/oasis-wellness.jpg",
+  "url": "https://example.com/"
+}
+</script>
+
 </head>
 <body>
 <a class="skip" href="#treatments">Skip to treatments</a>
 <header class="bar"><div class="wrap bar-in">
-  <a href="#top" aria-label="Oasis Wellness — home"><img src="assets/logos/oasis-wellness.png" alt="Oasis Wellness"></a>
+  <a href="#top" aria-label="Oasis Wellness — home"><img src="assets/logos/oasis-wellness.png" alt="Oasis Wellness" width="720" height="222"></a>
   <nav class="nav" aria-label="Primary"><a href="#treatments">Treatments</a><a href="#rooms">The spa</a><a class="btn" href="#book" data-ip-open aria-haspopup="dialog">Book now</a></nav>
 </div></header>
 <main id="top">
@@ -221,7 +243,7 @@ h1,h2,h3{font-family:var(--disp);color:var(--ink);font-weight:400;line-height:1.
 </main>
 <footer id="contact-details" class="ft"><div class="wrap">
   <div class="ft-g">
-    <div><span class="ft-logo"><img src="assets/logos/oasis-wellness.png" alt="Oasis Wellness"></span>
+    <div><span class="ft-logo"><img src="assets/logos/oasis-wellness.png" alt="Oasis Wellness" width="720" height="222" loading="lazy" decoding="async"></span>
       <p>A day spa in a converted terrace. Six rooms, a thermal suite, and nobody selling you a course of ten.</p></div>
     <div><h3>Spa</h3><a href="#treatments">Treatments</a><a href="#rooms">The rooms</a><a href="#book">Book</a></div>
     <div><h3>Visit</h3><a href="tel:+15556402211">(555) 640-2211</a><a href="mailto:bookings@oasiswellness.example">bookings@oasiswellness.example</a><p style="margin-top:.5rem">9 Fennel Lane · Closed Mondays</p></div>

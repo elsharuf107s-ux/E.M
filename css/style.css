@@ -69,6 +69,12 @@ a{color:inherit;text-decoration:none}
 ul,ol{list-style:none}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 input,select,textarea{font-family:var(--sans);font-size:1rem;font-weight:300}
+/* ios-zoom: Safari zooms the whole page when a focused field is under 16px.
+   Mobile only, so the designed desktop size is untouched. */
+@media(max-width:768px){input,select,textarea{font-size:16px!important}}
+/* !important is deliberate: several of these files style fields through a
+   class (.fl input, .sites-sort select), which outranks a bare element rule
+   whatever the order. Losing that battle means iOS zooms the page on focus. */
 :focus-visible{outline:1.5px solid var(--brass);outline-offset:4px}
 ::selection{background:var(--ink);color:var(--paper)}
 

@@ -204,6 +204,13 @@ h1,h2,h3{color:var(--ink);font-weight:800;line-height:1.1;letter-spacing:-.018em
 .ip-cta{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;
   text-decoration:underline;text-underline-offset:4px;white-space:nowrap}
 .ip-cta:hover{opacity:.75}
+
+/* ios-zoom: Safari zooms the whole page when a focused field is under
+   16px. Mobile only, so the designed desktop size is untouched. */
+@media(max-width:768px){input,select,textarea{font-size:16px!important}}
+/* !important is deliberate: several of these files style fields through a
+   class (.fl input, .sites-sort select), which outranks a bare element rule
+   whatever the order. Losing that battle means iOS zooms the page on focus. */
 </style>
 
 <!-- ============================================================
@@ -215,13 +222,35 @@ h1,h2,h3{color:var(--ink);font-weight:800;line-height:1.1;letter-spacing:-.018em
      before either tag goes live. This is a legal requirement in
      the UK and EU, not a preference.
      ============================================================ -->
+
+<!-- REPLACE: canonical + share URLs. Point these at the real domain
+     before launch; example.com is a placeholder like the phone number. -->
+<link rel="canonical" href="https://example.com/">
+<meta property="og:image" content="assets/previews/climatecontrol-hvac.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<!-- Structured data: lets search engines show hours, phone and
+     ratings directly in results. Fill in address and openingHours
+     with the client's real details. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HVACBusiness",
+  "name": "ClimateControl HVAC",
+  "description": "Heating, cooling and maintenance from licensed HVAC technicians. Seasonal tune-ups, transparent maintenance plans and emergency repair.",
+  "telephone": "+15552042277",
+  "email": "service@climatecontrolhvac.example",
+  "image": "assets/previews/climatecontrol-hvac.jpg",
+  "url": "https://example.com/"
+}
+</script>
+
 </head>
 <body>
 <a class="skip" href="#plans">Skip to maintenance plans</a>
 
 <header class="bar">
   <div class="wrap">
-    <div class="bar-top"><a href="#top" aria-label="ClimateControl HVAC — home"><img src="assets/logos/climatecontrol-hvac.png" alt="ClimateControl HVAC"></a></div>
+    <div class="bar-top"><a href="#top" aria-label="ClimateControl HVAC — home"><img src="assets/logos/climatecontrol-hvac.png" alt="ClimateControl HVAC" width="720" height="222"></a></div>
     <nav class="nav" aria-label="Primary">
       <a href="#heating">Heating</a><a href="#cooling">Cooling</a>
       <a href="#plans">Maintenance</a><a href="#book">Book an estimate</a>
@@ -376,7 +405,7 @@ h1,h2,h3{color:var(--ink);font-weight:800;line-height:1.1;letter-spacing:-.018em
   <div class="wrap">
     <div class="ft-g">
       <div>
-        <span class="ft-logo"><img src="assets/logos/climatecontrol-hvac.png" alt="ClimateControl HVAC"></span>
+        <span class="ft-logo"><img src="assets/logos/climatecontrol-hvac.png" alt="ClimateControl HVAC" width="720" height="222" loading="lazy" decoding="async"></span>
         <p>Heating, cooling and maintenance across the metro area. Licensed technicians, written estimates, no seasonal price gouging.</p>
       </div>
       <div><h3>Services</h3><a href="#heating">Heating</a><a href="#cooling">Cooling</a><a href="#plans">Maintenance plans</a><a href="#book">Emergency repair</a></div>

@@ -154,6 +154,13 @@ h1,h2,h3{color:var(--navy);font-weight:600;line-height:1.14;letter-spacing:-.018
 
 /* the panel trigger sits in the nav and must read as part of it, not as a
    browser default button */
+
+/* ios-zoom: Safari zooms the whole page when a focused field is under
+   16px. Mobile only, so the designed desktop size is untouched. */
+@media(max-width:768px){input,select,textarea{font-size:16px!important}}
+/* !important is deliberate: several of these files style fields through a
+   class (.fl input, .sites-sort select), which outranks a bare element rule
+   whatever the order. Losing that battle means iOS zooms the page on focus. */
 </style>
 
 <!-- ============================================================
@@ -165,11 +172,33 @@ h1,h2,h3{color:var(--navy);font-weight:600;line-height:1.14;letter-spacing:-.018
      before either tag goes live. This is a legal requirement in
      the UK and EU, not a preference.
      ============================================================ -->
+
+<!-- REPLACE: canonical + share URLs. Point these at the real domain
+     before launch; example.com is a placeholder like the phone number. -->
+<link rel="canonical" href="https://example.com/">
+<meta property="og:image" content="assets/previews/chronos-consulting.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<!-- Structured data: lets search engines show hours, phone and
+     ratings directly in results. Fill in address and openingHours
+     with the client's real details. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Chronos Consulting",
+  "description": "Management consulting for mid-market firms. Fixed-scope engagements, a named partner on every project, and recommendations you can act on.",
+  "telephone": "+15554012260",
+  "email": "partners@chronosconsulting.example",
+  "image": "assets/previews/chronos-consulting.jpg",
+  "url": "https://example.com/"
+}
+</script>
+
 </head>
 <body>
 <a class="skip" href="#services">Skip to services</a>
 <header class="bar"><div class="wrap bar-in">
-  <a class="mk" href="#top" aria-label="Chronos Consulting — home"><img src="assets/logos/chronos-consulting.png" alt="Chronos Consulting"></a>
+  <a class="mk" href="#top" aria-label="Chronos Consulting — home"><img src="assets/logos/chronos-consulting.png" alt="Chronos Consulting" width="720" height="222"></a>
   <nav class="nav" aria-label="Primary"><a href="#services">Services</a><a href="#work">Case studies</a><a href="#contact">Contact</a></nav>
   <a class="btn" href="#contact" data-ip-open aria-haspopup="dialog">Request a consultation</a>
 </div></header>
@@ -253,7 +282,7 @@ h1,h2,h3{color:var(--navy);font-weight:600;line-height:1.14;letter-spacing:-.018
 </main>
 <footer class="ft"><div class="wrap">
   <div class="ft-g">
-    <div><span class="ft-logo"><img src="assets/logos/chronos-consulting.png" alt="Chronos Consulting"></span>
+    <div><span class="ft-logo"><img src="assets/logos/chronos-consulting.png" alt="Chronos Consulting" width="720" height="222" loading="lazy" decoding="async"></span>
       <p>Fixed-scope management consulting for mid-market firms. A named partner on every engagement, start to finish.</p></div>
     <div><h3>Services</h3><a href="#services">Strategy review</a><a href="#services">Operating model</a><a href="#services">Due diligence</a><a href="#services">Performance</a></div>
     <div><h3>Contact</h3><a href="tel:+15554012260">(555) 401-2260</a><a href="mailto:partners@chronosconsulting.example">partners@chronosconsulting.example</a><p style="margin-top:.5rem">Level 9, 200 Harrow Street</p></div>

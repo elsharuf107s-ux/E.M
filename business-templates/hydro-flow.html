@@ -344,6 +344,13 @@ h1,h2,h3{font-family:var(--cond);font-weight:700;text-transform:uppercase;line-h
   letter-spacing:.05em;color:var(--txt-2);padding:.5rem .85rem;
   text-decoration:underline;text-underline-offset:4px;transition:color .15s,background .15s}
 .hnav-cta:hover{color:#fff;background:var(--navy-3)}
+
+/* ios-zoom: Safari zooms the whole page when a focused field is under
+   16px. Mobile only, so the designed desktop size is untouched. */
+@media(max-width:768px){input,select,textarea{font-size:16px!important}}
+/* !important is deliberate: several of these files style fields through a
+   class (.fl input, .sites-sort select), which outranks a bare element rule
+   whatever the order. Losing that battle means iOS zooms the page on focus. */
 </style>
 
 <!-- ============================================================
@@ -355,6 +362,31 @@ h1,h2,h3{font-family:var(--cond);font-weight:700;text-transform:uppercase;line-h
      before either tag goes live. This is a legal requirement in
      the UK and EU, not a preference.
      ============================================================ -->
+
+<!-- REPLACE: canonical + share URLs. Point these at the real domain
+     before launch; example.com is a placeholder like the phone number. -->
+<link rel="canonical" href="https://example.com/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hydro Flow Plumbing">
+<meta property="og:description" content="Licensed plumbers answering 24 hours a day. Burst pipes, blocked drains, hot water and repipes. No call-out fee, fixed price quoted before work starts.">
+<meta property="og:image" content="assets/previews/hydro-flow.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<!-- Structured data: lets search engines show hours, phone and
+     ratings directly in results. Fill in address and openingHours
+     with the client's real details. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Plumber",
+  "name": "Hydro Flow Plumbing",
+  "description": "Licensed plumbers answering 24 hours a day. Burst pipes, blocked drains, hot water and repipes. No call-out fee, fixed price quoted before work starts.",
+  "telephone": "5552104480",
+  "email": "dispatch@hydroflowplumbing.com",
+  "image": "assets/previews/hydro-flow.jpg",
+  "url": "https://example.com/"
+}
+</script>
+
 </head>
 <body>
 

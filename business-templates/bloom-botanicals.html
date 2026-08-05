@@ -172,11 +172,33 @@ body.menu-open{overflow:hidden}
      before either tag goes live. This is a legal requirement in
      the UK and EU, not a preference.
      ============================================================ -->
+
+<!-- REPLACE: canonical + share URLs. Point these at the real domain
+     before launch; example.com is a placeholder like the phone number. -->
+<link rel="canonical" href="https://example.com/">
+<meta property="og:image" content="assets/previews/bloom-botanicals.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<!-- Structured data: lets search engines show hours, phone and
+     ratings directly in results. Fill in address and openingHours
+     with the client's real details. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HealthAndBeautyBusiness",
+  "name": "Bloom Botanicals",
+  "description": "Small-batch botanical skincare. Six ingredients or fewer, every formula listed in full, and nothing tested on animals.",
+  "telephone": "+15552260918",
+  "email": "hello@bloombotanicals.example",
+  "image": "assets/previews/bloom-botanicals.jpg",
+  "url": "https://example.com/"
+}
+</script>
+
 </head>
 <body>
 <a class="skip" href="#shop">Skip to products</a>
 <header class="bar"><div class="wrap bar-in">
-  <a href="#top" aria-label="Bloom Botanicals — home"><img src="assets/logos/bloom-botanicals.png" alt="Bloom Botanicals"></a>
+  <a href="#top" aria-label="Bloom Botanicals — home"><img src="assets/logos/bloom-botanicals.png" alt="Bloom Botanicals" width="720" height="222"></a>
   <button class="nav-toggle" aria-expanded="false" aria-label="Toggle menu" aria-controls="mobile-nav"><span></span><span></span><span></span></button>
   <nav class="nav" id="mobile-nav" aria-label="Primary"><a href="#shop">Shop</a><a href="#ethos">Our ethos</a><a href="#shop">Ingredients</a><button type="button" class="ip-cta" data-ip-open>Book a skin consult</button></nav>
 </div></header>
@@ -235,7 +257,7 @@ body.menu-open{overflow:hidden}
 </main>
 <footer id="contact-details" class="ft"><div class="wrap">
   <div class="ft-g">
-    <div><span class="ft-logo"><img src="assets/logos/bloom-botanicals.png" alt="Bloom Botanicals"></span>
+    <div><span class="ft-logo"><img src="assets/logos/bloom-botanicals.png" alt="Bloom Botanicals" width="720" height="222" loading="lazy" decoding="async"></span>
       <p>Small-batch botanical skincare made in Kent. Six ingredients or fewer, refillable glass, batch numbered.</p></div>
     <div><h3>Shop</h3><a href="#shop">The collection</a><a href="#shop">Refills</a><a href="#ethos">Ingredients</a></div>
     <div><h3>Contact</h3>

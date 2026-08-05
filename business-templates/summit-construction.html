@@ -156,11 +156,33 @@ h1,h2,h3{font-family:var(--disp);color:var(--ink);font-weight:800;text-transform
      before either tag goes live. This is a legal requirement in
      the UK and EU, not a preference.
      ============================================================ -->
+
+<!-- REPLACE: canonical + share URLs. Point these at the real domain
+     before launch; example.com is a placeholder like the phone number. -->
+<link rel="canonical" href="https://example.com/">
+<meta property="og:image" content="assets/previews/summit-construction.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<!-- Structured data: lets search engines show hours, phone and
+     ratings directly in results. Fill in address and openingHours
+     with the client's real details. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "GeneralContractor",
+  "name": "Summit Construction Group",
+  "description": "Commercial and residential construction. Fixed-price bids, published safety record, and a project manager whose number you actually have.",
+  "telephone": "+15558820331",
+  "email": "tenders@summitconstruction.example",
+  "image": "assets/previews/summit-construction.jpg",
+  "url": "https://example.com/"
+}
+</script>
+
 </head>
 <body>
 <a class="skip" href="#projects">Skip to projects</a>
 <header class="bar"><div class="wrap bar-in">
-  <a class="mk" href="#top" aria-label="Summit Construction Group — home"><img src="assets/logos/summit-construction.png" alt="Summit Construction Group"></a>
+  <a class="mk" href="#top" aria-label="Summit Construction Group — home"><img src="assets/logos/summit-construction.png" alt="Summit Construction Group" width="720" height="222"></a>
   <nav class="nav" aria-label="Primary"><a href="#projects">Projects</a><a href="#safety">Safety</a><button type="button" class="ip-cta" data-ip-open>Request a site visit</button></nav>
   <a class="btn" href="#bid">Request a bid</a>
 </div></header>
@@ -239,7 +261,7 @@ h1,h2,h3{font-family:var(--disp);color:var(--ink);font-weight:800;text-transform
 </main>
 <footer id="contact-details" class="ft"><div class="wrap">
   <div class="ft-g">
-    <div><span class="ft-logo"><img src="assets/logos/summit-construction.png" alt="Summit Construction Group"></span>
+    <div><span class="ft-logo"><img src="assets/logos/summit-construction.png" alt="Summit Construction Group" width="720" height="222" loading="lazy" decoding="async"></span>
       <p>Commercial, residential and civil construction since 1995. Fixed-price bids and a published safety record.</p></div>
     <div><h3>Work</h3><a href="#projects">Projects</a><a href="#safety">Safety record</a><a href="#safety">Certifications</a></div>
     <div><h3>Tenders</h3><a href="tel:+15558820331">(555) 882-0331</a><a href="mailto:tenders@summitconstruction.example">tenders@summitconstruction.example</a><p style="margin-top:.5rem">Licence BC-118204</p></div>

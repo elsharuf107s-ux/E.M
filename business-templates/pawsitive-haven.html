@@ -152,11 +152,33 @@ h1,h2,h3{color:var(--ink);font-weight:800;line-height:1.16;text-wrap:balance}
      before either tag goes live. This is a legal requirement in
      the UK and EU, not a preference.
      ============================================================ -->
+
+<!-- REPLACE: canonical + share URLs. Point these at the real domain
+     before launch; example.com is a placeholder like the phone number. -->
+<link rel="canonical" href="https://example.com/">
+<meta property="og:image" content="assets/previews/pawsitive-haven.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<!-- Structured data: lets search engines show hours, phone and
+     ratings directly in results. Fill in address and openingHours
+     with the client's real details. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NGO",
+  "name": "Pawsitive Haven Rescue",
+  "description": "A volunteer-run rescue rehoming dogs and cats. Meet the animals looking for homes, or help through fostering, volunteering and donations.",
+  "telephone": "+15554820113",
+  "email": "foster@pawsitivehaven.example",
+  "image": "assets/previews/pawsitive-haven.jpg",
+  "url": "https://example.com/"
+}
+</script>
+
 </head>
 <body>
 <a class="skip" href="#pets">Skip to adoptable pets</a>
 <header class="bar"><div class="wrap bar-in">
-  <a class="mk" href="#top" aria-label="Pawsitive Haven Rescue — home"><img src="assets/logos/pawsitive-haven.png" alt="Pawsitive Haven Rescue"></a>
+  <a class="mk" href="#top" aria-label="Pawsitive Haven Rescue — home"><img src="assets/logos/pawsitive-haven.png" alt="Pawsitive Haven Rescue" width="720" height="222"></a>
   <nav class="nav" aria-label="Primary"><a href="#pets">Adoptable pets</a><a href="#help">Get involved</a></nav>
   <a class="btn btn--give" href="#help" data-ip-open aria-haspopup="dialog">Donate</a>
 </div></header>
@@ -237,7 +259,7 @@ h1,h2,h3{color:var(--ink);font-weight:800;line-height:1.16;text-wrap:balance}
 </main>
 <footer id="contact-details" class="ft"><div class="wrap">
   <div class="ft-g">
-    <div><span class="ft-logo"><img src="assets/logos/pawsitive-haven.png" alt="Pawsitive Haven Rescue"></span>
+    <div><span class="ft-logo"><img src="assets/logos/pawsitive-haven.png" alt="Pawsitive Haven Rescue" width="720" height="222" loading="lazy" decoding="async"></span>
       <p>A foster-based rescue with no shelter building and no paid staff. Every dollar goes to an animal.</p></div>
     <div><h3>Adopt</h3><a href="#pets">Adoptable pets</a><a href="#help">Foster</a><a href="#help">Volunteer</a></div>
     <div><h3>Contact</h3><a href="tel:+15554820113">(555) 482-0113</a><a href="mailto:hello@pawsitivehaven.example">hello@pawsitivehaven.example</a><p style="margin-top:.5rem">Charity 41-882-093</p></div>

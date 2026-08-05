@@ -365,7 +365,39 @@ body.ov-open{overflow:hidden}
   html{scroll-behavior:auto}
   .ov,.ov-back,.btn,.dock__btn{transition:none}
 }
+
+/* ios-zoom: Safari zooms the whole page when a focused field is under
+   16px. Mobile only, so the designed desktop size is untouched. */
+@media(max-width:768px){input,select,textarea{font-size:16px!important}}
+/* !important is deliberate: several of these files style fields through a
+   class (.fl input, .sites-sort select), which outranks a bare element rule
+   whatever the order. Losing that battle means iOS zooms the page on focus. */
 </style>
+
+<!-- REPLACE: canonical + share URLs. Point these at the real domain
+     before launch; example.com is a placeholder like the phone number. -->
+<link rel="canonical" href="https://example.com/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Cadence">
+<meta property="og:description" content="Cadence keeps every client job, quote and follow-up in one place. A business website template wired for twenty integrations.">
+<meta property="og:image" content="assets/previews/cadence.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<!-- Structured data: lets search engines show hours, phone and
+     ratings directly in results. Fill in address and openingHours
+     with the client's real details. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Cadence",
+  "description": "Cadence keeps every client job, quote and follow-up in one place. A business website template wired for twenty integrations.",
+  "telephone": "5550117400",
+  "email": "hello@cadence.example",
+  "image": "assets/previews/cadence.jpg",
+  "url": "https://example.com/"
+}
+</script>
+
 </head>
 <body>
 

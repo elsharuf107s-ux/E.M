@@ -160,6 +160,13 @@ h1,h2,h3{color:#fff;font-weight:600;line-height:1.12;letter-spacing:-.02em;text-
 .ip-cta{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;
   text-decoration:underline;text-underline-offset:4px;white-space:nowrap}
 .ip-cta:hover{opacity:.75}
+
+/* ios-zoom: Safari zooms the whole page when a focused field is under
+   16px. Mobile only, so the designed desktop size is untouched. */
+@media(max-width:768px){input,select,textarea{font-size:16px!important}}
+/* !important is deliberate: several of these files style fields through a
+   class (.fl input, .sites-sort select), which outranks a bare element rule
+   whatever the order. Losing that battle means iOS zooms the page on focus. */
 </style>
 
 <!-- ============================================================
@@ -171,11 +178,33 @@ h1,h2,h3{color:#fff;font-weight:600;line-height:1.12;letter-spacing:-.02em;text-
      before either tag goes live. This is a legal requirement in
      the UK and EU, not a preference.
      ============================================================ -->
+
+<!-- REPLACE: canonical + share URLs. Point these at the real domain
+     before launch; example.com is a placeholder like the phone number. -->
+<link rel="canonical" href="https://example.com/">
+<meta property="og:image" content="assets/previews/zenith-tech.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<!-- Structured data: lets search engines show hours, phone and
+     ratings directly in results. Fill in address and openingHours
+     with the client's real details. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Zenith Tech Solutions",
+  "description": "Platform engineering, data infrastructure and integration. Published latency figures, a live status page, and a two-week proof of concept.",
+  "telephone": "+15551180740",
+  "email": "engineering@zenithtech.example",
+  "image": "assets/previews/zenith-tech.jpg",
+  "url": "https://example.com/"
+}
+</script>
+
 </head>
 <body>
 <a class="skip" href="#tech">Skip to technology</a>
 <header class="bar"><div class="wrap bar-in">
-  <a class="mk" href="#top" aria-label="Zenith Tech Solutions — home"><img src="assets/logos/zenith-tech.png" alt="Zenith Tech Solutions"></a>
+  <a class="mk" href="#top" aria-label="Zenith Tech Solutions — home"><img src="assets/logos/zenith-tech.png" alt="Zenith Tech Solutions" width="720" height="222"></a>
   <nav class="nav" aria-label="Primary"><a href="#tech">Technology</a><a href="#status">Status</a><a href="#demo">Demo</a><button type="button" class="ip-cta" data-ip-open>Book a demo</button></nav>
   <a class="btn" href="#tech">Our services</a>
 </div></header>
@@ -257,7 +286,7 @@ h1,h2,h3{color:#fff;font-weight:600;line-height:1.12;letter-spacing:-.02em;text-
 </main>
 <footer id="contact-details" class="ft"><div class="wrap">
   <div class="ft-g">
-    <div><span class="ft-logo"><img src="assets/logos/zenith-tech.png" alt="Zenith Tech Solutions"></span>
+    <div><span class="ft-logo"><img src="assets/logos/zenith-tech.png" alt="Zenith Tech Solutions" width="720" height="222" loading="lazy" decoding="async"></span>
       <p>Platform engineering, data infrastructure and integration. Latency published, status page public.</p></div>
     <div><h3>Services</h3><a href="#tech">Platform</a><a href="#tech">Data</a><a href="#tech">Integration</a><a href="#tech">Security</a></div>
     <div><h3>Contact</h3><a href="tel:+15551180740">(555) 118-0740</a><a href="mailto:engineering@zenithtech.example">engineering@zenithtech.example</a><a href="#status">Status page</a></div>

@@ -306,6 +306,13 @@ h1,h2,h3{font-family:var(--cond);font-weight:700;text-transform:uppercase;line-h
 .ip-cta{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;
   text-decoration:underline;text-underline-offset:4px;white-space:nowrap}
 .ip-cta:hover{opacity:.75}
+
+/* ios-zoom: Safari zooms the whole page when a focused field is under
+   16px. Mobile only, so the designed desktop size is untouched. */
+@media(max-width:768px){input,select,textarea{font-size:16px!important}}
+/* !important is deliberate: several of these files style fields through a
+   class (.fl input, .sites-sort select), which outranks a bare element rule
+   whatever the order. Losing that battle means iOS zooms the page on focus. */
 </style>
 
 <!-- ============================================================
@@ -317,6 +324,31 @@ h1,h2,h3{font-family:var(--cond);font-weight:700;text-transform:uppercase;line-h
      before either tag goes live. This is a legal requirement in
      the UK and EU, not a preference.
      ============================================================ -->
+
+<!-- REPLACE: canonical + share URLs. Point these at the real domain
+     before launch; example.com is a placeholder like the phone number. -->
+<link rel="canonical" href="https://example.com/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="VITALITY GYM">
+<meta property="og:description" content="A proper training gym. Coaches on the floor, 38 classes a week, open 5am to 10pm. First week free. No lock-in contracts, ever.">
+<meta property="og:image" content="assets/previews/vitality-gym.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<!-- Structured data: lets search engines show hours, phone and
+     ratings directly in results. Fill in address and openingHours
+     with the client's real details. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ExerciseGym",
+  "name": "VITALITY GYM",
+  "description": "A proper training gym. Coaches on the floor, 38 classes a week, open 5am to 10pm. First week free. No lock-in contracts, ever.",
+  "telephone": "5559185544",
+  "email": "train@vitalitygym.fit",
+  "image": "assets/previews/vitality-gym.jpg",
+  "url": "https://example.com/"
+}
+</script>
+
 </head>
 <body>
 
