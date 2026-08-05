@@ -39,10 +39,13 @@ passes WCAG AA contrast (headings included), no heading skips, no unlabelled for
 and a 10.24px type floor. Their design languages stay deliberately different from each
 other — the passes raised craft inside each idiom, they did not unify them.
 
-**Still placeholder on the E.M site:** the contact form posts nowhere, and **the portraits
-in `assets/images/` are stock photographs of a person who is not the owner**, used in three
-places. The email and the GitHub link are real. **The portrait is now the only thing
-standing between this site and being publishable.**
+**The stock portraits are gone (2026-08-05).** `assets/images/` now holds two composites built
+from the real site screenshots — `work-stack.jpg` and `work-wall.jpg`. Do not reintroduce a
+photograph of a person unless it is actually the owner. **The contact form works**: no backend,
+so it composes the message into the visitor's mail client, addressed to the real email.
+
+**Still placeholder:** `example.com` in the canonical and og tags on all 34 pages, marked
+REPLACE — it needs a real domain.
 
 **There are now THIRTY templates.** `cadence.html` (2026-08-04) is a SaaS product site and a
 new idiom here — pricing tiers, a help centre, a launcher dock. Any count of "twenty-nine"
@@ -1750,3 +1753,70 @@ than the generated ones.
   visit but costs a request on the first, and these are single-page sites. Not worth it.
 - **"28 distinct font sizes"** on `index.html`. Real, but reducing it means retyping the scale
   across the whole design system — a redesign job, not a bug fix.
+
+---
+
+## 2026-08-05 — Claude Code — the two things that were actually blocking publication
+
+**The owner's request, verbatim:**
+
+> "fix all other issues"
+
+Four items were outstanding. Two were fixable by me and are now done; two need the owner and
+are unchanged.
+
+### 1. The stock portraits are gone — this was the publication blocker
+
+`hero-portrait.jpg` and `about-hero.jpg` were photographs of a person who is not the owner,
+used in three visible places with alt text asserting they *were* him — "E.M — Creative
+Designer & Developer", "E.M working on design projects", "E.M in creative workspace". That is
+worse than a generic stock photo: it is a false claim about a real, unidentified person.
+
+**Both files are deleted from the repo.** In their place, two composites built from the actual
+site screenshots already in `business-templates/assets/previews/`:
+
+- `work-stack.jpg` (896×1200) — three sites fanned, for the hero slot
+- `work-wall.jpg` (1376×768) — six sites in a grid, for the about slot
+
+This is the site's own argument made literal. `about.html` already says *"judge those, not a
+number I could have typed"* — so the hero now shows the work rather than a face. Alt text
+names the actual sites. The `og:image` and structured-data `image` on all four pages point
+there too, so a shared link no longer previews a stranger.
+
+**The first attempt rendered empty.** `setContent` gives the page no base URL, so the
+screenshots silently failed to load and the composite came out as three hairlines on beige —
+9KB instead of 77KB. Caught by opening the file. The builder now writes its HTML next to the
+previews and navigates to it, and asserts every image reported `naturalWidth > 0` before
+taking the shot.
+
+### 2. The contact form now reaches a real inbox
+
+It was honest but useless — the button said "Not connected yet" and nothing was sent. There is
+no backend and inventing a fake "message sent" would be a lie, so the form composes the
+message and hands it to the visitor's own mail client, pre-addressed to
+`elsharuf107s@gmail.com` with every filled field laid out and the message body below.
+
+- **Dispatched by an anchor click, not `location.href`.** Some browsers refuse a scripted
+  navigation to an external scheme; an anchor always works. It also made the behaviour
+  testable — headless Chromium has no mail handler and drops a `location.href` change
+  silently, which is why the first test reported a failure that was not real.
+- **Empty submits are still blocked** by native validation — verified, no blank emails.
+- `contact.html` now says what the button does, above the fold of the click: *"This opens your
+  email app with the message ready to send."* Nobody is surprised.
+
+Tested end to end: a filled form produces
+`mailto:elsharuf107s@gmail.com?subject=Website enquiry from Sam Whitaker` with name, email,
+phone, business and message correctly encoded.
+
+### Still outstanding — both need the owner, not me
+
+- **`example.com` in the canonical and og tags on all 34 pages.** Marked REPLACE. Needs a real
+  domain; inventing one would be worse than the placeholder.
+- **The integration-setup service section on the E.M site.** Needs prices. The honest framing
+  is already written into `INTEGRATIONS.md`; the figures are his to set.
+
+### Verified
+
+Full audit clean on all 34 pages · zero contrast failures · average grade unchanged at **91.7**
+(A:24 B:10) · no broken or failed image requests on any of the four E.M pages · hero and about
+opened and looked at.

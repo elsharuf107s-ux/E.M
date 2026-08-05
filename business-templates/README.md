@@ -95,7 +95,8 @@ every page falls back to system fonts offline.
 ## Before publishing
 
 Contact details in every site are placeholders, each marked with a `<!-- REPLACE -->`
-comment, and the forms post nowhere. The integration panel is the same: it opens and
+comment, and the template forms post nowhere. (The E.M portfolio's own contact form does
+work — it composes the message and hands it to the visitor's mail client.) The integration panel is the same: it opens and
 behaves correctly, but its slot is empty until a provider's embed goes in. Search a file
 for `REPLACE` to find every one of these in it.
 

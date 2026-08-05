@@ -150,19 +150,47 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ---------- contact form ------------------------------------------------ */
   const form = $('#contact-form');
   if (form) {
+    /* No backend, and inventing a fake "message sent" would be a lie. So the
+       form composes the message and hands it to the visitor's own mail client,
+       which does reach a real inbox. The page says so above the button, so
+       nobody is surprised when their mail app opens.
+
+       REPLACE: when a real endpoint exists (Formspree, Netlify Forms, your own
+       API), set the form's action= and delete this handler. */
+    var TO = 'elsharuf107s@gmail.com';
     form.addEventListener('submit', (e) => {
       e.preventDefault();
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+
+      const val = (n) => {
+        const el = form.querySelector('[name="' + n + '"]');
+        return el && el.value.trim() ? el.value.trim() : '';
+      };
+      const lines = [];
+      [['Name','name'], ['Email','email'], ['Phone','phone'], ['Company','company'],
+       ['Business','trade'], ['Budget','budget'], ['Subject','subject']]
+        .forEach(([label, n]) => { const v = val(n); if (v) lines.push(label + ': ' + v); });
+      const msg = val('message');
+      if (msg) lines.push('', msg);
+
+      const subject = val('subject') || ('Website enquiry' + (val('name') ? ' from ' + val('name') : ''));
+      const href = 'mailto:' + TO
+        + '?subject=' + encodeURIComponent(subject)
+        + '&body=' + encodeURIComponent(lines.join('\n'));
+      // an anchor click rather than location.href: some browsers refuse a
+      // scripted navigation to an external scheme, and this one always works.
+      const a = document.createElement('a');
+      a.href = href;
+      a.style.display = 'none';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+
       const btn = form.querySelector('button[type="submit"]');
       if (!btn) return;
-      // REPLACE: wire this to a real endpoint (Formspree, Netlify Forms, your API).
-      // Until then the form only acknowledges locally and sends nothing.
       const original = btn.innerHTML;
-      btn.disabled = true;
-      btn.textContent = 'Not connected yet';
-      setTimeout(() => {
-        btn.disabled = false;
-        btn.innerHTML = original;
-      }, 2600);
+      btn.textContent = 'Opening your email app…';
+      setTimeout(() => { btn.innerHTML = original; }, 3200);
     });
   }
 
