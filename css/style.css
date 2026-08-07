@@ -595,6 +595,8 @@ p{text-wrap:pretty}
 .sites-empty{display:none;padding:3rem 0;text-align:center;color:var(--muted)}
 .sites-empty.show{display:block}
 .linkish{color:var(--ink);border-bottom:1px solid var(--ink);padding-bottom:1px}
+.form-note{margin-top:1rem;font-size:.88rem;color:var(--muted);max-width:52ch}
+.form-note a{border-bottom:1px solid currentColor}
 .linkish:hover{color:var(--brass);border-bottom-color:var(--brass)}
 @media(max-width:700px){
   .sites-count{margin-left:0;width:100%}
